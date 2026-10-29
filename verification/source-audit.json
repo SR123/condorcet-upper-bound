@@ -1,0 +1,28 @@
+{
+  "project_module_count": 326,
+  "Main_import_closure_count": 318,
+  "closure_matches_receipt": true,
+  "forbidden_tokens": [
+    "sorry",
+    "admit",
+    "axiom",
+    "native_decide",
+    "unsafe",
+    "implemented_by",
+    "extern",
+    "ofReduceBool",
+    "ofReduceNat",
+    "sorryAx",
+    "mkSorry",
+    "run_elab",
+    "initialize"
+  ],
+  "hits": [],
+  "set_options": [
+    "Elab.async",
+    "autoImplicit",
+    "maxHeartbeats",
+    "maxRecDepth"
+  ],
+  "scope": "Independent source audit, supplemented by successful full source compilation and final transitive axiom checks."
+}

@@ -1,0 +1,573 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathcal F}
+\newcommand{\nc}[2]{#1\mathrm N#2}
+\newcommand{\sw}{\operatorname{swap}}
+\newcommand{\del}{\Sigma}
+\newcommand{\maj}{\operatorname{maj}}
+\title{Improved Upper Bounds on the Size of Condorcet Domains}
+\author{Pavlos Moros \and S\o ren Riis}
+\date{Local Combinatorica draft, 29 October 2026}
+\hypersetup{pdftitle={Improved Upper Bounds on the Size of Condorcet Domains},pdfauthor={Pavlos Moros and Soren Riis}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We reduce full Condorcet domains to adjacent-swap components defined by
+extreme never-conditions and fixed pair comparisons. Their deletion sums
+add to the original deletion sum plus its insertion gaps. Combining this
+identity with Moros's gap inequality and an exact finite-window estimate
+gives $f(n)\le32n\,f(n-1)/(11n+8)$, hence
+$f(n)=O(n^{-8/11}(32/11)^n)$. The same argument recovers the peak-pit
+growth bound $8/3$. Ordered concatenation removes the window boundary
+loss. The finite certificate and exact checking programs are supplied
+separately.
+\end{abstract}
+
+\section{Introduction}
+
+A \emph{Condorcet domain} is a family of linear orders for which pairwise
+majority is transitive for every odd voter profile. Let $f(n)$ be its
+maximum possible size on $n$ alternatives. By Sen's characterization
+\cite{Sen}, each triple must have an alternative that never occupies
+one of its three positions. We write $\nc xp$ for such a
+\emph{never-condition}. A domain is \emph{peak-pit} if every triple has
+a never-first or never-last condition; let $h(n)$ be the corresponding
+maximum. No common axis is required.
+
+Raz~\cite{Raz} proved that $f(n)$ is at most exponential. Moros's
+manuscript~\cite{Moros} introduced the deletion-and-gap framework used
+here and obtained explicit general bases $56/19$ and $1336/455$.
+It also proved the peak-pit base $8/3$, using finite windows and
+potential cancellation. Our numerical improvement concerns the
+unrestricted bound; the peak-pit base is recovered within the same
+structural argument. For background and constructions, see
+\cite{Fishburn,KarpovSlinko,KMRZ}.
+
+\begin{theorem}\label{thm:main}
+For $n\ge3$,
+\begin{align}
+ f(n)&\le\frac{32n}{11n+8}f(n-1),&
+ f(n)&\le4(32/11)^{n-3},\label{eq:general}\\
+ h(n)&\le\frac83h(n-1),&
+ h(n)&\le4(8/3)^{n-3}.\label{eq:peak}
+\end{align}
+The limits of $f(n)^{1/n}$ and $h(n)^{1/n}$ exist and are at most
+$32/11=2.9090909\ldots$ and $8/3$, respectively. Moreover,
+$f(n)=O(n^{-8/11}(32/11)^n)$.
+\end{theorem}
+
+The structural step is to reduce general domains to families defined
+by extreme never-conditions and fixed pair comparisons. Write $D_{-x}$
+for the distinct orders left after deleting $x$, and put
+\[
+ M=|D|,\qquad \del(D)=\sum_x|D_{-x}|.
+\]
+Every deletion preserves the Condorcet property, so a maximum domain
+satisfies $\del(D)\le nf(n-1)$. For a full domain $D$, we prove that its
+adjacent-swap components $K$ belong to the extreme-law class and satisfy
+\[
+ \sum_K\del(K)=\del(D)+G(D),
+\]
+where $G(D)$ counts gaps between runs of insertion positions. This
+component reduction is the main structural contribution of the paper.
+It builds on Moros's framework and uses the median structure
+studied by Puppe and Slinko~\cite{PuppeSlinko}.
+
+The extreme-law estimate $\del(K)\ge3n|K|/8$ therefore gives
+$\del(D)+G(D)\ge3n|D|/8$. Moros's maximal-domain gap inequality
+$G(D)\le3\del(D)-(n+1)|D|$ then yields
+\begin{equation}\label{eq:transfer}
+ \frac38n|D|\le\del(D)+G(D)
+ \le4\del(D)-(n+1)|D|,
+ \qquad \del(D)\ge\frac{11n+8}{32}|D|.
+\end{equation}
+Proposition~\ref{prop:transfer} records the same transfer with an arbitrary
+uniform density input. Sections~\ref{sec:components} and~\ref{sec:gaps}
+give the structural and gap arguments. Section~\ref{sec:finite} retains
+the finite lemma, its exceptional case and coverage proof;
+Section~\ref{sec:finish} removes the boundary loss. Exact certificate
+tables, witness files and reproduction instructions are separate
+supplementary material.
+
+\section{Fibres and adjacent-swap components}\label{sec:components}
+
+A \emph{full domain} is the set $D(N)$ of all orders satisfying one
+specified never-condition on each triple. Every inclusion-maximal
+Condorcet domain is full: choose a common condition on each triple,
+and use maximality. In auxiliary arguments we also allow fixed pair
+comparisons. Let $\F_n$ be the nonempty full domains defined by one
+extreme condition ($\nc x1$ or $\nc x3$) per triple and any fixed pairs.
+Pair conditions are necessary because conditioning an outside order
+can create them inside a window.
+
+Fix $x$ and $P\in D_{-x}$. Its \emph{insertion fibre} is
+\[
+ F(x,P)=\{t\in\{0,\ldots,n-1\}:P[x:t]\in D\},
+\]
+where $P[x:t]$ inserts $x$ with $t$ alternatives above it. If this set
+has $r$ nonempty consecutive runs, it contributes $r-1$ to $G(D)$.
+Let $A(D)$ count enabled adjacent swaps over every order and position;
+thus each undirected edge is counted twice.
+
+\begin{lemma}\label{lem:fibre}
+For every finite family of orders,
+\begin{equation}\label{eq:runidentity}
+ \del(D)+G(D)=n|D|-A(D).
+\end{equation}
+Every fibre of a domain in $\F_n$ is an interval, so $G(D)=0$ there.
+\end{lemma}
+\begin{proof}
+A fibre with $m$ occupied slots and $r$ runs has $m-r$ neighbouring
+occupied pairs. Each corresponds to moving its distinguished alternative
+down by one slot. Summed over all distinguished alternatives, these moves
+count every directed swap exactly once. Hence
+$A=nM-\sum_F r$, and $\sum_F r=\del+G$.
+For an extreme law, the admissible insertion slots form an interval;
+the same is true of a fixed comparison. Intersect these intervals.
+\end{proof}
+
+\begin{theorem}[Component reduction]\label{thm:components}
+Every adjacent-swap component $K$ of a full Condorcet domain belongs to
+$\F_n$, and
+\begin{equation}\label{eq:componentidentity}
+ \sum_K\del(K)=\del(D)+G(D).
+\end{equation}
+\end{theorem}
+\begin{proof}
+A full domain is closed under coordinatewise majority of pair comparisons.
+This is the median structure of closed Condorcet domains studied
+by Puppe and Slinko~\cite{PuppeSlinko}; we give the component argument here.
+Indeed, the Condorcet property makes that majority transitive, and every
+never-condition is preserved by majority. For never-first and never-last
+this follows from the intersection of two subsets of size two among three
+voters; never-middle says that the distinguished alternative's two
+comparisons agree.
+
+Let $U$ be all comparisons constant on $K$. We first show that $K$
+contains every order of $D$ agreeing with $U$. Otherwise choose such a
+$\tau$ outside $K$ and $\sigma\in K$ closest to it in comparison distance.
+A differing comparison is not constant on $K$, so some $\rho\in K$
+agrees with $\tau$ there. Project a path from $\sigma$ to $\rho$ by
+$v\mapsto\maj(\sigma,\tau,v)$. The images remain in $D$, and consecutive
+images differ in at most one comparison. If two linear orders differ in only one pair comparison, that pair is
+adjacent in both orders. Thus the image path stays in $K$,
+while the final image is closer to $\tau$, a contradiction.
+
+A selected never-middle law $\nc x2$ forces the comparisons of $x$
+with the other two alternatives to agree.
+Neither can change along an adjacent-swap path, so both are fixed on $K$.
+Replace this law by the extreme law implied by their common value, keep
+the other extreme laws, and impose $U$. The resulting full solution set
+is exactly $K$. Thus $K\in\F_n$.
+
+An original fibre meets each component in either no slots or one run:
+it is an interval within a component, and consecutive slots are joined
+by swaps. Its $r$ runs are consequently counted $r$ times in the
+component deletion sums. Summing gives~\eqref{eq:componentidentity}.
+\end{proof}
+
+\begin{proposition}[Transfer of a density estimate]\label{prop:transfer}
+Fix $n\ge3$ and $\alpha>0$. Suppose
+\begin{equation}\label{eq:alpha}
+ \del(K)\ge\alpha n|K|\quad\hbox{for every }K\in\F_n.
+\end{equation}
+Then every inclusion-maximal Condorcet domain $D$ on $n$ alternatives
+satisfies
+\[
+ \del(D)\ge\frac{(1+\alpha)n+1}{4}|D|.
+\]
+Consequently,
+\[
+ f(n)\le\frac{4n}{(1+\alpha)n+1}f(n-1),
+ \qquad h(n)\le\alpha^{-1}h(n-1).
+\]
+\end{proposition}
+\begin{proof}
+A maximal domain is full. The component identity gives
+$\del(D)+G(D)\ge\alpha n|D|$; Theorem~\ref{thm:gap}, proved next,
+bounds the left side by $4\del(D)-(n+1)|D|$. Apply the resulting
+inequality to a domain of size $f(n)$ and use
+$\del(D)\le nf(n-1)$. A maximum peak-pit domain can be completed under
+one chosen extreme law per triple. The completion is still peak-pit,
+so maximal size makes it equal to the original domain. It belongs to
+$\F_n$, and~\eqref{eq:alpha} gives the second recurrence.
+\end{proof}
+
+This is an algebraic formulation of the present argument. Any stronger
+uniform density estimate for this same extreme-law class would improve
+the unrestricted recurrence through the displayed formula. It does not
+require a change to the component reduction or gap inequality.
+
+% Short proof integrated from the frozen gap_short.tex; attribution in main.tex.
+\section{Moros's gap inequality}\label{sec:gaps}
+
+\begin{theorem}[Gap inequality]\label{thm:gap}
+For every inclusion-maximal Condorcet domain $D$ on $n\ge3$ alternatives,
+\begin{equation}\label{eq:gap}
+ G(D)\le3\del(D)-(n+1)|D|.
+\end{equation}
+\end{theorem}
+
+We use Moros's shorter proof~\cite[Sections 3--4]{Moros}: two exact counts
+reduce the inequality to an injection from free alternatives into locked adjacent pairs.
+Let $D$ be a set of orders and $\sigma=s_1\cdots s_n\in D$. A \emph{lift} of $x$ in $\sigma$ is an order of $D$
+obtained by moving $x$ upwards and keeping the other alternatives in their relative order; a \emph{drop} is defined
+symmetrically. The \emph{lowest lift} is the lift that places $x$ lowest, and the \emph{highest drop} the drop that
+places it highest. We call $x$ \emph{blocked} in $\sigma$ if it has no lift, \emph{free} if it has a lift and a drop,
+and \emph{frozen} if it has neither. Letter $j\in[n-1]$ of $\sigma$ is the adjacent pair $(s_j,s_{j+1})$. If
+$\sw_j(\sigma)\in D$, it is a lift of $s_{j+1}$ and a drop of $s_j$. Letter $j$ is \emph{locked} if $s_{j+1}$ is
+blocked and $s_j$ has no drop: neither can pass the other. Let $\mathrm{fr}(D)$ and $\mathrm{fz}(D)$ be the numbers of
+pairs $(\sigma,x)$ with $x$ free, respectively frozen, in $\sigma\in D$, and $\mathrm{lk}(D)$ the number of locked
+letters $(\sigma,j)$. Recall that $A(D)$ counts the pairs $(\sigma,j)$ with $\sw_j(\sigma)\in D$.
+
+Within one fibre of $x$, the member placing $x$ highest is the only one in which $x$ is blocked, and the member placing
+it lowest is the only one in which $x$ has no drop. Summing over all fibres (cf.~\cite{Fathi}),
+\begin{equation}\label{eq:count}
+ \del(D)=\#\{(\sigma,x):x\text{ is blocked in }\sigma\}=\#\{(\sigma,x):x\text{ has no drop in }\sigma\}.
+\end{equation}
+
+\begin{lemma}\label{lem:missing}
+Let $D$ be a full domain, $\sigma\in D$ and $\sw_j(\sigma)\notin D$. Then $s_{j+1}$ is blocked in $\sigma$ or $s_j$
+has no drop in $\sigma$.
+\end{lemma}
+\begin{proof}
+Write $u=s_j$ and $w=s_{j+1}$. If fixed pairs are present, violating their
+comparison blocks both moves. Otherwise the swap changes only the comparison
+of $u$ and $w$, so it violates the law of some
+triple $T=\{u,w,y\}$, and $y$ is above both or below both. If $y$ is below, $\sigma$ and $\sw_j(\sigma)$ give $uwy$ and
+$wuy$ on $T$, so the law is $\nc w1$ or $\nc u2$. A lift of $w$ also gives $wuy$, so $w$ has none. If $y$ is above,
+they give $yuw$ and $ywu$, so the law is $\nc u3$ or $\nc w2$. A drop of $u$ also gives $ywu$, so $u$ has none.
+\end{proof}
+
+\begin{lemma}\label{lem:twocounts}
+For every finite set $D$ of orders,
+\[
+ 2\del(D)=n|D|-\mathrm{fr}(D)+\mathrm{fz}(D),
+\]
+and if $D$ is a full domain, also
+\[
+ 2\del(D)=(n+1)|D|-A(D)+\mathrm{lk}(D).
+\]
+\end{lemma}
+\begin{proof}
+By~\eqref{eq:count}, $2\del(D)$ counts the pairs $(\sigma,x)$ in which $x$ is blocked plus those in which $x$ has no
+drop. A frozen pair is counted twice, a free pair never, and every other pair once; this is the first identity. For the
+second, give each blocked $s_{j+1}$ and each $s_j$ without a drop to letter $j$ of $\sigma$. Only the top of each
+order, which is blocked, and the bottom, which has no drop, are left over. A letter with $\sw_j(\sigma)\in D$ receives
+nothing and a locked letter receives two. By Lemma~\ref{lem:missing} every other letter receives exactly one. So
+$2\del(D)=2|D|+(n-1)|D|-A(D)+\mathrm{lk}(D)$.
+\end{proof}
+
+The first identity is the sum over $x$ of Fathi's fibre identity~\cite[eq.~(96)]{Fathi}; the summed form appears in
+the proof of~\cite[Theorem~K.189]{Fathi}. Adding the two identities and using Lemma~\ref{lem:fibre},
+$A(D)=n|D|-\del(D)-G(D)$, gives for every full domain
+\begin{equation}\label{eq:slackid}
+ 3\del(D)-(n+1)|D|-G(D)=\mathrm{fz}(D)+\mathrm{lk}(D)-\mathrm{fr}(D).
+\end{equation}
+So Theorem~\ref{thm:gap} follows once the free pairs are sent injectively into the locked letters. The second
+identity and Lemma~\ref{lem:fibre} also give $\del(D)=|D|+G(D)+\mathrm{lk}(D)$ for every full domain.
+
+The injection uses maximality through the following observation.
+
+\begin{lemma}\label{lem:adj}
+Let $D$ be a maximal Condorcet domain in which $p$ is above $q$ in every order. Then no order of $D$ has $p$ directly
+above $q$.
+\end{lemma}
+\begin{proof}
+Let $\rho\in D$ have $p$ directly above $q$, and let $\rho'$ be $\rho$ with $p$ and $q$ exchanged; $\rho'\notin D$. On
+every triple $\{p,q,y\}$, $D$ satisfies $\nc p3$ and $\nc q1$, and $\rho'$ gives $yqp$ or $qpy$, which satisfy
+$\nc q1$, respectively $\nc p3$. Other triples are ordered by $\rho'$ as by $\rho$. So $D\cup\{\rho'\}$ is a Condorcet
+domain, against maximality.
+\end{proof}
+
+\begin{lemma}\label{lem:pull}
+Let $D$ be a Condorcet domain, $b=s_k$ free in $\sigma\in D$, $a=s_{k-1}$, $c=s_{k+1}$ and $T=\{a,b,c\}$. Then $D$
+satisfies $\nc a3$ or $\nc c1$ on $T$. If $D$ satisfies $\nc a3$ on $T$, then in every lift of $b$ the alternative $a$
+is directly above $c$, and the letter $(a,c)$ is locked. If $D$ satisfies $\nc c1$ on $T$, the same holds in every
+drop of $b$. If $D$ is maximal, it does not satisfy both.
+\end{lemma}
+\begin{proof}
+On $T$, $\sigma$ gives $abc$, a lift of $b$ gives $bac$ and a drop gives $acb$. So $b$ takes every position, $a$ only
+the first two and $c$ only the last two; the only laws these orders allow are $\nc a3$ and $\nc c1$. In a lift $\tau$
+of $b$, the alternatives from the new place of $b$ down to $a$ move down one place, so $a$ is directly above $c$. A lift
+of $c$ or a drop of $a$ in $\tau$ would put $c$ above $a$, with $b$ still above $a$: $a$ last on $T$. In a drop $\tau$
+of $b$, $a$ is directly above $c$ and $b$ is below $c$; a lift of $c$ or a drop of $a$ in $\tau$ would put $c$ first
+on $T$. Finally, the orders of $T$ allowed by both laws are $abc$, $acb$ and $bac$, so $a$ would be above $c$ in every
+order of $D$, while a lift of $b$ has $a$ directly above $c$, against Lemma~\ref{lem:adj}.
+\end{proof}
+
+The first assertion is~\cite[Lemma~K.52]{Fathi}. Now let $D$ be maximal. For a free pair $(\sigma,b)$, with $a,c,T$ as
+in Lemma~\ref{lem:pull}, let $\tau$ be the lowest lift of $b$ if $D$ satisfies $\nc a3$ on $T$, and the highest drop of
+$b$ otherwise. Put $\psi(\sigma,b)=(\tau,j)$, where $j$ is the position of $a$ in $\tau$: the letter $(a,c)$ of $\tau$.
+
+\begin{proposition}\label{prop:free}
+If $D$ is a maximal Condorcet domain, $\psi$ maps the free pairs of $D$ injectively to its locked letters. So
+$\mathrm{fr}(D)\le\mathrm{lk}(D)$.
+\end{proposition}
+\begin{proof}
+The images are locked letters by Lemma~\ref{lem:pull}. Let $(\tau,j)$ be a locked letter, $p=s_j(\tau)$,
+$q=s_{j+1}(\tau)$, and $(\sigma,b)$ a preimage. Then $b\notin\{p,q\}$, and $\sigma$ is $\tau$ with $b$ moved into the
+slot between $p$ and $q$; so $b$ determines the preimage. If $\psi(\sigma,b)$ used a lift, then $b$ is above $p$ in
+$\tau$, $D$ satisfies $\nc p3$ and not $\nc q1$ on $\{p,q,b\}$, and $b$ has a drop in $\sigma$; call $b$
+\emph{upper}. Otherwise $b$ is below $q$ in $\tau$, $D$ satisfies $\nc q1$ and not $\nc p3$ on $\{p,q,b\}$, and $b$ has
+a lift in $\sigma$; call $b$ \emph{lower}. For upper $b$, some $\chi_b\in D$ puts $q$ first on $\{p,q,b\}$, and as $p$
+is never last there, $\chi_b$ gives $qpb$. Suppose that $b_1\ne b_2$ give preimages $(\sigma_1,b_1)$ and
+$(\sigma_2,b_2)$.
+
+\emph{Both upper.} Let $\rho_k$ be a drop of $b_k$ in $\sigma_k$. On $\{b_1,b_2,q\}$, $\sigma_1,\sigma_2,\rho_1,\rho_2$
+give $b_2b_1q$, $b_1b_2q$, $b_2qb_1$, $b_1qb_2$. So $b_1$ and $b_2$ take every position, and $D$ satisfies $\nc q1$
+there. In $\chi_{b_1}$, $q$ is above $b_1$, hence below $b_2$, so $\chi_{b_1}$ gives $b_2qp$ on $\{p,q,b_2\}$, against
+$\nc p3$.
+
+\emph{Both lower.} Reversing every order keeps $D$ a maximal Condorcet domain, exchanges lifts and drops (the lowest
+lift becomes the highest drop) and maps locked letters to locked letters. As $D$ never satisfies both laws of
+Lemma~\ref{lem:pull}, the rule defining $\psi$ is symmetric, so reversal maps $\psi$ to $\psi$ and exchanges upper and
+lower. Apply the previous case.
+
+\emph{$b_1$ upper, $b_2$ lower.} On $\{p,q,b_1,b_2\}$, $\tau$ gives $b_1pqb_2$, $\sigma_1$ gives $pb_1qb_2$, $\sigma_2$
+gives $b_1pb_2q$, and $\chi=\chi_{b_1}$, in which $q$ is above $p$, has $b_2$ above $q$ (by $\nc q1$ on
+$\{p,q,b_2\}$): it gives $b_2qpb_1$. Let $\rho$ be a drop of $b_1$ in $\sigma_1$ and $\lambda$ a lift of $b_2$ in
+$\sigma_2$. On $\{b_1,b_2,q\}$, $\tau,\sigma_2,\chi$ give $b_1qb_2$, $b_1b_2q$, $b_2qb_1$, and $\rho$ puts $q$ first.
+So $b_2$ and $q$ take every position, $D$ satisfies $\nc{b_1}2$ there, $\rho$ gives $qb_2b_1$ and $\lambda$ gives
+$b_1b_2q$. On $\{p,b_1,b_2\}$, $\tau,\sigma_1,\rho,\lambda,\chi$ then give $b_1pb_2$, $pb_1b_2$, $pb_2b_1$, $b_1b_2p$,
+$b_2pb_1$: each of $p,b_1,b_2$ takes every position, which is impossible in a Condorcet domain.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:gap}]
+A maximal domain is full, so~\eqref{eq:slackid} holds, and its right-hand side is nonnegative by
+Proposition~\ref{prop:free}.
+\end{proof}
+
+\section{A finite window inequality}\label{sec:finite}
+
+For $H\in\F_k$, its \emph{bottom slices} group orders by their last
+alternative and delete it; top slices group by the first alternative.
+Every nonempty slice belongs to $\F_{k-1}$. Write $a_j(H)$ for the
+number of orders whose swap at position $j$ is enabled. On seven labels put
+\begin{equation}\label{eq:cost}
+ C(H)=\frac{a_1+2a_2+2a_3+2a_4+2a_5+a_6}{10}.
+\end{equation}
+The weights sum to one. They are chosen so that each interior swap is
+counted with total weight one when a seven-position window slides
+through an order.
+
+\begin{lemma}[Exact finite estimate]\label{lem:finite}
+There is a rational function $q$ on the isomorphism types of $\F_6$ such
+that, for every $J\in\F_7$,
+\begin{equation}\label{eq:finite}
+ C(J)\le\frac58|J|+
+ \sum_{H\text{ bottom slice}}q(H)-\sum_{H\text{ top slice}}q(H).
+\end{equation}
+The rational table and exact verifiers are supplied in the certificate
+supplement. The finite statement includes all fixed-pair constraints,
+with no common-axis assumption.
+\end{lemma}
+\begin{proof}
+We separate the certificate, its exceptional receiver case and its
+coverage. The supplement gives the complete tables and replay instructions.
+
+\emph{Certificate.}
+The certificate assigns per-order weights $\phi$ to five-label types.
+For a six-domain $H$ let $b(H)$ and $t(H)$ be the sums of
+$|L|\phi(L)$ over its bottom and top five-slices. Put
+\[
+ s(H)=\frac{12}{19}|H|+b(H)-t(H)-\frac15 A(H),\qquad \eta=\frac1{152}.
+\]
+There are specified exceptional sets $\mathcal T,\mathcal S$ of five and
+nine six-label types. Put $p(H)=2\eta(r_t(H)-r_b(H))$ outside $\mathcal S$,
+and $p(H)=\psi(H)$ on $\mathcal S$, with the rational values $\psi$ supplied
+by the certificate. Set $\theta_b=s/2+p$ and $\theta_t=s/2-p$.
+The finite facts are as follows. On $\mathcal T$
+both split values are zero. Outside $\mathcal T\cup\mathcal S$,
+\begin{equation}\label{eq:receivers}
+ \theta_b(H)\ge\frac\eta2|H|+4\eta r_t(H),\qquad
+ \theta_t(H)\ge\frac\eta2|H|+4\eta r_b(H).
+\end{equation}
+Here $r_b,r_t$ count specified five-slices described below. A further
+finite check proves
+\begin{equation}\label{eq:lambda}
+ \Lambda(J):=\sum_{\text{bottom }H}\theta_b(H)
+             +\sum_{\text{top }H}\theta_t(H)\ge\eta|J|
+\end{equation}
+whenever $J$ has a slice in $(\mathcal T\setminus\{R_8\})\cup\mathcal S$.
+All types, weights and slice selectors are explicitly defined in the
+ancillary data; they are not fitted during verification.
+
+\emph{The remaining exceptional type.} The only type not handled by
+the explicit seven-label check is
+\[
+ R_8=\{524130,524310,534120,534210,
+        542130,542310,543120,543210\}.
+\]
+It has a common first and last alternative. The quantity $r_b(H)$ counts
+bottom five-slices of the type $R_8$ with its first alternative deleted;
+$r_t(H)$ counts top five-slices of the type with its last deleted.
+Both counts vanish on $R_8$.
+If a bottom $R_8$ slice occurs, its eight orders share their first
+alternative, so they enter one top receiver slice and contribute one
+to its $r_b$. That receiver is not $R_8$. Distinct bottom slices give
+distinct receiver/label pairs. Each contributes $4\eta$, exactly paying
+the missing baseline $8\eta/2$. Top $R_8$ slices are symmetric.
+In the remaining cases all non-$R_8$ slices lie outside
+$\mathcal T\cup\mathcal S$, so~\eqref{eq:receivers} applies to every receiver.
+It proves~\eqref{eq:lambda} in every case not handled by the exceptional finite check.
+
+Define
+\[
+ q(H)=\frac{b(H)+t(H)}2+p(H).
+\]
+In a seven-domain, a top slice of a bottom slice is the same conditional
+five-domain as the corresponding bottom slice of a top slice.
+These middle terms cancel. Also the sum of $A(H)$ over all six-slices
+is $10C(J)$. Consequently
+\[
+ \Lambda(J)=\frac{12}{19}|J|-C(J)
+       +\sum_{\text{bottom }H}q(H)-\sum_{\text{top }H}q(H).
+\]
+Now~\eqref{eq:lambda} and $12/19-1/152=5/8$ give~\eqref{eq:finite}.
+
+\emph{Coverage.} We finally explain why the finite checks are exhaustive.
+All $128\,400$ labelled five-domains form $1\,160$ relabelling types.
+Extend their defining laws over the ten new triples and five new pairs.
+This gives $14\,105\,084$ nonempty six-extensions of five-type
+representatives and $94\,830$ feature rows. The extension count is not a
+count of distinct labelled six-domains.
+Every six-domain occurs up to relabelling: restrict its \emph{defining
+conditions} to five labels, rather than taking its projection.
+Keeping every domain on the thirteen exceptional feature rows gives precisely the
+fourteen required types. Two of the five types in $\mathcal T$ share one feature row.
+Their representatives and reversals, omitting
+$R_8$, give eighteen seven-label seed families. Requiring a prescribed
+endpoint six-slice and intersecting all compatible law and pair options
+produces $14\,248$ seed--domain cases (before deduplication across seeds)
+and $18\,316$ feature rows, covering both
+orientations. Every required inequality is verified by clearing the rational
+denominators and checking a nonnegative integer residual. A separate
+tuple-set checker recomputes every saved row from its witness orders.
+The coverage and receiver arguments above are mathematical parts of the
+proof; exact arithmetic verifies the finite residuals.
+\end{proof}
+
+\section{Cancellation, concatenation and the bounds}\label{sec:finish}
+
+\begin{proposition}\label{prop:density}
+Every $K\in\F_n$ satisfies $\del(K)\ge3n|K|/8$.
+\end{proposition}
+\begin{proof}
+For $n\ge7$, condition on the entire order outside each block of seven
+consecutive positions. The conditional domain belongs to $\F_7$:
+internal triples retain their extreme laws and crossing triples can
+only impose pair comparisons or constant restrictions.
+Apply Lemma~\ref{lem:finite} to all these windows, with their outside
+multiplicities. After regrouping by the exterior, the bottom six-slices of a window
+starting at position $i$ are the top six-slices of the window starting
+at $i-1$. Thus every interior potential cancels.
+Since $\F_6$ is finite, $|q(H)|\le Q|H|$ for a constant $Q$;
+the two endpoint layers contribute at most $2Q|K|$.
+
+The weights in~\eqref{eq:cost} count each interior enabled swap once.
+At the ends they miss at most five incidences per order: the total
+coefficient deficit is $(n-1)-(n-6)=5$. Therefore
+\[
+ A(K)\le\frac58(n-6)|K|+(5+2Q)|K|
+       \le\frac58n|K|+B|K|
+\]
+for a fixed $B$. By Lemma~\ref{lem:fibre},
+$\del(K)\ge(3n/8-B)|K|$.
+
+The boundary loss disappears by taking ordered copies. Fix any
+$K\in\F_n$, with $M$ orders, and concatenate $t$ copies on disjoint
+blocks, every alternative of an earlier block above every alternative
+of a later block. Fixed cross-block pairs and compatible extreme
+laws make this a member $K^{[t]}\in\F_{tn}$. Directly,
+\[
+ |K^{[t]}|=M^t,\qquad
+ \del(K^{[t]})=t\del(K)M^{t-1}.
+\]
+Apply the affine bound to $K^{[t]}$ and divide by $tM^{t-1}$:
+$\del(K)\ge(3n/8-B/t)M$. Let $t$ tend to infinity.
+This also covers the original small values of $n$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:density} supplies~\eqref{eq:alpha} with
+$\alpha=3/8$. Proposition~\ref{prop:transfer} gives the two recurrences.
+Iterate from $f(3)=h(3)=4$ to obtain the exponential bounds.
+
+Ordered concatenation gives supermultiplicativity of both maxima.
+Fekete's lemma applied to their logarithms proves existence of the
+stated limits. Finally, retaining the factor $n/(n+8/11)$ gives, for $n\ge3$,
+\[
+ f(n)\le4(32/11)^{n-3}\prod_{k=4}^{n}\frac{k}{k+8/11}.
+\]
+The logarithm of the product is $-(8/11)\log n+O(1)$, which proves
+the polynomial correction (the product is empty when $n=3$).
+\end{proof}
+
+\begin{remark}
+The certificate was discovered with computational assistance; its
+verification uses exact rational arithmetic and no optimizer. The
+supplement distinguishes saved-data replay from complete regeneration.
+The Lean source, build instructions and precise verification scope are
+documented separately in the accompanying GitHub repository and its
+archived release~\cite{LeanRepository}.
+\end{remark}
+
+\section*{Contributions and verification}
+Moros introduced the deletion-and-gap framework, the earlier explicit
+general bases, the peak-pit base $8/3$ and the window/potential method
+\cite{Moros}. Building on this, Riis developed the improved unrestricted
+bound and further mathematical refinements presented here, notably the
+$32/11$ bound. The work was developed interactively with AI assistance
+from Claude and ChatGPT/Codex. The scope of Lean verification is documented
+in the accompanying repository~\cite{LeanRepository}.
+
+\begin{thebibliography}{9}
+\small\raggedright
+\setlength{\itemsep}{2pt}
+\bibitem{Fathi} K.~Fathi, \emph{The peak-pit maximum for Condorcet domains
+on nine alternatives: cube classifications and exact deletion bounds
+$h(9)=492$}, preprint, Zenodo v8 (manuscript Version 41, 5 September 2026),
+\href{https://doi.org/10.5281/zenodo.22346663}{doi:10.5281/zenodo.22346663}.
+
+\bibitem{Sen} A.~K.~Sen, A possibility theorem on majority decisions,
+\emph{Econometrica} \textbf{34} (1966), 491--499.
+\href{https://doi.org/10.2307/1909947}{doi:10.2307/1909947}.
+\bibitem{Raz} R.~Raz, VC-dimension of sets of permutations,
+\emph{Combinatorica} \textbf{20} (2000), 241--255.
+\href{https://doi.org/10.1007/s004930070023}{doi:10.1007/s004930070023}.
+\bibitem{Moros} P.~Moros, \emph{Condorcet domains have fewer than
+$2.95^n$ orders}, private manuscript, version v10, 23 October 2026.
+\bibitem{Fishburn} P.~C.~Fishburn, Acyclic sets of linear orders:
+a progress report, \emph{Social Choice and Welfare} \textbf{19}
+(2002), 431--447.
+\href{https://doi.org/10.1007/s003550100120}{doi:10.1007/s003550100120}.
+\bibitem{KarpovSlinko} A.~Karpov and A.~Slinko, Constructing large
+peak-pit Condorcet domains, \emph{Theory and Decision} \textbf{94}
+(2023), 97--120.
+\href{https://doi.org/10.1007/s11238-022-09878-9}{doi:10.1007/s11238-022-09878-9}.
+\bibitem{KMRZ} A.~Karpov, K.~Markstr\"om, S.~Riis and B.~Zhou,
+\emph{Improved lower bounds for the maximum size of Condorcet domains},
+preprint (2026),
+\href{https://arxiv.org/abs/2601.07336}{arXiv:2601.07336}.
+\bibitem{PuppeSlinko} C.~Puppe and A.~Slinko, Condorcet domains,
+median graphs and the single-crossing property,
+\emph{Economic Theory} \textbf{67} (2019), 285--318.
+\href{https://doi.org/10.1007/s00199-017-1084-6}{doi:10.1007/s00199-017-1084-6}.
+\bibitem{LeanRepository} P.~Moros and S.~Riis,
+\emph{Lean formalisation and verification documentation for Improved Upper
+Bounds on the Size of Condorcet Domains}.
+% Replace both placeholders with the final repository URL and release DOI.
+GitHub repository: \texttt{[GITHUB URL TO BE ADDED]}.
+Archived release DOI: \texttt{[DOI TO BE ADDED]}.
+\end{thebibliography}
+\end{document}

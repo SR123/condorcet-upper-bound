@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+.lake/
+*.olean
+*.ilean
+*.aux
+*.log
+*.out
+*.toc
+build/
+replay-output/
+
+!verification/**/*.log
+!verification/**/*.out
+/ancillary/finite_certificate/*replay.json
+/ancillary/finite_certificate/checks/*_result.json

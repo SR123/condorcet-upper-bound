@@ -1,0 +1,4 @@
+'CondorcetUpperBounds.law_preserved' does not depend on any axioms
+'CondorcetUpperBounds.conjunction_preserved' does not depend on any axioms
+'CondorcetUpperBounds.projection_fixes_agreement' does not depend on any axioms
+'CondorcetUpperBounds.projection_preserves_step' does not depend on any axioms

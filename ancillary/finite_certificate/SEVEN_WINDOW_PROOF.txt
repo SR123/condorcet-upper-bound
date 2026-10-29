@@ -1,0 +1,187 @@
+SIX-WINDOW SLACK, SEVEN-WINDOW COMPENSATION, AND UPPER BOUNDS
+Private research checkpoint, 23–24 October 2026
+
+Result supported by the enclosed exact certificate and complete finite checks:
+  h(n) <= 4(8/3)^(n-3),             n >= 3 (peak-pit domains),
+  f(n) <= 4(32/11)^(n-3),           n >= 3 (all Condorcet domains).
+More precisely, f(n) <= [32n/(11n+8)] f(n-1).
+Thus the general upper exponential base is 32/11 = 2.909090909... .
+The peak-pit bound reconstructs the 8/3 asserted in Pavlos Moros's note;
+the general transfer gives a base strictly below the announced 2.933.
+This is a computer-assisted proof, not a short hand proof of the finite facts.
+
+Status: local integer replay and separate absolute-tuple feature checker PASS.
+An internal adversarial hand audit passed, including independent regeneration
+of all18families and all720label-permutation orbit checks. Actual Claude’s
+final independent audit also PASS: clean regeneration produced byte-identical
+six/seven rows; all113146tuple witnesses were replayed; his separate code
+recomputed Lambda on250random witnesses and reversals with its own five-family
+canonicalization. His hand review passed coverage, R8 compensation, signed
+endpoints, tensor removal and general transfer. See
+claude/extended_8_3_32_11/received/CLAUDE_FINAL_AUDIT_8_3_32_11.txt.
+One portability defect in row-selector bootstrapping was repaired in v2;
+the integer certificate and mathematical inequalities are unchanged.
+
+1. Domains, slices, and the six-window inequality.
+
+Let F_k be all nonempty full domains on k labels defined by one extreme
+never-law xN1 or xN3 on each triple, together with arbitrary fixed pair
+orientations. This larger class is necessary: conditional windows of a full
+peak-pit domain may acquire pair constraints.
+For H in F_6, write M(H)=|H| and let A(H) count all enabled adjacent-swap flags,
+over its five adjacent positions and all orders. Group its orders by last
+label to form bottom five-slices, and by first label to form top five-slices.
+After deleting that endpoint, each nonempty slice is in F_5.
+
+There are128400 labelled F_5 domains, in1160 relabelling classes. Put
+  flow_c(H) = sum_(bottom slices of class c) |slice|
+              - sum_(top slices of class c) |slice|.
+The certificate specifies per-order class weights phi_c. Define
+  s(H) = (12/19)M(H) + sum_c phi_c flow_c(H) - A(H)/5.
+All s(H) are nonnegative, checked on the complete F_6 family below.
+
+2. The exceptional types and the slack split.
+
+Let R8 be the domain consisting of
+  524130 524310 534120 534210 542130 542310 543120 543210.
+It has a common first and last label. Removing its first label gives the
+five-class numbered866 in our regenerated class map; removing its last gives
+class41. Define rb(H) as the NUMBER of bottom five-slices of class866, and
+rt(H) as the NUMBER of top five-slices of class41. These are slice counts,
+not counts of orders.
+
+Let T be the five isomorphism classes identified in seven_seed_manifest.json:
+sizes8,26,34,34,38. All are closed under reversal; s=0 and rb=rt on them,
+and rb(R8)=rt(R8)=0. The two34-order classes have the same feature row.
+Let S be the nine additional classes identified by the same manifest and
+S_feature_rows in joint_8_3.certificate.json. These are specified classes,
+not an assertion that every other class has positive slack.
+
+Set eta=1/152. The exact certificate proves
+  s(H) >= eta [ M(H)+4rb(H)+4rt(H) ],              H outside T union S. (F2)
+On S it supplies nine rational values psi, one per specified feature class.
+Define
+  p(H)=psi(H) on S, and p(H)=2eta[rt(H)-rb(H)] otherwise;
+  theta_b(H)=s(H)/2+p(H),   theta_t(H)=s(H)/2-p(H).
+Outside T union S, F2 gives
+  theta_b(H) >= eta M(H)/2 + 4eta rt(H),
+  theta_t(H) >= eta M(H)/2 + 4eta rb(H).
+On T both split values are zero. No positivity is required on S: bounded
+endpoint errors suffice for the asymptotic argument and are removed below.
+
+3. The seven-window inequality.
+
+For J in F_7 let B_b(J),T_t(J) be its nonempty six-slices and set
+  Lambda(J)=sum_b theta_b(B_b(J)) + sum_t theta_t(T_t(J)).
+The certificate checks exactly that
+  Lambda(J) >= eta |J|                                           (F3)
+whenever J has a six-slice in T other than R8, or in S. To cover top slices,
+both J and its reversal are checked and reversed seed types are included.
+There are18 required seed families. Their complete enumeration gives14248
+sets before deduplicating features, and18316 invariant feature rows after
+including reversal. All18316 saved witnesses pass a separate tuple checker.
+
+The remaining cases follow without enumeration. If all slices lie outside
+T union S, the two displayed bounds sum to eta|J| because the bottom slices
+partition J, as do the top slices. Otherwise the exceptional slices can
+only be R8. Say there are a bottom and a' top R8 slices. Each bottom R8
+slice has one top label, so its eight orders enter one top receiver slice.
+That receiver has a bottom five-slice of class866. It cannot be R8, since
+rb(R8)=0; it cannot be another T or S class because we are outside F3.
+Distinct bottom R8 slices contribute distinct pairs (receiver,bottom label),
+so the receiver terms 4eta rb provide at least4eta a. This exactly pays
+eta*8/2 for each omitted eight-order R8 slice. Symmetrically, top R8 slices
+receive4eta a'. R8 itself contributes zero. The total is at least
+  eta(|J|-8a)/2 + 4eta a + eta(|J|-8a')/2 + 4eta a' = eta|J|.
+Thus F3 holds for EVERY full seven-domain J in F_7.
+
+4. Exact finite coverage and replay.
+
+Generate F_5 from its defining laws and pairs; no unpublished author data
+are used. Extending its1160 representatives over all ten new triples and
+five new pairs gives14105084 sets and94830 invariant six-feature rows.
+Any full six-domain arises up to relabelling by this procedure: its chosen
+laws on five old labels define a nonempty member of F_5. This establishes
+complete coverage even when the actual projection is a smaller domain.
+
+For the T and S feature rows, the complete generator retains EVERY matching
+six-domain. Normalizing each by its member orders gives exactly14 isomorphism
+classes: T5 plus S9. Their reversed classes give18 seven-seeds after omitting
+R8. This is independent of any floating-LP claim about essential zero rows.
+
+For each representative R, require precisely the orders rho6, rho in R,
+ending in the new label6. Enumerate one law per all35 triples and one option
+per all21 pairs, retaining only options containing these required orders.
+Intersect all groups, deduplicate, and at the end require that the bottom
+slice at6 is EXACTLY R. This covers every J with such a slice. Processing
+old-label groups first reduces intermediate size without changing coverage.
+Forced-option reduction and pruning only discard impossible completions:
+if every remaining option must retain an extra bottom order, a branch cannot
+have final bottom slice R. The result file explicitly reports complete=true;
+no truncated run is used.
+
+For seven-row integer features write M=|J|, Asum=sum of A over all its six-
+slices, f=sum of their class flows, flux=sum_bottom_notS(rt-rb) minus
+sum_top_notS(rt-rb), and q_i=#bottom S_i slices minus #top S_i slices.
+Then
+  Lambda(J)=(12/19)M + (sum_c phi_c f_c)/2 - Asum/10
+               + 2eta flux + sum_i psi_i q_i.
+These are exactly the quantities checked by verify_joint_exact.py.
+The common denominator is8846117280. All94830 six and18316 seven residuals
+are nonnegative integers, with minimum0. The final certificate SHA256 is
+  cef48f9f0e31b2546dcdc44cb60656e540eb254de5d2c44b2071ef267940641e.
+Discovery used floating linear programming and an integer correction; final
+verification uses standard-library Python and exact integer arithmetic.
+
+5. Summation and removal of boundary errors.
+
+In a full peak-pit-with-pairs domain D on n labels, condition on the entire
+order outside each block of six consecutive positions. Its conditional
+six-domain lies in F_6. Sum s(H) over these conditional domains. The class
+potentials telescope: the last five-slice of one block is the first five-
+slice of the next, with identical outside information. Each interior swap
+flag occurs five times; only a bounded number of endpoint flag counts are
+missing. Thus the total slack is
+  (12/19)n|D| - A(D) + O(|D|),
+where the implied constant is independent of n and D.
+
+The identity theta_b+theta_t=s and the exact slice partitions express this
+sum as the sum of Lambda over seven-blocks, up to the two endpoint split
+terms. Because F_6 is a finite family and all specified weights are finite,
+those terms are O(|D|), even if some theta on S are negative. The universal
+seven-window bound therefore gives
+  A(D) <= (12/19-1/152)n|D|+O(|D|) = (5/8)n|D|+O(|D|).
+Insertion fibres of full peak-pit-with-pairs domains are intervals, so their
+deletion sum B(D)=sum_x |D restricted off x| equals n|D|-A(D). Hence
+  B(D) >= (3/8)n|D|-O(|D|).
+
+Concatenate t copies of ANY fixed domain K on n labels on ordered disjoint
+blocks. This remains a full peak-pit-with-pairs domain, has |K|^t orders,
+and deletion sum t B(K)|K|^(t-1). Apply the preceding bound and divide by
+t|K|^(t-1), then let t tend to infinity. The boundary disappears, giving
+  B(K) >= (3/8)n|K|                                      for EVERY K.
+For a largest peak-pit domain B<=n h(n-1), so h(n)<=(8/3)h(n-1).
+
+6. General domains.
+
+Use the component and gap lemmas from Moros's note, independently audited
+in the preceding cycle. Every adjacent-swap component K of a full general
+CD is a full peak-pit-with-pairs domain, and
+  sum_K B(K)=Sigma(D)+G(D).
+For a maximal general CD the gap theorem says
+  G(D)<=3Sigma(D)-(n+1)|D|.
+Combining with the3/8 deletion inequality yields
+  4Sigma(D)>=[(11/8)n+1]|D|.
+For a domain attaining f(n), Sigma(D)<=n f(n-1). Therefore
+  f(n)<=[32n/(11n+8)] f(n-1) <= (32/11) f(n-1).
+Starting with f(3)=h(3)=4 proves the displayed uniform bounds. Keeping the
+factor n/(n+8/11) also yields f(n)=O(n^(-8/11)(32/11)^n).
+
+Attribution and limitations.
+
+The compensation mechanism, R8 receiver argument, and component/gap results
+come from Pavlos Moros's note. We independently recovered a certificate
+using1160 five-domain class means, rather than11253 rooted states; this
+version uses nine additional exceptional classes and eighteen seed families.
+The exact general32/11 consequence is the new strengthened transfer in this
+research cycle. No claim of a purely human, certificate-free8/3 proof is made.

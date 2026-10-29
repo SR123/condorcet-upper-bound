@@ -1,0 +1,4 @@
+'Condorcet.maximum_peakPit_gapCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.SlotWord.runs_le_one_of_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsExtremeFull.gapCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsExtremeFull.deletion_plus_slotAdjacency' depends on axioms: [propext, Classical.choice, Quot.sound]

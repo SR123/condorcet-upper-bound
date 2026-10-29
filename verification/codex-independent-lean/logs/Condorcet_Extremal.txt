@@ -1,0 +1,8 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/Extremal.lean:69:65: warning: Try `simp at hm` instead of `simpa using hm`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Condorcet.IsCondorcet.restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.deletionSum_le_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.deletionSum_le_peakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.exists_maximum_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.maximum_isMaximal' depends on axioms: [propext, Classical.choice, Quot.sound]

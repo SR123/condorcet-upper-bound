@@ -1,0 +1,24 @@
+/-
+CDCert.K6.Seven.FamBDef — GENERATED DATA (Claude's generator `mkfamb.py`): the seven-level seed
+families 3, 4 and 5 with their groups re-ordered, so that the memoized kernel DFS of
+`CDCert.K6.Seven.D03`–`D05` stays within memory. The groups are those of `fam7_3`–`fam7_5` in another
+order (checked in `CDCert.K6.Seven.FamB`).
+
+Part of the Lean formalisation of the Moros–Riis upper bounds for Condorcet
+domains (deletion/gap framework originated by Pavlos Moros; improved bounds and
+further mathematical improvements led by Søren Riis).
+-/
+import CDCert.K6.Seven.Opts
+
+namespace CDCert.K6
+
+/-- Seed family 3, re-ordered (greedy order; 430965 memoized DFS steps). -/
+noncomputable def fam7b_3 : List (List Nat) := [[oc3_228], [oc3_91], [oc3_231], [oc3_243], [oc3_100], [oc3_115], [oc3_154], [oc3_234], [oc3_246], [oc3_255], [oc3_258], [oc3_210, oc3_211], [oc3_213, oc3_214], [oc3_1, oc3_2, oc3_4], [oc3_219, oc3_220], [oc3_13, oc3_14, oc3_16], [oc3_37, oc3_38, oc3_40], [oc3_216, oc3_217], [oc3_55, oc3_56, oc3_58], [oc3_31, oc3_32, oc3_34], [oc3_7, oc3_8, oc3_10], [oc3_121, oc3_124], [oc3_237, oc3_238], [oc3_157, oc3_160], [oc3_249, oc3_250], [oc3_103, oc3_105, oc3_106], [oc3_189, oc3_190], [oc3_264, oc3_265], [oc3_169, oc3_171, oc3_172], [oc3_133, oc3_135, oc3_136], [oc3_222, oc3_223], [oc3_61, oc3_62, oc3_64], [oc3_19, oc3_20, oc3_21, oc3_22], [oc3_43, oc3_44, oc3_45, oc3_46], [oc3_73, oc3_74, oc3_75, oc3_76], [oc3_204, oc3_205, oc3_206, oc3_209], [oc3_144, oc3_145, oc3_146, oc3_149], [oc3_180, oc3_181, oc3_182, oc3_185], [oc3_108, oc3_110, oc3_113], [oc3_48, oc3_49, oc3_50, oc3_53], [oc3_24, oc3_25, oc3_26, oc3_29], [oc3_66, oc3_67, oc3_68, oc3_71], [oc3_174, oc3_176, oc3_179], [oc3_138, oc3_140, oc3_143], [oc3_225, oc3_227], [oc3_240, oc3_242], [oc3_252, oc3_254], [oc3_267, oc3_269], [oc3_270, oc3_272], [oc3_261, oc3_263], [oc3_78, oc3_79, oc3_80, oc3_83], [oc3_84, oc3_85, oc3_86, oc3_89], [oc3_162, oc3_164, oc3_167], [oc3_126, oc3_128, oc3_131], [oc3_192, oc3_194, oc3_197], [oc3_198, oc3_200, oc3_203]]
+
+/-- Seed family 4, re-ordered (greedy order; 307194 memoized DFS steps). -/
+noncomputable def fam7b_4 : List (List Nat) := [[oc1_210], [oc1_4], [oc1_213], [oc1_228], [oc1_10], [oc1_31], [oc1_91], [oc1_216], [oc1_231], [oc1_243], [oc1_154], [oc1_246], [oc1_255], [oc1_37, oc1_40], [oc1_55, oc1_58], [oc1_219, oc1_220], [oc1_97, oc1_100], [oc1_115, oc1_118], [oc1_234, oc1_235], [oc1_13, oc1_15, oc1_16], [oc1_222, oc1_223], [oc1_264, oc1_265], [oc1_73, oc1_74, oc1_75, oc1_76], [oc1_79, oc1_80, oc1_81, oc1_82], [oc1_225, oc1_226], [oc1_267, oc1_268], [oc1_270, oc1_271], [oc1_85, oc1_86, oc1_87, oc1_88], [oc1_205, oc1_206, oc1_207, oc1_208], [oc1_249, oc1_250], [oc1_43, oc1_45, oc1_46], [oc1_258, oc1_259], [oc1_61, oc1_63, oc1_64], [oc1_157, oc1_159, oc1_160], [oc1_169, oc1_171, oc1_172], [oc1_187, oc1_189, oc1_190], [oc1_252, oc1_253], [oc1_49, oc1_51, oc1_52], [oc1_175, oc1_177, oc1_178], [oc1_181, oc1_182, oc1_183, oc1_184], [oc1_103, oc1_105, oc1_106], [oc1_133, oc1_134, oc1_135, oc1_136], [oc1_139, oc1_140, oc1_141, oc1_142], [oc1_237, oc1_238], [oc1_121, oc1_123, oc1_124], [oc1_199, oc1_200, oc1_201, oc1_202], [oc1_193, oc1_195, oc1_196], [oc1_240, oc1_241], [oc1_261, oc1_262], [oc1_19, oc1_21, oc1_22], [oc1_163, oc1_165, oc1_166], [oc1_145, oc1_146, oc1_147, oc1_148], [oc1_67, oc1_69, oc1_70], [oc1_25, oc1_27, oc1_28], [oc1_109, oc1_111, oc1_112], [oc1_127, oc1_129, oc1_130]]
+
+/-- Seed family 5, re-ordered (greedy order; 82730 memoized DFS steps). -/
+noncomputable def fam7b_5 : List (List Nat) := [[oc3_210], [oc3_4], [oc3_213], [oc3_228], [oc3_10], [oc3_31], [oc3_91], [oc3_216], [oc3_231], [oc3_243], [oc3_154], [oc3_246], [oc3_255], [oc3_37, oc3_40], [oc3_55, oc3_58], [oc3_219, oc3_220], [oc3_97, oc3_100], [oc3_115, oc3_118], [oc3_234, oc3_235], [oc3_13, oc3_15, oc3_16], [oc3_222, oc3_223], [oc3_264, oc3_265], [oc3_73, oc3_74, oc3_75, oc3_76], [oc3_78, oc3_79, oc3_80, oc3_83], [oc3_225, oc3_227], [oc3_267, oc3_269], [oc3_240, oc3_242], [oc3_138, oc3_139, oc3_140, oc3_143], [oc3_24, oc3_26, oc3_29], [oc3_133, oc3_134, oc3_135, oc3_136], [oc3_237, oc3_238], [oc3_19, oc3_21, oc3_22], [oc3_249, oc3_250], [oc3_43, oc3_45, oc3_46], [oc3_169, oc3_171, oc3_172], [oc3_103, oc3_105, oc3_106], [oc3_258, oc3_259], [oc3_61, oc3_63, oc3_64], [oc3_121, oc3_123, oc3_124], [oc3_157, oc3_159, oc3_160], [oc3_187, oc3_189, oc3_190], [oc3_204, oc3_205, oc3_206, oc3_209], [oc3_180, oc3_181, oc3_182, oc3_185], [oc3_198, oc3_199, oc3_200, oc3_203], [oc3_162, oc3_164, oc3_167], [oc3_174, oc3_176, oc3_179], [oc3_192, oc3_194, oc3_197], [oc3_252, oc3_254], [oc3_261, oc3_263], [oc3_270, oc3_272], [oc3_48, oc3_50, oc3_53], [oc3_108, oc3_110, oc3_113], [oc3_66, oc3_68, oc3_71], [oc3_126, oc3_128, oc3_131], [oc3_84, oc3_85, oc3_86, oc3_89], [oc3_144, oc3_145, oc3_146, oc3_149]]
+
+end CDCert.K6

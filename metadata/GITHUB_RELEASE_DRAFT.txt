@@ -1,0 +1,22 @@
+INACTIVE REVIEW-PACKET DRAFT -- NO RELEASE CREATED
+
+Title: Improved Upper Bounds on the Size of Condorcet Domains
+Authors: Pavlos Moros and Søren Riis
+Version/tag: to be agreed by both authors; no tag created
+GitHub repository URL: [GITHUB URL TO BE ADDED]
+Archived release DOI: [DOI TO BE ADDED]
+
+Proposed description:
+The paper improves the unrestricted Condorcet-domain upper growth bound
+to 32/11 and recovers Moros's peak-pit bound 8/3. The packet includes the
+latest paper and certificate supplement, native data/generators/checkers,
+the complete pinned Lean project and independent verification receipts.
+All seven parts of Theorem 1.1 have passed independent source/kernel and
+transitive axiom checks. The generic-alpha Proposition 2.3 has no separate
+parameterised Lean declaration; its alpha=3/8 instance is fully proved.
+Read README.txt and verification/VERIFICATION_SCOPE.txt for precise scope.
+
+Pavlos must agree with the paper before DOI registration or archival
+publication. Both authors still approve the exact payload, credit, version,
+repository details, licenses and eventual release. No push, upload, public
+release, DOI registration, archive record or journal submission has occurred.

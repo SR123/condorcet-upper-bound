@@ -1,0 +1,5 @@
+'Condorcet.middle_comparison_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.component_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.holds_componentPairs_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.component_isExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.component_inF' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,24 @@
+INDEPENDENT REVIEW FOR PAVLOS / HIS AI
+
+1. Start with manuscript/main.pdf and README.txt. Check the semantic meanings
+   of Condorcet.f, h and IsCondorcet against the paper, including all odd
+   profiles, maximal/full domains, fixed pairs and absence of a common axis.
+2. Read CDCert/Main.lean and TwoInputs.lean, then run the documented build
+   and axiom commands. Check actual statements and all transitive axioms,
+   rather than relying on a PASS summary or an old four-module description.
+3. Follow component counting, the free-to-locked map, finite coverage/R8,
+   conditioning, telescoping and ordered-copy removal of end terms. Check
+   integer scaling and the n+1 indexing convention against the paper.
+4. Compare native saved-row checks with the separately proved Lean family
+   enumeration; do not equate the two sets of enumeration counts.
+5. Review the paper's Proposition 2.3 at arbitrary alpha separately: there
+   is no standalone generic-alpha Lean declaration in this bundle, although
+   its alpha=3/8 instance and the seven main conclusions are formalised.
+6. Report any incorrect theorem statement, hidden assumption, semantic
+   mismatch or missing dependency. Separate mathematical defects from tool
+   setup/resource failures and from bibliographical/editorial suggestions.
+
+The final record to approve is this exact payload and its MANIFEST.sha256.
+GitHub URL and archived-release DOI remain placeholders; archival publication
+must wait for Pavlos's agreement. This review packet performs no upload,
+publication, DOI registration or email action.

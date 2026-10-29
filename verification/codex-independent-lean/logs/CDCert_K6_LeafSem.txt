@@ -1,0 +1,1 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/LeafSem.lean:100:26: warning: exponent 720 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold

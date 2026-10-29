@@ -1,0 +1,2 @@
+'Condorcet.oneCoordinate_iff_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsMaximal.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,51 @@
+/-
+CDCert.K6.Seven.S18 — GENERATED (Claude's generator `mksevens.py`): **seven-level seed family 18**
+(seed type 10, bottom slice B_6).
+
+* `seven_leaves_18`: the leaf inequality holds at every final state of the family (the chunk checks
+  `seven_leaf_18_k` of `CDCert.K6.Seven.L18_*`, 18 chunks, 358 final states);
+* `seven_fam_18`: a seven-domain `J` whose bottom six-slice at label 6 has the
+  mask of `excRep6[10]` satisfies `2ηD |J| ≤ 2D Λ(J)` (`fam_find` with the DFS check `seven_dfs_18`,
+  the leaves, `expand1_maskOf` and `leaf7_sem`).
+
+Part of the Lean formalisation of the Moros–Riis upper bounds for Condorcet
+domains (deletion/gap framework originated by Pavlos Moros; improved bounds and
+further mathematical improvements led by Søren Riis).
+
+Lean 4.26.0, core only. No `sorry`, no custom axioms, no `native_decide`.
+-/
+import CDCert.K6.FamSem
+import CDCert.K6.Seven.D18
+import CDCert.K6.Seven.Fam
+import CDCert.K6.Seven.Desc
+import CDCert.K6.AllNat
+import CDCert.K6.Seven.L18_00
+
+namespace CDCert.K6
+
+open CDCert CDCert.Bits CDCert.Examples CDCert.ListOrder
+
+set_option autoImplicit false
+set_option maxRecDepth 100000
+
+theorem seven_leaves_18 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0xc3d304001300000000000000000000000000000000000000000000000000004dc3300d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) (finT_18).keys = true := by
+  rw [finT_18_keys]
+  show allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0xc3d304001300000000000000000000000000000000000000000000000000004dc3300d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) ([fin18_0, fin18_1, fin18_2, fin18_3, fin18_4, fin18_5, fin18_6, fin18_7, fin18_8, fin18_9, fin18_10, fin18_11, fin18_12, fin18_13, fin18_14, fin18_15, fin18_16, fin18_17, fin18_18, fin18_19] ++ ([fin18_20, fin18_21, fin18_22, fin18_23, fin18_24, fin18_25, fin18_26, fin18_27, fin18_28, fin18_29, fin18_30, fin18_31, fin18_32, fin18_33, fin18_34, fin18_35, fin18_36, fin18_37, fin18_38, fin18_39] ++ ([fin18_40, fin18_41, fin18_42, fin18_43, fin18_44, fin18_45, fin18_46, fin18_47, fin18_48, fin18_49, fin18_50, fin18_51, fin18_52, fin18_53, fin18_54, fin18_55, fin18_56, fin18_57, fin18_58, fin18_59] ++ ([fin18_60, fin18_61, fin18_62, fin18_63, fin18_64, fin18_65, fin18_66, fin18_67, fin18_68, fin18_69, fin18_70, fin18_71, fin18_72, fin18_73, fin18_74, fin18_75, fin18_76, fin18_77, fin18_78, fin18_79] ++ ([fin18_80, fin18_81, fin18_82, fin18_83, fin18_84, fin18_85, fin18_86, fin18_87, fin18_88, fin18_89, fin18_90, fin18_91, fin18_92, fin18_93, fin18_94, fin18_95, fin18_96, fin18_97, fin18_98, fin18_99] ++ ([fin18_100, fin18_101, fin18_102, fin18_103, fin18_104, fin18_105, fin18_106, fin18_107, fin18_108, fin18_109, fin18_110, fin18_111, fin18_112, fin18_113, fin18_114, fin18_115, fin18_116, fin18_117, fin18_118, fin18_119] ++ ([fin18_120, fin18_121, fin18_122, fin18_123, fin18_124, fin18_125, fin18_126, fin18_127, fin18_128, fin18_129, fin18_130, fin18_131, fin18_132, fin18_133, fin18_134, fin18_135, fin18_136, fin18_137, fin18_138, fin18_139] ++ ([fin18_140, fin18_141, fin18_142, fin18_143, fin18_144, fin18_145, fin18_146, fin18_147, fin18_148, fin18_149, fin18_150, fin18_151, fin18_152, fin18_153, fin18_154, fin18_155, fin18_156, fin18_157, fin18_158, fin18_159] ++ ([fin18_160, fin18_161, fin18_162, fin18_163, fin18_164, fin18_165, fin18_166, fin18_167, fin18_168, fin18_169, fin18_170, fin18_171, fin18_172, fin18_173, fin18_174, fin18_175, fin18_176, fin18_177, fin18_178, fin18_179] ++ ([fin18_180, fin18_181, fin18_182, fin18_183, fin18_184, fin18_185, fin18_186, fin18_187, fin18_188, fin18_189, fin18_190, fin18_191, fin18_192, fin18_193, fin18_194, fin18_195, fin18_196, fin18_197, fin18_198, fin18_199] ++ ([fin18_200, fin18_201, fin18_202, fin18_203, fin18_204, fin18_205, fin18_206, fin18_207, fin18_208, fin18_209, fin18_210, fin18_211, fin18_212, fin18_213, fin18_214, fin18_215, fin18_216, fin18_217, fin18_218, fin18_219] ++ ([fin18_220, fin18_221, fin18_222, fin18_223, fin18_224, fin18_225, fin18_226, fin18_227, fin18_228, fin18_229, fin18_230, fin18_231, fin18_232, fin18_233, fin18_234, fin18_235, fin18_236, fin18_237, fin18_238, fin18_239] ++ ([fin18_240, fin18_241, fin18_242, fin18_243, fin18_244, fin18_245, fin18_246, fin18_247, fin18_248, fin18_249, fin18_250, fin18_251, fin18_252, fin18_253, fin18_254, fin18_255, fin18_256, fin18_257, fin18_258, fin18_259] ++ ([fin18_260, fin18_261, fin18_262, fin18_263, fin18_264, fin18_265, fin18_266, fin18_267, fin18_268, fin18_269, fin18_270, fin18_271, fin18_272, fin18_273, fin18_274, fin18_275, fin18_276, fin18_277, fin18_278, fin18_279] ++ ([fin18_280, fin18_281, fin18_282, fin18_283, fin18_284, fin18_285, fin18_286, fin18_287, fin18_288, fin18_289, fin18_290, fin18_291, fin18_292, fin18_293, fin18_294, fin18_295, fin18_296, fin18_297, fin18_298, fin18_299] ++ ([fin18_300, fin18_301, fin18_302, fin18_303, fin18_304, fin18_305, fin18_306, fin18_307, fin18_308, fin18_309, fin18_310, fin18_311, fin18_312, fin18_313, fin18_314, fin18_315, fin18_316, fin18_317, fin18_318, fin18_319] ++ ([fin18_320, fin18_321, fin18_322, fin18_323, fin18_324, fin18_325, fin18_326, fin18_327, fin18_328, fin18_329, fin18_330, fin18_331, fin18_332, fin18_333, fin18_334, fin18_335, fin18_336, fin18_337, fin18_338, fin18_339] ++ ([fin18_340, fin18_341, fin18_342, fin18_343, fin18_344, fin18_345, fin18_346, fin18_347, fin18_348, fin18_349, fin18_350, fin18_351, fin18_352, fin18_353, fin18_354, fin18_355, fin18_356, fin18_357])))))))))))))))))) = true
+  rw [allNat_append', seven_leaf_18_0, Bool.true_and, allNat_append', seven_leaf_18_1, Bool.true_and, allNat_append', seven_leaf_18_2, Bool.true_and, allNat_append', seven_leaf_18_3, Bool.true_and, allNat_append', seven_leaf_18_4, Bool.true_and, allNat_append', seven_leaf_18_5, Bool.true_and, allNat_append', seven_leaf_18_6, Bool.true_and, allNat_append', seven_leaf_18_7, Bool.true_and, allNat_append', seven_leaf_18_8, Bool.true_and, allNat_append', seven_leaf_18_9, Bool.true_and, allNat_append', seven_leaf_18_10, Bool.true_and, allNat_append', seven_leaf_18_11, Bool.true_and, allNat_append', seven_leaf_18_12, Bool.true_and, allNat_append', seven_leaf_18_13, Bool.true_and, allNat_append', seven_leaf_18_14, Bool.true_and, allNat_append', seven_leaf_18_15, Bool.true_and, allNat_append', seven_leaf_18_16, Bool.true_and]
+  exact seven_leaf_18_17
+
+theorem seven_fam_18 {J : List Nat → Bool} (hJ : IsDom 7 J)
+    (hs : maskOf (baseB 5) (botP 6 J) = excRep6.getD 10 0) : 2 * (cE : Int) * card 7 J ≤ lamD J := by
+  have hseed : (nat_lit 0xc3d304001300000000000000000000000000000000000000000000000000004dc3300d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) = excRep6.getD 10 0 := seed7_18
+  have h6 : (6 : Nat) < 7 := by decide
+  have hb := maskOf_copy1_block J h6
+  rw [show 720 * 6 = 4320 from rfl, hs, ← hseed] at hb
+  have hfind := fam_find copy1 (fun x hx => mem_copy1.mp hx) length_copy1 mkS1 (fun _ => rfl) ocG1 ocG1_sem
+    ord7_18 ord7_18_perm (nat_lit 0xc3d304001300000000000000000000000000000000000000000000000000004dc3300d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) finT_18 (by rw [← fam7_18_eq]; exact seven_dfs_18) hJ hb (by decide)
+  have hleaf := (allNat_iff' _ _).mp seven_leaves_18 (maskOf copy1 J) (KTree.mem_keys_of_find_ne_zero _ _ hfind)
+  rw [expand1_maskOf] at hleaf
+  have hk := blk720_bot (J := J) h6
+  rw [show 720 * 6 = 4320 from rfl, hs, ← hseed] at hk
+  exact leaf7_sem (Or.inl hJ) hk hleaf
+
+end CDCert.K6

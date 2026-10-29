@@ -1,0 +1,112 @@
+--- received/MajorityLaws.lean
++++ release/MajorityLaws.lean
+@@ -5,9 +5,9 @@
+ 
+ The Boolean clauses corresponding to never-first, never-last, never-middle,
+ and fixed comparisons are preserved under coordinatewise majority.
+-This is a genuine combinatorial module, but does not yet prove that the
+-majority comparison vector is a transitive order. That separate order-theoretic
+-step and its connection to the CD definition remain formalization obligations.
++This module treats Boolean clauses. The semantic order-theoretic step and
++its connection to Condorcet domains are proved separately in Condorcet.Majority
++and Condorcet.MedianClosure; the complete bounds are stated in CDCert.Main.
+ -/
+ namespace CondorcetUpperBounds
+ 
+--- received/ComponentMedian.lean
++++ release/ComponentMedian.lean
+@@ -4,7 +4,8 @@
+ Connected components of a majority-closed Boolean comparison family are
+ exactly its members that agree with the coordinates fixed on the component.
+ This is the abstract median/projection part of paper Lemma2.2. Connecting
+-these Boolean families to actual transitive orders is still a separate task.
++these Boolean families to actual transitive orders is carried out in
++Condorcet.Adjacency, FullDomains and Components.
+ -/
+ namespace CondorcetUpperBounds
+ 
+--- received/KernelTransfer.lean
++++ release/KernelTransfer.lean
+@@ -3,7 +3,8 @@
+ /-!
+ A kernel-checked, standard-library-only arithmetic interface.
+ IMPORTANT: the named combinatorial hypotheses are theorem arguments.
+-This file does not claim to formalize those hypotheses for Condorcet domains.
++This file isolates those hypotheses. The complete unconditional results for
++actual Condorcet-domain extrema are stated and proved in CDCert.Main.
+ -/
+ namespace CondorcetUpperBounds
+ 
+--- received/Condorcet/GapCounts.lean
++++ release/Condorcet/GapCounts.lean
+@@ -152,7 +152,8 @@
+   have H₃ := deletion_gap_adjacency_identity D
+   omega
+ 
+-/-- The remaining injection is isolated explicitly, not assumed as a theorem. -/
++/-- This helper takes the injection explicitly. CDCert.FreeLocked.free_le_locked
++proves it for maximal domains, and CDCert.Recurrences discharges the premise. -/
+ theorem IsFull.gap_bound_of_free_le_locked {n : Nat} {D : Domain (Fin (n+1))}
+     (hD : IsFull D) (hinj : freeCount D ≤ lockedCount D) :
+     gapCount D + (n+2) * D.card ≤ 3 * deletionSum D := by
+--- received/CDCert/Bounds.lean
++++ release/CDCert/Bounds.lean
+@@ -8,8 +8,8 @@
+ * `h_geometric : 3^(n-3) h(n) ≤ 4 · 8^(n-3)` for `n ≥ 3`, i.e. `h(n) ≤ 4 (8/3)^(n-3)`, from
+   `h(3) = 4` (Codex's `h_three`).
+ * `general_step_of_free_le_locked`: for a domain attaining `f(n+1)` whose free pairs inject into
+-  its locked letters (Proposition `prop:free`, **not yet formalised**; stated as an explicit
+-  hypothesis), `(11(n+1) + 8) f(n+1) ≤ 32 (n+1) f(n)`. This combines Codex's component identity
++  its locked letters (Proposition `prop:free`, proved in `CDCert.FreeLocked`; an explicit
++  parameter in this helper), `(11(n+1) + 8) f(n+1) ≤ 32 (n+1) f(n)`. This combines Codex's component identity
+   `Σ_K del(K) = del(D) + G(D)`, the components lying in `InF`, `InF.density` on every component and
+   Codex's reduction `gap_bound_of_free_le_locked`.
+ 
+@@ -73,7 +73,7 @@
+       _ ≤ 8 * (4 * 8 ^ k) := Nat.mul_le_mul_left 8 ih
+       _ = 4 * 8 ^ (k + 1) := by rw [Nat.pow_succ, Nat.mul_left_comm, Nat.mul_comm 8 (8 ^ k)]
+ 
+-/-! ### General Condorcet domains (conditional on the free-to-locked injection) -/
++/-! ### General Condorcet domains: a helper interface discharged in Recurrences -/
+ 
+ /-- **The general recurrence, given the free-to-locked injection for a maximum domain.**
+ For a Condorcet domain `D` on `n + 1` alternatives with `|D| = f(n + 1)` and
+@@ -104,8 +104,8 @@
+   omega
+ 
+ /-- **The free-to-locked injection** (Proposition `prop:free`) for maximal Condorcet domains on at
+-least three alternatives, in Codex's counts. **Not yet formalised**: it is used below only as an
+-explicit hypothesis, never assumed. -/
++least three alternatives, in Codex's counts. The helpers below take this proposition as a
++parameter; CDCert.Recurrences.freeLockedInjection proves it using CDCert.FreeLocked.free_le_locked. -/
+ def FreeLockedInjection : Prop :=
+   ∀ (n : Nat), 2 ≤ n → ∀ D : Domain (Fin (n + 1)), IsMaximal D → freeCount D ≤ lockedCount D
+ 
+--- received/CDCert/Examples.lean
++++ release/CDCert/Examples.lean
+@@ -9,8 +9,9 @@
+ never-bottom ones.
+ 
+ These are regression tests of the generic machinery on a concrete encoding.
+-They are NOT connected here to an order-theoretic definition of Condorcet
+-domain (that needs the never-condition characterisation, not proved here).
++This module tests the generic list encoding. Its connection to semantic
++Condorcet domains is supplied in CDCert.Bridge, using the characterisation
++proved in Condorcet.TripleCharacterization.
+ Expected values were computed independently in Python before being checked:
+ n = 3: 9 domains of size 4 (6 peak-pit); n = 4 peak-pit: 733 distinct domains,
+ maximum size 9, attained 24 times; exact top-3 slice examples: 108 (all nine
+--- received/CDCert/ExamplesBits.lean
++++ release/CDCert/ExamplesBits.lean
+@@ -11,8 +11,9 @@
+   exactly `S4` has at most 9 orders, via required-slice filtering, bit-level
+   pruning and exact-slice transfer.
+ 
+-These only exercise the machinery: no claim about Condorcet domains is made
+-here (that needs the never-condition characterisation and obligations O1–O3).
++This module tests the bitset machinery. The semantic bridge and
++never-condition characterisation are supplied in CDCert.Bridge and
++Condorcet.TripleCharacterization; the full bounds are stated in CDCert.Main.
+ 
+ `decide +kernel` is used for the heavy checks: it produces the same proof term
+ as `decide` (`of_decide_eq_true (Eq.refl true)`), checked by the kernel, but

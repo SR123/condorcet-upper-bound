@@ -1,0 +1,18 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:115:53: warning: unused variable `hnd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:115:69: warning: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:115:82: warning: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:116:5: warning: unused variable `hab`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:521:6: warning: unused variable `L`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/SliceClosure.lean:527:29: warning: unused variable `hx`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

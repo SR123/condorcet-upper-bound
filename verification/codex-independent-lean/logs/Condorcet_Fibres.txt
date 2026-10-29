@@ -1,0 +1,3 @@
+'Condorcet.image_insertionSlots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.insertionSlots_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.sum_card_insertionSlots' depends on axioms: [propext, Classical.choice, Quot.sound]

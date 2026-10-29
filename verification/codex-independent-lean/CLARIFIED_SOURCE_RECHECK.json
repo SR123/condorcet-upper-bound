@@ -1,0 +1,128 @@
+{
+  "result": "PASS",
+  "documentation_changes_in_required_closure": [
+    "CDCert.Bounds",
+    "CDCert.Examples",
+    "CDCert.ExamplesBits",
+    "ComponentMedian",
+    "Condorcet.GapCounts",
+    "MajorityLaws"
+  ],
+  "additional_auxiliary_modules": [
+    "Audit",
+    "CDCert",
+    "CDCert.Levels",
+    "ClaudeAudit",
+    "Condorcet",
+    "KernelTransfer",
+    "ThreeOrders"
+  ],
+  "final_wrappers_recompiled": true,
+  "records": [
+    {
+      "module": "MajorityLaws",
+      "returncode": 0,
+      "seconds": 1.292,
+      "source_sha256": "03f0c0658e908c89a70c30966e9e6b02cb2e9ec5847e406a1d3c57659cbed2be",
+      "log": "MajorityLaws.txt"
+    },
+    {
+      "module": "ComponentMedian",
+      "returncode": 0,
+      "seconds": 0.674,
+      "source_sha256": "7f874936de37b4458a2444ada957cc1172cc2db980ce5efcf84d139936e5299c",
+      "log": "ComponentMedian.txt"
+    },
+    {
+      "module": "CDCert.Levels",
+      "returncode": 0,
+      "seconds": 0.602,
+      "source_sha256": "cd28f497792e78f7371af46681887b2f99ede27a83ba40440ea4aa99797562b0",
+      "log": "CDCert_Levels.txt"
+    },
+    {
+      "module": "CDCert.Examples",
+      "returncode": 0,
+      "seconds": 22.956,
+      "source_sha256": "aedd0d254d22c996583e224c585fdc2f96ebc10ae73e2037e7d2417791194258",
+      "log": "CDCert_Examples.txt"
+    },
+    {
+      "module": "CDCert.ExamplesBits",
+      "returncode": 0,
+      "seconds": 13.672,
+      "source_sha256": "4a4d3585e2f29053562d83dff98ff9d0e5ab5bc10b230d8dfd76af7f38b91d19",
+      "log": "CDCert_ExamplesBits.txt"
+    },
+    {
+      "module": "CDCert",
+      "returncode": 0,
+      "seconds": 0.406,
+      "source_sha256": "0e399d7ffa56e04fce69cce836e182b9f1bf7ac8ec5e5942a10dde7312521320",
+      "log": "CDCert.txt"
+    },
+    {
+      "module": "Condorcet.GapCounts",
+      "returncode": 0,
+      "seconds": 7.559,
+      "source_sha256": "ace7828f893c60391d6941f6445f106a8baab73626cd4a2eec6ddd0a50c1e2e6",
+      "log": "Condorcet_GapCounts.txt"
+    },
+    {
+      "module": "Condorcet",
+      "returncode": 0,
+      "seconds": 2.496,
+      "source_sha256": "138118f15f473edf2396a892e215c43d5551f6d7492b8ac826c200e27edcd929",
+      "log": "Condorcet.txt"
+    },
+    {
+      "module": "Audit",
+      "returncode": 0,
+      "seconds": 10.525,
+      "source_sha256": "7bf813fe6b69ded09549556388be5f5c2bc7c64523aa2075eeecac828eb7130b",
+      "log": "Audit.txt"
+    },
+    {
+      "module": "CDCert.Bounds",
+      "returncode": 0,
+      "seconds": 3.347,
+      "source_sha256": "6f2d3de9a150580b4dc0f51c2012447e0adb2ef755000e676c7b6b5166a158e5",
+      "log": "CDCert_Bounds.txt"
+    },
+    {
+      "module": "ClaudeAudit",
+      "returncode": 0,
+      "seconds": 0.842,
+      "source_sha256": "e14510a1f844625c14255b2f8dcd636905c019e36caf312d62f81ca0c5ff08bb",
+      "log": "ClaudeAudit.txt"
+    },
+    {
+      "module": "KernelTransfer",
+      "returncode": 0,
+      "seconds": 0.866,
+      "source_sha256": "4760459becca1500763cf48826867876a1614cba769ea0626ee45589f6256d91",
+      "log": "KernelTransfer.txt"
+    },
+    {
+      "module": "ThreeOrders",
+      "returncode": 0,
+      "seconds": 2.68,
+      "source_sha256": "2525bc8ba7453c6b36e20cf471a7a8750ecdd0a0f8b3bb44dba13981ec3a11a2",
+      "log": "ThreeOrders.txt"
+    },
+    {
+      "module": "CDCert.Main",
+      "returncode": 0,
+      "seconds": 6.672,
+      "source_sha256": "5cf2ba882d3d39cf24310e538c1998889f6f6b35b588dcab0e1be37a8d1b8792",
+      "log": "CDCert_Main.txt"
+    },
+    {
+      "module": "CDCert.TwoInputs",
+      "returncode": 0,
+      "seconds": 2.702,
+      "source_sha256": "ea23c51ba8f868ddb31b6a68d77623db5b02cadf6302a7186ce6be7cf76e7320",
+      "log": "CDCert_TwoInputs.txt"
+    }
+  ]
+}

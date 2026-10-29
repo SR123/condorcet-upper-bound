@@ -1,0 +1,5 @@
+'Condorcet.labelledInsertion_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.labelledInsertion_connected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.slotAdjacencyCount_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.sum_components_slotAdjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.sum_components_deletionSum' depends on axioms: [propext, Classical.choice, Quot.sound]

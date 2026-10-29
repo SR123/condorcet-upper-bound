@@ -1,0 +1,8 @@
+'Condorcet.labelledInsertion_reconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.hasLift_insertion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.hasDrop_insertion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.card_blockedOrders' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.card_noDropOrders' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.orderSlot_val_eq_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.hasLift_iff_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.first_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]

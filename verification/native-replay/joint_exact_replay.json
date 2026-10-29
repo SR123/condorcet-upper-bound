@@ -1,0 +1,41 @@
+{
+  "result": "PASS",
+  "six_rows": 94830,
+  "seven_rows": 18316,
+  "K": "12/19",
+  "eta": "1/152",
+  "min_six_integer_residual": 0,
+  "min_seven_integer_residual": 0,
+  "six_zero_rows": 23,
+  "seven_zero_rows": 4,
+  "T_data": [
+    {
+      "row": 5770,
+      "M": 8,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 58607,
+      "M": 26,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 91933,
+      "M": 34,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 94538,
+      "M": 38,
+      "rb": 1,
+      "rt": 1
+    }
+  ],
+  "peakpit_base": "8/3",
+  "general_base": "32/11",
+  "certificate_sha256": "cef48f9f0e31b2546dcdc44cb60656e540eb254de5d2c44b2071ef267940641e",
+  "seconds": 0.29126666599768214
+}

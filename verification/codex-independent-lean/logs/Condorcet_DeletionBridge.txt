@@ -1,0 +1,3 @@
+'Condorcet.restrict_delete_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.optionDomain_deletion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.global_fibre_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

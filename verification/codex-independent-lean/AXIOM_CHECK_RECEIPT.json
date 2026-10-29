@@ -1,0 +1,111 @@
+{
+  "returncode": 0,
+  "expected_results": 20,
+  "observed_results": 20,
+  "missing": [],
+  "unexpected": [],
+  "unexpected_axioms": {},
+  "axioms": {
+    "CDCert.Main.general_recurrence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.general_geometric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.peak_recurrence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.peak_geometric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.general_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.peak_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Main.general_polynomial_correction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.TwoInputs.first_input": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.TwoInputs.second_input": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.TwoInputs.transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Recurrences.gap_inequality": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Recurrences.deletion_lower_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Bridge.InF.density": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.FreeLocked.free_le_locked": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.K6.finite_lemma": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.K6.adj_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Supermult.f_supermul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Supermult.h_supermul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Recurrences.general_recurrence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CDCert.Bounds.peakPit_recurrence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "result": "PASS"
+}

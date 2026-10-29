@@ -1,0 +1,5 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/Intervals.lean:24:34: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Condorcet.extreme_never_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsExtremeFull.insertionSlots_interval' depends on axioms: [propext, Classical.choice, Quot.sound]

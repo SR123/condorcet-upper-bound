@@ -1,0 +1,78 @@
+/-
+CDCert.K6.Seven.L04_00 — GENERATED kernel checks (Claude's generator `mkseven2.py`) of the
+seven-level seed families: family 4: the seven-level inequality at the listed final states, chunks 0..19.
+Each theorem is evaluated by the kernel (`decide +kernel`); see `CDCert.K6.Defs7`.
+
+Part of the Lean formalisation of the Moros–Riis upper bounds for Condorcet
+domains (deletion/gap framework originated by Pavlos Moros; improved bounds and
+further mathematical improvements led by Søren Riis).
+-/
+import CDCert.K6.Table5
+import CDCert.K6.Seven.Data
+import CDCert.K6.Seven.Fin04
+namespace CDCert.K6
+
+set_option maxRecDepth 100000
+set_option Elab.async false
+
+theorem seven_leaf_4_0 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_0, fin4_1, fin4_2, fin4_3, fin4_4, fin4_5, fin4_6, fin4_7, fin4_8, fin4_9, fin4_10, fin4_11, fin4_12, fin4_13, fin4_14, fin4_15, fin4_16, fin4_17, fin4_18, fin4_19] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_1 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_20, fin4_21, fin4_22, fin4_23, fin4_24, fin4_25, fin4_26, fin4_27, fin4_28, fin4_29, fin4_30, fin4_31, fin4_32, fin4_33, fin4_34, fin4_35, fin4_36, fin4_37, fin4_38, fin4_39] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_2 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_40, fin4_41, fin4_42, fin4_43, fin4_44, fin4_45, fin4_46, fin4_47, fin4_48, fin4_49, fin4_50, fin4_51, fin4_52, fin4_53, fin4_54, fin4_55, fin4_56, fin4_57, fin4_58, fin4_59] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_3 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_60, fin4_61, fin4_62, fin4_63, fin4_64, fin4_65, fin4_66, fin4_67, fin4_68, fin4_69, fin4_70, fin4_71, fin4_72, fin4_73, fin4_74, fin4_75, fin4_76, fin4_77, fin4_78, fin4_79] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_4 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_80, fin4_81, fin4_82, fin4_83, fin4_84, fin4_85, fin4_86, fin4_87, fin4_88, fin4_89, fin4_90, fin4_91, fin4_92, fin4_93, fin4_94, fin4_95, fin4_96, fin4_97, fin4_98, fin4_99] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_5 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_100, fin4_101, fin4_102, fin4_103, fin4_104, fin4_105, fin4_106, fin4_107, fin4_108, fin4_109, fin4_110, fin4_111, fin4_112, fin4_113, fin4_114, fin4_115, fin4_116, fin4_117, fin4_118, fin4_119] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_6 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_120, fin4_121, fin4_122, fin4_123, fin4_124, fin4_125, fin4_126, fin4_127, fin4_128, fin4_129, fin4_130, fin4_131, fin4_132, fin4_133, fin4_134, fin4_135, fin4_136, fin4_137, fin4_138, fin4_139] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_7 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_140, fin4_141, fin4_142, fin4_143, fin4_144, fin4_145, fin4_146, fin4_147, fin4_148, fin4_149, fin4_150, fin4_151, fin4_152, fin4_153, fin4_154, fin4_155, fin4_156, fin4_157, fin4_158, fin4_159] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_8 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_160, fin4_161, fin4_162, fin4_163, fin4_164, fin4_165, fin4_166, fin4_167, fin4_168, fin4_169, fin4_170, fin4_171, fin4_172, fin4_173, fin4_174, fin4_175, fin4_176, fin4_177, fin4_178, fin4_179] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_9 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_180, fin4_181, fin4_182, fin4_183, fin4_184, fin4_185, fin4_186, fin4_187, fin4_188, fin4_189, fin4_190, fin4_191, fin4_192, fin4_193, fin4_194, fin4_195, fin4_196, fin4_197, fin4_198, fin4_199] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_10 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_200, fin4_201, fin4_202, fin4_203, fin4_204, fin4_205, fin4_206, fin4_207, fin4_208, fin4_209, fin4_210, fin4_211, fin4_212, fin4_213, fin4_214, fin4_215, fin4_216, fin4_217, fin4_218, fin4_219] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_11 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_220, fin4_221, fin4_222, fin4_223, fin4_224, fin4_225, fin4_226, fin4_227, fin4_228, fin4_229, fin4_230, fin4_231, fin4_232, fin4_233, fin4_234, fin4_235, fin4_236, fin4_237, fin4_238, fin4_239] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_12 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_240, fin4_241, fin4_242, fin4_243, fin4_244, fin4_245, fin4_246, fin4_247, fin4_248, fin4_249, fin4_250, fin4_251, fin4_252, fin4_253, fin4_254, fin4_255, fin4_256, fin4_257, fin4_258, fin4_259] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_13 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_260, fin4_261, fin4_262, fin4_263, fin4_264, fin4_265, fin4_266, fin4_267, fin4_268, fin4_269, fin4_270, fin4_271, fin4_272, fin4_273, fin4_274, fin4_275, fin4_276, fin4_277, fin4_278, fin4_279] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_14 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_280, fin4_281, fin4_282, fin4_283, fin4_284, fin4_285, fin4_286, fin4_287, fin4_288, fin4_289, fin4_290, fin4_291, fin4_292, fin4_293, fin4_294, fin4_295, fin4_296, fin4_297, fin4_298, fin4_299] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_15 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_300, fin4_301, fin4_302, fin4_303, fin4_304, fin4_305, fin4_306, fin4_307, fin4_308, fin4_309, fin4_310, fin4_311, fin4_312, fin4_313, fin4_314, fin4_315, fin4_316, fin4_317, fin4_318, fin4_319] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_16 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_320, fin4_321, fin4_322, fin4_323, fin4_324, fin4_325, fin4_326, fin4_327, fin4_328, fin4_329, fin4_330, fin4_331, fin4_332, fin4_333, fin4_334, fin4_335, fin4_336, fin4_337, fin4_338, fin4_339] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_17 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_340, fin4_341, fin4_342, fin4_343, fin4_344, fin4_345, fin4_346, fin4_347, fin4_348, fin4_349, fin4_350, fin4_351, fin4_352, fin4_353, fin4_354, fin4_355, fin4_356, fin4_357, fin4_358, fin4_359] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_18 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_360, fin4_361, fin4_362, fin4_363, fin4_364, fin4_365, fin4_366, fin4_367, fin4_368, fin4_369, fin4_370, fin4_371, fin4_372, fin4_373, fin4_374, fin4_375, fin4_376, fin4_377, fin4_378, fin4_379] = true := by
+  decide +kernel
+
+theorem seven_leaf_4_19 : allNat (fun s => leaf7 table5 hintS psiT sKeyT bots7 tops7 4320 (nat_lit 0x30cf0030cf000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) (encS (expand1 s))) [fin4_380, fin4_381, fin4_382, fin4_383, fin4_384, fin4_385, fin4_386, fin4_387, fin4_388, fin4_389, fin4_390, fin4_391, fin4_392, fin4_393, fin4_394, fin4_395, fin4_396, fin4_397, fin4_398, fin4_399] = true := by
+  decide +kernel
+
+end CDCert.K6

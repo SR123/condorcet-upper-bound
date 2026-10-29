@@ -1,0 +1,6 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/Relabel.lean:75:19: warning: unused variable `hyz`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/Relabel.lean:369:74: warning: unused variable `hac`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

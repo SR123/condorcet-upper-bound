@@ -1,0 +1,86 @@
+VERIFICATION SCOPE -- INDEPENDENT-REVIEW PACKET, 29 OCTOBER 2026
+
+VERDICT
+All seven parts of Theorem 1.1 are proved for the actual semantic Condorcet
+extremal functions, and an independent local kernel/source build succeeds.
+The 319-module Main/TwoInputs closure passes; the seven additional source
+modules pass too. The exact packaged clarified sources and final wrappers
+have been recompiled, followed by a fresh 20-result statement/axiom check.
+No sorry or custom axiom is used. Only propext, Classical.choice and
+Quot.sound occur in the checked results' transitive axiom lists.
+
+PRECISE COVERAGE
+See ../README.txt for all seven Main names and the supporting declaration
+map. Main's first four statements assume n >= 3 and the remaining three
+have no extra premises. Order is an actual strict total order; IsCondorcet
+requires transitive majority for every odd profile, with repetitions.
+f/h are maxima over finite sets of those orders; h imposes an extreme
+never-condition per triple without a common axis.
+
+The component reduction/counting, free-to-locked injection, maximal-domain
+gap inequality, fixed-pair finite coverage, two orientations, R8 receiver,
+window conditioning/cancellation, ordered copies, base case, recurrences,
+real root limits and polynomial correction all occur in the checked chain.
+Bounds.FreeLockedInjection is a conditional interface. Recurrences proves
+its premise, and the final Main statements do not assume it.
+
+OUTSIDE THE LITERAL FORMALISATION
+The arbitrary-real-alpha version of Proposition 2.3 is a new expository
+reformulation in the journal draft and has no standalone parameterised Lean
+theorem in the final source bundle. Its alpha=3/8 instance is proved, and
+no result of Theorem 1.1 relies on an unproved formal assumption.
+Native generator correctness, literal native enumeration counts, benchmark
+comparisons, historical/novelty/credit statements and bibliographical metadata
+are not claimed as Lean theorems. The Lean proof uses a proved independent
+enumeration, not a trust assumption about the C++/Python programs.
+
+NATIVE / LEAN ENUMERATION DISTINCTION
+Native: 128400 labelled five-families / 1160 types; 14105084 six-extensions /
+94830 feature rows; 397 selected sets / 14 types on 13 exceptional rows;
+18 seven-label seed families / 14248 seed-domain cases / 18316 feature rows.
+Lean: 26 oriented endpoint families (13 types, both sides, without reversal
+reduction) / 16888 final states. Counts use different strategies and units.
+The same finite seven-window inequality is proved, including fixed pairs.
+
+EVIDENCE AND ACTUAL EXECUTION
+codex-independent-lean/: fresh dependency-ordered compilation of project
+sources, final exact-source coverage/hashes, final semantic statement and
+axiom outputs, and the 20-result allowlist PASS receipt. Standard external
+library artifacts were reused; no compiled project proof from Claude was
+reused. Missing external cache companion files initially blocked four
+modules; repairing that library setup allowed all modules to pass. This
+was an environment failure, not a proof repair. No mathematical command in
+Claude's final project has been changed.
+
+claude-clean-rebuild/: distinct supplied evidence of Claude's earlier fresh
+318-module Main build, subsequent Main/TwoInputs build and final axiom
+inspection. These supplied records are not substituted for Codex's fresh
+local checks. The final bundle's SHA256 is recorded in PROVENANCE.json.
+
+native-replay/: fresh saved-data replay in the packaged tree; all five checks
+return zero, including exact rational residuals and all 113146 witnesses.
+prior-native-regeneration/: the existing complete 29 October regeneration
+receipt, whose row comparisons and commands all succeeded. That expensive
+run was not repeated for unchanged native files during packaging. Local
+machine paths in the copied receipt are redacted, with provenance recorded.
+
+source-audit.json: all 326 source modules scanned after removing nested
+comments and string literals; no sorry/admit/custom axiom/native_decide or
+kernel-bypass tokens. This scan supports, and does not replace, compilation
+and the transitive axiom check.
+
+PAPER CORRESPONDENCE
+The supplied paper TeX is byte-identical to the latest saved Overleaf
+main.tex, including the GitHub URL and DOI placeholders. Its PDF compiles
+from that source. The eight-page main paper and three-page supplement
+compile twice without warnings, and every rendered page was inspected.
+The supplement's display equations are unchanged; only paths and status/
+location prose were reconciled with the complete separate Lean project.
+The Lean file comments changed only as recorded in lean-documentation-only.diff;
+all proof/command token streams remain identical to the final Claude bundle.
+
+RELEASE STATUS
+This is an independently checked review candidate, not an approved public
+release. Pavlos's agreement, author approval and license/metadata decisions
+remain. No new DOI, archive record, GitHub release, publication or submission
+has been created. The main paper's link placeholders are intentional.

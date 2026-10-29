@@ -1,0 +1,3 @@
+'Condorcet.Pattern.finite_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsCondorcet.valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.isCondorcet_iff_valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]

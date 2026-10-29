@@ -1,0 +1,9 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/DirectedAdjacency.lean:58:6: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Condorcet.Order.swap_none_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.AdjacentSwap.exists_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.slotOrders_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.image_slotEdges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.slotAdjacencyCount_eq_adjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.deletion_gap_adjacency_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

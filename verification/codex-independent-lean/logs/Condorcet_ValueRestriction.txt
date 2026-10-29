@@ -1,0 +1,45 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:80:24: warning: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:88:24: warning: This simp argument is unused:
+  show (1 : Fin 3) ≠ 0 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, s̵h̵o̵w̵ ̵(̵1̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵0̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵ ̵↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:88:56: warning: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (1 : Fin 3) ≠ 0 by decide,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:95:24: warning: This simp argument is unused:
+  show (2 : Fin 3) ≠ 0 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵s̵h̵o̵w̵ ̵(̵2̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵1 by decide, ↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:96:8: warning: This simp argument is unused:
+  show (2 : Fin 3) ≠ 1 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0 by decide, s̵h̵o̵w̵ ̵(̵2̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵1̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵ ̵↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/ValueRestriction.lean:96:40: warning: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0 by decide, show (2 : Fin 3) ≠ 1 by d̵e̵c̵i̵d̵e̵,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵]̵d̲e̲c̲i̲d̲e̲]̲ at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Condorcet.ValueRestricted.isCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.ExtremeRestricted.isPeakPit' depends on axioms: [propext, Classical.choice, Quot.sound]

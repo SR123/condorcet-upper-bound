@@ -1,0 +1,10 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/Letters.lean:22:37: warning: unused variable `hzp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Condorcet.Order.Consecutive.swap_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.Order.atPos_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.swapLetter_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.Order.Consecutive.rank_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.AdjacentSwap.exists_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.swapLetter_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.adjacencyCount_eq_letters' depends on axioms: [propext, Classical.choice, Quot.sound]

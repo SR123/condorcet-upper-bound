@@ -1,0 +1,3 @@
+'Condorcet.sum_components_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.components_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.SlotWord.adjacentPairs_ofFn' depends on axioms: [propext, Classical.choice, Quot.sound]

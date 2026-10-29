@@ -1,0 +1,112 @@
+{
+  "result": "PASS",
+  "six_rows": 94830,
+  "seven_rows": 18316,
+  "K": "12/19",
+  "eta": "1/152",
+  "min_six_integer_residual": 0,
+  "min_seven_integer_residual": 0,
+  "six_zero_rows": 23,
+  "seven_zero_rows": 4,
+  "T_data": [
+    {
+      "row": 5770,
+      "M": 8,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 58607,
+      "M": 26,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 91933,
+      "M": 34,
+      "rb": 0,
+      "rt": 0
+    },
+    {
+      "row": 94538,
+      "M": 38,
+      "rb": 1,
+      "rt": 1
+    }
+  ],
+  "peakpit_base": "8/3",
+  "general_base": "32/11",
+  "certificate_sha256": "cef48f9f0e31b2546dcdc44cb60656e540eb254de5d2c44b2071ef267940641e",
+  "seconds": 0.2914406659838278
+}
+independent six tuple checks 20000 seconds 0.7238727079820819
+independent six tuple checks 40000 seconds 1.9165752079861704
+independent six tuple checks 60000 seconds 3.5106737919850275
+independent six tuple checks 80000 seconds 5.39885245799087
+seven tuple checks 4000 seconds 7.451020417007385
+seven tuple checks 8000 seconds 8.02348229198833
+seven tuple checks 12000 seconds 8.681834374991013
+seven tuple checks 16000 seconds 9.374418791994685
+{
+  "result": "PASS",
+  "independent_seven_tuple_witnesses": 18316,
+  "independent_six_tuple_witnesses": 94830,
+  "cached_six_slices": 115721,
+  "seconds": 9.841402041987749
+}
+{
+  "result": "EXACT PASS",
+  "all_seven_witnesses": 18316,
+  "distinct_six_slices": 21103,
+  "minimum_integer_residual": 0,
+  "denominator": 353844691200,
+  "identity": "new single-potential residual equals old residual exactly",
+  "seconds": 3.5163539169880096,
+  "scope": "all saved witnesses; complete-family coverage remains the generator/receiver argument"
+}
+{
+  "status": "EXACT ARITHMETIC PASS",
+  "component_density": "Sigma(K)>=(3/8)n|K|, all nonempty full extreme-law-plus-pairs families",
+  "general_hypotheses": "Maximum-size D is full and inclusion-maximal; sum component deletion sums=Sigma(D)+G; G<=3Sigma(D)-(n+1)|D|",
+  "general_recurrence": "f(n)<=32n/(11n+8) f(n-1), n>=3",
+  "general_exponential": "f(n)<=4(32/11)^(n-3), n>=3",
+  "general_polynomial_correction": "O(n^(-8/11)(32/11)^n); from the product of k/(k+8/11)",
+  "peak_pit_hypotheses": "A maximum peak-pit family is completed under chosen extreme laws; arbitrary peak-pit subsets need not have interval fibres",
+  "peak_pit_recurrence": "h(n)<=(8/3)h(n-1), n>=2",
+  "peak_pit_exponential": "h(n)<=4(8/3)^(n-3), n>=3",
+  "scope": "Arithmetic verified here. Component structure, complete family coverage, gluing, slicing/telescoping and ordered-copy identities require the supplied mathematical proofs."
+}
+{
+  "status": "PASS",
+  "scope": "all nonempty CD subsets on4labels, generated as subsets of all inclusion-maximal full4domains; plus independent greedy maximal5/6samples",
+  "full4_count": 3603,
+  "maximal4_count": 495,
+  "all_cd4": {
+    "domains": 26409,
+    "locally_saturated": 8739,
+    "peak_pit": 16122,
+    "gapless": 4929,
+    "nonblocked_marks": 0
+  },
+  "AppendixE10_fixture": {
+    "n": 5,
+    "M": 5,
+    "Sigma": 19,
+    "G": 2,
+    "A": 4,
+    "free": 0,
+    "frozen": 13,
+    "locked": 13,
+    "local": false,
+    "peak_pit": false,
+    "psi": 0,
+    "phi": 1,
+    "types": {
+      "C2": 1
+    },
+    "Delta": 1,
+    "Lcirc": 14,
+    "empty": 14
+  },
+  "seconds": 2.728466041997308
+}

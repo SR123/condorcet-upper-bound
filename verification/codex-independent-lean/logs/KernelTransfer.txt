@@ -1,0 +1,7 @@
+'CondorcetUpperBounds.deletion_transfer' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.general_recurrence' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.peak_pit_recurrence_scaled' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.remove_uniform_boundary' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.scaled_geometric_majorant' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.potential_flow_compression' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.potentialFlow_eq' depends on axioms: [propext, Quot.sound]

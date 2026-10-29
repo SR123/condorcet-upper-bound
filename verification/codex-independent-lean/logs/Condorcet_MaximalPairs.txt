@@ -1,0 +1,4 @@
+'Condorcet.IsCondorcet.insert_fixed_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsMaximal.no_fixed_pair_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.Order.consecutive_none_insertion' depends on axioms: [propext, Quot.sound]
+'Condorcet.IsMaximal.fixed_pair_not_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]

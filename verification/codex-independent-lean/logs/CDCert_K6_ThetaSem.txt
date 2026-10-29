@@ -1,0 +1,7 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/CDCert/K6/ThetaSem.lean:238:30: warning: This simp argument is unused:
+  Int.natCast_mul
+
+Hint: Omit it from the simp argument list.
+  simp only [Int.natCast_add,̵ ̵I̵n̵t̵.̵n̵a̵t̵C̵a̵s̵t̵_̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

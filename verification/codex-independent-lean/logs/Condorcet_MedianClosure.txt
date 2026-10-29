@@ -1,0 +1,3 @@
+'Condorcet.IsCondorcet.insert_median' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsMaximal.median_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsMaximal.encoded_medianClosed' depends on axioms: [propext, Classical.choice, Quot.sound]

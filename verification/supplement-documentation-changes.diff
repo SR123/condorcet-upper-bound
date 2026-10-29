@@ -1,0 +1,58 @@
+--- previous-certificate-supplement
++++ packaged-certificate-supplement
+@@ -58,7 +58,7 @@
+  \sum_{H\text{ bottom slice}}q(H)-\sum_{H\text{ top slice}}q(H).
+ \end{equation}
+ The rational table and exact verifiers are in
+-\texttt{finite\_certificate/}. The finite statement includes
++\texttt{ancillary/finite\_certificate/}. The finite statement includes
+ all fixed-pair constraints, with no common-axis assumption.
+ \end{lemma}
+ \begin{proof}
+@@ -140,13 +140,15 @@
+ orientations. Every required inequality is verified by clearing the rational
+ denominators and checking a nonnegative integer residual. A separate
+ tuple-set checker recomputes every saved row from its witness orders.
+-The family-generation coverage argument, the receiver argument and the
+-passage to arbitrary $n$ are mathematical arguments, not Lean theorems.
++The written coverage and receiver arguments are given above. The separate
++Lean project in the repository also formalises these steps and the passage
++to arbitrary $n$; its verification report records the checked scope.
+ \end{proof}
+ 
+ 
+ \section{Reproducing the finite checks}
+-The directory \texttt{finite\_certificate/} contains standard Python~3
++The repository directory \texttt{ancillary/finite\_certificate/} contains
++standard Python~3
+ scripts, two C++17 generator sources, rational certificate data, saved
+ feature rows and tuple witnesses. No optimizer, network access or
+ nonstandard Python package is needed. Run commands from that directory.
+@@ -189,19 +191,12 @@
+ \end{itemize}
+ Both orientations are covered. The generic and $R_8$ receiver cases are
+ the hand arguments in Section~\ref{sec:finite}; they are not replaced by
+-a success flag. The full coverage proof and the passage from seven
+-positions to arbitrary $n$ remain mathematical arguments.
+-
+-\section{Verification and proof-assistant scope}
+-The separate 29 October independent audit reports complete fresh
+-finite generation, tuple replay and bounded combinatorial checks of the
+-frozen inputs. Those are prior checks; this preparation checks source
+-integrity, compilation and layout.
+-
+-Four optional Lean foundation modules in \texttt{formalization/} concern
+-Boolean majority, an abstract component statement and conditional
+-arithmetic. They do not prove the Condorcet-domain recurrences, finite
+-coverage or window argument end to end. The separate newer Lean
+-workstream is not included here. The bounds rely on the mathematical
+-proof and exact finite arithmetic with coverage arguments.
++a success flag. The separate Lean project formalises the coverage proof and the passage
++from seven positions to arbitrary $n$; it is documented in the repository.
++
++\section{Verification}
++The repository records the prior complete finite regeneration and a fresh
++saved-data replay. Lean sources, documentation and verification scope are
++provided separately through the GitHub repository and archived release
++referenced in the main paper.
+ \end{document}

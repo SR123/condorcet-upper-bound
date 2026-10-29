@@ -1,0 +1,202 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathcal F}
+\newcommand{\nc}[2]{#1\mathrm N#2}
+\newcommand{\sw}{\operatorname{swap}}
+\newcommand{\del}{\Sigma}
+\newcommand{\maj}{\operatorname{maj}}
+\renewcommand{\thesection}{S\arabic{section}}
+\title{Certificate Supplement to\\
+Improved Upper Bounds on the Size of Condorcet Domains}
+\author{Pavlos Moros \and S\o ren Riis}
+\date{Local review draft, 29 October 2026}
+\hypersetup{pdftitle={Certificate Supplement: Improved Upper Bounds on the Size of Condorcet Domains},pdfauthor={Pavlos Moros and Soren Riis}}
+\begin{document}
+\maketitle
+\section{Scope and notation}
+This supplement records the finite lemma, its certificate and exact
+reproduction instructions. The general proof remains in the main paper.
+Certificate files are unchanged from the frozen 29 October source;
+no finite generation or audit was rerun for this editorial preparation.
+
+Let $\F_k$ consist of the nonempty families of orders on $k$ alternatives
+defined by one extreme never-condition on each triple and arbitrary
+fixed pair comparisons. A condition $\nc xp$ means that $x$ never has
+position $p$ on its triple; extreme means $p=1$ or $p=3$.
+Write $A(H)$ for the number of enabled adjacent swaps, counted over
+orders and positions, so each undirected edge contributes twice.
+The definitions below reproduce the exact finite argument used in the
+manuscript, with additional enumeration and selector details.
+
+\section{A finite window inequality}\label{sec:finite}
+
+For $H\in\F_k$, its \emph{bottom slices} group orders by their last
+alternative and delete it; top slices group by the first alternative.
+Every nonempty slice belongs to $\F_{k-1}$. Write $a_j(H)$ for the
+number of orders whose swap at position $j$ is enabled. On seven labels put
+\begin{equation}\label{eq:cost}
+ C(H)=\frac{a_1+2a_2+2a_3+2a_4+2a_5+a_6}{10}.
+\end{equation}
+The weights sum to one. They are chosen so that each interior swap is
+counted with total weight one when a seven-position window slides
+through an order.
+
+\begin{lemma}[Exact finite estimate]\label{lem:finite}
+There is a rational function $q$ on the isomorphism types of $\F_6$ such
+that, for every $J\in\F_7$,
+\begin{equation}\label{eq:finite}
+ C(J)\le\frac58|J|+
+ \sum_{H\text{ bottom slice}}q(H)-\sum_{H\text{ top slice}}q(H).
+\end{equation}
+The rational table and exact verifiers are in
+\texttt{ancillary/finite\_certificate/}. The finite statement includes
+all fixed-pair constraints, with no common-axis assumption.
+\end{lemma}
+\begin{proof}
+Here is the construction and the coverage argument for the finite check.
+The certificate assigns per-order weights $\phi$ to five-label types.
+For a six-domain $H$ let $b(H)$ and $t(H)$ be the sums of
+$|L|\phi(L)$ over its bottom and top five-slices. Put
+\[
+ s(H)=\frac{12}{19}|H|+b(H)-t(H)-\frac15 A(H),\qquad \eta=\frac1{152}.
+\]
+There are specified exceptional sets $\mathcal T,\mathcal S$ of five and
+nine six-label types. Put $p(H)=2\eta(r_t(H)-r_b(H))$ outside $\mathcal S$,
+and $p(H)=\psi(H)$ on $\mathcal S$, with the rational values $\psi$ supplied
+by the certificate. Set $\theta_b=s/2+p$ and $\theta_t=s/2-p$.
+The finite facts are as follows. On $\mathcal T$
+both split values are zero. Outside $\mathcal T\cup\mathcal S$,
+\begin{equation}\label{eq:receivers}
+ \theta_b(H)\ge\frac\eta2|H|+4\eta r_t(H),\qquad
+ \theta_t(H)\ge\frac\eta2|H|+4\eta r_b(H).
+\end{equation}
+Here $r_b,r_t$ count specified five-slices described below. A further
+finite check proves
+\begin{equation}\label{eq:lambda}
+ \Lambda(J):=\sum_{\text{bottom }H}\theta_b(H)
+             +\sum_{\text{top }H}\theta_t(H)\ge\eta|J|
+\end{equation}
+whenever $J$ has a slice in $(\mathcal T\setminus\{R_8\})\cup\mathcal S$.
+All types, weights and slice selectors are explicitly defined in the
+ancillary data; they are not fitted during verification.
+
+For completeness, the one remaining exceptional type is
+\[
+ R_8=\{524130,524310,534120,534210,
+        542130,542310,543120,543210\}.
+\]
+It has a common first and last alternative. In the regenerated five-label
+class map the two selector types below have indices 866 and 41, respectively. The quantity $r_b(H)$ counts
+bottom five-slices of the type $R_8$ with its first alternative deleted;
+$r_t(H)$ counts top five-slices of the type with its last deleted.
+Both counts vanish on $R_8$.
+If a bottom $R_8$ slice occurs, its eight orders share their first
+alternative, so they enter one top receiver slice and contribute one
+to its $r_b$. That receiver is not $R_8$. Distinct bottom slices give
+distinct receiver/label pairs. Each contributes $4\eta$, exactly paying
+the missing baseline $8\eta/2$. Top $R_8$ slices are symmetric.
+In the remaining cases all non-$R_8$ slices lie outside
+$\mathcal T\cup\mathcal S$, so~\eqref{eq:receivers} applies to every receiver.
+It proves~\eqref{eq:lambda} in every case not handled by the exceptional finite check.
+
+Define
+\[
+ q(H)=\frac{b(H)+t(H)}2+p(H).
+\]
+In a seven-domain, a top slice of a bottom slice is the same conditional
+five-domain as the corresponding bottom slice of a top slice.
+These middle terms cancel. Also the sum of $A(H)$ over all six-slices
+is $10C(J)$. Consequently
+\[
+ \Lambda(J)=\frac{12}{19}|J|-C(J)
+       +\sum_{\text{bottom }H}q(H)-\sum_{\text{top }H}q(H).
+\]
+Now~\eqref{eq:lambda} and $12/19-1/152=5/8$ give~\eqref{eq:finite}.
+
+We finally explain why the finite checks are exhaustive.
+All $128\,400$ labelled five-domains form $1\,160$ relabelling types.
+Extend their defining laws over the ten new triples and five new pairs.
+This gives $14\,105\,084$ nonempty six-extensions of five-type
+representatives and $94\,830$ feature rows. The extension count is not a
+count of distinct labelled six-domains.
+Every six-domain occurs up to relabelling: restrict its \emph{defining
+conditions} to five labels, rather than taking its projection.
+Keeping every domain on the thirteen exceptional feature rows gives precisely the
+fourteen required types. Two of the five types in $\mathcal T$ share one feature row.
+Their representatives and reversals, omitting
+$R_8$, give eighteen seven-label seed families. Requiring a prescribed
+endpoint six-slice and intersecting all compatible law and pair options
+produces $14\,248$ seed--domain cases (before deduplication across seeds)
+and $18\,316$ feature rows, covering both
+orientations. Every required inequality is verified by clearing the rational
+denominators and checking a nonnegative integer residual. A separate
+tuple-set checker recomputes every saved row from its witness orders.
+The written coverage and receiver arguments are given above. The separate
+Lean project in the repository also formalises these steps and the passage
+to arbitrary $n$; its verification report records the checked scope.
+\end{proof}
+
+
+\section{Reproducing the finite checks}
+The repository directory \texttt{ancillary/finite\_certificate/} contains
+standard Python~3
+scripts, two C++17 generator sources, rational certificate data, saved
+feature rows and tuple witnesses. No optimizer, network access or
+nonstandard Python package is needed. Run commands from that directory.
+
+\paragraph{Saved-data replay.}
+\begin{verbatim}
+sh run_joint_checks.sh
+\end{verbatim}
+This checks the rational residuals on saved rows, recomputes features
+from all $94\,830+18\,316=113\,146$ tuple witnesses, checks the
+compressed potential and scalar transfers, and runs supplementary small
+charging-map cases. Successful completion has exit status zero. It
+checks the supplied data, rather than reconstructing the family coverage.
+
+\paragraph{Complete regeneration.}
+With a C++17 compiler named \texttt{c++} available, use a new output path:
+\begin{verbatim}
+python3 run_fresh_regeneration.py /path/to/new/output
+\end{verbatim}
+The driver refuses to overwrite an existing output directory. It starts
+from generator sources, coefficient data and exceptional keys, not saved
+feature rows or witnesses. It regenerates the five-label families,
+six-extensions and required seven-label families, checks completion flags,
+runs the exact and tuple verifiers, and compares regenerated feature
+tables with the supplied tables. Its success receipt is
+\texttt{FULL\_REGENERATION\_RECEIPT.json}, with result
+\texttt{COMPLETE FRESH REGENERATION PASS}. Each command and return code
+is recorded there. Witness order can depend on hash iteration; feature
+rows are compared exactly, and every regenerated witness is checked.
+
+\paragraph{Expected counts.}
+The units are different and should not be interchanged:
+\begin{itemize}
+\item $128\,400$ labelled five-families and $1\,160$ relabelling types;
+\item $14\,105\,084$ six-extensions and $94\,830$ six-feature rows;
+\item $397$ selected sets, giving fourteen exceptional types on thirteen
+feature rows;
+\item eighteen seven-label seeds, $14\,248$ seed--domain cases before
+cross-seed deduplication, and $18\,316$ seven-feature rows.
+\end{itemize}
+Both orientations are covered. The generic and $R_8$ receiver cases are
+the hand arguments in Section~\ref{sec:finite}; they are not replaced by
+a success flag. The separate Lean project formalises the coverage proof and the passage
+from seven positions to arbitrary $n$; it is documented in the repository.
+
+\section{Verification}
+The repository records the prior complete finite regeneration and a fresh
+saved-data replay. Lean sources, documentation and verification scope are
+provided separately through the GitHub repository and archived release
+referenced in the main paper.
+\end{document}

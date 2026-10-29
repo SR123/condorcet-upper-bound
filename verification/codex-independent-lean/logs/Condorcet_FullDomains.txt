@@ -1,0 +1,4 @@
+'Condorcet.fullDomain_isCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsMaximal.isFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.median_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,3 @@
+'Condorcet.extremeFullDomain_isPeakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.ExtremeRestricted.completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.maximum_peakPit_isExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,10 @@
+{
+  "result": "EXACT PASS",
+  "all_seven_witnesses": 18316,
+  "distinct_six_slices": 21103,
+  "minimum_integer_residual": 0,
+  "denominator": 353844691200,
+  "identity": "new single-potential residual equals old residual exactly",
+  "seconds": 3.486116709013004,
+  "scope": "all saved witnesses; complete-family coverage remains the generator/receiver argument"
+}

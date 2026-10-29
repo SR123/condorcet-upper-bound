@@ -1,0 +1,17 @@
+INDEPENDENT-REVIEW CANDIDATE -- NO PUBLICATION AUTHORISED
+
+The packet is prepared for Pavlos to review independently, including with
+his AI. No repository upload, push, release, DOI registration, archive
+publication, email or journal submission has been performed.
+
+Before archival publication, Pavlos must agree with the paper. Both authors
+also approve the exact manuscript, supplement, Lean project, credit and
+verification scope, final manifest, licenses, repository URL and version.
+The arbitrary-alpha coverage limitation is explicit in README.txt.
+The paper's GitHub URL and DOI placeholders are intentional.
+
+Other files in this directory are inactive metadata drafts only. In
+particular zenodo.DRAFT.json is not .zenodo.json and is not ready for a
+deposit; no license grant or DOI has been invented. Do not activate archival
+integration or rename these into active metadata before author agreement.
+Søren alone sends emails under his standing drafts-only instruction.

@@ -1,0 +1,204 @@
+⚠ [783/837] Replayed Condorcet.Extremal
+warning: Condorcet/Extremal.lean:69:65: Try `simp at hm` instead of `simpa using hm`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: Condorcet/Extremal.lean:105:0: 'Condorcet.IsCondorcet.restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Extremal.lean:106:0: 'Condorcet.deletionSum_le_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Extremal.lean:107:0: 'Condorcet.deletionSum_le_peakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Extremal.lean:108:0: 'Condorcet.exists_maximum_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Extremal.lean:109:0: 'Condorcet.maximum_isMaximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [784/837] Replayed MajorityLaws
+info: MajorityLaws.lean:98:0: 'CondorcetUpperBounds.law_preserved' does not depend on any axioms
+info: MajorityLaws.lean:99:0: 'CondorcetUpperBounds.conjunction_preserved' does not depend on any axioms
+info: MajorityLaws.lean:100:0: 'CondorcetUpperBounds.projection_fixes_agreement' does not depend on any axioms
+info: MajorityLaws.lean:101:0: 'CondorcetUpperBounds.projection_preserves_step' does not depend on any axioms
+ℹ [787/837] Replayed Condorcet.Majority
+info: Condorcet/Majority.lean:85:0: 'Condorcet.majority_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Majority.lean:86:0: 'Condorcet.medianOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Majority.lean:87:0: 'Condorcet.encode_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [788/837] Replayed Condorcet.ValueRestriction
+warning: Condorcet/ValueRestriction.lean:80:24: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Condorcet/ValueRestriction.lean:88:24: This simp argument is unused:
+  show (1 : Fin 3) ≠ 0 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, s̵h̵o̵w̵ ̵(̵1̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵0̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵ ̵↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Condorcet/ValueRestriction.lean:88:56: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (1 : Fin 3) ≠ 0 by decide,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Condorcet/ValueRestriction.lean:95:24: This simp argument is unused:
+  show (2 : Fin 3) ≠ 0 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵s̵h̵o̵w̵ ̵(̵2̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵1 by decide, ↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Condorcet/ValueRestriction.lean:96:8: This simp argument is unused:
+  show (2 : Fin 3) ≠ 1 by decide
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0 by decide, s̵h̵o̵w̵ ̵(̵2̵ ̵:̵ ̵F̵i̵n̵ ̵3̵)̵ ̵≠̵ ̵1̵ ̵b̵y̵ ̵d̵e̵c̵i̵d̵e̵,̵ ̵↓reduceIte] at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Condorcet/ValueRestriction.lean:96:40: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  simp only [Never, show (2 : Fin 3) ≠ 0 by decide, show (2 : Fin 3) ≠ 1 by d̵e̵c̵i̵d̵e̵,̵ ̵↓̵r̵e̵d̵u̵c̵e̵I̵t̵e̵]̵d̲e̲c̲i̲d̲e̲]̲ at H
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: Condorcet/ValueRestriction.lean:135:0: 'Condorcet.ValueRestricted.isCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/ValueRestriction.lean:136:0: 'Condorcet.ExtremeRestricted.isPeakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [789/837] Replayed Condorcet.TripleCharacterization
+info: Condorcet/TripleCharacterization.lean:124:0: 'Condorcet.Pattern.finite_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/TripleCharacterization.lean:125:0: 'Condorcet.IsCondorcet.valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/TripleCharacterization.lean:126:0: 'Condorcet.isCondorcet_iff_valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [790/837] Replayed ComponentMedian
+info: ComponentMedian.lean:134:0: 'CondorcetUpperBounds.component_coordinate_approximation' depends on axioms: [propext, Quot.sound]
+info: ComponentMedian.lean:135:0: 'CondorcetUpperBounds.component_from_attainable_coordinates' depends on axioms: [propext, Quot.sound]
+info: ComponentMedian.lean:136:0: 'CondorcetUpperBounds.component_from_fixed_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [791/837] Replayed Condorcet.MedianClosure
+info: Condorcet/MedianClosure.lean:60:0: 'Condorcet.IsCondorcet.insert_median' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MedianClosure.lean:61:0: 'Condorcet.IsMaximal.median_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MedianClosure.lean:62:0: 'Condorcet.IsMaximal.encoded_medianClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [792/837] Replayed Condorcet.Adjacency
+info: Condorcet/Adjacency.lean:118:0: 'Condorcet.oneCoordinate_iff_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Adjacency.lean:119:0: 'Condorcet.IsMaximal.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [793/837] Replayed Condorcet.BaseThree
+info: Condorcet/BaseThree.lean:129:0: 'Condorcet.card_le_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/BaseThree.lean:130:0: 'Condorcet.f_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/BaseThree.lean:131:0: 'Condorcet.h_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [794/837] Replayed Condorcet.FullDomains
+info: Condorcet/FullDomains.lean:140:0: 'Condorcet.fullDomain_isCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/FullDomains.lean:141:0: 'Condorcet.IsMaximal.isFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/FullDomains.lean:142:0: 'Condorcet.IsFull.median_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/FullDomains.lean:143:0: 'Condorcet.IsFull.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [795/837] Replayed Condorcet.Ranks
+info: Condorcet/Ranks.lean:84:0: 'Condorcet.Order.rank_lt_iff' depends on axioms: [propext, Quot.sound]
+info: Condorcet/Ranks.lean:85:0: 'Condorcet.Order.rankEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Ranks.lean:86:0: 'Condorcet.Order.rank_atPosition' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [797/837] Replayed Condorcet.Insertion
+info: Condorcet/Insertion.lean:145:0: 'Condorcet.Order.insertionRelation_strict' depends on axioms: [propext, Quot.sound]
+info: Condorcet/Insertion.lean:146:0: 'Condorcet.Order.insertAt_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Insertion.lean:147:0: 'Condorcet.Order.insertionCut_iff_rank' depends on axioms: [propext, Quot.sound]
+info: Condorcet/Insertion.lean:148:0: 'Condorcet.Order.reconstruct_insertion' depends on axioms: [propext, Quot.sound]
+ℹ [798/837] Replayed Condorcet.Fibres
+info: Condorcet/Fibres.lean:60:0: 'Condorcet.image_insertionSlots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Fibres.lean:61:0: 'Condorcet.insertionSlots_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Fibres.lean:62:0: 'Condorcet.sum_card_insertionSlots' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [870/907] Replayed Condorcet.Runs
+info: Condorcet/Runs.lean:64:0: 'Condorcet.SlotWord.occupied_eq_runs_add_adjacentPairs' depends on axioms: [propext, Quot.sound]
+info: Condorcet/Runs.lean:65:0: 'Condorcet.SlotWord.nonempty_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Runs.lean:115:0: 'Condorcet.actual_fibre_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Runs.lean:116:0: 'Condorcet.deletion_fibre_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [871/907] Replayed Condorcet.ExtremeFull
+info: Condorcet/ExtremeFull.lean:150:0: 'Condorcet.extremeFullDomain_isPeakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/ExtremeFull.lean:151:0: 'Condorcet.ExtremeRestricted.completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/ExtremeFull.lean:152:0: 'Condorcet.maximum_peakPit_isExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [872/907] Replayed Condorcet.DeletionBridge
+info: Condorcet/DeletionBridge.lean:117:0: 'Condorcet.restrict_delete_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DeletionBridge.lean:118:0: 'Condorcet.optionDomain_deletion' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DeletionBridge.lean:119:0: 'Condorcet.global_fibre_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [873/907] Replayed Condorcet.Intervals
+warning: Condorcet/Intervals.lean:24:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: Condorcet/Intervals.lean:79:0: 'Condorcet.extreme_never_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Intervals.lean:80:0: 'Condorcet.IsExtremeFull.insertionSlots_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [874/907] Replayed Condorcet.NoGaps
+info: Condorcet/NoGaps.lean:116:0: 'Condorcet.maximum_peakPit_gapCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/NoGaps.lean:117:0: 'Condorcet.SlotWord.runs_le_one_of_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/NoGaps.lean:118:0: 'Condorcet.IsExtremeFull.gapCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/NoGaps.lean:119:0: 'Condorcet.IsExtremeFull.deletion_plus_slotAdjacency' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [875/907] Replayed Condorcet.Components
+info: Condorcet/Components.lean:124:0: 'Condorcet.middle_comparison_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Components.lean:125:0: 'Condorcet.component_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Components.lean:126:0: 'Condorcet.holds_componentPairs_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Components.lean:236:0: 'Condorcet.IsFull.component_isExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Components.lean:237:0: 'Condorcet.IsFull.component_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [876/907] Replayed Condorcet.ComponentCounting
+info: Condorcet/ComponentCounting.lean:106:0: 'Condorcet.sum_components_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/ComponentCounting.lean:107:0: 'Condorcet.IsFull.components_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/ComponentCounting.lean:108:0: 'Condorcet.SlotWord.adjacentPairs_ofFn' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [877/907] Replayed Condorcet.SlotAdjacency
+info: Condorcet/SlotAdjacency.lean:105:0: 'Condorcet.labelledInsertion_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/SlotAdjacency.lean:106:0: 'Condorcet.labelledInsertion_connected' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/SlotAdjacency.lean:217:0: 'Condorcet.slotAdjacencyCount_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/SlotAdjacency.lean:218:0: 'Condorcet.sum_components_slotAdjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/SlotAdjacency.lean:219:0: 'Condorcet.IsFull.sum_components_deletionSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [878/907] Replayed Condorcet.DirectedAdjacency
+warning: Condorcet/DirectedAdjacency.lean:58:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: Condorcet/DirectedAdjacency.lean:120:0: 'Condorcet.Order.swap_none_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DirectedAdjacency.lean:121:0: 'Condorcet.AdjacentSwap.exists_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DirectedAdjacency.lean:253:0: 'Condorcet.slotOrders_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DirectedAdjacency.lean:254:0: 'Condorcet.image_slotEdges' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DirectedAdjacency.lean:255:0: 'Condorcet.slotAdjacencyCount_eq_adjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/DirectedAdjacency.lean:256:0: 'Condorcet.deletion_gap_adjacency_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [879/907] Replayed Condorcet.MaximalPairs
+info: Condorcet/MaximalPairs.lean:111:0: 'Condorcet.IsCondorcet.insert_fixed_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MaximalPairs.lean:112:0: 'Condorcet.IsMaximal.no_fixed_pair_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MaximalPairs.lean:191:0: 'Condorcet.Order.consecutive_none_insertion' depends on axioms: [propext, Quot.sound]
+info: Condorcet/MaximalPairs.lean:192:0: 'Condorcet.IsMaximal.fixed_pair_not_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [880/907] Replayed Condorcet.Moves
+info: Condorcet/Moves.lean:157:0: 'Condorcet.labelledInsertion_reconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:158:0: 'Condorcet.hasLift_insertion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:159:0: 'Condorcet.hasDrop_insertion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:160:0: 'Condorcet.card_blockedOrders' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:161:0: 'Condorcet.card_noDropOrders' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:245:0: 'Condorcet.orderSlot_val_eq_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:246:0: 'Condorcet.hasLift_iff_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Moves.lean:247:0: 'Condorcet.first_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [881/907] Replayed Condorcet.MissingSwap
+warning: Condorcet/MissingSwap.lean:128:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: Condorcet/MissingSwap.lean:153:0: 'Condorcet.lift_crosses_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MissingSwap.lean:154:0: 'Condorcet.drop_crosses_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/MissingSwap.lean:155:0: 'Condorcet.IsFull.missing_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [882/907] Replayed Condorcet.Letters
+warning: Condorcet/Letters.lean:22:37: unused variable `hzp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: Condorcet/Letters.lean:125:0: 'Condorcet.Order.Consecutive.swap_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:126:0: 'Condorcet.Order.atPos_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:127:0: 'Condorcet.swapLetter_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:231:0: 'Condorcet.Order.Consecutive.rank_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:232:0: 'Condorcet.AdjacentSwap.exists_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:233:0: 'Condorcet.swapLetter_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/Letters.lean:234:0: 'Condorcet.adjacencyCount_eq_letters' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [883/907] Replayed Condorcet.GapCounts
+info: Condorcet/GapCounts.lean:162:0: 'Condorcet.enabled_letter_moves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/GapCounts.lean:163:0: 'Condorcet.IsFull.letter_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/GapCounts.lean:164:0: 'Condorcet.move_counts_per_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/GapCounts.lean:165:0: 'Condorcet.IsFull.second_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Condorcet/GapCounts.lean:166:0: 'Condorcet.IsFull.gap_slack_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [900/907] Built CDCert.Levels (669ms)
+ℹ [901/907] Built KernelTransfer (726ms)
+info: KernelTransfer.lean:91:0: 'CondorcetUpperBounds.deletion_transfer' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:92:0: 'CondorcetUpperBounds.general_recurrence' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:93:0: 'CondorcetUpperBounds.peak_pit_recurrence_scaled' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:94:0: 'CondorcetUpperBounds.remove_uniform_boundary' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:95:0: 'CondorcetUpperBounds.scaled_geometric_majorant' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:96:0: 'CondorcetUpperBounds.potential_flow_compression' depends on axioms: [propext, Quot.sound]
+info: KernelTransfer.lean:97:0: 'CondorcetUpperBounds.potentialFlow_eq' depends on axioms: [propext, Quot.sound]
+✔ [903/907] Built CDCert (197ms)
+✔ [904/907] Built Condorcet (1.3s)
+ℹ [906/907] Built ThreeOrders (2.9s)
+info: ThreeOrders.lean:71:0: 'CondorcetUpperBounds.common_never_excludes_cycles' depends on axioms: [propext]
+info: ThreeOrders.lean:72:0: 'CondorcetUpperBounds.common_never_majority_transitive' depends on axioms: [propext]
+Build completed successfully (907 jobs).

@@ -1,0 +1,18 @@
+Clean from-source rebuild, 29 October 2026 (Claude).
+
+Fresh directory containing exactly the sources of this bundle and no project build artefacts.
+Only Mathlib's own compiled packages (Mathlib v4.26.0 and its dependencies) were reused.
+Every one of the 318 project modules in the import closure of CDCert.Main (CDCert, Condorcet,
+MajorityLaws, ComponentMedian) was compiled from source, one `lake build MOD` per module, in
+dependency order, by generators/rundag.py (at most 2 modules at a time, memory-aware).
+
+Result: 318 built, 0 failed (rundag.log; one restart at the 2-hour job limit, resumed from the log).
+Sum of per-module wall times: 4.96 hours (about 2.5 hours elapsed with 2 parallel jobs).
+Longest: CDCert.K6.Tab.CheckAux 629 s, CDCert.K6.Five.F5 276 s, six-level checks about 240 s each.
+
+Afterwards, in the same tree:
+  lake build CDCert.Main CDCert.TwoInputs   -> success (2271 jobs)   final_lake_build_Main_TwoInputs.log
+  lake build   (default targets)            -> success (907 jobs)    final_lake_build_default.log
+  lake env lean receipts/FinalAxioms.lean   -> FinalAxioms_clean.out, identical to ../FinalAxioms.out
+                                               (20 axiom lines, each [propext, Classical.choice, Quot.sound])
+The sources in the rebuilt tree were compared byte for byte with this bundle: identical.

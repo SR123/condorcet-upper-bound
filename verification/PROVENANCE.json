@@ -1,0 +1,44 @@
+{
+  "title": "Improved Upper Bounds on the Size of Condorcet Domains",
+  "status": "Independent-review candidate; no approved/public/archival release",
+  "paper_source": "Latest saved shared Overleaf main.tex after authorised journal-draft and link-placeholder edits",
+  "paper_source_sha256": "3565b8a0415ef3a850b150cfa40b4c0eaa872fefe3095cbba8819d43d1075141",
+  "paper_matches_saved_overleaf_source_exactly": true,
+  "claude_final_archive_sha256": "d158b3b65d9a07b3e00c2123c8810433f22475fec72883b8c44760605e62aec6",
+  "lean_source": "Final bundle plus seven documented comment/docstring clarifications; no mathematical command or string literal changed; all exact packaged sources independently compiled",
+  "lean_modules": 326,
+  "main_and_twoinputs_closure": 319,
+  "axiom_check_results": 20,
+  "formal_scope_limit": "Generic arbitrary-alpha Proposition 2.3 lacks its own parameterised declaration; alpha=3/8 instance and all seven parts of Theorem 1.1 are proved",
+  "native_full_regeneration": "Prior successful 29 October run, explicitly labelled, not rerun for packaging",
+  "metadata": "GitHub URL and DOI remain placeholders; no DOI or publication created",
+  "excluded": "Private correspondence/chats, old papers, compiled project objects, dependency caches, obsolete prototype drivers and failed development logs",
+  "author_order": [
+    "Pavlos Moros",
+    "Søren Riis"
+  ],
+  "pdfs": {
+    "manuscript": {
+      "tex_sha256": "3565b8a0415ef3a850b150cfa40b4c0eaa872fefe3095cbba8819d43d1075141",
+      "pdf_sha256": "ec6d07af78109726a5066d22fe5dd565643dbfba98e178f3321654fa2b089668",
+      "pages": 8,
+      "paper": "US letter",
+      "font": "11pt",
+      "margins": "1 inch",
+      "compile_passes": 2,
+      "warnings": [],
+      "all_pages_visually_checked": true
+    },
+    "supplement": {
+      "tex_sha256": "87874ab13a3a4f05bad203017f57d56cb26c92386d68239e966b695beb3c40d3",
+      "pdf_sha256": "d85bc884d5b75f4cc1a814d30f4f199312063c1dda5b5624a503108668be08ae",
+      "pages": 3,
+      "paper": "US letter",
+      "font": "11pt",
+      "margins": "1 inch",
+      "compile_passes": 2,
+      "warnings": [],
+      "all_pages_visually_checked": true
+    }
+  }
+}

@@ -1,0 +1,2 @@
+'CondorcetUpperBounds.common_never_excludes_cycles' depends on axioms: [propext]
+'CondorcetUpperBounds.common_never_majority_transitive' depends on axioms: [propext]

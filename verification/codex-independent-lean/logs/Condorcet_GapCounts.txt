@@ -1,0 +1,5 @@
+'Condorcet.enabled_letter_moves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.letter_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.move_counts_per_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.second_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.gap_slack_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,3 @@
+'Condorcet.Order.rank_lt_iff' depends on axioms: [propext, Quot.sound]
+'Condorcet.Order.rankEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.Order.rank_atPosition' depends on axioms: [propext, Classical.choice, Quot.sound]

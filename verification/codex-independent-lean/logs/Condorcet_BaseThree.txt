@@ -1,0 +1,3 @@
+'Condorcet.card_le_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.f_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.h_three' depends on axioms: [propext, Classical.choice, Quot.sound]

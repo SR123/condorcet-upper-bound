@@ -1,0 +1,3 @@
+'CondorcetUpperBounds.component_coordinate_approximation' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.component_from_attainable_coordinates' depends on axioms: [propext, Quot.sound]
+'CondorcetUpperBounds.component_from_fixed_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]

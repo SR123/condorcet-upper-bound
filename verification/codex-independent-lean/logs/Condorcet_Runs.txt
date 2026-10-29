@@ -1,0 +1,4 @@
+'Condorcet.SlotWord.occupied_eq_runs_add_adjacentPairs' depends on axioms: [propext, Quot.sound]
+'Condorcet.SlotWord.nonempty_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.actual_fibre_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.deletion_fibre_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

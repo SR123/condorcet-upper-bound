@@ -1,0 +1,88 @@
+def Condorcet.IsStrictTotal.{u_1} : {α : Type u_1} → (α → α → Bool) → Prop :=
+fun {α} r =>
+  (∀ (a : α), r a a = false) ∧
+    (∀ (a b c : α), r a b = true → r b c = true → r a c = true) ∧ ∀ (a b : α), a ≠ b → r a b = true ∨ r b a = true
+def Condorcet.Order.{u_1} : Type u_1 → Type (max 0 u_1) :=
+fun α => { r // Condorcet.IsStrictTotal r }
+@[reducible] def Condorcet.Domain.{u_1} : Type u_1 → Type u_1 :=
+fun α => Finset (Condorcet.Order α)
+def Condorcet.majority.{u_1} : {α : Type u_1} → {m : ℕ} → (Fin m → Condorcet.Order α) → α → α → Prop :=
+fun {α} {m} v a b => 2 * {i | ↑(v i) a b = true}.card > m
+def Condorcet.IsCondorcet.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D =>
+  ∀ (m : ℕ), Odd m → ∀ (v : Fin m → Condorcet.Order α), (∀ (i : Fin m), v i ∈ D) → Transitive (Condorcet.majority v)
+def Condorcet.Never.{u_1} : {α : Type u_1} → Condorcet.Order α → α → α → α → Fin 3 → Prop :=
+fun {α} r x y z position =>
+  if position = 0 then ↑r x y = false ∨ ↑r x z = false
+  else if position = 1 then ↑r x y = ↑r x z else ↑r x y = true ∨ ↑r x z = true
+def Condorcet.ExtremeRestricted.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D =>
+  ∀ (a b c : α),
+    a ≠ b →
+      a ≠ c →
+        b ≠ c →
+          ∃ p,
+            p ≠ 1 ∧
+              ((∀ r ∈ D, Condorcet.Never r a b c p) ∨
+                (∀ r ∈ D, Condorcet.Never r b a c p) ∨ ∀ r ∈ D, Condorcet.Never r c a b p)
+def Condorcet.IsPeakPit.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D => Condorcet.IsCondorcet D ∧ Condorcet.ExtremeRestricted D
+def Condorcet.f : ℕ → ℕ :=
+fun n => (Finset.filter Condorcet.IsCondorcet Finset.univ).sup Finset.card
+def Condorcet.h : ℕ → ℕ :=
+fun n => (Finset.filter Condorcet.IsPeakPit Finset.univ).sup Finset.card
+@CDCert.Main.general_recurrence : ∀ {n : ℕ}, 3 ≤ n → (11 * n + 8) * Condorcet.f n ≤ 32 * n * Condorcet.f (n - 1)
+'CDCert.Main.general_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.general_geometric : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.f n) ≤ 4 * (32 / 11) ^ (n - 3)
+'CDCert.Main.general_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.peak_recurrence : ∀ {n : ℕ}, 3 ≤ n → 3 * Condorcet.h n ≤ 8 * Condorcet.h (n - 1)
+'CDCert.Main.peak_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.peak_geometric : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.h n) ≤ 4 * (8 / 3) ^ (n - 3)
+'CDCert.Main.peak_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.general_limit : ∃ L,
+  Filter.Tendsto (fun n => ↑(Condorcet.f n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 32 / 11
+'CDCert.Main.general_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.peak_limit : ∃ L, Filter.Tendsto (fun n => ↑(Condorcet.h n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 8 / 3
+'CDCert.Main.peak_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.general_polynomial_correction : (fun n => ↑(Condorcet.f n)) =O[Filter.atTop] fun n =>
+  ↑n ^ (-(8 / 11)) * (32 / 11) ^ n
+'CDCert.Main.general_polynomial_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.first_input : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.gapCount D + (n + 2) * Finset.card D ≤ 3 * Condorcet.deletionSum D
+'CDCert.TwoInputs.first_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.second_input : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D → 3 * (n + 1) * Finset.card D ≤ 8 * (Condorcet.deletionSum D + Condorcet.gapCount D)
+'CDCert.TwoInputs.second_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.transfer : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → (11 * (n + 1) + 8) * Finset.card D ≤ 32 * Condorcet.deletionSum D
+'CDCert.TwoInputs.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.gap_inequality : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.gapCount D + (n + 2) * Finset.card D ≤ 3 * Condorcet.deletionSum D
+'CDCert.Recurrences.gap_inequality' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.deletion_lower_bound : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → (11 * (n + 1) + 8) * Finset.card D ≤ 32 * Condorcet.deletionSum D
+'CDCert.Recurrences.deletion_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.InF.density : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.InF D → 3 * (n + 1) * Finset.card D ≤ 8 * Condorcet.deletionSum D
+'CDCert.Bridge.InF.density' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.free_le_locked : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.freeCount D ≤ Condorcet.lockedCount D
+'CDCert.FreeLocked.free_le_locked' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.finite_lemma : ∀ {J : List ℕ → Bool},
+  CDCert.K6.DomE 7 J →
+    ↑CDCert.K6.cD5 * ↑(CDCert.K6.cost10 J) ≤
+      11057646600 * ↑(CDCert.K6.card 7 J) + (List.map (fun z => CDCert.K6.qD (CDCert.K6.botP z J)) (List.range 7)).sum -
+        (List.map (fun w => CDCert.K6.qD (CDCert.K6.topP w J)) (List.range 7)).sum
+'CDCert.K6.finite_lemma' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.adj_le : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.IsDom n K → 8 * CDCert.K6.adj n K ≤ 5 * n * CDCert.K6.card n K
+'CDCert.K6.adj_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.f_supermul : ∀ (m n : ℕ), Condorcet.f m * Condorcet.f n ≤ Condorcet.f (m + n)
+'CDCert.Supermult.f_supermul' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.h_supermul : ∀ (m n : ℕ), Condorcet.h m * Condorcet.h n ≤ Condorcet.h (m + n)
+'CDCert.Supermult.h_supermul' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Recurrences.general_recurrence : ∀ (n : ℕ),
+  (11 * (n + 1) + 8) * Condorcet.f (n + 1) ≤ 32 * (n + 1) * Condorcet.f n
+'CDCert.Recurrences.general_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Bounds.peakPit_recurrence : ∀ (n : ℕ), 3 * Condorcet.h (n + 1) ≤ 8 * Condorcet.h n
+'CDCert.Bounds.peakPit_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]

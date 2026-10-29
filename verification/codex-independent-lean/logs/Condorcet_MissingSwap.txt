@@ -1,0 +1,6 @@
+<local-review-workspace>/work/claude_final/CDCert-MorosRiis/Condorcet/MissingSwap.lean:128:6: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Condorcet.lift_crosses_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.drop_crosses_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Condorcet.IsFull.missing_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
