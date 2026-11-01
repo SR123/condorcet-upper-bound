@@ -1,0 +1,187 @@
+{
+  "scope": "All explicitly formalised final entry points, named definitions/helpers, and literal supporting restatements; human exposition is not certified by compiling prose.",
+  "typed_restatements": 54,
+  "named_original_interfaces": 190,
+  "printed_original_definition_bodies": 72,
+  "tutorial_labels_to_restatements": {
+    "def:semantic": [
+      "TutorialSupportStatements.strict_order_definition",
+      "TutorialCorrespondence.condorcet_definition"
+    ],
+    "def:peak": [
+      "TutorialCorrespondence.peak_pit_definition"
+    ],
+    "thm:triple": [
+      "TutorialCorrespondence.triple_characterization"
+    ],
+    "lem:completion": [
+      "TutorialSupportStatements.maximum_general_is_maximal",
+      "TutorialSupportStatements.maximal_is_full",
+      "TutorialSupportStatements.maximum_peak_completion",
+      "TutorialSupportStatements.maximum_peak_full_class",
+      "TutorialSupportStatements.maximum_peak_inF"
+    ],
+    "lem:deletion-upper": [
+      "TutorialSupportStatements.general_deletion_upper",
+      "TutorialSupportStatements.peak_deletion_upper"
+    ],
+    "thm:fibre": [
+      "TutorialSupportStatements.fibre_identity"
+    ],
+    "lem:interval": [
+      "TutorialSupportStatements.interval_fibres",
+      "TutorialSupportStatements.no_gaps",
+      "TutorialSupportStatements.interval_deletion_count"
+    ],
+    "lem:moves": [
+      "TutorialSupportStatements.first_move_count",
+      "TutorialSupportStatements.second_move_count",
+      "TutorialSupportStatements.gap_slack_count"
+    ],
+    "lem:fixedpair": [
+      "TutorialSupportStatements.fixed_pair_not_consecutive"
+    ],
+    "prop:injection": [
+      "TutorialCorrespondence.free_le_locked"
+    ],
+    "thm:gap": [
+      "TutorialCorrespondence.gap_inequality",
+      "TutorialCorrespondence.first_input"
+    ],
+    "lem:median": [
+      "TutorialSupportStatements.majority_closure"
+    ],
+    "lem:projection": [
+      "TutorialSupportStatements.component_from_fixed",
+      "TutorialSupportStatements.component_membership"
+    ],
+    "thm:components": [
+      "TutorialSupportStatements.component_extreme_full",
+      "TutorialSupportStatements.component_cardinality",
+      "TutorialSupportStatements.component_deletion_count"
+    ],
+    "thm:finite": [
+      "TutorialCorrespondence.finite_lemma",
+      "TutorialSupportStatements.finite_rational"
+    ],
+    "prop:affine": [
+      "TutorialSupportStatements.window_estimate"
+    ],
+    "def:concat": [
+      "TutorialSupportStatements.copies_preserve_class"
+    ],
+    "lem:copies": [
+      "TutorialSupportStatements.copy_cardinality",
+      "TutorialSupportStatements.copy_adjacency",
+      "TutorialSupportStatements.no_join_swap",
+      "TutorialSupportStatements.copies_power_two"
+    ],
+    "thm:density": [
+      "TutorialCorrespondence.adjacency_density",
+      "TutorialCorrespondence.extreme_density"
+    ],
+    "thm:second": [
+      "TutorialCorrespondence.second_input"
+    ],
+    "thm:transfer": [
+      "TutorialCorrespondence.transfer",
+      "TutorialCorrespondence.deletion_lower_bound"
+    ],
+    "thm:final": [
+      "TutorialCorrespondence.general_recurrence",
+      "TutorialCorrespondence.general_geometric",
+      "TutorialCorrespondence.peak_recurrence",
+      "TutorialCorrespondence.peak_geometric",
+      "TutorialCorrespondence.general_limit",
+      "TutorialCorrespondence.peak_limit",
+      "TutorialCorrespondence.general_polynomial_correction"
+    ],
+    "proofs:E1-E4": [
+      "TutorialSupportStatements.base_general",
+      "TutorialSupportStatements.base_peak",
+      "TutorialCorrespondence.general_successor",
+      "TutorialCorrespondence.peak_successor"
+    ],
+    "proofs:E5-E6": [
+      "TutorialCorrespondence.general_supermultiplicativity",
+      "TutorialCorrespondence.peak_supermultiplicativity"
+    ]
+  },
+  "definition_labels_to_original_definitions": {
+    "def:semantic": [
+      "Condorcet.IsStrictTotal",
+      "Condorcet.Order",
+      "Condorcet.Domain",
+      "Condorcet.majority",
+      "Condorcet.IsCondorcet",
+      "Condorcet.f"
+    ],
+    "def:peak": [
+      "Condorcet.Never",
+      "Condorcet.ExtremeRestricted",
+      "Condorcet.IsPeakPit",
+      "Condorcet.h"
+    ],
+    "def:full": [
+      "Condorcet.IsMaximal",
+      "Condorcet.Selection",
+      "Condorcet.HoldsLaw",
+      "Condorcet.fullDomain",
+      "Condorcet.IsFull",
+      "Condorcet.ExtremeSelection",
+      "Condorcet.FixedPairs",
+      "Condorcet.extremeFullDomain",
+      "Condorcet.IsExtremeFull",
+      "Condorcet.InF"
+    ],
+    "def:deletion": [
+      "Condorcet.deleteEmbedding",
+      "Condorcet.deleteDomain",
+      "Condorcet.deletionSum"
+    ],
+    "def:gaps": [
+      "Condorcet.insertionSlots",
+      "Condorcet.insertionWord",
+      "Condorcet.SlotWord.runs",
+      "Condorcet.SlotWord.gaps",
+      "Condorcet.gapCount",
+      "Condorcet.directedEdges",
+      "Condorcet.adjacencyCount"
+    ],
+    "def:moves": [
+      "Condorcet.HasLift",
+      "Condorcet.HasDrop",
+      "Condorcet.Free",
+      "Condorcet.Frozen",
+      "Condorcet.freeCount",
+      "Condorcet.frozenCount",
+      "Condorcet.Locked",
+      "Condorcet.lockedCount"
+    ],
+    "def:concat": [
+      "CDCert.K6.concat",
+      "CDCert.K6.dbl"
+    ]
+  },
+  "definitions": "All original definitions named in the proof are printed and checked by TutorialNamedInterfaces.lean; exact source locations are in TUTORIAL_LEAN_MAP.json.",
+  "explicit_equivalences_and_limits": [
+    "The finite rational restatement defines C=cost10/10 and q=qD/(2d), d=8846117280.",
+    "A counts directed swaps, so each undirected swap edge is counted twice.",
+    "Statements on Fin(k+1) concern n=k+1 alternatives.",
+    "IsExtremeFull permits the empty family; InF adds nonemptiness.",
+    "The prose proves arbitrary-copy deletion products; formal amplification uses adjacency products and powers of two. No separate arbitrary-copy deletion-product export is claimed.",
+    "Examples, intuition, search history, bibliographical claims and novelty are outside literal Lean coverage."
+  ],
+  "numerical_comparison_scope": {
+    "source": "scripts/build_numerical_examples.py",
+    "exact_data": "data/upper_bounds_exact.csv",
+    "proof_only_start": "f(3)=4",
+    "optional_external_classification_values": {
+      "f(5)": 20,
+      "f(6)": 45,
+      "f(7)": 100,
+      "f(8)": 224
+    },
+    "coverage": "Separately checked exact arithmetic and small examples; neither individual table entries nor the external classifications are claimed as additional Lean exports."
+  }
+}

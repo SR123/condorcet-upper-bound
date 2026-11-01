@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "returncode": 0,
+  "seconds": 34.153306007385254,
+  "source_sha256": "8f2677e8711bac1ed2f4a2a314815b7ae7c627f062c03b406d1e388c0de0b1cc",
+  "log": "pool_named_interfaces.log",
+  "proof_object_basis": "VERIFIED_OBJECT_POOL.json; exact objects from the prior successful build and completed fresh compiler runs",
+  "new_full_source_rebuild_claimed": false
+}

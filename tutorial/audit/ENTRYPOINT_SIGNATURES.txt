@@ -1,0 +1,95 @@
+ACTUAL SOURCE SIGNATURES -- all 20 previously audited results
+These are extracted from the hash-matched source declarations. Compiler-printed
+versions from the prior successful audit are in prior_kernel_build/final-axioms.txt.
+
+L01 lean/CDCert/Main.lean:29
+CDCert.Main.general_recurrence
+theorem general_recurrence {n : ℕ} (hn : 3 ≤ n) : (11 * n + 8) * f n ≤ 32 * n * f (n - 1)
+
+L02 lean/CDCert/Main.lean:33
+CDCert.Main.general_geometric
+theorem general_geometric {n : ℕ} (hn : 3 ≤ n) : (f n : ℝ) ≤ 4 * (32 / 11 : ℝ) ^ (n - 3)
+
+L03 lean/CDCert/Main.lean:37
+CDCert.Main.peak_recurrence
+theorem peak_recurrence {n : ℕ} (hn : 3 ≤ n) : 3 * h n ≤ 8 * h (n - 1)
+
+L04 lean/CDCert/Main.lean:41
+CDCert.Main.peak_geometric
+theorem peak_geometric {n : ℕ} (hn : 3 ≤ n) : (h n : ℝ) ≤ 4 * (8 / 3 : ℝ) ^ (n - 3)
+
+L05 lean/CDCert/Main.lean:45
+CDCert.Main.general_limit
+theorem general_limit :
+    ∃ L, Tendsto (fun n : ℕ => (f n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 32 / 11
+
+L06 lean/CDCert/Main.lean:50
+CDCert.Main.peak_limit
+theorem peak_limit :
+    ∃ L, Tendsto (fun n : ℕ => (h n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 8 / 3
+
+L07 lean/CDCert/Main.lean:55
+CDCert.Main.general_polynomial_correction
+theorem general_polynomial_correction :
+    (fun n : ℕ => (f n : ℝ)) =O[atTop] (fun n : ℕ => (n : ℝ) ^ (-(8 / 11 : ℝ)) * (32 / 11 : ℝ) ^ n)
+
+L08 lean/CDCert/TwoInputs.lean:23
+CDCert.TwoInputs.first_input
+theorem first_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :
+    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D
+
+L09 lean/CDCert/TwoInputs.lean:28
+CDCert.TwoInputs.second_input
+theorem second_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsFull D) :
+    3 * (n + 1) * D.card ≤ 8 * (deletionSum D + gapCount D)
+
+L10 lean/CDCert/TwoInputs.lean:39
+CDCert.TwoInputs.transfer
+theorem transfer {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :
+    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D
+
+L11 lean/CDCert/Recurrences.lean:32
+CDCert.Recurrences.gap_inequality
+theorem gap_inequality {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :
+    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D
+
+L12 lean/CDCert/Recurrences.lean:38
+CDCert.Recurrences.deletion_lower_bound
+theorem deletion_lower_bound {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :
+    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D
+
+L13 lean/CDCert/BridgeK6.lean:231
+CDCert.Bridge.InF.density
+theorem InF.density {n : Nat} {D : Domain (Fin (n + 1))} (hD : InF D) :
+    3 * (n + 1) * D.card ≤ 8 * deletionSum D
+
+L14 lean/CDCert/FreeLocked.lean:733
+CDCert.FreeLocked.free_le_locked
+theorem free_le_locked (hD : IsMaximal D) : freeCount D ≤ lockedCount D
+
+L15 lean/CDCert/K6/SevenFinal.lean:230
+CDCert.K6.finite_lemma
+theorem finite_lemma {J : List Nat → Bool} (hJ : DomE 7 J) :
+    (cD5 : Int) * cost10 J ≤ 11057646600 * card 7 J +
+      ((List.range 7).map (fun z => qD (botP z J))).sum - ((List.range 7).map (fun w => qD (topP w J))).sum
+
+L16 lean/CDCert/K6/Density.lean:70
+CDCert.K6.adj_le
+theorem adj_le {n : Nat} {K : List Nat → Bool} (hK : IsDom n K) : 8 * adj n K ≤ 5 * n * card n K
+
+L17 lean/CDCert/Supermult.lean:296
+CDCert.Supermult.f_supermul
+theorem f_supermul (m n : Nat) : f m * f n ≤ f (m + n)
+
+L18 lean/CDCert/Supermult.lean:303
+CDCert.Supermult.h_supermul
+theorem h_supermul (m n : Nat) : h m * h n ≤ h (m + n)
+
+L19 lean/CDCert/Recurrences.lean:59
+CDCert.Recurrences.general_recurrence
+theorem general_recurrence (n : Nat) : (11 * (n + 1) + 8) * f (n + 1) ≤ 32 * (n + 1) * f n
+
+L20 lean/CDCert/Bounds.lean:36
+CDCert.Bounds.peakPit_recurrence
+theorem peakPit_recurrence (n : Nat) : 3 * h (n + 1) ≤ 8 * h n
+

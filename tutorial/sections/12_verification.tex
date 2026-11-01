@@ -1,0 +1,157 @@
+\section{Verification evidence, reproduction and scope}\label{app:verification}
+\subsection{What was checked, and when}
+The formal proof is the checked joint project of 29 October 2026. The repository's root directory \texttt{lean/} contains the
+complete project: all 326 source modules, \texttt{lean-toolchain},
+\texttt{lakefile.toml} and \texttt{lake-manifest.json}. Every project
+source hash matches the earlier successful independent source build.
+The new statement map was made by inspecting the definitions and
+actual theorem declarations, and comparing them with the preserved
+compiler-printed final types, rather than relying on comments alone.
+
+The earlier source build compiled all 326 project modules independently,
+including the 319-module closure of \path{CDCert.Main} and
+\path{CDCert.TwoInputs}. The earlier 20-result axiom inspection passed
+with only \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}. These are standard Lean foundations. There is no
+\texttt{sorry}, project-specific axiom or \texttt{native\_decide} in
+the checked source project. In particular the final theorem does not
+assume the finite inequality, the free-to-locked injection, or the
+correctness of a native program.
+
+The fresh correspondence check on 1 November 2026 succeeded.
+\path{audit/TutorialCorrespondence.lean} checks 23 explicit
+restatements: the three semantic interfaces and all twenty audited
+results. \path{audit/TutorialSupportStatements.lean} checks 31 further
+restatements, covering completion, deletion, fibres, moves, components,
+concatenation, the base values and the exact rational form of the finite
+inequality. All 54 compile without added assumptions.
+\path{audit/TutorialNamedInterfaces.lean} checks all 190 original
+definitions and helper declarations named in the proof, prints the
+bodies of the 72 definitions, and checks every axiom list. Only the
+standard foundations listed above occur.
+
+These correspondence checks were compiled against hash-verified proof
+objects from the earlier complete source build. Their successful logs,
+wrapper sources and axiom lists are supplied with the tutorial. This
+expository revision preserves the original formal proof and does not
+claim another complete Lean source build.
+
+The files \path{audit/SOURCE_IDENTITY.json},
+\path{audit/TUTORIAL_LEAN_MAP.json},
+\path{audit/ENTRYPOINT_SIGNATURES.txt} and
+\path{audit/prior_kernel_build/AXIOM_CHECK_RECEIPT.json}
+record the original evidence.
+\path{audit/FORMAL_STATEMENT_COVERAGE.json} maps every new restatement
+to its tutorial statement or definition. The successful current logs,
+source hashes and axiom lists are recorded in
+\path{audit/fresh_check/CORRESPONDENCE_VERIFICATION_RECEIPT.json}.
+The corresponding human proofs, finite
+normalisations and named helper interfaces are given beside each
+statement in this tutorial.
+
+\subsection{Rebuilding the formal proof}
+Use Lean 4.26.0 and Mathlib v4.26.0 with the transitive revisions pinned
+in the manifest. From the repository root:
+\begin{quote}\small\ttfamily
+cd lean\\
+lake exe cache get\\
+lake build CDCert.Main CDCert.TwoInputs\\
+lake env lean receipts/FinalAxioms.lean
+\end{quote}
+The cache command obtains compiled standard libraries. The build
+command then checks the project sources. Its large finite
+kernel computations may take substantial time and memory. A successful
+result requires completion, not a partially built directory or an
+import that timed out. To check the additional correspondence source
+once that build is available, run from the same \texttt{lean/} directory:
+\begin{quote}\small\ttfamily
+lake env lean ../tutorial/audit/TutorialCorrespondence.lean\\
+lake env lean ../tutorial/audit/TutorialSupportStatements.lean\\
+lake env lean ../tutorial/audit/TutorialNamedInterfaces.lean
+\end{quote}
+The complete formal proof is independent of executing the native
+Python/C++ generators. The repository also contains the native generators, exact data and
+separately dated replay/regeneration records.
+They are not needed as trust assumptions of the Lean theorem.
+
+\subsection{Written proof versus a literal formal statement}
+A formal proof certifies a precise statement relative to its definitions.
+Here the semantic definitions quantify over actual strict total orders
+and every odd voter profile. The order/list equivalence, correspondence
+of laws and fixed pairs, and preservation of cardinality and swaps are
+proved inside the project. The tutorial's real and rational notation is
+matched to the natural/integer statements by the explicit index and
+scaling tables. These are the substantive safeguards against proving a
+bound for a different class or a differently normalised statistic.
+
+A human proof may use equivalent steps: the prose amplification uses
+arbitrary \(t\) and a limit; Lean uses powers of two and an integer
+contradiction. The hypotheses and conclusion agree. The correspondence
+paragraphs explain such differences.
+
+The following remain outside the literal theorem coverage: intuitive
+commentary, exact labelled examples checked by a separate small script,
+search history and performance, bibliographical claims, attribution and
+novelty. The twelve-idea division is an organisational choice, not a
+formal theorem. No priority claim follows from successful formalisation.
+The numerical comparison tables are exact integer calculations from
+the proved recurrences, with long displayed entries rounded upwards.
+The optional classified starting values are explicitly external
+inputs, and no additional Lean theorem is claimed for them or for
+the individual table entries. The new examples and tables are checked
+separately by \texttt{scripts/build\_numerical\_examples.py}.
+
+\subsection{Sources and credit}
+The mathematical source is the joint paper by P. Moros and S. Riis,
+\emph{Improved Upper Bounds on the Size of Condorcet Domains}~\cite{joint},
+now available as the review draft of 1 November 2026 in the accompanying
+repository. Its earlier source and the unchanged formal proof are preserved
+in the checked snapshot of 29 October. Moros's earlier note~\cite{moros}
+is an AI-assisted precursor within the same investigation. The joint paper
+presents the improved \(32/11\) bound and its component reduction,
+together with the peak-pit bound \(8/3\).
+
+This tutorial is an exposition by S\o ren Riis of that joint work.
+Claude (Anthropic) and ChatGPT/Codex (OpenAI) assisted the exploration,
+checking and drafting of both the research and explanatory material.
+Computational optimisation selected finite correction coefficients;
+their validity is established by exact verification. The tutorial's
+byline identifies responsibility for this exposition, while the
+underlying results and formalisation remain credited to their sources.
+The sources also credit Fathi's counting observations and the
+majority/median background of Puppe and Slinko.
+
+The following background references orient the general mathematical
+ideas; the proof above and its explicit certificate provide the actual
+logical ingredients for this tutorial.
+\clearpage
+\begin{thebibliography}{9}\small\raggedright
+\bibitem{joint} P. Moros and S. Riis, \emph{Improved Upper Bounds on the
+Size of Condorcet Domains}, joint review draft, 1 November 2026;
+complete accompanying Lean formalisation and computational material.
+\url{https://github.com/SR123/condorcet-upper-bound}.
+The formal proof is pinned to snapshot \texttt{0d5dd168854b}
+(29 October 2026).
+\bibitem{moros} P. Moros, \emph{Condorcet domains have fewer than
+\(2.95^n\) orders}, earlier AI-assisted research note (2026).
+\url{https://doi.org/10.5281/zenodo.23654773}.
+\bibitem{sen} A. K. Sen, A possibility theorem on majority decisions,
+\emph{Econometrica} 34 (1966), 491--499.
+\bibitem{median} C. Puppe and A. Slinko, Condorcet domains, median graphs
+and the single-crossing property, \emph{Economic Theory} 67 (2019),
+285--318. \url{https://doi.org/10.1007/s00199-017-1084-6}.
+\bibitem{discharging} D. W. Cranston and D. B. West, An introduction to
+the discharging method via graph coloring, \emph{Discrete Mathematics}
+340 (2017), 766--793. \url{https://arxiv.org/abs/1306.4434}.
+\bibitem{certificates} K. K. H. Cheung, A. Gleixner and D. E. Steffy,
+Verifying integer programming results, \emph{IPCO 2017}, 148--160.
+\url{https://arxiv.org/abs/1611.08832}.
+\bibitem{smallcd} D. Akello-Egwell, C. Leedham-Green, A. Litterick,
+K. Markstr\"om and S. Riis, \emph{Condorcet Domains of Degree at most
+Seven}, arXiv:2306.15993, version 5 (2023), Section 4.1 and Tables 1--4.
+\url{https://arxiv.org/abs/2306.15993}.
+\bibitem{eightcd} C. Leedham-Green, K. Markstr\"om and S. Riis,
+The largest Condorcet domain on 8 alternatives,
+\emph{Social Choice and Welfare} 62 (2024), 109--116, Theorem 4.1.
+\url{https://doi.org/10.1007/s00355-023-01481-3}.
+\end{thebibliography}

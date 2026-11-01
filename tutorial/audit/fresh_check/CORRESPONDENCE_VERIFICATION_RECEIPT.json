@@ -1,0 +1,1242 @@
+{
+  "result": "PASS",
+  "date": "2026-11-01",
+  "proof_object_basis": "verified_objects",
+  "prior_successful_source_modules": 326,
+  "new_complete_source_rebuild_claimed": false,
+  "typed_tutorial_restatements": 54,
+  "named_original_interfaces_checked": 190,
+  "original_definition_bodies_printed": 72,
+  "only_standard_axioms": true,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "checks": {
+    "correspondence": {
+      "result": "PASS",
+      "axiom_lists_checked": 43,
+      "axioms": {
+        "CDCert.Main.general_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_polynomial_correction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.first_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.second_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.transfer": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.gap_inequality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.deletion_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.InF.density": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.free_le_locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.finite_lemma": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.adj_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.f_supermul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.h_supermul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.general_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bounds.peakPit_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.condorcet_definition": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_pit_definition": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.triple_characterization": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_polynomial_correction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.first_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.second_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.transfer": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.gap_inequality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.deletion_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.extreme_density": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.free_le_locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.finite_lemma": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.adjacency_density": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_supermultiplicativity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_supermultiplicativity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.general_successor": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialCorrespondence.peak_successor": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "compiler_log_sha256": "3d2687a220769ec4bd559bc37350b89400a08ebd4e0f2e2a3a5ee7f68517b599",
+      "source_sha256": "fc8ae683f17136c16456061181fbbb299c240a555c1e54ddc9a67de694be7fd3"
+    },
+    "support_statements": {
+      "result": "PASS",
+      "axiom_lists_checked": 31,
+      "axioms": {
+        "TutorialSupportStatements.maximum_general_is_maximal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.maximal_is_full": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.maximum_peak_completion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.maximum_peak_full_class": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.maximum_peak_inF": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.general_deletion_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.peak_deletion_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.fibre_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.interval_fibres": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.no_gaps": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.interval_deletion_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.first_move_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.second_move_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.gap_slack_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.fixed_pair_not_consecutive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.majority_closure": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.component_from_fixed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.component_extreme_full": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.component_deletion_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.component_cardinality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.component_membership": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.window_estimate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.copy_cardinality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.copies_preserve_class": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.copy_adjacency": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.no_join_swap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.copies_power_two": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.base_general": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.base_peak": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.finite_rational": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TutorialSupportStatements.strict_order_definition": []
+      },
+      "compiler_log_sha256": "670c23077271c5647a21bd3c741ea2f132d0c6f43f344ffe272278dfeae10e1b",
+      "source_sha256": "39acd5f03b212c7193a5091a1f1c3e39739cc2ad2ec77a208ca1b9a6d60dc05d"
+    },
+    "named_interfaces": {
+      "result": "PASS",
+      "axiom_lists_checked": 190,
+      "axioms": {
+        "CDCert.Asymptotics.bernoulli_step": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.cW": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.f_isBigO": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.f_le_real": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.f_root_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.f_weighted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.h_le_real": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.h_root_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Asymptotics.root_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bounds.FreeLockedInjection": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.InF.density": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.InF.toList_domain": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.before_toList": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.card_adj_of_choice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.isChoice_groupsEP_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.lawOpt_toList": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.mem_extremeFullDomain_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.ofList_toList": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.pairOpt_toList": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.toList_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.toList_ofList": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Bridge.toList_swapLetter": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.FreePair.drop_locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.FreePair.law": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.FreePair.lift_locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.FreePair.not_both": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.free_le_locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.FreeLocked.psi_inj": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.DomE": [
+          "propext"
+        ],
+        "CDCert.K6.IsDom": [
+          "propext"
+        ],
+        "CDCert.K6.IsS": [
+          "propext"
+        ],
+        "CDCert.K6.adj6_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.adj_concat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.adj_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.card_concat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.cost10_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.dbl_props": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.finite_lemma": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.five_cover": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.isDom_concat": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.isum_telescope": [
+          "propext",
+          "Quot.sound"
+        ],
+        "CDCert.K6.lamD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.lamD_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.lam_receiver": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.pD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.qD": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.qD_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.r8_facts": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.r8_slices": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.r8_th": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.receiver_slack": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.relabel_slice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.seven_bot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.seven_fam_0": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.seven_fam_25": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.seven_finite": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.seven_top": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.six_sem": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.slice_bot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.slice_top": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.thB": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.thB_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.thT": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.thT_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.winS_adjAt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.winS_bot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.winS_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.winS_top": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.window_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.K6.window_ineq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.ListOrder.groupsEP": [
+          "propext"
+        ],
+        "CDCert.Main.general_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_polynomial_correction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.general_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Main.peak_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.deletion_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.f_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.freeLockedInjection": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.gap_inequality": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.general_recurrence'": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.h_geometric": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Recurrences.peakPit_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.f_supermul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.h_supermul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.one_le_f": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.Supermult.one_le_h": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.first_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.second_input": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.TwoInputs.transfer": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.Connected": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Condorcet.Domain": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Condorcet.ExtremeRestricted": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Condorcet.ExtremeRestricted.completion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.ExtremeSelection": [
+          "propext"
+        ],
+        "Condorcet.Free": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.Frozen": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.HasDrop": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.HasLift": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.HoldsLaw": [
+          "propext"
+        ],
+        "Condorcet.InF": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsCondorcet": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsCondorcet.restrict": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsCondorcet.valueRestricted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsExtremeFull": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsExtremeFull.deletion_plus_slotAdjacency": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsExtremeFull.gapCount_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsExtremeFull.insertionWord_interval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.component_from_fixed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.component_inF": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.components_inF": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.encoded_medianClosed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.gap_slack_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.median_mem": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.missing_swap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.second_move_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsFull.sum_components_deletionSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsMaximal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsMaximal.fixed_pair_not_consecutive": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsMaximal.isFull": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsPeakPit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.IsPeakPit.restrict": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.Locked": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.Never": [
+          "propext"
+        ],
+        "Condorcet.Pattern.finite_characterization": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.SlotWord.nonempty_run_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.ValueRestricted": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Condorcet.ValueRestricted.isCondorcet": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.adjacencyCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.component": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.component_membership": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.components": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.deleteDomain": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.deleteEmbedding": [
+          "propext"
+        ],
+        "Condorcet.deletionSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.deletionSum_le_general": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.deletionSum_le_peakPit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.deletion_gap_adjacency_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.directedEdges": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.encode_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.exists_maximum_general": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.exists_maximum_peakPit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.extremeFullDomain": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.f": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.f_three": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.first_move_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.freeCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.frozenCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.fullDomain": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.gapCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.h": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.h_three": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.insertionSlots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.insertionWord": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.isCondorcet_iff_valueRestricted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.lockedCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.majority": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.maximum_isMaximal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.maximum_peakPit_fullClass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.maximum_peakPit_isExtremeFull": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.medianOrder": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.slotAdjacencyCount_eq_adjacencyCount": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Condorcet.sum_components_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CDCert.IsChoice": [],
+        "CDCert.K6.adj": [],
+        "CDCert.K6.adjAt": [],
+        "CDCert.K6.bD": [],
+        "CDCert.K6.botP": [],
+        "CDCert.K6.concat": [],
+        "CDCert.K6.cost10": [],
+        "CDCert.K6.dbl": [],
+        "CDCert.K6.excRep6": [],
+        "CDCert.K6.potW": [],
+        "CDCert.K6.rb": [],
+        "CDCert.K6.rt": [],
+        "CDCert.K6.sD": [],
+        "CDCert.K6.tD": [],
+        "CDCert.K6.topP": [],
+        "CDCert.allows": [],
+        "CDCert.domainOf": [],
+        "Condorcet.AdjacentSwap": [],
+        "Condorcet.FixedPairs": [],
+        "Condorcet.IsStrictTotal": [],
+        "Condorcet.Order": [],
+        "Condorcet.Selection": [],
+        "Condorcet.SlotWord.gaps": [],
+        "Condorcet.SlotWord.runs": []
+      },
+      "compiler_log_sha256": "19703b2af29f06a958add40fefabc5c0c821938e56b80bdf127b68f789f7b54b",
+      "source_sha256": "8f2677e8711bac1ed2f4a2a314815b7ae7c627f062c03b406d1e388c0de0b1cc"
+    }
+  },
+  "scope": "Fresh compilation of typed correspondence files against hash-verified proof objects. A complete new source rebuild is claimed only if proof_object_basis is fresh. Semantic interpretation, equivalent notation and exposition are documented separately; compilation does not certify prose."
+}

@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "date": "2026-11-01",
+  "source_hashes_matching_prior_full_build": 326,
+  "final_exports_mapped": 10,
+  "prior_audited_results_mapped": 20,
+  "named_original_declarations_mapped": 190,
+  "nonempty_three_alternative_families": 63,
+  "copy_counts_up_to_t": 4,
+  "window_weight_checks_up_to_n": 150,
+  "scope": "Current source identity, declaration locations, mathematical examples, local pattern contradictions and exact scalings. Not a fresh Lean kernel rebuild."
+}

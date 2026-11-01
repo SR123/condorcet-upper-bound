@@ -1,0 +1,847 @@
+CDCert.Asymptotics.bernoulli_step : ∀ (n : ℕ), (↑n + 2) ^ (8 / 11) * (↑n + 1) ≤ (↑n + 1) ^ (8 / 11) * (↑n + 1 + 8 / 11)
+'CDCert.Asymptotics.bernoulli_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Asymptotics.cW : ℝ
+'CDCert.Asymptotics.cW' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.Asymptotics.cW : ℝ :=
+4 * 4 ^ (8 / 11) / (32 / 11) ^ 3
+CDCert.Asymptotics.f_isBigO : (fun n => ↑(Condorcet.f n)) =O[Filter.atTop] fun n => ↑n ^ (-(8 / 11)) * (32 / 11) ^ n
+'CDCert.Asymptotics.f_isBigO' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Asymptotics.f_le_real : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.f n) ≤ 4 * (32 / 11) ^ (n - 3)
+'CDCert.Asymptotics.f_le_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Asymptotics.f_root_limit : ∃ L,
+  Filter.Tendsto (fun n => ↑(Condorcet.f n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 32 / 11
+'CDCert.Asymptotics.f_root_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Asymptotics.f_weighted : ∀ {n : ℕ},
+  3 ≤ n → ↑(Condorcet.f n) * (↑n + 1) ^ (8 / 11) ≤ CDCert.Asymptotics.cW * (32 / 11) ^ n
+'CDCert.Asymptotics.f_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Asymptotics.h_le_real : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.h n) ≤ 4 * (8 / 3) ^ (n - 3)
+'CDCert.Asymptotics.h_le_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Asymptotics.h_root_limit : ∃ L,
+  Filter.Tendsto (fun n => ↑(Condorcet.h n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 8 / 3
+'CDCert.Asymptotics.h_root_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Asymptotics.root_limit : ∀ {g : ℕ → ℕ},
+  (∀ (n : ℕ), 1 ≤ g n) →
+    (∀ (m n : ℕ), g m * g n ≤ g (m + n)) →
+      ∀ {c r : ℝ},
+        0 < c →
+          0 < r →
+            (∀ (n : ℕ), 3 ≤ n → ↑(g n) ≤ c * r ^ n) →
+              ∃ L, Filter.Tendsto (fun n => ↑(g n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ r
+'CDCert.Asymptotics.root_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Bounds.FreeLockedInjection : Prop
+'CDCert.Bounds.FreeLockedInjection' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.Bounds.FreeLockedInjection : Prop :=
+∀ (n : ℕ),
+  2 ≤ n →
+    ∀ (D : Condorcet.Domain (Fin (n + 1))), Condorcet.IsMaximal D → Condorcet.freeCount D ≤ Condorcet.lockedCount D
+@CDCert.Bridge.InF.density : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.InF D → 3 * (n + 1) * Finset.card D ≤ 8 * Condorcet.deletionSum D
+'CDCert.Bridge.InF.density' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.InF.toList_domain : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.InF D →
+    ∃ c,
+      CDCert.IsChoice c (CDCert.ListOrder.groupsEP n) ∧
+        (∀ (r : Condorcet.Order (Fin n)),
+            r ∈ D ↔ CDCert.Bridge.toList r ∈ CDCert.domainOf (CDCert.Examples.orders n) c) ∧
+          Finset.card D = (CDCert.domainOf (CDCert.Examples.orders n) c).length ∧
+            CDCert.domainOf (CDCert.Examples.orders n) c ≠ []
+'CDCert.Bridge.InF.toList_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.before_toList : ∀ {n : ℕ} (r : Condorcet.Order (Fin n)) (a b : Fin n),
+  CDCert.ListOrder.before (↑a) (↑b) (CDCert.Bridge.toList r) = ↑r a b
+'CDCert.Bridge.before_toList' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.card_adj_of_choice : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))} {c : List (CDCert.Opt (List ℕ))},
+  (∀ (r : Condorcet.Order (Fin (n + 1))),
+      r ∈ D ↔ CDCert.Bridge.toList r ∈ CDCert.domainOf (CDCert.Examples.orders (n + 1)) c) →
+    Finset.card D = CDCert.K6.card (n + 1) (CDCert.allows c) ∧
+      Condorcet.adjacencyCount D = CDCert.K6.adj (n + 1) (CDCert.allows c)
+'CDCert.Bridge.card_adj_of_choice' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Bridge.isChoice_groupsEP_iff : ∀ (n : ℕ) (c : List (CDCert.Opt (List ℕ))),
+  CDCert.IsChoice c (CDCert.ListOrder.groupsEP n) →
+    ∃ lawN pairN, (∀ (t : ℕ × ℕ × ℕ), lawN t ∈ CDCert.ListOrder.lawsExtreme) ∧ c = CDCert.Bridge.choiceEPN lawN pairN n
+'CDCert.Bridge.isChoice_groupsEP_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.lawOpt_toList : ∀ {n : ℕ} (r : Condorcet.Order (Fin n)) (t : Condorcet.Triple n) (law : Fin 3 × Fin 3),
+  CDCert.Bridge.lawOpt t law (CDCert.Bridge.toList r) = true ↔ Condorcet.HoldsLaw r t law
+'CDCert.Bridge.lawOpt_toList' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.mem_extremeFullDomain_iff : ∀ {n : ℕ} (L : Condorcet.ExtremeSelection n) (Q : Condorcet.FixedPairs n)
+  (r : Condorcet.Order (Fin n)),
+  r ∈ Condorcet.extremeFullDomain L Q ↔
+    CDCert.Bridge.toList r ∈ CDCert.domainOf (CDCert.Examples.orders n) (CDCert.Bridge.choiceEP L Q)
+'CDCert.Bridge.mem_extremeFullDomain_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.ofList_toList : ∀ {n : ℕ} (r : Condorcet.Order (Fin n)),
+  CDCert.Bridge.ofList (CDCert.Bridge.toList r) ⋯ = r
+'CDCert.Bridge.ofList_toList' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.pairOpt_toList : ∀ {n : ℕ} (r : Condorcet.Order (Fin n)) (i : Condorcet.Pair n) (b : Bool),
+  CDCert.Bridge.pairOpt i b (CDCert.Bridge.toList r) = true ↔ Condorcet.encode r i = b
+'CDCert.Bridge.pairOpt_toList' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.toList_injective : ∀ {n : ℕ}, Function.Injective CDCert.Bridge.toList
+'CDCert.Bridge.toList_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.toList_ofList : ∀ {n : ℕ} (L : List ℕ) (hL : L ∈ CDCert.Examples.orders n),
+  CDCert.Bridge.toList (CDCert.Bridge.ofList L hL) = L
+'CDCert.Bridge.toList_ofList' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Bridge.toList_swapLetter : ∀ {n : ℕ} (r : Condorcet.Order (Fin (n + 1))) (j : Fin n),
+  CDCert.Bridge.toList (Condorcet.swapLetter r j) = CDCert.K6.swapAt (↑j) (CDCert.Bridge.toList r)
+'CDCert.Bridge.toList_swapLetter' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.FreePair.drop_locked : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))}
+  {σ : Condorcet.Order (Fin (n + 1))} {b a c : Fin (n + 1)},
+  CDCert.FreeLocked.FreePair D σ b a c →
+    CDCert.FreeLocked.NeverOn D c a b 0 →
+      ∀ {τ : Condorcet.Order (Fin (n + 1))},
+        CDCert.FreeLocked.IsDrop D σ τ b → ¬Condorcet.HasLift D τ c ∧ ¬Condorcet.HasDrop D τ a
+'CDCert.FreeLocked.FreePair.drop_locked' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.FreePair.law : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))} {σ : Condorcet.Order (Fin (n + 1))}
+  {b a c : Fin (n + 1)},
+  CDCert.FreeLocked.FreePair D σ b a c →
+    Condorcet.IsCondorcet D → CDCert.FreeLocked.NeverOn D a b c 2 ∨ CDCert.FreeLocked.NeverOn D c a b 0
+'CDCert.FreeLocked.FreePair.law' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.FreePair.lift_locked : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))}
+  {σ : Condorcet.Order (Fin (n + 1))} {b a c : Fin (n + 1)},
+  CDCert.FreeLocked.FreePair D σ b a c →
+    CDCert.FreeLocked.NeverOn D a b c 2 →
+      ∀ {τ : Condorcet.Order (Fin (n + 1))},
+        CDCert.FreeLocked.IsLift D σ τ b → ¬Condorcet.HasLift D τ c ∧ ¬Condorcet.HasDrop D τ a
+'CDCert.FreeLocked.FreePair.lift_locked' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.FreePair.not_both : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))}
+  {σ : Condorcet.Order (Fin (n + 1))} {b a c : Fin (n + 1)},
+  CDCert.FreeLocked.FreePair D σ b a c →
+    Condorcet.IsMaximal D → ¬(CDCert.FreeLocked.NeverOn D a b c 2 ∧ CDCert.FreeLocked.NeverOn D c a b 0)
+'CDCert.FreeLocked.FreePair.not_both' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.free_le_locked : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.freeCount D ≤ Condorcet.lockedCount D
+'CDCert.FreeLocked.free_le_locked' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.FreeLocked.psi_inj : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D →
+    ∀ {σ₁ σ₂ : Condorcet.Order (Fin (n + 1))} {b₁ b₂ : Fin (n + 1)},
+      CDCert.FreeLocked.FreePair D σ₁ b₁ (CDCert.FreeLocked.upN σ₁ b₁) (CDCert.FreeLocked.dnN σ₁ b₁) →
+        CDCert.FreeLocked.FreePair D σ₂ b₂ (CDCert.FreeLocked.upN σ₂ b₂) (CDCert.FreeLocked.dnN σ₂ b₂) →
+          CDCert.FreeLocked.psi D (b₁, σ₁) = CDCert.FreeLocked.psi D (b₂, σ₂) → b₁ = b₂ ∧ σ₁ = σ₂
+'CDCert.FreeLocked.psi_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.IsChoice : {ω : Type} → List ω → List (List ω) → Prop
+'CDCert.IsChoice' does not depend on any axioms
+inductive CDCert.IsChoice : {ω : Type} → List ω → List (List ω) → Prop
+number of parameters: 1
+constructors:
+CDCert.IsChoice.nil : ∀ {ω : Type}, CDCert.IsChoice [] []
+CDCert.IsChoice.cons : ∀ {ω : Type} {o : ω} {g os : List ω} {gs : List (List ω)},
+  o ∈ g → CDCert.IsChoice os gs → CDCert.IsChoice (o :: os) (g :: gs)
+CDCert.K6.DomE : ℕ → (List ℕ → Bool) → Prop
+'CDCert.K6.DomE' depends on axioms: [propext]
+def CDCert.K6.DomE : ℕ → (List ℕ → Bool) → Prop :=
+fun k p => CDCert.K6.IsDom k p ∨ CDCert.K6.IsEmptyOn k p
+CDCert.K6.IsDom : ℕ → (List ℕ → Bool) → Prop
+'CDCert.K6.IsDom' depends on axioms: [propext]
+def CDCert.K6.IsDom : ℕ → (List ℕ → Bool) → Prop :=
+fun k p =>
+  ∃ c, CDCert.IsChoice c (CDCert.ListOrder.groupsEP k) ∧ ∀ L ∈ CDCert.Examples.orders k, p L = CDCert.allows c L
+CDCert.K6.IsS : (List ℕ → Bool) → Prop
+'CDCert.K6.IsS' depends on axioms: [propext]
+def CDCert.K6.IsS : (List ℕ → Bool) → Prop :=
+fun H => ∃ i < 9, CDCert.K6.IsoM (CDCert.K6.excRep6.getD i 0) H
+CDCert.K6.adj : ℕ → (List ℕ → Bool) → ℕ
+'CDCert.K6.adj' does not depend on any axioms
+def CDCert.K6.adj : ℕ → (List ℕ → Bool) → ℕ :=
+fun k H => (List.map (fun j => CDCert.K6.adjAt k j H) (List.range (k - 1))).sum
+CDCert.K6.adj6_split : ∀ (H : List ℕ → Bool),
+  CDCert.K6.adj 6 H =
+    (List.map (fun x => CDCert.K6.adj 5 (CDCert.K6.botP x H)) (List.range 6)).sum +
+      (List.map (fun y => CDCert.K6.adjAt 5 3 (CDCert.K6.topP y H)) (List.range 6)).sum
+'CDCert.K6.adj6_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.adjAt : ℕ → ℕ → (List ℕ → Bool) → ℕ
+'CDCert.K6.adjAt' does not depend on any axioms
+def CDCert.K6.adjAt : ℕ → ℕ → (List ℕ → Bool) → ℕ :=
+fun k j H => List.countP (fun M => H M && H (CDCert.K6.swapAt j M)) (CDCert.Examples.orders k)
+CDCert.K6.adj_concat : ∀ (n n' : ℕ) (K K' : List ℕ → Bool),
+  1 ≤ n →
+    1 ≤ n' →
+      CDCert.K6.adj (n + n') (CDCert.K6.concat n K K') =
+        CDCert.K6.adj n K * CDCert.K6.card n' K' + CDCert.K6.card n K * CDCert.K6.adj n' K'
+'CDCert.K6.adj_concat' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.adj_le : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.IsDom n K → 8 * CDCert.K6.adj n K ≤ 5 * n * CDCert.K6.card n K
+'CDCert.K6.adj_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.bD : (List ℕ → Bool) → ℤ
+'CDCert.K6.bD' does not depend on any axioms
+def CDCert.K6.bD : (List ℕ → Bool) → ℤ :=
+fun H => (List.map (fun x => CDCert.K6.potW (CDCert.K6.botP x H)) (List.range 6)).sum
+CDCert.K6.botP : ℕ → (List ℕ → Bool) → List ℕ → Bool
+'CDCert.K6.botP' does not depend on any axioms
+def CDCert.K6.botP : ℕ → (List ℕ → Bool) → List ℕ → Bool :=
+fun x H L => H (List.map (CDCert.ListOrder.up x) L ++ [x])
+CDCert.K6.card_concat : ∀ (n n' : ℕ) (K K' : List ℕ → Bool),
+  CDCert.K6.card (n + n') (CDCert.K6.concat n K K') = CDCert.K6.card n K * CDCert.K6.card n' K'
+'CDCert.K6.card_concat' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.concat : ℕ → (List ℕ → Bool) → (List ℕ → Bool) → List ℕ → Bool
+'CDCert.K6.concat' does not depend on any axioms
+def CDCert.K6.concat : ℕ → (List ℕ → Bool) → (List ℕ → Bool) → List ℕ → Bool :=
+fun n K K' L =>
+  CDCert.K6.splitOK n L && K (List.filter (fun x => decide (x < n)) L) &&
+    K' (List.map (fun x => x - n) (List.filter (fun x => decide (n ≤ x)) L))
+CDCert.K6.cost10 : (List ℕ → Bool) → ℕ
+'CDCert.K6.cost10' does not depend on any axioms
+def CDCert.K6.cost10 : (List ℕ → Bool) → ℕ :=
+fun J =>
+  CDCert.K6.adjAt 7 0 J + 2 * CDCert.K6.adjAt 7 1 J + 2 * CDCert.K6.adjAt 7 2 J + 2 * CDCert.K6.adjAt 7 3 J +
+      2 * CDCert.K6.adjAt 7 4 J +
+    CDCert.K6.adjAt 7 5 J
+CDCert.K6.cost10_split : ∀ (J : List ℕ → Bool),
+  CDCert.K6.cost10 J =
+    (List.map (fun z => CDCert.K6.adj 6 (CDCert.K6.botP z J)) (List.range 7)).sum +
+      (List.map (fun w => CDCert.K6.adj 6 (CDCert.K6.topP w J)) (List.range 7)).sum
+'CDCert.K6.cost10_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.dbl : ℕ → (List ℕ → Bool) → ℕ → List ℕ → Bool
+'CDCert.K6.dbl' does not depend on any axioms
+def CDCert.K6.dbl : ℕ → (List ℕ → Bool) → ℕ → List ℕ → Bool :=
+fun n K x =>
+  Nat.brecOn (motive := fun x => List ℕ → Bool) x fun x f =>
+    (match (motive := (x : ℕ) → Nat.below (motive := fun x => List ℕ → Bool) x → List ℕ → Bool) x with
+      | 0 => fun x => K
+      | k.succ => fun x => CDCert.K6.concat (2 ^ k * n) x.1 x.1)
+      f
+@CDCert.K6.dbl_props : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.IsDom n K →
+    1 ≤ n →
+      ∀ (k : ℕ),
+        CDCert.K6.IsDom (2 ^ k * n) (CDCert.K6.dbl n K k) ∧
+          CDCert.K6.card (2 ^ k * n) (CDCert.K6.dbl n K k) = CDCert.K6.card n K ^ 2 ^ k ∧
+            CDCert.K6.adj (2 ^ k * n) (CDCert.K6.dbl n K k) * CDCert.K6.card n K =
+              2 ^ k * CDCert.K6.adj n K * CDCert.K6.card n K ^ 2 ^ k
+'CDCert.K6.dbl_props' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.excRep6 : List ℕ
+'CDCert.K6.excRep6' does not depend on any axioms
+def CDCert.K6.excRep6 : List ℕ :=
+[13066803778828402421390779800724148008732438123100272585901824952909217249875190688471945498599185112694563703949553128631416418760716303385659229418250701081133367005573658170505350348800,
+  56097300975702143806129241909240807600537260613685504451041291440087935358244987400248040060868419466551524414885769467156370725885532192249161757944175985437227495281695760923953725440,
+  869868452684215851175231125701054629998257223838851187198030353762868510483736784982329595438206697569314223750326753964841778886602884150102270582244393298991779514704520200263420230018007040,
+  59092802126515357316138289913268111661895667067780525014910838030187275940265201704565032391258185332148066085892158016886804390919161971165483512672529892686907048644487709668411294883985055352927289344,
+  26863651957764025846158530165995515787759880691878007810429256263242360010573707723011740310713602778346085348504146004077269283090293660228102899211978526773209472303601597244411133666061814071296,
+  869868456933319793709367915217760283072422531812440947865645554661252624863729332042810842663820855986093788197683803420048567270395035727261374030339866887262945337531034258875130120035631104,
+  941156591583666594000636221556827335023879431825112690289812313577784851076311929747093608032204126813345580293133491326437758486047297314993893793878284456458820830396447516557240862322458624,
+  26882186872773116014234259925643673221271335825293430419360066626071912639873937921781888983180695430915329676954879639022222135392951682961328984059119489545611200479713027649635050252347943944192,
+  14367381001914969654550220931148451403953933069976640976989704118229611863172033944341744116278100839005779338635154081065067063658195465476883368010674469489700864201782059634887759620909406030397440,
+  51848197033168007016612536256821058581900515671869249065445738334484706878604287289264339576594061909631032593208203360834027412687270132472046501052253976269829466633501861498448773120,
+  3489986906361691730447729116359252281930798409427417991452987395684445925294906945967066138371381185624479531082310808968290374535079393798271345747328662930289541089434146582574617136004595712,
+  941156587334562651466499432040121682604130211798125270488266097092631257056338734406712286516285224465577515590037240695746065162087341781778192415847144122142065783705990327628233430676799488,
+  941156587334562651466499432040121682604130413188367748473556927982231745473083450860275666118904108691511294942018855436465750363274662613772235878602124626326122014845797349874095110068633600,
+  26863937110302627233359695239220872055971762911264436179637749856000315539204941821618484900148572450367964919474439654780927554104514264999552182937464548114193839666435577975369974807330660810752]
+@CDCert.K6.finite_lemma : ∀ {J : List ℕ → Bool},
+  CDCert.K6.DomE 7 J →
+    ↑CDCert.K6.cD5 * ↑(CDCert.K6.cost10 J) ≤
+      11057646600 * ↑(CDCert.K6.card 7 J) + (List.map (fun z => CDCert.K6.qD (CDCert.K6.botP z J)) (List.range 7)).sum -
+        (List.map (fun w => CDCert.K6.qD (CDCert.K6.topP w J)) (List.range 7)).sum
+'CDCert.K6.finite_lemma' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.five_cover : ∀ {c : List (CDCert.Opt (List ℕ))},
+  CDCert.IsChoice c (CDCert.ListOrder.groupsEP 5) →
+    ∀ {L0 : List ℕ},
+      L0 ∈ CDCert.Examples.orders 5 →
+        CDCert.allows c L0 = true →
+          ∃ ρ ∈ CDCert.Examples.orders 5,
+            ∃ k < 1160,
+              ∀ L ∈ CDCert.Examples.orders 5,
+                CDCert.allows c L = CDCert.K6.memM (CDCert.K6.rep5T.find k) (CDCert.K6.rlab ρ L)
+'CDCert.K6.five_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.isDom_concat : ∀ {n n' : ℕ} {K K' : List ℕ → Bool},
+  CDCert.K6.IsDom n K → CDCert.K6.IsDom n' K' → CDCert.K6.IsDom (n + n') (CDCert.K6.concat n K K')
+'CDCert.K6.isDom_concat' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.isum_telescope : ∀ (f : ℕ → ℤ) (m : ℕ), (List.map (fun i => f i - f (i + 1)) (List.range m)).sum = f 0 - f m
+'CDCert.K6.isum_telescope' depends on axioms: [propext, Quot.sound]
+CDCert.K6.lamD : (List ℕ → Bool) → ℤ
+'CDCert.K6.lamD' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.K6.lamD : (List ℕ → Bool) → ℤ :=
+fun J =>
+  (List.map (fun z => CDCert.K6.thB (CDCert.K6.botP z J)) (List.range 7)).sum +
+    (List.map (fun w => CDCert.K6.thT (CDCert.K6.topP w J)) (List.range 7)).sum
+CDCert.K6.lamD_eq : ∀ (J : List ℕ → Bool),
+  CDCert.K6.lamD J =
+    2 * (↑CDCert.K6.cK * ↑(CDCert.K6.card 7 J)) - ↑CDCert.K6.cD5 * ↑(CDCert.K6.cost10 J) +
+        (List.map (fun z => CDCert.K6.qD (CDCert.K6.botP z J)) (List.range 7)).sum -
+      (List.map (fun w => CDCert.K6.qD (CDCert.K6.topP w J)) (List.range 7)).sum
+'CDCert.K6.lamD_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.lam_receiver : ∀ {J : List ℕ → Bool},
+  CDCert.K6.DomE 7 J →
+    (∀ z < 7, CDCert.K6.NoExc (CDCert.K6.botP z J)) →
+      (∀ w < 7, CDCert.K6.NoExc (CDCert.K6.topP w J)) → 2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.lam_receiver' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.pD : (List ℕ → Bool) → ℤ
+'CDCert.K6.pD' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.K6.pD : (List ℕ → Bool) → ℤ :=
+fun H =>
+  if CDCert.K6.IsS H then CDCert.K6.psiD (CDCert.K6.sIdx H)
+  else 4 * ↑CDCert.K6.cE * (↑(CDCert.K6.rt H) - ↑(CDCert.K6.rb H))
+CDCert.K6.potW : (List ℕ → Bool) → ℤ
+'CDCert.K6.potW' does not depend on any axioms
+def CDCert.K6.potW : (List ℕ → Bool) → ℤ :=
+fun p => ↑(CDCert.K6.card 5 p) * CDCert.K6.pot5 (CDCert.K6.ty5 p)
+CDCert.K6.qD : (List ℕ → Bool) → ℤ
+'CDCert.K6.qD' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.K6.qD : (List ℕ → Bool) → ℤ :=
+fun H => CDCert.K6.bD H + CDCert.K6.tD H + CDCert.K6.pD H
+@CDCert.K6.qD_bound : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H →
+    -(2 ^ 63 * ↑(CDCert.K6.card 6 H)) ≤ CDCert.K6.qD H ∧ CDCert.K6.qD H ≤ 2 ^ 63 * ↑(CDCert.K6.card 6 H)
+'CDCert.K6.qD_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.r8_facts : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H →
+    CDCert.K6.IsoM CDCert.K6.r8 H →
+      CDCert.K6.card 6 H = 8 ∧ CDCert.K6.sD H = 0 ∧ CDCert.K6.rb H = 0 ∧ CDCert.K6.rt H = 0 ∧ ¬CDCert.K6.IsS H
+'CDCert.K6.r8_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.r8_slices : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H →
+    CDCert.K6.IsoM CDCert.K6.r8 H →
+      (∃ a < 6, CDCert.K6.isTy 866 (CDCert.K6.topP a H) = 1) ∧ ∃ b < 6, CDCert.K6.isTy 41 (CDCert.K6.botP b H) = 1
+'CDCert.K6.r8_slices' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.r8_th : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H → CDCert.K6.IsoM CDCert.K6.r8 H → CDCert.K6.thB H = 0 ∧ CDCert.K6.thT H = 0
+'CDCert.K6.r8_th' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.rb : (List ℕ → Bool) → ℕ
+'CDCert.K6.rb' does not depend on any axioms
+def CDCert.K6.rb : (List ℕ → Bool) → ℕ :=
+fun H => (List.map (fun x => CDCert.K6.isTy 866 (CDCert.K6.botP x H)) (List.range 6)).sum
+@CDCert.K6.receiver_slack : ∀ {H : List ℕ → Bool},
+  CDCert.K6.IsDom 6 H →
+    CDCert.K6.NoExc H →
+      ¬CDCert.K6.IsoM CDCert.K6.r8 H →
+        ↑CDCert.K6.cE * (↑(CDCert.K6.card 6 H) + 4 * ↑(CDCert.K6.rb H) + 4 * ↑(CDCert.K6.rt H)) ≤ CDCert.K6.sD H
+'CDCert.K6.receiver_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.relabel_slice : ∀ {S : ℕ → (List ℕ → Bool) → List ℕ → Bool},
+  CDCert.K6.SliceRel S →
+    ∀ {J : List ℕ → Bool},
+      CDCert.K6.IsDom 7 J →
+        ∀ {z : ℕ},
+          z < 7 →
+            ∀ {j : ℕ},
+              j < 14 →
+                CDCert.K6.IsoM (CDCert.K6.excRep6.getD j 0) (S z J) →
+                  ∃ J',
+                    CDCert.K6.IsDom 7 J' ∧
+                      CDCert.K6.card 7 J' = CDCert.K6.card 7 J ∧
+                        CDCert.K6.lamD J' = CDCert.K6.lamD J ∧
+                          CDCert.Bits.maskOf (CDCert.K6.baseB 5) (S 6 J') = CDCert.K6.excRep6.getD j 0
+'CDCert.K6.relabel_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.rt : (List ℕ → Bool) → ℕ
+'CDCert.K6.rt' does not depend on any axioms
+def CDCert.K6.rt : (List ℕ → Bool) → ℕ :=
+fun H => (List.map (fun y => CDCert.K6.isTy 41 (CDCert.K6.topP y H)) (List.range 6)).sum
+CDCert.K6.sD : (List ℕ → Bool) → ℤ
+'CDCert.K6.sD' does not depend on any axioms
+def CDCert.K6.sD : (List ℕ → Bool) → ℤ :=
+fun H => ↑CDCert.K6.cK * ↑(CDCert.K6.card 6 H) + CDCert.K6.bD H - CDCert.K6.tD H - ↑CDCert.K6.cD5 * ↑(CDCert.K6.adj 6 H)
+@CDCert.K6.seven_bot : ∀ {J : List ℕ → Bool},
+  CDCert.K6.IsDom 7 J →
+    ∀ {j : ℕ},
+      j < 14 →
+        j ≠ 9 →
+          CDCert.Bits.maskOf (CDCert.K6.baseB 5) (CDCert.K6.botP 6 J) = CDCert.K6.excRep6.getD j 0 →
+            2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.seven_bot' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.seven_fam_0 : ∀ {J : List ℕ → Bool},
+  CDCert.K6.IsDom 7 J →
+    CDCert.Bits.maskOf (CDCert.K6.baseB 5) (CDCert.K6.botP 6 J) = CDCert.K6.excRep6.getD 0 0 →
+      2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.seven_fam_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.seven_fam_25 : ∀ {J : List ℕ → Bool},
+  CDCert.K6.IsDom 7 J →
+    CDCert.Bits.maskOf (CDCert.K6.baseB 5) (CDCert.K6.topP 6 J) = CDCert.K6.excRep6.getD 13 0 →
+      2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.seven_fam_25' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.seven_finite : ∀ {J : List ℕ → Bool},
+  CDCert.K6.DomE 7 J → 2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.seven_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.seven_top : ∀ {J : List ℕ → Bool},
+  CDCert.K6.IsDom 7 J →
+    ∀ {j : ℕ},
+      j < 14 →
+        j ≠ 9 →
+          CDCert.Bits.maskOf (CDCert.K6.baseB 5) (CDCert.K6.topP 6 J) = CDCert.K6.excRep6.getD j 0 →
+            2 * ↑CDCert.K6.cE * ↑(CDCert.K6.card 7 J) ≤ CDCert.K6.lamD J
+'CDCert.K6.seven_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.six_sem : ∀ {H : List ℕ → Bool},
+  CDCert.K6.IsDom 6 H → (∃ j ∈ CDCert.K6.excIdx, CDCert.K6.IsoM (CDCert.K6.excRep6.getD j 0) H) ∨ 0 ≤ CDCert.K6.sumV6 H
+'CDCert.K6.six_sem' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.slice_bot : ∀ {k x : ℕ},
+  x < k + 1 →
+    ∀ {H : List ℕ → Bool},
+      CDCert.K6.IsDom (k + 1) H → CDCert.K6.IsDom k (CDCert.K6.botP x H) ∨ CDCert.K6.IsEmptyOn k (CDCert.K6.botP x H)
+'CDCert.K6.slice_bot' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.slice_top : ∀ {k y : ℕ},
+  y < k + 1 →
+    ∀ {H : List ℕ → Bool},
+      CDCert.K6.IsDom (k + 1) H → CDCert.K6.IsDom k (CDCert.K6.topP y H) ∨ CDCert.K6.IsEmptyOn k (CDCert.K6.topP y H)
+'CDCert.K6.slice_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.tD : (List ℕ → Bool) → ℤ
+'CDCert.K6.tD' does not depend on any axioms
+def CDCert.K6.tD : (List ℕ → Bool) → ℤ :=
+fun H => (List.map (fun y => CDCert.K6.potW (CDCert.K6.topP y H)) (List.range 6)).sum
+CDCert.K6.thB : (List ℕ → Bool) → ℤ
+'CDCert.K6.thB' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.K6.thB : (List ℕ → Bool) → ℤ :=
+fun H => CDCert.K6.sD H + CDCert.K6.pD H
+@CDCert.K6.thB_bound : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H →
+    CDCert.K6.NoExc H →
+      ↑CDCert.K6.cE * ↑(CDCert.K6.card 6 H) + 8 * ↑CDCert.K6.cE * ↑(CDCert.K6.rt H) -
+          8 * ↑CDCert.K6.cE * ↑(CDCert.K6.isR8 H) ≤
+        CDCert.K6.thB H
+'CDCert.K6.thB_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.thT : (List ℕ → Bool) → ℤ
+'CDCert.K6.thT' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CDCert.K6.thT : (List ℕ → Bool) → ℤ :=
+fun H => CDCert.K6.sD H - CDCert.K6.pD H
+@CDCert.K6.thT_bound : ∀ {H : List ℕ → Bool},
+  CDCert.K6.DomE 6 H →
+    CDCert.K6.NoExc H →
+      ↑CDCert.K6.cE * ↑(CDCert.K6.card 6 H) + 8 * ↑CDCert.K6.cE * ↑(CDCert.K6.rb H) -
+          8 * ↑CDCert.K6.cE * ↑(CDCert.K6.isR8 H) ≤
+        CDCert.K6.thT H
+'CDCert.K6.thT_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.K6.topP : ℕ → (List ℕ → Bool) → List ℕ → Bool
+'CDCert.K6.topP' does not depend on any axioms
+def CDCert.K6.topP : ℕ → (List ℕ → Bool) → List ℕ → Bool :=
+fun y H L => H (y :: List.map (CDCert.ListOrder.up y) L)
+@CDCert.K6.winS_adjAt : ∀ {n w i p : ℕ} (K : List ℕ → Bool),
+  i + w ≤ n → p + 1 < w → CDCert.K6.winS (fun J => ↑(CDCert.K6.adjAt w p J)) n w i K = ↑(CDCert.K6.adjAt n (p + i) K)
+'CDCert.K6.winS_adjAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.winS_bot : ∀ {n i : ℕ} (K : List ℕ → Bool),
+  i + 7 ≤ n →
+    CDCert.K6.winS (fun J => (List.map (fun z => CDCert.K6.qD (CDCert.K6.botP z J)) (List.range 7)).sum) n 7 i K =
+      CDCert.K6.winS CDCert.K6.qD n 6 i K
+'CDCert.K6.winS_bot' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.winS_card : ∀ {n w i : ℕ} (K : List ℕ → Bool),
+  i + w ≤ n → CDCert.K6.winS (fun J => ↑(CDCert.K6.card w J)) n w i K = ↑(CDCert.K6.card n K)
+'CDCert.K6.winS_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.winS_top : ∀ {n i : ℕ} (K : List ℕ → Bool),
+  i + 7 ≤ n →
+    CDCert.K6.winS (fun J => (List.map (fun w => CDCert.K6.qD (CDCert.K6.topP w J)) (List.range 7)).sum) n 7 i K =
+      CDCert.K6.winS CDCert.K6.qD n 6 (i + 1) K
+'CDCert.K6.winS_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.window_bound : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.DomE n K →
+    7 ≤ n →
+      8 * 8846117280 * ↑(CDCert.K6.adj n K) ≤
+        5 * 8846117280 * (↑n * ↑(CDCert.K6.card n K)) + (10 * 8846117280 + 2 ^ 66) * ↑(CDCert.K6.card n K)
+'CDCert.K6.window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.K6.window_ineq : ∀ {n i : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.DomE n K →
+    i + 7 ≤ n →
+      ↑CDCert.K6.cD5 * CDCert.K6.winS (fun J => ↑(CDCert.K6.cost10 J)) n 7 i K ≤
+        11057646600 * ↑(CDCert.K6.card n K) + CDCert.K6.winS CDCert.K6.qD n 6 i K -
+          CDCert.K6.winS CDCert.K6.qD n 6 (i + 1) K
+'CDCert.K6.window_ineq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.ListOrder.groupsEP : ℕ → List (CDCert.Group (List ℕ))
+'CDCert.ListOrder.groupsEP' depends on axioms: [propext]
+def CDCert.ListOrder.groupsEP : ℕ → List (CDCert.Group (List ℕ)) :=
+fun x =>
+  Nat.brecOn x fun x f =>
+    (match (motive := (x : ℕ) → Nat.below x → List (CDCert.Group (List ℕ))) x with
+      | 0 => fun x => []
+      | k.succ => fun x => x.1 ++ CDCert.ListOrder.groupsNew k)
+      f
+@CDCert.Main.general_geometric : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.f n) ≤ 4 * (32 / 11) ^ (n - 3)
+'CDCert.Main.general_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.general_limit : ∃ L,
+  Filter.Tendsto (fun n => ↑(Condorcet.f n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 32 / 11
+'CDCert.Main.general_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.general_polynomial_correction : (fun n => ↑(Condorcet.f n)) =O[Filter.atTop] fun n =>
+  ↑n ^ (-(8 / 11)) * (32 / 11) ^ n
+'CDCert.Main.general_polynomial_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.general_recurrence : ∀ {n : ℕ}, 3 ≤ n → (11 * n + 8) * Condorcet.f n ≤ 32 * n * Condorcet.f (n - 1)
+'CDCert.Main.general_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.peak_geometric : ∀ {n : ℕ}, 3 ≤ n → ↑(Condorcet.h n) ≤ 4 * (8 / 3) ^ (n - 3)
+'CDCert.Main.peak_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Main.peak_limit : ∃ L, Filter.Tendsto (fun n => ↑(Condorcet.h n) ^ (1 / ↑n)) Filter.atTop (nhds L) ∧ L ≤ 8 / 3
+'CDCert.Main.peak_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Main.peak_recurrence : ∀ {n : ℕ}, 3 ≤ n → 3 * Condorcet.h n ≤ 8 * Condorcet.h (n - 1)
+'CDCert.Main.peak_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.deletion_lower_bound : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → (11 * (n + 1) + 8) * Finset.card D ≤ 32 * Condorcet.deletionSum D
+'CDCert.Recurrences.deletion_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.f_geometric : ∀ {n : ℕ}, 3 ≤ n → 11 ^ (n - 3) * Condorcet.f n ≤ 4 * 32 ^ (n - 3)
+'CDCert.Recurrences.f_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Recurrences.freeLockedInjection : CDCert.Bounds.FreeLockedInjection
+'CDCert.Recurrences.freeLockedInjection' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.gap_inequality : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.gapCount D + (n + 2) * Finset.card D ≤ 3 * Condorcet.deletionSum D
+'CDCert.Recurrences.gap_inequality' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.general_recurrence' : ∀ {n : ℕ}, 1 ≤ n → (11 * n + 8) * Condorcet.f n ≤ 32 * n * Condorcet.f (n - 1)
+'CDCert.Recurrences.general_recurrence'' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.h_geometric : ∀ {n : ℕ}, 3 ≤ n → 3 ^ (n - 3) * Condorcet.h n ≤ 4 * 8 ^ (n - 3)
+'CDCert.Recurrences.h_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.Recurrences.peakPit_recurrence : ∀ {n : ℕ}, 1 ≤ n → 3 * Condorcet.h n ≤ 8 * Condorcet.h (n - 1)
+'CDCert.Recurrences.peakPit_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.f_supermul : ∀ (m n : ℕ), Condorcet.f m * Condorcet.f n ≤ Condorcet.f (m + n)
+'CDCert.Supermult.f_supermul' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.h_supermul : ∀ (m n : ℕ), Condorcet.h m * Condorcet.h n ≤ Condorcet.h (m + n)
+'CDCert.Supermult.h_supermul' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.one_le_f : ∀ (n : ℕ), 1 ≤ Condorcet.f n
+'CDCert.Supermult.one_le_f' depends on axioms: [propext, Classical.choice, Quot.sound]
+CDCert.Supermult.one_le_h : ∀ (n : ℕ), 1 ≤ Condorcet.h n
+'CDCert.Supermult.one_le_h' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.first_input : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → Condorcet.gapCount D + (n + 2) * Finset.card D ≤ 3 * Condorcet.deletionSum D
+'CDCert.TwoInputs.first_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.second_input : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D → 3 * (n + 1) * Finset.card D ≤ 8 * (Condorcet.deletionSum D + Condorcet.gapCount D)
+'CDCert.TwoInputs.second_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.TwoInputs.transfer : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D → (11 * (n + 1) + 8) * Finset.card D ≤ 32 * Condorcet.deletionSum D
+'CDCert.TwoInputs.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CDCert.allows : {α : Type} → List (CDCert.Opt α) → α → Bool
+'CDCert.allows' does not depend on any axioms
+def CDCert.allows : {α : Type} → List (CDCert.Opt α) → α → Bool :=
+fun {α} c x => c.all fun o => o x
+@CDCert.domainOf : {α : Type} → List α → List (CDCert.Opt α) → List α
+'CDCert.domainOf' does not depend on any axioms
+def CDCert.domainOf : {α : Type} → List α → List (CDCert.Opt α) → List α :=
+fun {α} base c => CDCert.restrict base c
+@Condorcet.AdjacentSwap : {n : ℕ} → Condorcet.Order (Fin n) → Condorcet.Order (Fin n) → Prop
+'Condorcet.AdjacentSwap' does not depend on any axioms
+def Condorcet.AdjacentSwap : {n : ℕ} → Condorcet.Order (Fin n) → Condorcet.Order (Fin n) → Prop :=
+fun {n} r s =>
+  ∃ a b,
+    a ≠ b ∧
+      ↑r a b = true ∧
+        ↑s a b = false ∧
+          (∀ (c : Fin n), ¬(↑r a c = true ∧ ↑r c b = true)) ∧
+            ∀ (x y : Fin n), (x, y) ≠ (a, b) → (x, y) ≠ (b, a) → ↑r x y = ↑s x y
+@Condorcet.Connected : {n : ℕ} → Condorcet.Domain (Fin n) → Condorcet.Order (Fin n) → Condorcet.Order (Fin n) → Prop
+'Condorcet.Connected' depends on axioms: [propext, Quot.sound]
+def Condorcet.Connected : {n : ℕ} →
+  Condorcet.Domain (Fin n) → Condorcet.Order (Fin n) → Condorcet.Order (Fin n) → Prop :=
+fun {n} D r s => CondorcetUpperBounds.Reach (Condorcet.encodedDomain D) (Condorcet.encode r) (Condorcet.encode s)
+Condorcet.Domain : Type u_1 → Type u_1
+'Condorcet.Domain' depends on axioms: [propext, Quot.sound]
+@[reducible] def Condorcet.Domain.{u_1} : Type u_1 → Type u_1 :=
+fun α => Finset (Condorcet.Order α)
+@Condorcet.ExtremeRestricted : {α : Type u_1} → Condorcet.Domain α → Prop
+'Condorcet.ExtremeRestricted' depends on axioms: [propext, Quot.sound]
+def Condorcet.ExtremeRestricted.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D =>
+  ∀ (a b c : α),
+    a ≠ b →
+      a ≠ c →
+        b ≠ c →
+          ∃ p,
+            p ≠ 1 ∧
+              ((∀ r ∈ D, Condorcet.Never r a b c p) ∨
+                (∀ r ∈ D, Condorcet.Never r b a c p) ∨ ∀ r ∈ D, Condorcet.Never r c a b p)
+@Condorcet.ExtremeRestricted.completion : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.ExtremeRestricted D → ∃ L, D ⊆ Condorcet.fullDomain ↑L
+'Condorcet.ExtremeRestricted.completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+Condorcet.ExtremeSelection : ℕ → Type
+'Condorcet.ExtremeSelection' depends on axioms: [propext]
+def Condorcet.ExtremeSelection : ℕ → Type :=
+fun n => { L // ∀ (t : Condorcet.Triple n), (L t).2 ≠ 1 }
+Condorcet.FixedPairs : ℕ → Type
+'Condorcet.FixedPairs' does not depend on any axioms
+@[reducible] def Condorcet.FixedPairs : ℕ → Type :=
+fun n => Condorcet.Pair n → Option Bool
+@Condorcet.Free : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop
+'Condorcet.Free' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.Free : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop :=
+fun {n} D r x => Condorcet.HasLift D r x ∧ Condorcet.HasDrop D r x
+@Condorcet.Frozen : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop
+'Condorcet.Frozen' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.Frozen : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop :=
+fun {n} D r x => ¬Condorcet.HasLift D r x ∧ ¬Condorcet.HasDrop D r x
+@Condorcet.HasDrop : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop
+'Condorcet.HasDrop' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.HasDrop : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop :=
+fun {n} D r x =>
+  ∃ s ∈ D, Condorcet.deletedOrder x s = Condorcet.deletedOrder x r ∧ Condorcet.orderSlot x r < Condorcet.orderSlot x s
+@Condorcet.HasLift : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop
+'Condorcet.HasLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.HasLift : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin (n + 1) → Prop :=
+fun {n} D r x =>
+  ∃ s ∈ D, Condorcet.deletedOrder x s = Condorcet.deletedOrder x r ∧ Condorcet.orderSlot x s < Condorcet.orderSlot x r
+@Condorcet.HoldsLaw : {n : ℕ} → Condorcet.Order (Fin n) → Condorcet.Triple n → Fin 3 × Fin 3 → Prop
+'Condorcet.HoldsLaw' depends on axioms: [propext]
+def Condorcet.HoldsLaw : {n : ℕ} → Condorcet.Order (Fin n) → Condorcet.Triple n → Fin 3 × Fin 3 → Prop :=
+fun {n} r t law =>
+  if law.1 = 0 then Condorcet.Never r (↑t).1 (↑t).2.1 (↑t).2.2 law.2
+  else
+    if law.1 = 1 then Condorcet.Never r (↑t).2.1 (↑t).1 (↑t).2.2 law.2
+    else Condorcet.Never r (↑t).2.2 (↑t).1 (↑t).2.1 law.2
+@Condorcet.InF : {n : ℕ} → Condorcet.Domain (Fin n) → Prop
+'Condorcet.InF' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.InF : {n : ℕ} → Condorcet.Domain (Fin n) → Prop :=
+fun {n} D => Finset.Nonempty D ∧ Condorcet.IsExtremeFull D
+@Condorcet.IsCondorcet : {α : Type u_1} → Condorcet.Domain α → Prop
+'Condorcet.IsCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.IsCondorcet.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D =>
+  ∀ (m : ℕ), Odd m → ∀ (v : Fin m → Condorcet.Order α), (∀ (i : Fin m), v i ∈ D) → Transitive (Condorcet.majority v)
+@Condorcet.IsCondorcet.restrict : ∀ {α : Type u_1} {β : Type u_2} {D : Condorcet.Domain α},
+  Condorcet.IsCondorcet D → ∀ (e : β ↪ α), Condorcet.IsCondorcet (Condorcet.restrictDomain e D)
+'Condorcet.IsCondorcet.restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsCondorcet.valueRestricted : ∀ {α : Type u_1} {D : Condorcet.Domain α},
+  Condorcet.IsCondorcet D → Condorcet.ValueRestricted D
+'Condorcet.IsCondorcet.valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsExtremeFull : {n : ℕ} → Condorcet.Domain (Fin n) → Prop
+'Condorcet.IsExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.IsExtremeFull : {n : ℕ} → Condorcet.Domain (Fin n) → Prop :=
+fun {n} D => ∃ L Q, D = Condorcet.extremeFullDomain L Q
+@Condorcet.IsExtremeFull.deletion_plus_slotAdjacency : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsExtremeFull D → Condorcet.deletionSum D + Condorcet.slotAdjacencyCount D = (n + 1) * Finset.card D
+'Condorcet.IsExtremeFull.deletion_plus_slotAdjacency' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsExtremeFull.gapCount_zero : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsExtremeFull D → Condorcet.gapCount D = 0
+'Condorcet.IsExtremeFull.gapCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsExtremeFull.insertionWord_interval : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsExtremeFull D →
+    ∀ (x : Fin (n + 1)) (P : Condorcet.Order (Fin n)),
+      Condorcet.SlotWord.Interval (Condorcet.insertionWord (Condorcet.optionDomain x D) P)
+'Condorcet.IsExtremeFull.insertionWord_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull : {n : ℕ} → Condorcet.Domain (Fin n) → Prop
+'Condorcet.IsFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.IsFull : {n : ℕ} → Condorcet.Domain (Fin n) → Prop :=
+fun {n} D => ∃ L, D = Condorcet.fullDomain L
+@Condorcet.IsFull.component_from_fixed : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D →
+    ∀ (r s : Condorcet.Order (Fin n)),
+      r ∈ D →
+        s ∈ D →
+          (∀ (i : Condorcet.Pair n),
+              (∀ q ∈ D, Condorcet.Connected D r q → Condorcet.encode q i = Condorcet.encode r i) →
+                Condorcet.encode s i = Condorcet.encode r i) →
+            Condorcet.Connected D r s
+'Condorcet.IsFull.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.component_inF : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D → ∀ r ∈ D, Condorcet.InF (Condorcet.component D r)
+'Condorcet.IsFull.component_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.components_inF : ∀ {n : ℕ} {D K : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D → K ∈ Condorcet.components D → Condorcet.InF K
+'Condorcet.IsFull.components_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.encoded_medianClosed : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D → CondorcetUpperBounds.MedianClosed (Condorcet.encodedDomain D)
+'Condorcet.IsFull.encoded_medianClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.gap_slack_identity : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D →
+    3 * Condorcet.deletionSum D + Condorcet.freeCount D =
+      (n + 2) * Finset.card D + Condorcet.gapCount D + Condorcet.frozenCount D + Condorcet.lockedCount D
+'Condorcet.IsFull.gap_slack_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.median_mem : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)} (hD : Condorcet.IsFull D)
+  (u v w : Condorcet.Order (Fin n)) (hu : u ∈ D) (hv : v ∈ D) (hw : w ∈ D), Condorcet.medianOrder ⋯ u v w hu hv hw ∈ D
+'Condorcet.IsFull.median_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.missing_swap : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D →
+    ∀ (r s : Condorcet.Order (Fin (n + 1))) (p q : Fin (n + 1)),
+      p ≠ q →
+        r ∈ D →
+          s ∉ D →
+            ↑r p q = true →
+              ↑s p q = false →
+                (∀ (c : Fin (n + 1)), ¬(↑r p c = true ∧ ↑r c q = true)) →
+                  (∀ (u v : Fin (n + 1)), (u, v) ≠ (p, q) → (u, v) ≠ (q, p) → ↑r u v = ↑s u v) →
+                    ¬Condorcet.HasLift D r q ∨ ¬Condorcet.HasDrop D r p
+'Condorcet.IsFull.missing_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.second_move_count : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D →
+    2 * Condorcet.deletionSum D + Condorcet.adjacencyCount D = (n + 2) * Finset.card D + Condorcet.lockedCount D
+'Condorcet.IsFull.second_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsFull.sum_components_deletionSum : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsFull D →
+    ∑ K ∈ Condorcet.components D, Condorcet.deletionSum K = Condorcet.deletionSum D + Condorcet.gapCount D
+'Condorcet.IsFull.sum_components_deletionSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsMaximal : {α : Type u_1} → Condorcet.Domain α → Prop
+'Condorcet.IsMaximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.IsMaximal.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D => Condorcet.IsCondorcet D ∧ ∀ (E : Condorcet.Domain α), Condorcet.IsCondorcet E → D ⊆ E → E = D
+@Condorcet.IsMaximal.fixed_pair_not_consecutive : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsMaximal D →
+    ∀ (r : Condorcet.Order (Fin (n + 1))) (p q : Fin (n + 1)),
+      p ≠ q → r ∈ D → (∀ u ∈ D, ↑u p q = true) → ¬∀ (c : Fin (n + 1)), ¬(↑r p c = true ∧ ↑r c q = true)
+'Condorcet.IsMaximal.fixed_pair_not_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsMaximal.isFull : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)}, Condorcet.IsMaximal D → Condorcet.IsFull D
+'Condorcet.IsMaximal.isFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsPeakPit : {α : Type u_1} → Condorcet.Domain α → Prop
+'Condorcet.IsPeakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.IsPeakPit.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D => Condorcet.IsCondorcet D ∧ Condorcet.ExtremeRestricted D
+@Condorcet.IsPeakPit.restrict : ∀ {α : Type u_1} {β : Type u_2} {D : Condorcet.Domain α},
+  Condorcet.IsPeakPit D → ∀ (e : β ↪ α), Condorcet.IsPeakPit (Condorcet.restrictDomain e D)
+'Condorcet.IsPeakPit.restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.IsStrictTotal : {α : Type u_1} → (α → α → Bool) → Prop
+'Condorcet.IsStrictTotal' does not depend on any axioms
+def Condorcet.IsStrictTotal.{u_1} : {α : Type u_1} → (α → α → Bool) → Prop :=
+fun {α} r =>
+  (∀ (a : α), r a a = false) ∧
+    (∀ (a b c : α), r a b = true → r b c = true → r a c = true) ∧ ∀ (a b : α), a ≠ b → r a b = true ∨ r b a = true
+@Condorcet.Locked : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin n → Prop
+'Condorcet.Locked' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.Locked : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → Condorcet.Order (Fin (n + 1)) → Fin n → Prop :=
+fun {n} D r j => ¬Condorcet.HasLift D r (r.atPos j.succ) ∧ ¬Condorcet.HasDrop D r (r.atPos j.castSucc)
+@Condorcet.Never : {α : Type u_1} → Condorcet.Order α → α → α → α → Fin 3 → Prop
+'Condorcet.Never' depends on axioms: [propext]
+def Condorcet.Never.{u_1} : {α : Type u_1} → Condorcet.Order α → α → α → α → Fin 3 → Prop :=
+fun {α} r x y z position =>
+  if position = 0 then ↑r x y = false ∨ ↑r x z = false
+  else if position = 1 then ↑r x y = ↑r x z else ↑r x y = true ∨ ↑r x z = true
+Condorcet.Order : Type u_1 → Type u_1
+'Condorcet.Order' does not depend on any axioms
+def Condorcet.Order.{u_1} : Type u_1 → Type (max 0 u_1) :=
+fun α => { r // Condorcet.IsStrictTotal r }
+Condorcet.Pattern.finite_characterization : ∀ (C : Finset (Fin 6)),
+  Condorcet.Pattern.Closed3 C → Condorcet.Pattern.CommonNever C
+'Condorcet.Pattern.finite_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]
+Condorcet.Selection : ℕ → Type
+'Condorcet.Selection' does not depend on any axioms
+@[reducible] def Condorcet.Selection : ℕ → Type :=
+fun n => Condorcet.Triple n → Fin 3 × Fin 3
+Condorcet.SlotWord.gaps : List Bool → ℕ
+'Condorcet.SlotWord.gaps' does not depend on any axioms
+def Condorcet.SlotWord.gaps : List Bool → ℕ :=
+fun bs => Condorcet.SlotWord.runs bs - 1
+Condorcet.SlotWord.nonempty_run_identity : ∀ (bs : List Bool),
+  0 < Condorcet.SlotWord.occupied bs →
+    Condorcet.SlotWord.occupied bs = Condorcet.SlotWord.adjacentPairs bs + Condorcet.SlotWord.gaps bs + 1
+'Condorcet.SlotWord.nonempty_run_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+Condorcet.SlotWord.runs : List Bool → ℕ
+'Condorcet.SlotWord.runs' does not depend on any axioms
+def Condorcet.SlotWord.runs : List Bool → ℕ :=
+fun bs => Condorcet.SlotWord.starts false bs
+@Condorcet.ValueRestricted : {α : Type u_1} → Condorcet.Domain α → Prop
+'Condorcet.ValueRestricted' depends on axioms: [propext, Quot.sound]
+def Condorcet.ValueRestricted.{u_1} : {α : Type u_1} → Condorcet.Domain α → Prop :=
+fun {α} D =>
+  ∀ (a b c : α),
+    a ≠ b →
+      a ≠ c →
+        b ≠ c →
+          ∃ p,
+            (∀ r ∈ D, Condorcet.Never r a b c p) ∨
+              (∀ r ∈ D, Condorcet.Never r b a c p) ∨ ∀ r ∈ D, Condorcet.Never r c a b p
+@Condorcet.ValueRestricted.isCondorcet : ∀ {α : Type u_1} {D : Condorcet.Domain α},
+  Condorcet.ValueRestricted D → Condorcet.IsCondorcet D
+'Condorcet.ValueRestricted.isCondorcet' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.adjacencyCount : {n : ℕ} → Condorcet.Domain (Fin n) → ℕ
+'Condorcet.adjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.adjacencyCount : {n : ℕ} → Condorcet.Domain (Fin n) → ℕ :=
+fun {n} D => (Condorcet.directedEdges D).card
+@Condorcet.component : {n : ℕ} → Condorcet.Domain (Fin n) → Condorcet.Order (Fin n) → Condorcet.Domain (Fin n)
+'Condorcet.component' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.component : {n : ℕ} → Condorcet.Domain (Fin n) → Condorcet.Order (Fin n) → Condorcet.Domain (Fin n) :=
+fun {n} D r => Finset.filter (Condorcet.Connected D r) D
+@Condorcet.component_membership : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D →
+    ∀ (r s : Condorcet.Order (Fin n)),
+      r ∈ D → (s ∈ Condorcet.component D r ↔ s ∈ D ∧ Condorcet.HoldsPairs (Condorcet.componentPairs D r) s)
+'Condorcet.component_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.components : {n : ℕ} → Condorcet.Domain (Fin n) → Finset (Condorcet.Domain (Fin n))
+'Condorcet.components' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.components : {n : ℕ} → Condorcet.Domain (Fin n) → Finset (Condorcet.Domain (Fin n)) :=
+fun {n} D => Finset.image (Condorcet.component D) D
+@Condorcet.deleteDomain : {n : ℕ} → Fin (n + 1) → Condorcet.Domain (Fin (n + 1)) → Condorcet.Domain (Fin n)
+'Condorcet.deleteDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.deleteDomain : {n : ℕ} → Fin (n + 1) → Condorcet.Domain (Fin (n + 1)) → Condorcet.Domain (Fin n) :=
+fun {n} x D => Condorcet.restrictDomain (Condorcet.deleteEmbedding x) D
+@Condorcet.deleteEmbedding : {n : ℕ} → Fin (n + 1) → Fin n ↪ Fin (n + 1)
+'Condorcet.deleteEmbedding' depends on axioms: [propext]
+def Condorcet.deleteEmbedding : {n : ℕ} → Fin (n + 1) → Fin n ↪ Fin (n + 1) :=
+fun {n} x => { toFun := x.succAbove, inj' := ⋯ }
+@Condorcet.deletionSum : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ
+'Condorcet.deletionSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.deletionSum : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ :=
+fun {n} D => ∑ x, Finset.card (Condorcet.deleteDomain x D)
+@Condorcet.deletionSum_le_general : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsCondorcet D → Condorcet.deletionSum D ≤ (n + 1) * Condorcet.f n
+'Condorcet.deletionSum_le_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.deletionSum_le_peakPit : ∀ {n : ℕ} {D : Condorcet.Domain (Fin (n + 1))},
+  Condorcet.IsPeakPit D → Condorcet.deletionSum D ≤ (n + 1) * Condorcet.h n
+'Condorcet.deletionSum_le_peakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.deletion_gap_adjacency_identity : ∀ {n : ℕ} (D : Condorcet.Domain (Fin (n + 1))),
+  Condorcet.deletionSum D + Condorcet.gapCount D + Condorcet.adjacencyCount D = (n + 1) * Finset.card D
+'Condorcet.deletion_gap_adjacency_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.directedEdges : {n : ℕ} →
+  Condorcet.Domain (Fin n) → Finset (Condorcet.Order (Fin n) × Condorcet.Order (Fin n))
+'Condorcet.directedEdges' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.directedEdges : {n : ℕ} →
+  Condorcet.Domain (Fin n) → Finset (Condorcet.Order (Fin n) × Condorcet.Order (Fin n)) :=
+fun {n} D => {rs ∈ Finset.product D D | Condorcet.AdjacentSwap rs.1 rs.2}
+@Condorcet.encode_injective : ∀ {n : ℕ}, Function.Injective Condorcet.encode
+'Condorcet.encode_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+Condorcet.exists_maximum_general : ∀ (n : ℕ), ∃ D, Condorcet.IsCondorcet D ∧ Finset.card D = Condorcet.f n
+'Condorcet.exists_maximum_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+Condorcet.exists_maximum_peakPit : ∀ (n : ℕ), ∃ D, Condorcet.IsPeakPit D ∧ Finset.card D = Condorcet.h n
+'Condorcet.exists_maximum_peakPit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.extremeFullDomain : {n : ℕ} →
+  Condorcet.ExtremeSelection n → Condorcet.FixedPairs n → Condorcet.Domain (Fin n)
+'Condorcet.extremeFullDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.extremeFullDomain : {n : ℕ} →
+  Condorcet.ExtremeSelection n → Condorcet.FixedPairs n → Condorcet.Domain (Fin n) :=
+fun {n} L Q => Finset.filter (Condorcet.HoldsPairs Q) (Condorcet.fullDomain ↑L)
+Condorcet.f : ℕ → ℕ
+'Condorcet.f' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.f : ℕ → ℕ :=
+fun n => (Finset.filter Condorcet.IsCondorcet Finset.univ).sup Finset.card
+Condorcet.f_three : Condorcet.f 3 = 4
+'Condorcet.f_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.first_move_count : ∀ {n : ℕ} (D : Condorcet.Domain (Fin (n + 1))),
+  2 * Condorcet.deletionSum D + Condorcet.freeCount D = (n + 1) * Finset.card D + Condorcet.frozenCount D
+'Condorcet.first_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.freeCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ
+'Condorcet.freeCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.freeCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ :=
+fun {n} D => ∑ x, Finset.card (Condorcet.freeOrders D x)
+@Condorcet.frozenCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ
+'Condorcet.frozenCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.frozenCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ :=
+fun {n} D => ∑ x, Finset.card (Condorcet.frozenOrders D x)
+@Condorcet.fullDomain : {n : ℕ} → Condorcet.Selection n → Condorcet.Domain (Fin n)
+'Condorcet.fullDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.fullDomain : {n : ℕ} → Condorcet.Selection n → Condorcet.Domain (Fin n) :=
+fun {n} L => {r | ∀ (t : Condorcet.Triple n), Condorcet.HoldsLaw r t (L t)}
+@Condorcet.gapCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ
+'Condorcet.gapCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.gapCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ :=
+fun {n} D =>
+  ∑ x,
+    ∑ P ∈ Condorcet.deleteDomain x D, Condorcet.SlotWord.gaps (Condorcet.insertionWord (Condorcet.optionDomain x D) P)
+Condorcet.h : ℕ → ℕ
+'Condorcet.h' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.h : ℕ → ℕ :=
+fun n => (Finset.filter Condorcet.IsPeakPit Finset.univ).sup Finset.card
+Condorcet.h_three : Condorcet.h 3 = 4
+'Condorcet.h_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.insertionSlots : {α : Type u_1} →
+  [inst : Fintype α] → Condorcet.Domain (Option α) → Condorcet.Order α → Finset (Fin (Fintype.card α + 1))
+'Condorcet.insertionSlots' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.insertionSlots.{u_1} : {α : Type u_1} →
+  [inst : Fintype α] → Condorcet.Domain (Option α) → Condorcet.Order α → Finset (Fin (Fintype.card α + 1)) :=
+fun {α} [Fintype α] D P => {t | P.insertAt t ∈ D}
+@Condorcet.insertionWord : {α : Type u_1} → [Fintype α] → Condorcet.Domain (Option α) → Condorcet.Order α → List Bool
+'Condorcet.insertionWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.insertionWord.{u_1} : {α : Type u_1} →
+  [Fintype α] → Condorcet.Domain (Option α) → Condorcet.Order α → List Bool :=
+fun {α} [Fintype α] D P => List.ofFn fun t => decide (t ∈ Condorcet.insertionSlots D P)
+@Condorcet.isCondorcet_iff_valueRestricted : ∀ {α : Type u_1} (D : Condorcet.Domain α),
+  Condorcet.IsCondorcet D ↔ Condorcet.ValueRestricted D
+'Condorcet.isCondorcet_iff_valueRestricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.lockedCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ
+'Condorcet.lockedCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.lockedCount : {n : ℕ} → Condorcet.Domain (Fin (n + 1)) → ℕ :=
+fun {n} D => ∑ r ∈ D, ∑ j, if Condorcet.Locked D r j then 1 else 0
+@Condorcet.majority : {α : Type u_1} → {m : ℕ} → (Fin m → Condorcet.Order α) → α → α → Prop
+'Condorcet.majority' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.majority.{u_1} : {α : Type u_1} → {m : ℕ} → (Fin m → Condorcet.Order α) → α → α → Prop :=
+fun {α} {m} v a b => 2 * {i | ↑(v i) a b = true}.card > m
+@Condorcet.maximum_isMaximal : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsCondorcet D → Finset.card D = Condorcet.f n → Condorcet.IsMaximal D
+'Condorcet.maximum_isMaximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.maximum_peakPit_fullClass : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsPeakPit D → Finset.card D = Condorcet.h n → Condorcet.IsExtremeFull D
+'Condorcet.maximum_peakPit_fullClass' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.maximum_peakPit_isExtremeFull : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsPeakPit D → Finset.card D = Condorcet.h n → ∃ L, D = Condorcet.fullDomain ↑L
+'Condorcet.maximum_peakPit_isExtremeFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.medianOrder : {α : Type u_1} →
+  {D : Condorcet.Domain α} →
+    Condorcet.IsCondorcet D → (u v w : Condorcet.Order α) → u ∈ D → v ∈ D → w ∈ D → Condorcet.Order α
+'Condorcet.medianOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+def Condorcet.medianOrder.{u_1} : {α : Type u_1} →
+  {D : Condorcet.Domain α} →
+    Condorcet.IsCondorcet D → (u v w : Condorcet.Order α) → u ∈ D → v ∈ D → w ∈ D → Condorcet.Order α :=
+fun {α} {D} hD u v w hu hv hw => ⟨fun a b => CondorcetUpperBounds.median (↑u a b) (↑v a b) (↑w a b), ⋯⟩
+@Condorcet.slotAdjacencyCount_eq_adjacencyCount : ∀ {n : ℕ} (D : Condorcet.Domain (Fin (n + 1))),
+  Condorcet.slotAdjacencyCount D = Condorcet.adjacencyCount D
+'Condorcet.slotAdjacencyCount_eq_adjacencyCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Condorcet.sum_components_card : ∀ {n : ℕ} (D : Condorcet.Domain (Fin n)),
+  ∑ K ∈ Condorcet.components D, Finset.card K = Finset.card D
+'Condorcet.sum_components_card' depends on axioms: [propext, Classical.choice, Quot.sound]

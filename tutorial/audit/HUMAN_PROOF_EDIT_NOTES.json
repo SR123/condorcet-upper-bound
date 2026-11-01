@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-01",
+  "result": "CORRECTED_WRITTEN_EXPLANATION",
+  "location": "sections/04_injection.tex, mixed upper/lower collision case",
+  "finding": "The three displayed traces permit both b1-never-middle and q-never-first; the previous prose asserted uniqueness before supplying the necessary fourth witness.",
+  "repair": "Introduce the drop rho first; q is first on that triple in rho, excluding q-never-first. The remaining b1-never-middle law then forces the two traces used in the final contradiction.",
+  "lean_proof_status": "Original proof unchanged. CDCert.FreeLocked.mixed already uses rho, obtained at line 627 and applied to the triple law at lines 643\u2013644.",
+  "separate_pattern_check": "check_tutorial.py verifies the two possible laws and both possible drop traces exactly."
+}

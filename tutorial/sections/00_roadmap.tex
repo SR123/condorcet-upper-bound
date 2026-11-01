@@ -1,0 +1,57 @@
+This tutorial presents the upper-bound results of Pavlos Moros and
+S\o ren Riis~\cite{joint}, following the earlier AI-assisted note by
+Moros~\cite{moros}. It develops the proof with worked examples and
+explicit links to the joint Lean formalisation. The contribution of
+this tutorial is its exposition, organisation and verification guide;
+the underlying research results retain their attribution to the
+original works.
+
+The bounds have general exponential base \(32/11\) and peak-pit base
+\(8/3\), together with root-growth limits and a polynomial refinement.
+The seven final results are stated in Section~\ref{sec:conclusions}.
+
+Start with the first-pass guide on page~\pageref{sec:first-pass}.
+It explains the whole route before the technical details. The ordinary prose and worked examples
+explain why each step should be true; the numbered statements and proofs
+supply the mathematical argument. The small \emph{Lean correspondence}
+paragraphs identify actual definitions and declarations, their premises,
+and any change of notation. They can be skipped on a first reading.
+Appendix~\ref{app:correspondence} indexes every declaration exported by
+the two final entry modules, and every further result in the independent
+20-result audit.
+
+\textbf{The finite part is computer-assisted.} The structural and
+limiting arguments are given in full. Sections~\ref{sec:local}
+and~\ref{sec:computation} specify the finite inequality, its rational
+data, exhaustive coverage, checker soundness and exceptional cases.
+The companion Lean project supplies every literal table and finite
+proof. A human reader can follow the logic without personally
+evaluating all table entries; the strongest bound still uses a certificate.
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.13}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.06\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}>{\raggedright\arraybackslash}p{0.43\linewidth}@{}}
+\toprule
+& Idea & What it achieves\\\midrule
+1 & Delete one alternative & A lower bound on deletion outputs becomes a recurrence\\
+2 & Count fibre runs by positions minus edges & The exact identity \(\Sig+G+A=nM\)\\
+3 & Assign flexibility to distinct obstructions & The gap inequality\\
+4 & Decompose using majority projection & General domains reduce to full extreme-law pieces\\
+5 & Average over conditioned local windows & A finite inequality controls a long order\\
+6 & Add corrections that telescope & Only the two outside ends remain\\
+7 & Repeat ordered copies & A bounded outside error disappears\\
+8 & Search for weights & Discover a plausible local inequality\\
+9 & Generate every admissible constraint system & Prove coverage, including fixed comparisons\\
+10 & Redistribute exceptional deficits & Complete the local inequality\\
+11 & Freeze and check an exact certificate & Separate exploratory computation from proof\\
+12 & Prove the encoding is faithful & The computed permutations represent the intended preference orders\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The numerical comparison in Section~\ref{sec:numerical} uses the same
+values of \(n\) to show what successive proof steps achieve. A second
+table also uses published small-case classifications, including
+\(f(8)=224\), as explicitly separate starting information. Those
+classifications are not premises of the \(32/11\) proof. The separate
+six-position hand proof below \(3\) is outside this tutorial's proof chain.

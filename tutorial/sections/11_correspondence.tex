@@ -1,0 +1,85 @@
+\section{Complete definition and entry-point index}\label{app:correspondence}
+The two default entry modules in \texttt{lakefile.toml} are
+\path{CDCert.Main} and \path{CDCert.TwoInputs}. The first exports seven
+results and the second three. The following list includes every one
+of these ten declarations separately, even when a wrapper repeats a
+supporting result. It then lists all ten additional results in the
+independent axiom audit. Throughout the table, \(n=k+1\) for domain
+statements on \(\mathrm{Fin}(k+1)\).
+
+The companion \path{audit/TUTORIAL_LEAN_MAP.json} gives the exact
+source file, line, declaration signature, tutorial location and
+normalisation for every entry. \path{audit/ENTRYPOINT_SIGNATURES.txt}
+contains the literal source signatures; the earlier compiler-printed
+statements and axiom lists are preserved separately. The names below
+are declarations, not a list inferred only from file comments.
+
+\subsection{All ten final exported declarations}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.43\linewidth}>{\raggedright\arraybackslash}p{0.52\linewidth}@{}}
+\toprule Entry and Lean declaration & Exact mathematical content and hypothesis\\\midrule
+\endhead
+L01 \path{CDCert.Main.general_recurrence} & $n\geq3$: $(11n+8)f(n)\leq32nf(n-1)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L02 \path{CDCert.Main.general_geometric} & $n\geq3$: $f(n)\leq4(32/11)^{n-3}$. See Theorem~\ref{thm:final}.\\[0.65em]
+L03 \path{CDCert.Main.peak_recurrence} & $n\geq3$: $3h(n)\leq8h(n-1)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L04 \path{CDCert.Main.peak_geometric} & $n\geq3$: $h(n)\leq4(8/3)^{n-3}$. See Theorem~\ref{thm:final}.\\[0.65em]
+L05 \path{CDCert.Main.general_limit} & No extra premises: $\exists L_f$, $f(n)^{1/n}\to L_f\leq32/11$. See Theorem~\ref{thm:final}.\\[0.65em]
+L06 \path{CDCert.Main.peak_limit} & No extra premises: $\exists L_h$, $h(n)^{1/n}\to L_h\leq8/3$. See Theorem~\ref{thm:final}.\\[0.65em]
+L07 \path{CDCert.Main.general_polynomial_correction} & No extra premises: $f(n)=O(n^{-8/11}(32/11)^n)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L08 \path{CDCert.TwoInputs.first_input} & $D$ maximal, $n=k+1$: $G+(n+1)M\leq3\Sigma$. See Theorem~\ref{thm:gap}.\\[0.65em]
+L09 \path{CDCert.TwoInputs.second_input} & $D$ full, $n=k+1$: $3nM\leq8(\Sigma+G)$. See Theorem~\ref{thm:second}.\\[0.65em]
+L10 \path{CDCert.TwoInputs.transfer} & $D$ maximal, $n=k+1$: $(11n+8)M\leq32\Sigma$. See Theorem~\ref{thm:transfer}.\\[0.65em]
+\bottomrule\end{longtable}
+
+\subsection{The ten additional audited supporting results}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.43\linewidth}>{\raggedright\arraybackslash}p{0.52\linewidth}@{}}
+\toprule Entry and Lean declaration & Exact mathematical content and hypothesis\\\midrule
+\endhead
+L11 \path{CDCert.Recurrences.gap_inequality} & $D$ maximal: $G+(n+1)M\leq3\Sigma$. See Theorem~\ref{thm:gap}.\\[0.65em]
+L12 \path{CDCert.Recurrences.deletion_lower_bound} & $D$ maximal: $(11n+8)M\leq32\Sigma$. See Theorem~\ref{thm:transfer}.\\[0.65em]
+L13 \path{CDCert.Bridge.InF.density} & $K\in\mathcal F_n$, $n=k+1$: $3n|K|\leq8\Sigma(K)$. See Theorem~\ref{thm:density}.\\[0.65em]
+L14 \path{CDCert.FreeLocked.free_le_locked} & $D$ maximal: $\mathrm{fr}(D)\leq\mathrm{lk}(D)$. See Proposition~\ref{prop:injection}.\\[0.65em]
+L15 \path{CDCert.K6.finite_lemma} & $\texttt{DomE}(7,J)$: the integer-scaled seven-window inequality. See Theorem~\ref{thm:finite}.\\[0.65em]
+L16 \path{CDCert.K6.adj_le} & $\texttt{IsDom}(n,K)$: $8A(K)\leq5n|K|$. See Theorem~\ref{thm:density}.\\[0.65em]
+L17 \path{CDCert.Supermult.f_supermul} & All $m,n\in\mathbb N$: $f(m)f(n)\leq f(m+n)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L18 \path{CDCert.Supermult.h_supermul} & All $m,n\in\mathbb N$: $h(m)h(n)\leq h(m+n)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L19 \path{CDCert.Recurrences.general_recurrence} & All $k\in\mathbb N$: $(11(k+1)+8)f(k+1)\leq32(k+1)f(k)$. See Theorem~\ref{thm:final}.\\[0.65em]
+L20 \path{CDCert.Bounds.peakPit_recurrence} & All $k\in\mathbb N$: $3h(k+1)\leq8h(k)$. See Theorem~\ref{thm:final}.\\[0.65em]
+\bottomrule\end{longtable}
+
+\subsection{Definitions and representation conventions}
+The following groups identify the mathematical objects whose meanings
+must match. Their full source locations and signatures, together with
+all named helper lemmas beside the proofs, are in the machine-readable map.
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}>{\raggedright\arraybackslash}p{0.63\linewidth}@{}}
+\toprule Tutorial object & Lean definitions and precise convention\\\midrule\endhead
+Orders and domains & \path{Condorcet.IsStrictTotal}, \path{Order}, \path{Domain}: Boolean strict total relations, finite sets of distinct orders.\\[0.5em]
+Majority and Condorcet & \path{Condorcet.majority}, \path{IsCondorcet}: strict majority in every odd profile; repetitions permitted.\\[0.5em]
+Never-laws & \path{Condorcet.Never}, \path{ValueRestricted}, \path{ExtremeRestricted}: forbidden positions 0,1,2; extremes 0 and 2.\\[0.5em]
+Peak-pit and extrema & \path{Condorcet.IsPeakPit}, \path{f}, \path{h}: semantic domains and actual finite maxima, with no shared axis.\\[0.5em]
+Full and maximal & \path{Condorcet.IsFull}, \path{IsMaximal}: full solutions of one selected law per triple, versus inclusion-maximal semantic domain.\\[0.5em]
+Extreme full class & \path{Condorcet.IsExtremeFull}, \path{InF}: extreme laws plus optional fixed pair comparisons; only \texttt{InF} requires nonemptiness.\\[0.5em]
+Deletions and gaps & \path{Condorcet.deleteDomain}, \path{deletionSum}, \path{insertionWord}, \path{gapCount}; one separation per pair of consecutive runs, not one per absent slot.\\[0.5em]
+Adjacency and moves & \path{Condorcet.adjacencyCount}, \path{HasLift}, \path{HasDrop}, \path{Free}, \path{Frozen}, \path{Locked}: each swap edge twice; lifts/drops may jump.\\[0.5em]
+List domains & \path{CDCert.K6.IsDom}, \path{DomE}, \path{CDCert.ListOrder.groupsEP}: full constraint systems on all permutations, including pair choices; values on other lists are irrelevant.\\[0.5em]
+Finite potentials & \path{CDCert.K6.cost10}, \path{qD}, \path{lamD}: respectively \(10C,2dq,2d\Lambda\), with fixed literal data.\\
+\bottomrule\end{longtable}
+
+\subsection{What is not an additional formal theorem here}
+The helper facts about a particular labelled example, the arbitrary
+number-of-copies deletion-product formula, the informal twelve-idea
+classification and the discovery narrative are written explanations.
+They are not advertised as separately exported Lean theorems. The
+formal amplification instead uses the proved adjacency product and
+powers of two. The original project's arbitrary-real-density transfer
+has no separate parameterised declaration; the proved \(3/8\) instance
+is exactly the one this tutorial uses.
+
+There are 326 project source modules, with 319 in the dependency
+closure of the two final entry modules. Seven auxiliary modules lie
+outside that closure: \path{Audit}, \path{CDCert},
+\path{CDCert.Levels}, \path{ClaudeAudit}, \path{Condorcet},
+\path{KernelTransfer}, \path{ThreeOrders}. They are supplied and were
+compiled in the earlier complete audit. They are not extra assumptions
+or missing entry points of the final theorem. Generated finite-family
+theorems and proof-engineering helpers are included as dependencies;
+their precise statements can be inspected in the complete source.

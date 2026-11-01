@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "n_values": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    20,
+    30,
+    100
+  ],
+  "display_rule": "Integers with ten or more digits are rounded upwards to four significant digits.",
+  "formal_scope": "Arithmetic and explicit examples checked by this script; the external classifications are not Lean assumptions of the 32/11 theorem."
+}

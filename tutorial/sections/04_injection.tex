@@ -1,0 +1,180 @@
+\section{Idea 3: assign flexibility to distinct obstructions}\label{sec:gap}
+\intuition{Deleting a freely movable alternative can merge many orders.
+The Condorcet restrictions force a compensating rigid adjacent pair
+elsewhere. The key is to make this assignment injective.}
+
+\begin{definition}[Moves and their counts]\label{def:moves}
+A lift of \(x\) moves it upwards, preserving the relative order of all
+other labels and staying inside \(D\); a drop moves it downwards.
+Moves may jump several positions. An incidence \((\sigma,x)\), with
+\(\sigma\in D\), is free if both moves exist and frozen if neither
+exists. Their counts are \(\fr,\fz\). A neighbouring ordered pair
+\(a,c\) in \(\sigma\) is locked if \(c\) has no lift and \(a\)
+has no drop. Let \(\lk\) count these order/pair incidences.
+\end{definition}
+\lean{\path{Condorcet.HasLift}, \path{HasDrop}, \path{Free},
+\path{Frozen}, \path{freeCount}, \path{frozenCount}, \path{Locked},
+\path{lockedCount}. The exact exported move names and their source
+locations are recorded in the definition index. Here locked refers
+to arbitrary lifts and drops, not only the adjacent swap.}
+
+\begin{lemma}[Two move counts]\label{lem:moves}
+Every family satisfies
+\[
+ 2\Sig=nM-\fr+\fz.
+\]
+For a full domain one also has
+\[
+ 2\Sig=(n+1)M-A+\lk,
+ \qquad
+ 3\Sig+\fr=(n+1)M+G+\fz+\lk.             \tag{\(*\)}
+\]
+\end{lemma}
+\begin{proof}
+Each nonempty fibre has exactly one highest occupied slot and one
+lowest. Thus \(\Sig\) counts incidences with no lift, and also
+incidences with no drop. An incidence contributes \(0,1,2\) to their
+sum according as it is free, has just one move, or is frozen. This
+gives the first equation.
+
+For a neighbouring pair \(a,c\), count the missing drop of \(a\)
+and missing lift of \(c\). An enabled swap contributes zero, a locked
+pair contributes two. Every other blocked swap contributes one.
+To justify the last assertion, a blocked swap violates a defining
+triple law involving both \(a,c\), since all other comparisons are
+unchanged. If the third label \(z\) lies above both, the changed triple
+is \(zac\to zca\); its only possible newly violated laws are
+\(aN_3\) and \(cN_2\). The first rules out every lift of \(c\)
+across \(a\); the second rules out every drop of \(a\) across \(c\).
+If \(z\) lies below both, the changed triple is \(acz\to caz\),
+and the possible laws are \(aN_2,cN_1\); these likewise rule out one
+of the crossing moves. Therefore a forbidden swap cannot have both
+crossing moves available. Fullness is what supplies a violated
+chosen law when the swapped order is absent.
+
+There are also two end contributions per order: its first label has
+no lift and its last label no drop. Summing gives
+\(2\Sig=2M+(n-1)M-A+\lk\). Combine this with the first equation
+and \(\Sig+G+A=nM\) to obtain \((*)\).
+\end{proof}
+\lean{\path{Condorcet.first_move_count},
+\path{IsFull.missing_swap}, \path{IsFull.second_move_count},
+\path{IsFull.gap_slack_identity}. The last is written without
+subtraction in \(\mathbb N\):
+\(3\,\texttt{deletionSum}+\texttt{freeCount}
+=(k+2)|D|+\texttt{gapCount}+\texttt{frozenCount}+\texttt{lockedCount}\).
+The coefficient \(k+2\) is \(n+1\) because \(n=k+1\).}
+
+\begin{lemma}[A fixed pair cannot be consecutive in a maximal domain]\label{lem:fixedpair}
+If every order in a maximal Condorcet domain has \(a>c\), then no
+order in the domain puts \(a,c\) consecutively.
+\end{lemma}
+\begin{proof}
+Otherwise interchange that consecutive pair to obtain \(\tau\).
+Triples not containing both labels are unchanged from the original
+order. On a triple containing \(a,c,z\), all old orders satisfy
+\(cN_1\) and \(aN_3\), because \(a>c\) is fixed. If \(z\) lies
+above the consecutive pair in the original order, \(\tau\) has trace
+\(zca\), which still satisfies \(cN_1\). If \(z\) lies below,
+\(\tau\) has trace \(caz\), still satisfying \(aN_3\). Thus the
+old family together with \(\tau\) has a common law on every triple
+and is Condorcet. The new order reverses the fixed pair and was absent,
+contradicting maximality.
+\end{proof}
+\lean{\path{Condorcet.IsMaximal.fixed_pair_not_consecutive}.}
+
+\begin{proposition}[Free-to-locked injection]\label{prop:injection}
+For a maximal Condorcet domain, \(\fr\leq\lk\).
+\end{proposition}
+\begin{proof}
+Let \(b\) be free in an order whose immediate neighbours are \(a,b,c\).
+The order itself, a lift and a drop show the triple traces
+\(abc,bac,acb\). The only possible common laws are \(aN_3\) and
+\(cN_1\). Both cannot hold: together they force \(a>c\) in every
+order, while a lift of \(b\) puts \(a,c\) consecutively, contrary
+to Lemma~\ref{lem:fixedpair}.
+
+If \(aN_3\) holds, take the lowest available lift of \(b\); otherwise
+take its highest available drop. In the resulting order \(\tau\),
+\(a,c\) are consecutive and locked. In the lift case, \(b\) lies
+above both: lifting \(c\) above \(a\), or dropping \(a\) below
+\(c\), makes \(a\) last on their triple, violating \(aN_3\).
+The drop case is reversed. This defines the assignment.
+
+For a fixed moved label \(b\), its preimage is uniquely recovered
+by moving \(b\) into the slot between the image pair. It remains to
+exclude different moved labels with the same image. The following
+three cases give that exclusion explicitly.
+
+Call the image pair \(p,q\). A preimage is upper when its moved label
+\(b\) is above \(p\) in \(\tau\). Then \(pN_3\) holds and
+\(qN_1\) does not, so there exists \(\chi_b\in D\) with trace
+\(qpb\). For a lower preimage \(qN_1\) holds and \(pN_3\) does not.
+Suppose two distinct labels \(b_1,b_2\) give the same image.
+
+\emph{Both upper.} Drop \(b_i\) in its original preimage \(\sigma_i\),
+obtaining \(\rho_i\). On \(\{b_1,b_2,q\}\) the four traces are
+\[
+ \begin{array}{c|cccc}
+  \text{order}&\sigma_1&\sigma_2&\rho_1&\rho_2\\\hline
+  \text{trace}&b_2b_1q&b_1b_2q&b_2qb_1&b_1qb_2.
+ \end{array}
+\]
+Both \(b_1,b_2\) occupy every position, so only \(qN_1\) can hold.
+In \(\chi_{b_1}\), \(q\) is above \(p,b_1\). Thus \(b_2\)
+must be above \(q\), giving trace \(b_2qp\) on \(\{p,q,b_2\}\),
+contrary to its \(pN_3\) law.
+
+\emph{Both lower.} Reverse every order. Maximality and the Condorcet
+property are preserved; lifts and drops exchange roles. The assignment
+also reverses: exactly one of its two possible triple laws holds, and
+the lowest lift becomes the highest drop. This reduces to the case
+just excluded.
+
+\emph{One upper and one lower.} Let \(b_1\) be upper and \(b_2\)
+lower. The traces on \(\{p,q,b_1,b_2\}\) are
+\[
+ \tau:b_1pqb_2,\quad\sigma_1:pb_1qb_2,\quad\sigma_2:b_1pb_2q.
+\]
+Take \(\chi=\chi_{b_1}\), with trace \(qpb_1\). The law \(qN_1\)
+on \(\{p,q,b_2\}\) forces \(b_2\) above \(q\), so \(\chi\)
+has trace \(b_2qpb_1\). On \(\{b_1,b_2,q\}\), the orders
+\(\tau,\sigma_2,\chi\) have traces
+\(b_1qb_2,b_1b_2q,b_2qb_1\). These permit just two common laws:
+\(b_1N_2\) and \(qN_1\). Let \(\rho\) be a drop of \(b_1\)
+from \(\sigma_1\). In \(\rho\), the label \(q\) is above both
+\(b_1\) and \(b_2\): the drop puts \(b_1\) below its neighbour
+\(q\), while the comparison of \(q\) with \(b_2\) stays fixed.
+Thus \(\rho\) rules out \(qN_1\), leaving \(b_1N_2\).
+Let \(\lambda\) be a lift of \(b_2\) from \(\sigma_2\).
+The remaining law forces the traces of \(\rho,\lambda\) on this
+triple to be \(qb_2b_1\) and \(b_1b_2q\).
+On \(\{p,b_1,b_2\}\), the five orders
+\(\tau,\sigma_1,\rho,\lambda,\chi\) therefore give
+\[
+ b_1pb_2,\quad pb_1b_2,\quad pb_2b_1,\quad b_1b_2p,\quad b_2pb_1.
+\]
+Every alternative occupies every position, leaving no common law.
+This contradiction excludes the last collision and proves injectivity.
+\end{proof}
+\lean{\path{CDCert.FreeLocked.FreePair.law}, \path{not_both},
+\path{lift_locked}, \path{drop_locked}, followed by
+\path{CDCert.FreeLocked.psi_inj} and \path{free_le_locked}.
+The conclusion assumes only \path{IsMaximal}; fullness and the triple
+laws are obtained inside the dependency chain.}
+
+\begin{theorem}[Gap inequality]\label{thm:gap}
+For every maximal Condorcet domain,
+\[
+ \boxed{G+(n+1)M\leq3\Sig.}
+\]
+\end{theorem}
+\begin{proof}
+Use \(\fr\leq\lk\) in Lemma~\ref{lem:moves}, and discard the
+nonnegative frozen count. No finite enumeration is used.
+\end{proof}
+\lean{\path{CDCert.Recurrences.gap_inequality} and its final wrapper
+\path{CDCert.TwoInputs.first_input}. The helper
+\path{CDCert.Bounds.FreeLockedInjection} is an interface, not an
+unproved premise: \path{CDCert.Recurrences.freeLockedInjection}
+discharges it using the injection just proved.}

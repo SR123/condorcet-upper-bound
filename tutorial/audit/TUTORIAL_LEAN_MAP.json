@@ -1,0 +1,2567 @@
+{
+  "scope": "All 10 exported declarations of Main/TwoInputs, 10 further previously audited results, and all explicitly named original definitions/helpers in the proof text. Internal proof engineering declarations are supplied as complete source, not separate tutorial theorems.",
+  "basis": "Actual source definitions and signatures, the earlier complete 326-module kernel build, and successful fresh compilation of 54 typed tutorial restatements plus 190 named interface checks. Original proof objects are hash-verified; this does not claim a second complete source build.",
+  "entrypoints": [
+    {
+      "id": "L01",
+      "name": "CDCert.Main.general_recurrence",
+      "tutorial_result": "E1",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "$n\\geq3$: $(11n+8)f(n)\\leq32nf(n-1)$.",
+      "normalization": "exact natural-number statement",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 29,
+      "kind": "theorem",
+      "signature": "theorem general_recurrence {n : ℕ} (hn : 3 ≤ n) : (11 * n + 8) * f n ≤ 32 * n * f (n - 1)"
+    },
+    {
+      "id": "L02",
+      "name": "CDCert.Main.general_geometric",
+      "tutorial_result": "E2",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "$n\\geq3$: $f(n)\\leq4(32/11)^{n-3}$.",
+      "normalization": "counts cast to real numbers",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 33,
+      "kind": "theorem",
+      "signature": "theorem general_geometric {n : ℕ} (hn : 3 ≤ n) : (f n : ℝ) ≤ 4 * (32 / 11 : ℝ) ^ (n - 3)"
+    },
+    {
+      "id": "L03",
+      "name": "CDCert.Main.peak_recurrence",
+      "tutorial_result": "E3",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "$n\\geq3$: $3h(n)\\leq8h(n-1)$.",
+      "normalization": "exact natural-number statement",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 37,
+      "kind": "theorem",
+      "signature": "theorem peak_recurrence {n : ℕ} (hn : 3 ≤ n) : 3 * h n ≤ 8 * h (n - 1)"
+    },
+    {
+      "id": "L04",
+      "name": "CDCert.Main.peak_geometric",
+      "tutorial_result": "E4",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "$n\\geq3$: $h(n)\\leq4(8/3)^{n-3}$.",
+      "normalization": "counts cast to real numbers",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 41,
+      "kind": "theorem",
+      "signature": "theorem peak_geometric {n : ℕ} (hn : 3 ≤ n) : (h n : ℝ) ≤ 4 * (8 / 3 : ℝ) ^ (n - 3)"
+    },
+    {
+      "id": "L05",
+      "name": "CDCert.Main.general_limit",
+      "tutorial_result": "E5",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "No extra premises: $\\exists L_f$, $f(n)^{1/n}\\to L_f\\leq32/11$.",
+      "normalization": "real powers; convergence at infinity",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 45,
+      "kind": "theorem",
+      "signature": "theorem general_limit :\n    ∃ L, Tendsto (fun n : ℕ => (f n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 32 / 11"
+    },
+    {
+      "id": "L06",
+      "name": "CDCert.Main.peak_limit",
+      "tutorial_result": "E6",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "No extra premises: $\\exists L_h$, $h(n)^{1/n}\\to L_h\\leq8/3$.",
+      "normalization": "real powers; convergence at infinity",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 50,
+      "kind": "theorem",
+      "signature": "theorem peak_limit :\n    ∃ L, Tendsto (fun n : ℕ => (h n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 8 / 3"
+    },
+    {
+      "id": "L07",
+      "name": "CDCert.Main.general_polynomial_correction",
+      "tutorial_result": "E7",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "No extra premises: $f(n)=O(n^{-8/11}(32/11)^n)$.",
+      "normalization": "real powers and big-O at infinity",
+      "module": "CDCert.Main",
+      "file": "lean/CDCert/Main.lean",
+      "line": 55,
+      "kind": "theorem",
+      "signature": "theorem general_polynomial_correction :\n    (fun n : ℕ => (f n : ℝ)) =O[atTop] (fun n : ℕ => (n : ℝ) ^ (-(8 / 11 : ℝ)) * (32 / 11 : ℝ) ^ n)"
+    },
+    {
+      "id": "L08",
+      "name": "CDCert.TwoInputs.first_input",
+      "tutorial_result": "First input",
+      "tutorial_label": "thm:gap",
+      "mathematical_statement_latex": "$D$ maximal, $n=k+1$: $G+(n+1)M\\leq3\\Sigma$.",
+      "normalization": "Fin(k+1); addition avoids truncated subtraction",
+      "module": "CDCert.TwoInputs",
+      "file": "lean/CDCert/TwoInputs.lean",
+      "line": 23,
+      "kind": "theorem",
+      "signature": "theorem first_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D"
+    },
+    {
+      "id": "L09",
+      "name": "CDCert.TwoInputs.second_input",
+      "tutorial_result": "Second input",
+      "tutorial_label": "thm:second",
+      "mathematical_statement_latex": "$D$ full, $n=k+1$: $3nM\\leq8(\\Sigma+G)$.",
+      "normalization": "Fin(k+1); no maximality premise",
+      "module": "CDCert.TwoInputs",
+      "file": "lean/CDCert/TwoInputs.lean",
+      "line": 28,
+      "kind": "theorem",
+      "signature": "theorem second_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsFull D) :\n    3 * (n + 1) * D.card ≤ 8 * (deletionSum D + gapCount D)"
+    },
+    {
+      "id": "L10",
+      "name": "CDCert.TwoInputs.transfer",
+      "tutorial_result": "Transfer",
+      "tutorial_label": "thm:transfer",
+      "mathematical_statement_latex": "$D$ maximal, $n=k+1$: $(11n+8)M\\leq32\\Sigma$.",
+      "normalization": "Fin(k+1); both inputs discharged",
+      "module": "CDCert.TwoInputs",
+      "file": "lean/CDCert/TwoInputs.lean",
+      "line": 39,
+      "kind": "theorem",
+      "signature": "theorem transfer {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D"
+    },
+    {
+      "id": "L11",
+      "name": "CDCert.Recurrences.gap_inequality",
+      "tutorial_result": "Gap",
+      "tutorial_label": "thm:gap",
+      "mathematical_statement_latex": "$D$ maximal: $G+(n+1)M\\leq3\\Sigma$.",
+      "normalization": "same type as first_input",
+      "module": "CDCert.Recurrences",
+      "file": "lean/CDCert/Recurrences.lean",
+      "line": 32,
+      "kind": "theorem",
+      "signature": "theorem gap_inequality {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D"
+    },
+    {
+      "id": "L12",
+      "name": "CDCert.Recurrences.deletion_lower_bound",
+      "tutorial_result": "Deletion lower bound",
+      "tutorial_label": "thm:transfer",
+      "mathematical_statement_latex": "$D$ maximal: $(11n+8)M\\leq32\\Sigma$.",
+      "normalization": "same type as transfer",
+      "module": "CDCert.Recurrences",
+      "file": "lean/CDCert/Recurrences.lean",
+      "line": 38,
+      "kind": "theorem",
+      "signature": "theorem deletion_lower_bound {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D"
+    },
+    {
+      "id": "L13",
+      "name": "CDCert.Bridge.InF.density",
+      "tutorial_result": "Density",
+      "tutorial_label": "thm:density",
+      "mathematical_statement_latex": "$K\\in\\mathcal F_n$, $n=k+1$: $3n|K|\\leq8\\Sigma(K)$.",
+      "normalization": "semantic order domain; InF includes nonemptiness",
+      "module": "CDCert.BridgeK6",
+      "file": "lean/CDCert/BridgeK6.lean",
+      "line": 231,
+      "kind": "theorem",
+      "signature": "theorem InF.density {n : Nat} {D : Domain (Fin (n + 1))} (hD : InF D) :\n    3 * (n + 1) * D.card ≤ 8 * deletionSum D"
+    },
+    {
+      "id": "L14",
+      "name": "CDCert.FreeLocked.free_le_locked",
+      "tutorial_result": "Injection",
+      "tutorial_label": "prop:injection",
+      "mathematical_statement_latex": "$D$ maximal: $\\mathrm{fr}(D)\\leq\\mathrm{lk}(D)$.",
+      "normalization": "counts of actual moves and adjacent pairs",
+      "module": "CDCert.FreeLocked",
+      "file": "lean/CDCert/FreeLocked.lean",
+      "line": 733,
+      "kind": "theorem",
+      "signature": "theorem free_le_locked (hD : IsMaximal D) : freeCount D ≤ lockedCount D"
+    },
+    {
+      "id": "L15",
+      "name": "CDCert.K6.finite_lemma",
+      "tutorial_result": "Finite input",
+      "tutorial_label": "thm:finite",
+      "mathematical_statement_latex": "$\\texttt{DomE}(7,J)$: the integer-scaled seven-window inequality.",
+      "normalization": "cost10=10C; qD=2dq; see scaling subsection",
+      "module": "CDCert.K6.SevenFinal",
+      "file": "lean/CDCert/K6/SevenFinal.lean",
+      "line": 230,
+      "kind": "theorem",
+      "signature": "theorem finite_lemma {J : List Nat → Bool} (hJ : DomE 7 J) :\n    (cD5 : Int) * cost10 J ≤ 11057646600 * card 7 J +\n      ((List.range 7).map (fun z => qD (botP z J))).sum - ((List.range 7).map (fun w => qD (topP w J))).sum"
+    },
+    {
+      "id": "L16",
+      "name": "CDCert.K6.adj_le",
+      "tutorial_result": "Adjacency density",
+      "tutorial_label": "thm:density",
+      "mathematical_statement_latex": "$\\texttt{IsDom}(n,K)$: $8A(K)\\leq5n|K|$.",
+      "normalization": "list representation; no positive n hypothesis",
+      "module": "CDCert.K6.Density",
+      "file": "lean/CDCert/K6/Density.lean",
+      "line": 70,
+      "kind": "theorem",
+      "signature": "theorem adj_le {n : Nat} {K : List Nat → Bool} (hK : IsDom n K) : 8 * adj n K ≤ 5 * n * card n K"
+    },
+    {
+      "id": "L17",
+      "name": "CDCert.Supermult.f_supermul",
+      "tutorial_result": "General product",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "All $m,n\\in\\mathbb N$: $f(m)f(n)\\leq f(m+n)$.",
+      "normalization": "disjoint-block concatenation",
+      "module": "CDCert.Supermult",
+      "file": "lean/CDCert/Supermult.lean",
+      "line": 296,
+      "kind": "theorem",
+      "signature": "theorem f_supermul (m n : Nat) : f m * f n ≤ f (m + n)"
+    },
+    {
+      "id": "L18",
+      "name": "CDCert.Supermult.h_supermul",
+      "tutorial_result": "Peak-pit product",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "All $m,n\\in\\mathbb N$: $h(m)h(n)\\leq h(m+n)$.",
+      "normalization": "disjoint-block concatenation",
+      "module": "CDCert.Supermult",
+      "file": "lean/CDCert/Supermult.lean",
+      "line": 303,
+      "kind": "theorem",
+      "signature": "theorem h_supermul (m n : Nat) : h m * h n ≤ h (m + n)"
+    },
+    {
+      "id": "L19",
+      "name": "CDCert.Recurrences.general_recurrence",
+      "tutorial_result": "Stronger general recurrence",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "All $k\\in\\mathbb N$: $(11(k+1)+8)f(k+1)\\leq32(k+1)f(k)$.",
+      "normalization": "equivalently the recurrence for n>=1",
+      "module": "CDCert.Recurrences",
+      "file": "lean/CDCert/Recurrences.lean",
+      "line": 59,
+      "kind": "theorem",
+      "signature": "theorem general_recurrence (n : Nat) : (11 * (n + 1) + 8) * f (n + 1) ≤ 32 * (n + 1) * f n"
+    },
+    {
+      "id": "L20",
+      "name": "CDCert.Bounds.peakPit_recurrence",
+      "tutorial_result": "Stronger peak recurrence",
+      "tutorial_label": "thm:final",
+      "mathematical_statement_latex": "All $k\\in\\mathbb N$: $3h(k+1)\\leq8h(k)$.",
+      "normalization": "equivalently the recurrence for n>=1",
+      "module": "CDCert.Bounds",
+      "file": "lean/CDCert/Bounds.lean",
+      "line": 36,
+      "kind": "theorem",
+      "signature": "theorem peakPit_recurrence (n : Nat) : 3 * h (n + 1) ≤ 8 * h n"
+    }
+  ],
+  "named_support_and_definitions": {
+    "CDCert.IsChoice": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Enum",
+        "file": "lean/CDCert/Enum.lean",
+        "line": 48,
+        "kind": "inductive",
+        "signature": "inductive IsChoice : List ω → List (List ω) → Prop"
+      }
+    },
+    "CDCert.domainOf": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Enum",
+        "file": "lean/CDCert/Enum.lean",
+        "line": 185,
+        "kind": "def",
+        "signature": "def domainOf (base : List α) (c : List (Opt α)) : List α"
+      }
+    },
+    "CDCert.allows": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Enum",
+        "file": "lean/CDCert/Enum.lean",
+        "line": 170,
+        "kind": "def",
+        "signature": "def allows (c : List (Opt α)) (x : α) : Bool"
+      }
+    },
+    "CDCert.ListOrder.groupsEP": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Extension",
+        "file": "lean/CDCert/Extension.lean",
+        "line": 52,
+        "kind": "def",
+        "signature": "def groupsEP : Nat → List (Group (List Nat))"
+      }
+    },
+    "CDCert.Bridge.isChoice_groupsEP_iff": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeEP",
+        "file": "lean/CDCert/BridgeEP.lean",
+        "line": 388,
+        "kind": "theorem",
+        "signature": "theorem isChoice_groupsEP_iff :\n    ∀ (n : Nat) (c : List (Opt (List Nat))), IsChoice c (groupsEP n) →\n      ∃ (lawN : Nat × Nat × Nat → Fin 3 × Fin 3) (pairN : Nat → Nat → Option Bool),\n        (∀ t, lawN t ∈ lawsExtreme) ∧ c = choiceEPN lawN pairN n"
+      }
+    },
+    "CDCert.K6.five_cover": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.FiveSem",
+        "file": "lean/CDCert/K6/FiveSem.lean",
+        "line": 183,
+        "kind": "theorem",
+        "signature": "theorem five_cover {c : List (Opt (List Nat))} (hc : IsChoice c (groupsEP 5)) {L0 : List Nat}\n    (hL0 : L0 ∈ orders 5) (ha : allows c L0 = true) :\n    ∃ ρ, ρ ∈ orders 5 ∧ ∃ k, k < 1160 ∧ ∀ L, L ∈ orders 5 → allows c L = memM (rep5T.find k) (rlab ρ L)"
+      }
+    },
+    "CDCert.K6.six_sem": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SixSem",
+        "file": "lean/CDCert/K6/SixSem.lean",
+        "line": 119,
+        "kind": "theorem",
+        "signature": "theorem six_sem {H : List Nat → Bool} (hH : IsDom 6 H) :\n    (∃ j, j ∈ excIdx ∧ IsoM (excRep6.getD j 0) H) ∨ 0 ≤ sumV6 H"
+      }
+    },
+    "CDCert.K6.seven_fam_0": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Seven.S00",
+        "file": "lean/CDCert/K6/Seven/S00.lean",
+        "line": 37,
+        "kind": "theorem",
+        "signature": "theorem seven_fam_0 {J : List Nat → Bool} (hJ : IsDom 7 J)\n    (hs : maskOf (baseB 5) (botP 6 J) = excRep6.getD 0 0) : 2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.K6.seven_fam_25": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Seven.S25",
+        "file": "lean/CDCert/K6/Seven/S25.lean",
+        "line": 37,
+        "kind": "theorem",
+        "signature": "theorem seven_fam_25 {J : List Nat → Bool} (hJ : IsDom 7 J)\n    (hs : maskOf (baseB 5) (topP 6 J) = excRep6.getD 13 0) : 2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.K6.relabel_slice": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SevenFinal",
+        "file": "lean/CDCert/K6/SevenFinal.lean",
+        "line": 129,
+        "kind": "theorem",
+        "signature": "theorem relabel_slice {S : Nat → (List Nat → Bool) → List Nat → Bool} (hS : SliceRel S)\n    {J : List Nat → Bool} (hJ : IsDom 7 J) {z : Nat} (hz : z < 7) {j : Nat} (hj : j < 14)\n    (hiso : IsoM (excRep6.getD j 0) (S z J)) :\n    ∃ J' : List Nat → Bool, IsDom 7 J' ∧ card 7 J' = card 7 J ∧ lamD J' = lamD J ∧\n      maskOf (baseB 5) (S 6 J') = excRep6.getD j 0"
+      }
+    },
+    "CDCert.K6.seven_bot": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SevenFinal",
+        "file": "lean/CDCert/K6/SevenFinal.lean",
+        "line": 140,
+        "kind": "theorem",
+        "signature": "theorem seven_bot {J : List Nat → Bool} (hJ : IsDom 7 J) {j : Nat} (hj : j < 14) (h9 : j ≠ 9)\n    (hs : maskOf (baseB 5) (botP 6 J) = excRep6.getD j 0) : 2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.K6.seven_top": {
+      "tutorial_files": [
+        "sections/06_local_input.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SevenFinal",
+        "file": "lean/CDCert/K6/SevenFinal.lean",
+        "line": 159,
+        "kind": "theorem",
+        "signature": "theorem seven_top {J : List Nat → Bool} (hJ : IsDom 7 J) {j : Nat} (hj : j < 14) (h9 : j ≠ 9)\n    (hs : maskOf (baseB 5) (topP 6 J) = excRep6.getD j 0) : 2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.Bridge.before_toList": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 108,
+        "kind": "theorem",
+        "signature": "theorem before_toList {n : Nat} (r : Condorcet.Order (Fin n)) (a b : Fin n) :\n    before a.val b.val (toList r) = r a b"
+      }
+    },
+    "CDCert.Bridge.ofList_toList": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 138,
+        "kind": "theorem",
+        "signature": "theorem ofList_toList {n : Nat} (r : Condorcet.Order (Fin n)) : ofList (toList r) (toList_mem r) = r"
+      }
+    },
+    "CDCert.Bridge.toList_ofList": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 141,
+        "kind": "theorem",
+        "signature": "theorem toList_ofList {n : Nat} (L : List Nat) (hL : L ∈ orders n) :\n    toList (ofList L hL) = L"
+      }
+    },
+    "CDCert.Bridge.toList_injective": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 157,
+        "kind": "theorem",
+        "signature": "theorem toList_injective {n : Nat} : Function.Injective (toList (n"
+      }
+    },
+    "CDCert.Bridge.lawOpt_toList": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 464,
+        "kind": "theorem",
+        "signature": "theorem lawOpt_toList {n : Nat} (r : Condorcet.Order (Fin n)) (t : Triple n)\n    (law : Fin 3 × Fin 3) : lawOpt t law (toList r) = true ↔ HoldsLaw r t law"
+      }
+    },
+    "CDCert.Bridge.pairOpt_toList": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bridge",
+        "file": "lean/CDCert/Bridge.lean",
+        "line": 468,
+        "kind": "theorem",
+        "signature": "theorem pairOpt_toList {n : Nat} (r : Condorcet.Order (Fin n)) (i : Pair n) (b : Bool) :\n    pairOpt i b (toList r) = true ↔ encode r i = b"
+      }
+    },
+    "CDCert.Bridge.mem_extremeFullDomain_iff": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeEP",
+        "file": "lean/CDCert/BridgeEP.lean",
+        "line": 217,
+        "kind": "theorem",
+        "signature": "theorem mem_extremeFullDomain_iff {n : Nat} (L : ExtremeSelection n) (Q : FixedPairs n)\n    (r : Condorcet.Order (Fin n)) :\n    r ∈ extremeFullDomain L Q ↔ toList r ∈ domainOf (orders n) (choiceEP L Q)"
+      }
+    },
+    "CDCert.Bridge.InF.toList_domain": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeEP",
+        "file": "lean/CDCert/BridgeEP.lean",
+        "line": 250,
+        "kind": "theorem",
+        "signature": "theorem InF.toList_domain {n : Nat} {D : Domain (Fin n)} (hD : InF D) :\n    ∃ c, IsChoice c (groupsEP n) ∧ (∀ r, r ∈ D ↔ toList r ∈ domainOf (orders n) c) ∧\n      D.card = (domainOf (orders n) c).length ∧ domainOf (orders n) c ≠ []"
+      }
+    },
+    "CDCert.Bridge.toList_swapLetter": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeK6",
+        "file": "lean/CDCert/BridgeK6.lean",
+        "line": 143,
+        "kind": "theorem",
+        "signature": "theorem toList_swapLetter {n : Nat} (r : Condorcet.Order (Fin (n + 1))) (j : Fin n) :\n    toList (swapLetter r j) = CDCert.K6.swapAt j.val (toList r)"
+      }
+    },
+    "CDCert.Bridge.card_adj_of_choice": {
+      "tutorial_files": [
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeK6",
+        "file": "lean/CDCert/BridgeK6.lean",
+        "line": 202,
+        "kind": "theorem",
+        "signature": "theorem card_adj_of_choice {n : Nat} {D : Domain (Fin (n + 1))} {c : List (Opt (List Nat))}\n    (hmem : ∀ r, r ∈ D ↔ toList r ∈ domainOf (orders (n + 1)) c) :\n    D.card = CDCert.K6.card (n + 1) (allows c) ∧\n      adjacencyCount D = CDCert.K6.adj (n + 1) (allows c)"
+      }
+    },
+    "CDCert.Bridge.InF.density": {
+      "tutorial_files": [
+        "sections/08_copies.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.BridgeK6",
+        "file": "lean/CDCert/BridgeK6.lean",
+        "line": 231,
+        "kind": "theorem",
+        "signature": "theorem InF.density {n : Nat} {D : Domain (Fin (n + 1))} (hD : InF D) :\n    3 * (n + 1) * D.card ≤ 8 * deletionSum D"
+      }
+    },
+    "CDCert.K6.adj_le": {
+      "tutorial_files": [
+        "sections/08_copies.tex",
+        "sections/10_computation.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Density",
+        "file": "lean/CDCert/K6/Density.lean",
+        "line": 70,
+        "kind": "theorem",
+        "signature": "theorem adj_le {n : Nat} {K : List Nat → Bool} (hK : IsDom n K) : 8 * adj n K ≤ 5 * n * card n K"
+      }
+    },
+    "CDCert.TwoInputs.first_input": {
+      "tutorial_files": [
+        "sections/00a_first_pass.tex",
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.TwoInputs",
+        "file": "lean/CDCert/TwoInputs.lean",
+        "line": 23,
+        "kind": "theorem",
+        "signature": "theorem first_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D"
+      }
+    },
+    "CDCert.TwoInputs.second_input": {
+      "tutorial_files": [
+        "sections/00a_first_pass.tex",
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.TwoInputs",
+        "file": "lean/CDCert/TwoInputs.lean",
+        "line": 28,
+        "kind": "theorem",
+        "signature": "theorem second_input {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsFull D) :\n    3 * (n + 1) * D.card ≤ 8 * (deletionSum D + gapCount D)"
+      }
+    },
+    "CDCert.TwoInputs.transfer": {
+      "tutorial_files": [
+        "sections/00a_first_pass.tex",
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.TwoInputs",
+        "file": "lean/CDCert/TwoInputs.lean",
+        "line": 39,
+        "kind": "theorem",
+        "signature": "theorem transfer {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D"
+      }
+    },
+    "Condorcet.HasLift": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 46,
+        "kind": "def",
+        "signature": "def HasLift {n : Nat} (D : Domain (Fin (n+1))) (r : Order (Fin (n+1))) (x : Fin (n+1)) : Prop"
+      }
+    },
+    "Condorcet.HasDrop": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 50,
+        "kind": "def",
+        "signature": "def HasDrop {n : Nat} (D : Domain (Fin (n+1))) (r : Order (Fin (n+1))) (x : Fin (n+1)) : Prop"
+      }
+    },
+    "Condorcet.Free": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 53,
+        "kind": "def",
+        "signature": "def Free {n : Nat} (D : Domain (Fin (n+1))) (r : Order (Fin (n+1))) (x : Fin (n+1)) : Prop"
+      }
+    },
+    "Condorcet.Frozen": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 56,
+        "kind": "def",
+        "signature": "def Frozen {n : Nat} (D : Domain (Fin (n+1))) (r : Order (Fin (n+1))) (x : Fin (n+1)) : Prop"
+      }
+    },
+    "Condorcet.freeCount": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 217,
+        "kind": "def",
+        "signature": "noncomputable def freeCount {n : Nat} (D : Domain (Fin (n+1))) : Nat"
+      }
+    },
+    "Condorcet.frozenCount": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 221,
+        "kind": "def",
+        "signature": "noncomputable def frozenCount {n : Nat} (D : Domain (Fin (n+1))) : Nat"
+      }
+    },
+    "Condorcet.Locked": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.GapCounts",
+        "file": "lean/Condorcet/GapCounts.lean",
+        "line": 51,
+        "kind": "def",
+        "signature": "def Locked {n : Nat} (D : Domain (Fin (n+1))) (r : Order (Fin (n+1))) (j : Fin n) : Prop"
+      }
+    },
+    "Condorcet.lockedCount": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.GapCounts",
+        "file": "lean/Condorcet/GapCounts.lean",
+        "line": 54,
+        "kind": "def",
+        "signature": "noncomputable def lockedCount {n : Nat} (D : Domain (Fin (n+1))) : Nat"
+      }
+    },
+    "Condorcet.first_move_count": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Moves",
+        "file": "lean/Condorcet/Moves.lean",
+        "line": 237,
+        "kind": "theorem",
+        "signature": "theorem first_move_count {n : Nat} (D : Domain (Fin (n+1))) :\n    2 * deletionSum D + freeCount D = (n+1) * D.card + frozenCount D"
+      }
+    },
+    "Condorcet.IsFull.missing_swap": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.MissingSwap",
+        "file": "lean/Condorcet/MissingSwap.lean",
+        "line": 111,
+        "kind": "theorem",
+        "signature": "theorem IsFull.missing_swap {n : Nat} {D : Domain (Fin (n+1))} (hD : IsFull D)\n    (r s : Order (Fin (n+1))) (p q : Fin (n+1)) (hpq : p ≠ q)\n    (hr : r ∈ D) (hs : s ∉ D) (hrpq : r p q = true) (hspq : s p q = false)\n    (hcon : ∀ c, ¬(r p c = true ∧ r c q = true))\n    (hoff : ∀ u v, (u,v) ≠ (p,q) → (u,v) ≠ (q,p) → r u v = s u v) :\n    ¬ HasLift D r q ∨ ¬ HasDrop D r p"
+      }
+    },
+    "Condorcet.IsFull.second_move_count": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.GapCounts",
+        "file": "lean/Condorcet/GapCounts.lean",
+        "line": 127,
+        "kind": "theorem",
+        "signature": "theorem IsFull.second_move_count {n : Nat} {D : Domain (Fin (n+1))} (hD : IsFull D) :\n    2 * deletionSum D + adjacencyCount D = (n+2) * D.card + lockedCount D"
+      }
+    },
+    "Condorcet.IsFull.gap_slack_identity": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.GapCounts",
+        "file": "lean/Condorcet/GapCounts.lean",
+        "line": 147,
+        "kind": "theorem",
+        "signature": "theorem IsFull.gap_slack_identity {n : Nat} {D : Domain (Fin (n+1))} (hD : IsFull D) :\n    3 * deletionSum D + freeCount D =\n      (n+2) * D.card + gapCount D + frozenCount D + lockedCount D"
+      }
+    },
+    "Condorcet.IsMaximal.fixed_pair_not_consecutive": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.MaximalPairs",
+        "file": "lean/Condorcet/MaximalPairs.lean",
+        "line": 145,
+        "kind": "theorem",
+        "signature": "theorem IsMaximal.fixed_pair_not_consecutive {n : Nat} {D : Domain (Fin (n+1))}\n    (hD : IsMaximal D) (r : Order (Fin (n+1))) (p q : Fin (n+1))\n    (hpq : p ≠ q) (hr : r ∈ D) (hfixed : ∀ u ∈ D, u p q = true) :\n    ¬(∀ c, ¬(r p c = true ∧ r c q = true))"
+      }
+    },
+    "CDCert.FreeLocked.FreePair.law": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 320,
+        "kind": "theorem",
+        "signature": "theorem law (h : FreePair D σ b a c) (hD : IsCondorcet D) :\n    NeverOn D a b c 2 ∨ NeverOn D c a b 0"
+      }
+    },
+    "CDCert.FreeLocked.FreePair.not_both": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 338,
+        "kind": "theorem",
+        "signature": "theorem not_both (h : FreePair D σ b a c) (hD : IsMaximal D) :\n    ¬ (NeverOn D a b c 2 ∧ NeverOn D c a b 0)"
+      }
+    },
+    "CDCert.FreeLocked.FreePair.lift_locked": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 357,
+        "kind": "theorem",
+        "signature": "theorem lift_locked (h : FreePair D σ b a c) (hU : NeverOn D a b c 2) {τ : Order (Fin (n + 1))}\n    (ht : IsLift D σ τ b) : ¬ HasLift D τ c ∧ ¬ HasDrop D τ a"
+      }
+    },
+    "CDCert.FreeLocked.FreePair.drop_locked": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 377,
+        "kind": "theorem",
+        "signature": "theorem drop_locked (h : FreePair D σ b a c) (hL : NeverOn D c a b 0) {τ : Order (Fin (n + 1))}\n    (ht : IsDrop D σ τ b) : ¬ HasLift D τ c ∧ ¬ HasDrop D τ a"
+      }
+    },
+    "CDCert.FreeLocked.psi_inj": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 685,
+        "kind": "theorem",
+        "signature": "theorem psi_inj (hD : IsMaximal D) {σ₁ σ₂ : Order (Fin (n + 1))} {b₁ b₂ : Fin (n + 1)}\n    (h₁ : FreePair D σ₁ b₁ (upN σ₁ b₁) (dnN σ₁ b₁)) (h₂ : FreePair D σ₂ b₂ (upN σ₂ b₂) (dnN σ₂ b₂))\n    (heq : psi D (b₁, σ₁) = psi D (b₂, σ₂)) : b₁ = b₂ ∧ σ₁ = σ₂"
+      }
+    },
+    "CDCert.FreeLocked.free_le_locked": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.FreeLocked",
+        "file": "lean/CDCert/FreeLocked.lean",
+        "line": 733,
+        "kind": "theorem",
+        "signature": "theorem free_le_locked (hD : IsMaximal D) : freeCount D ≤ lockedCount D"
+      }
+    },
+    "Condorcet.IsMaximal": {
+      "tutorial_files": [
+        "sections/01_definitions.tex",
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 95,
+        "kind": "def",
+        "signature": "def IsMaximal {α : Type*} (D : Domain α) : Prop"
+      }
+    },
+    "CDCert.Recurrences.gap_inequality": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 32,
+        "kind": "theorem",
+        "signature": "theorem gap_inequality {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    gapCount D + (n + 2) * D.card ≤ 3 * deletionSum D"
+      }
+    },
+    "CDCert.Bounds.FreeLockedInjection": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Bounds",
+        "file": "lean/CDCert/Bounds.lean",
+        "line": 109,
+        "kind": "def",
+        "signature": "def FreeLockedInjection : Prop"
+      }
+    },
+    "CDCert.Recurrences.freeLockedInjection": {
+      "tutorial_files": [
+        "sections/04_injection.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 27,
+        "kind": "theorem",
+        "signature": "theorem freeLockedInjection : CDCert.Bounds.FreeLockedInjection"
+      }
+    },
+    "CDCert.K6.botP": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SliceClosure",
+        "file": "lean/CDCert/K6/SliceClosure.lean",
+        "line": 36,
+        "kind": "def",
+        "signature": "def botP (x : Nat) (H : List Nat → Bool) : List Nat → Bool"
+      }
+    },
+    "CDCert.K6.topP": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SliceClosure",
+        "file": "lean/CDCert/K6/SliceClosure.lean",
+        "line": 39,
+        "kind": "def",
+        "signature": "def topP (y : Nat) (H : List Nat → Bool) : List Nat → Bool"
+      }
+    },
+    "CDCert.K6.slice_bot": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SliceClosure",
+        "file": "lean/CDCert/K6/SliceClosure.lean",
+        "line": 647,
+        "kind": "theorem",
+        "signature": "theorem slice_bot {k x : Nat} (hx : x < k + 1) {H : List Nat → Bool} (hH : IsDom (k + 1) H) :\n    IsDom k (botP x H) ∨ IsEmptyOn k (botP x H)"
+      }
+    },
+    "CDCert.K6.slice_top": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SliceClosure",
+        "file": "lean/CDCert/K6/SliceClosure.lean",
+        "line": 668,
+        "kind": "theorem",
+        "signature": "theorem slice_top {k y : Nat} (hy : y < k + 1) {H : List Nat → Bool} (hH : IsDom (k + 1) H) :\n    IsDom k (topP y H) ∨ IsEmptyOn k (topP y H)"
+      }
+    },
+    "CDCert.K6.IsDom": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SliceClosure",
+        "file": "lean/CDCert/K6/SliceClosure.lean",
+        "line": 29,
+        "kind": "def",
+        "signature": "def IsDom (k : Nat) (p : List Nat → Bool) : Prop"
+      }
+    },
+    "CDCert.K6.DomE": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.ThetaSem",
+        "file": "lean/CDCert/K6/ThetaSem.lean",
+        "line": 29,
+        "kind": "def",
+        "signature": "def DomE (k : Nat) (p : List Nat → Bool) : Prop"
+      }
+    },
+    "CDCert.K6.adjAt": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Feat",
+        "file": "lean/CDCert/K6/Feat.lean",
+        "line": 40,
+        "kind": "def",
+        "signature": "def adjAt (k j : Nat) (H : List Nat → Bool) : Nat"
+      }
+    },
+    "CDCert.K6.adj": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Feat",
+        "file": "lean/CDCert/K6/Feat.lean",
+        "line": 44,
+        "kind": "def",
+        "signature": "def adj (k : Nat) (H : List Nat → Bool) : Nat"
+      }
+    },
+    "CDCert.K6.cost10": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Feat",
+        "file": "lean/CDCert/K6/Feat.lean",
+        "line": 47,
+        "kind": "def",
+        "signature": "def cost10 (J : List Nat → Bool) : Nat"
+      }
+    },
+    "CDCert.K6.adj6_split": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Feat",
+        "file": "lean/CDCert/K6/Feat.lean",
+        "line": 287,
+        "kind": "theorem",
+        "signature": "theorem adj6_split (H : List Nat → Bool) :\n    adj 6 H = ((List.range 6).map (fun x => adj 5 (botP x H))).sum +\n      ((List.range 6).map (fun y => adjAt 5 3 (topP y H))).sum"
+      }
+    },
+    "CDCert.K6.cost10_split": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Feat",
+        "file": "lean/CDCert/K6/Feat.lean",
+        "line": 303,
+        "kind": "theorem",
+        "signature": "theorem cost10_split (J : List Nat → Bool) :\n    cost10 J = ((List.range 7).map (fun z => adj 6 (botP z J))).sum +\n      ((List.range 7).map (fun w => adj 6 (topP w J))).sum"
+      }
+    },
+    "CDCert.K6.finite_lemma": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SevenFinal",
+        "file": "lean/CDCert/K6/SevenFinal.lean",
+        "line": 230,
+        "kind": "theorem",
+        "signature": "theorem finite_lemma {J : List Nat → Bool} (hJ : DomE 7 J) :\n    (cD5 : Int) * cost10 J ≤ 11057646600 * card 7 J +\n      ((List.range 7).map (fun z => qD (botP z J))).sum - ((List.range 7).map (fun w => qD (topP w J))).sum"
+      }
+    },
+    "CDCert.K6.qD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 88,
+        "kind": "def",
+        "signature": "noncomputable def qD (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.potW": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 61,
+        "kind": "def",
+        "signature": "noncomputable def potW (p : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.bD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 67,
+        "kind": "def",
+        "signature": "noncomputable def bD (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.tD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 69,
+        "kind": "def",
+        "signature": "noncomputable def tD (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.sD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 76,
+        "kind": "def",
+        "signature": "noncomputable def sD (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.pD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 80,
+        "kind": "def",
+        "signature": "noncomputable def pD (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.thB": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 84,
+        "kind": "def",
+        "signature": "noncomputable def thB (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.thT": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 86,
+        "kind": "def",
+        "signature": "noncomputable def thT (H : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.lamD": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 91,
+        "kind": "def",
+        "signature": "noncomputable def lamD (J : List Nat → Bool) : Int"
+      }
+    },
+    "CDCert.K6.rb": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 71,
+        "kind": "def",
+        "signature": "noncomputable def rb (H : List Nat → Bool) : Nat"
+      }
+    },
+    "CDCert.K6.rt": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 73,
+        "kind": "def",
+        "signature": "noncomputable def rt (H : List Nat → Bool) : Nat"
+      }
+    },
+    "CDCert.K6.IsS": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 44,
+        "kind": "def",
+        "signature": "def IsS (H : List Nat → Bool) : Prop"
+      }
+    },
+    "CDCert.K6.excRep6": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Tab.Aux",
+        "file": "lean/CDCert/K6/Tab/Aux.lean",
+        "line": 32,
+        "kind": "def",
+        "signature": "def excRep6 : List Nat"
+      }
+    },
+    "CDCert.K6.receiver_slack": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 129,
+        "kind": "theorem",
+        "signature": "theorem receiver_slack {H : List Nat → Bool} (hH : IsDom 6 H) (hno : NoExc H) (hr : ¬ IsoM r8 H) :\n    (cE : Int) * (card 6 H + 4 * rb H + 4 * rt H) ≤ sD H"
+      }
+    },
+    "CDCert.K6.thB_bound": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 138,
+        "kind": "theorem",
+        "signature": "theorem thB_bound {H : List Nat → Bool} (hH : DomE 6 H) (hno : NoExc H) :\n    (cE : Int) * card 6 H + 8 * cE * rt H - 8 * cE * isR8 H ≤ thB H"
+      }
+    },
+    "CDCert.K6.thT_bound": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 160,
+        "kind": "theorem",
+        "signature": "theorem thT_bound {H : List Nat → Bool} (hH : DomE 6 H) (hno : NoExc H) :\n    (cE : Int) * card 6 H + 8 * cE * rb H - 8 * cE * isR8 H ≤ thT H"
+      }
+    },
+    "CDCert.K6.r8_th": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 59,
+        "kind": "theorem",
+        "signature": "theorem r8_th {H : List Nat → Bool} (hH : DomE 6 H) (h : IsoM r8 H) : thB H = 0 ∧ thT H = 0"
+      }
+    },
+    "CDCert.K6.r8_facts": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 41,
+        "kind": "theorem",
+        "signature": "theorem r8_facts {H : List Nat → Bool} (hH : DomE 6 H) (h : IsoM r8 H) :\n    card 6 H = 8 ∧ sD H = 0 ∧ rb H = 0 ∧ rt H = 0 ∧ ¬ IsS H"
+      }
+    },
+    "CDCert.K6.r8_slices": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 224,
+        "kind": "theorem",
+        "signature": "theorem r8_slices {H : List Nat → Bool} (hH : DomE 6 H) (h : IsoM r8 H) :\n    (∃ a, a < 6 ∧ isTy 866 (topP a H) = 1) ∧ (∃ b, b < 6 ∧ isTy 41 (botP b H) = 1)"
+      }
+    },
+    "CDCert.K6.lam_receiver": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.R8",
+        "file": "lean/CDCert/K6/R8.lean",
+        "line": 314,
+        "kind": "theorem",
+        "signature": "theorem lam_receiver {J : List Nat → Bool} (hJ : DomE 7 J)\n    (hb : ∀ z, z < 7 → NoExc (botP z J)) (ht : ∀ w, w < 7 → NoExc (topP w J)) :\n    2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.K6.seven_finite": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.SevenFinal",
+        "file": "lean/CDCert/K6/SevenFinal.lean",
+        "line": 210,
+        "kind": "theorem",
+        "signature": "theorem seven_finite {J : List Nat → Bool} (hJ : DomE 7 J) : 2 * (cE : Int) * card 7 J ≤ lamD J"
+      }
+    },
+    "CDCert.K6.lamD_eq": {
+      "tutorial_files": [
+        "sections/06_local_input.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Theta",
+        "file": "lean/CDCert/K6/Theta.lean",
+        "line": 179,
+        "kind": "theorem",
+        "signature": "theorem lamD_eq (J : List Nat → Bool) :\n    lamD J = 2 * ((cK : Int) * card 7 J) - (cD5 : Int) * cost10 J +\n      ((List.range 7).map (fun z => qD (botP z J))).sum - ((List.range 7).map (fun w => qD (topP w J))).sum"
+      }
+    },
+    "Condorcet.insertionSlots": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Fibres",
+        "file": "lean/Condorcet/Fibres.lean",
+        "line": 7,
+        "kind": "def",
+        "signature": "noncomputable def insertionSlots (D : Domain (Option α)) (P : Order α) :\n    Finset (Fin (Fintype.card α + 1))"
+      }
+    },
+    "Condorcet.insertionWord": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Runs",
+        "file": "lean/Condorcet/Runs.lean",
+        "line": 71,
+        "kind": "def",
+        "signature": "noncomputable def insertionWord (D : Domain (Option α)) (P : Order α) : List Bool"
+      }
+    },
+    "Condorcet.SlotWord.runs": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Runs",
+        "file": "lean/Condorcet/Runs.lean",
+        "line": 22,
+        "kind": "def",
+        "signature": "def runs (bs : List Bool) : Nat"
+      }
+    },
+    "Condorcet.SlotWord.gaps": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Runs",
+        "file": "lean/Condorcet/Runs.lean",
+        "line": 24,
+        "kind": "def",
+        "signature": "def gaps (bs : List Bool) : Nat"
+      }
+    },
+    "Condorcet.gapCount": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.DeletionBridge",
+        "file": "lean/Condorcet/DeletionBridge.lean",
+        "line": 93,
+        "kind": "def",
+        "signature": "noncomputable def gapCount {n : Nat} (D : Domain (Fin (n + 1))) : Nat"
+      }
+    },
+    "Condorcet.directedEdges": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.DirectedAdjacency",
+        "file": "lean/Condorcet/DirectedAdjacency.lean",
+        "line": 197,
+        "kind": "def",
+        "signature": "noncomputable def directedEdges {n : Nat} (D : Domain (Fin n)) :\n    Finset (Order (Fin n) × Order (Fin n))"
+      }
+    },
+    "Condorcet.adjacencyCount": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.DirectedAdjacency",
+        "file": "lean/Condorcet/DirectedAdjacency.lean",
+        "line": 202,
+        "kind": "def",
+        "signature": "noncomputable def adjacencyCount {n : Nat} (D : Domain (Fin n)) : Nat"
+      }
+    },
+    "Condorcet.deletion_gap_adjacency_identity": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.DirectedAdjacency",
+        "file": "lean/Condorcet/DirectedAdjacency.lean",
+        "line": 249,
+        "kind": "theorem",
+        "signature": "theorem deletion_gap_adjacency_identity {n : Nat} (D : Domain (Fin (n+1))) :\n    deletionSum D + gapCount D + adjacencyCount D = (n+1) * D.card"
+      }
+    },
+    "Condorcet.slotAdjacencyCount_eq_adjacencyCount": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.DirectedAdjacency",
+        "file": "lean/Condorcet/DirectedAdjacency.lean",
+        "line": 243,
+        "kind": "theorem",
+        "signature": "theorem slotAdjacencyCount_eq_adjacencyCount {n : Nat} (D : Domain (Fin (n+1))) :\n    slotAdjacencyCount D = adjacencyCount D"
+      }
+    },
+    "Condorcet.SlotWord.nonempty_run_identity": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Runs",
+        "file": "lean/Condorcet/Runs.lean",
+        "line": 53,
+        "kind": "theorem",
+        "signature": "theorem nonempty_run_identity (bs : List Bool) (h : 0 < occupied bs) :\n    occupied bs = adjacentPairs bs + gaps bs + 1"
+      }
+    },
+    "Condorcet.IsExtremeFull.insertionWord_interval": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.NoGaps",
+        "file": "lean/Condorcet/NoGaps.lean",
+        "line": 81,
+        "kind": "theorem",
+        "signature": "theorem IsExtremeFull.insertionWord_interval {n : Nat} {D : Domain (Fin (n + 1))}\n    (hD : IsExtremeFull D) (x : Fin (n + 1)) (P : Order (Fin n)) :\n    SlotWord.Interval (insertionWord (optionDomain x D) P)"
+      }
+    },
+    "Condorcet.IsExtremeFull.gapCount_zero": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.NoGaps",
+        "file": "lean/Condorcet/NoGaps.lean",
+        "line": 98,
+        "kind": "theorem",
+        "signature": "theorem IsExtremeFull.gapCount_zero {n : Nat} {D : Domain (Fin (n + 1))}\n    (hD : IsExtremeFull D) : gapCount D = 0"
+      }
+    },
+    "Condorcet.IsExtremeFull.deletion_plus_slotAdjacency": {
+      "tutorial_files": [
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.NoGaps",
+        "file": "lean/Condorcet/NoGaps.lean",
+        "line": 108,
+        "kind": "theorem",
+        "signature": "theorem IsExtremeFull.deletion_plus_slotAdjacency {n : Nat} {D : Domain (Fin (n + 1))}\n    (hD : IsExtremeFull D) : deletionSum D + slotAdjacencyCount D = (n+1) * D.card"
+      }
+    },
+    "Condorcet.IsExtremeFull": {
+      "tutorial_files": [
+        "sections/01_definitions.tex",
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 66,
+        "kind": "def",
+        "signature": "def IsExtremeFull {n : Nat} (D : Domain (Fin n)) : Prop"
+      }
+    },
+    "Condorcet.IsPeakPit": {
+      "tutorial_files": [
+        "sections/01_definitions.tex",
+        "sections/03_fibres.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 95,
+        "kind": "def",
+        "signature": "def IsPeakPit {α : Type*} (D : Domain α) : Prop"
+      }
+    },
+    "CDCert.Recurrences.deletion_lower_bound": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 38,
+        "kind": "theorem",
+        "signature": "theorem deletion_lower_bound {n : Nat} {D : Domain (Fin (n + 1))} (hD : IsMaximal D) :\n    (11 * (n + 1) + 8) * D.card ≤ 32 * deletionSum D"
+      }
+    },
+    "CDCert.Main.general_recurrence": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 29,
+        "kind": "theorem",
+        "signature": "theorem general_recurrence {n : ℕ} (hn : 3 ≤ n) : (11 * n + 8) * f n ≤ 32 * n * f (n - 1)"
+      }
+    },
+    "CDCert.Main.general_geometric": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 33,
+        "kind": "theorem",
+        "signature": "theorem general_geometric {n : ℕ} (hn : 3 ≤ n) : (f n : ℝ) ≤ 4 * (32 / 11 : ℝ) ^ (n - 3)"
+      }
+    },
+    "CDCert.Main.peak_recurrence": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 37,
+        "kind": "theorem",
+        "signature": "theorem peak_recurrence {n : ℕ} (hn : 3 ≤ n) : 3 * h n ≤ 8 * h (n - 1)"
+      }
+    },
+    "CDCert.Main.peak_geometric": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 41,
+        "kind": "theorem",
+        "signature": "theorem peak_geometric {n : ℕ} (hn : 3 ≤ n) : (h n : ℝ) ≤ 4 * (8 / 3 : ℝ) ^ (n - 3)"
+      }
+    },
+    "CDCert.Main.general_limit": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 45,
+        "kind": "theorem",
+        "signature": "theorem general_limit :\n    ∃ L, Tendsto (fun n : ℕ => (f n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 32 / 11"
+      }
+    },
+    "CDCert.Main.peak_limit": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 50,
+        "kind": "theorem",
+        "signature": "theorem peak_limit :\n    ∃ L, Tendsto (fun n : ℕ => (h n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 8 / 3"
+      }
+    },
+    "CDCert.Main.general_polynomial_correction": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Main",
+        "file": "lean/CDCert/Main.lean",
+        "line": 55,
+        "kind": "theorem",
+        "signature": "theorem general_polynomial_correction :\n    (fun n : ℕ => (f n : ℝ)) =O[atTop] (fun n : ℕ => (n : ℝ) ^ (-(8 / 11 : ℝ)) * (32 / 11 : ℝ) ^ n)"
+      }
+    },
+    "Condorcet.f_three": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.BaseThree",
+        "file": "lean/Condorcet/BaseThree.lean",
+        "line": 114,
+        "kind": "theorem",
+        "signature": "theorem f_three : f 3 = 4"
+      }
+    },
+    "Condorcet.h_three": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.BaseThree",
+        "file": "lean/Condorcet/BaseThree.lean",
+        "line": 122,
+        "kind": "theorem",
+        "signature": "theorem h_three : h 3 = 4"
+      }
+    },
+    "CDCert.Recurrences.general_recurrence'": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 65,
+        "kind": "theorem",
+        "signature": "theorem general_recurrence' {n : Nat} (hn : 1 ≤ n) : (11 * n + 8) * f n ≤ 32 * n * f (n - 1)"
+      }
+    },
+    "CDCert.Recurrences.peakPit_recurrence": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 74,
+        "kind": "theorem",
+        "signature": "theorem peakPit_recurrence {n : Nat} (hn : 1 ≤ n) : 3 * h n ≤ 8 * h (n - 1)"
+      }
+    },
+    "CDCert.Recurrences.f_geometric": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 70,
+        "kind": "theorem",
+        "signature": "theorem f_geometric {n : Nat} (hn : 3 ≤ n) : 11 ^ (n - 3) * f n ≤ 4 * 32 ^ (n - 3)"
+      }
+    },
+    "CDCert.Recurrences.h_geometric": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Recurrences",
+        "file": "lean/CDCert/Recurrences.lean",
+        "line": 78,
+        "kind": "theorem",
+        "signature": "theorem h_geometric {n : Nat} (hn : 3 ≤ n) : 3 ^ (n - 3) * h n ≤ 4 * 8 ^ (n - 3)"
+      }
+    },
+    "CDCert.Asymptotics.f_le_real": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 38,
+        "kind": "theorem",
+        "signature": "theorem f_le_real {n : Nat} (hn : 3 ≤ n) : (f n : ℝ) ≤ 4 * (32 / 11 : ℝ) ^ (n - 3)"
+      }
+    },
+    "CDCert.Asymptotics.h_le_real": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 31,
+        "kind": "theorem",
+        "signature": "theorem h_le_real {n : Nat} (hn : 3 ≤ n) : (h n : ℝ) ≤ 4 * (8 / 3 : ℝ) ^ (n - 3)"
+      }
+    },
+    "CDCert.Supermult.f_supermul": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Supermult",
+        "file": "lean/CDCert/Supermult.lean",
+        "line": 296,
+        "kind": "theorem",
+        "signature": "theorem f_supermul (m n : Nat) : f m * f n ≤ f (m + n)"
+      }
+    },
+    "CDCert.Supermult.h_supermul": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Supermult",
+        "file": "lean/CDCert/Supermult.lean",
+        "line": 303,
+        "kind": "theorem",
+        "signature": "theorem h_supermul (m n : Nat) : h m * h n ≤ h (m + n)"
+      }
+    },
+    "CDCert.Supermult.one_le_f": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Supermult",
+        "file": "lean/CDCert/Supermult.lean",
+        "line": 353,
+        "kind": "theorem",
+        "signature": "theorem one_le_f (n : Nat) : 1 ≤ f n"
+      }
+    },
+    "CDCert.Supermult.one_le_h": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Supermult",
+        "file": "lean/CDCert/Supermult.lean",
+        "line": 357,
+        "kind": "theorem",
+        "signature": "theorem one_le_h (n : Nat) : 1 ≤ h n"
+      }
+    },
+    "CDCert.Asymptotics.root_limit": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 56,
+        "kind": "theorem",
+        "signature": "theorem root_limit {g : ℕ → ℕ} (hpos : ∀ n, 1 ≤ g n) (hsup : ∀ m n, g m * g n ≤ g (m + n))\n    {c r : ℝ} (hc : 0 < c) (hr : 0 < r) (hbound : ∀ n, 3 ≤ n → (g n : ℝ) ≤ c * r ^ n) :\n    ∃ L, Tendsto (fun n : ℕ => (g n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ r"
+      }
+    },
+    "CDCert.Asymptotics.f_root_limit": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 143,
+        "kind": "theorem",
+        "signature": "theorem f_root_limit :\n    ∃ L, Tendsto (fun n : ℕ => (f n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 32 / 11"
+      }
+    },
+    "CDCert.Asymptotics.h_root_limit": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 136,
+        "kind": "theorem",
+        "signature": "theorem h_root_limit :\n    ∃ L, Tendsto (fun n : ℕ => (h n : ℝ) ^ ((1 : ℝ) / n)) atTop (𝓝 L) ∧ L ≤ 8 / 3"
+      }
+    },
+    "CDCert.Asymptotics.bernoulli_step": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 152,
+        "kind": "theorem",
+        "signature": "theorem bernoulli_step (n : ℕ) :\n    ((n : ℝ) + 2) ^ (8 / 11 : ℝ) * ((n : ℝ) + 1) ≤ ((n : ℝ) + 1) ^ (8 / 11 : ℝ) * ((n : ℝ) + 1 + 8 / 11)"
+      }
+    },
+    "CDCert.Asymptotics.cW": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 175,
+        "kind": "def",
+        "signature": "noncomputable def cW : ℝ"
+      }
+    },
+    "CDCert.Asymptotics.f_weighted": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 178,
+        "kind": "theorem",
+        "signature": "theorem f_weighted {n : ℕ} (hn : 3 ≤ n) :\n    (f n : ℝ) * ((n : ℝ) + 1) ^ (8 / 11 : ℝ) ≤ cW * (32 / 11 : ℝ) ^ n"
+      }
+    },
+    "CDCert.Asymptotics.f_isBigO": {
+      "tutorial_files": [
+        "sections/09_conclusions.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.Asymptotics",
+        "file": "lean/CDCert/Asymptotics.lean",
+        "line": 215,
+        "kind": "theorem",
+        "signature": "theorem f_isBigO :\n    (fun n : ℕ => (f n : ℝ)) =O[atTop] (fun n : ℕ => (n : ℝ) ^ (-(8 / 11 : ℝ)) * (32 / 11 : ℝ) ^ n)"
+      }
+    },
+    "CDCert.K6.winS_card": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 494,
+        "kind": "theorem",
+        "signature": "theorem winS_card {n w i : Nat} (K : List Nat → Bool) (hi : i + w ≤ n) :\n    winS (fun J => (card w J : Int)) n w i K = card n K"
+      }
+    },
+    "CDCert.K6.winS_adjAt": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 508,
+        "kind": "theorem",
+        "signature": "theorem winS_adjAt {n w i p : Nat} (K : List Nat → Bool) (hi : i + w ≤ n) (hp : p + 1 < w) :\n    winS (fun J => (adjAt w p J : Int)) n w i K = adjAt n (p + i) K"
+      }
+    },
+    "CDCert.K6.winS_bot": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 522,
+        "kind": "theorem",
+        "signature": "theorem winS_bot {n i : Nat} (K : List Nat → Bool) (hi : i + 7 ≤ n) :\n    winS (fun J => ((List.range 7).map (fun z => qD (botP z J))).sum) n 7 i K = winS qD n 6 i K"
+      }
+    },
+    "CDCert.K6.winS_top": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 531,
+        "kind": "theorem",
+        "signature": "theorem winS_top {n i : Nat} (K : List Nat → Bool) (hi : i + 7 ≤ n) :\n    winS (fun J => ((List.range 7).map (fun w => qD (topP w J))).sum) n 7 i K = winS qD n 6 (i + 1) K"
+      }
+    },
+    "CDCert.K6.window_ineq": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 569,
+        "kind": "theorem",
+        "signature": "theorem window_ineq {n i : Nat} {K : List Nat → Bool} (hK : DomE n K) (hi : i + 7 ≤ n) :\n    (cD5 : Int) * winS (fun J => (cost10 J : Int)) n 7 i K ≤\n      11057646600 * card n K + winS qD n 6 i K - winS qD n 6 (i + 1) K"
+      }
+    },
+    "CDCert.K6.isum_telescope": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 587,
+        "kind": "theorem",
+        "signature": "theorem isum_telescope (f : Nat → Int) : ∀ m, ((List.range m).map (fun i => f i - f (i + 1))).sum = f 0 - f m"
+      }
+    },
+    "CDCert.K6.window_bound": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 632,
+        "kind": "theorem",
+        "signature": "theorem window_bound {n : Nat} {K : List Nat → Bool} (hK : DomE n K) (hn : 7 ≤ n) :\n    8 * 8846117280 * (adj n K : Int) ≤ 5 * 8846117280 * ((n : Int) * card n K) + (10 * 8846117280 + 2 ^ 66) * card n K"
+      }
+    },
+    "CDCert.K6.qD_bound": {
+      "tutorial_files": [
+        "sections/07_windows.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Win",
+        "file": "lean/CDCert/K6/Win.lean",
+        "line": 445,
+        "kind": "theorem",
+        "signature": "theorem qD_bound {H : List Nat → Bool} (hH : DomE 6 H) :\n    -(2 ^ 63 * (card 6 H : Int)) ≤ qD H ∧ qD H ≤ 2 ^ 63 * (card 6 H : Int)"
+      }
+    },
+    "CDCert.K6.concat": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Concat",
+        "file": "lean/CDCert/K6/Concat.lean",
+        "line": 37,
+        "kind": "def",
+        "signature": "def concat (n : Nat) (K K' : List Nat → Bool) : List Nat → Bool"
+      }
+    },
+    "CDCert.K6.isDom_concat": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Concat",
+        "file": "lean/CDCert/K6/Concat.lean",
+        "line": 508,
+        "kind": "theorem",
+        "signature": "theorem isDom_concat {n n' : Nat} {K K' : List Nat → Bool} (hK : IsDom n K) (hK' : IsDom n' K') :\n    IsDom (n + n') (concat n K K')"
+      }
+    },
+    "CDCert.K6.card_concat": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Concat",
+        "file": "lean/CDCert/K6/Concat.lean",
+        "line": 197,
+        "kind": "theorem",
+        "signature": "theorem card_concat (n n' : Nat) (K K' : List Nat → Bool) :\n    card (n + n') (concat n K K') = card n K * card n' K'"
+      }
+    },
+    "CDCert.K6.adj_concat": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Concat",
+        "file": "lean/CDCert/K6/Concat.lean",
+        "line": 357,
+        "kind": "theorem",
+        "signature": "theorem adj_concat (n n' : Nat) (K K' : List Nat → Bool) (hn : 1 ≤ n) (hn' : 1 ≤ n') :\n    adj (n + n') (concat n K K') = adj n K * card n' K' + card n K * adj n' K'"
+      }
+    },
+    "CDCert.K6.dbl": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Density",
+        "file": "lean/CDCert/K6/Density.lean",
+        "line": 31,
+        "kind": "def",
+        "signature": "def dbl (n : Nat) (K : List Nat → Bool) : Nat → (List Nat → Bool)"
+      }
+    },
+    "CDCert.K6.dbl_props": {
+      "tutorial_files": [
+        "sections/08_copies.tex"
+      ],
+      "declaration": {
+        "module": "CDCert.K6.Density",
+        "file": "lean/CDCert/K6/Density.lean",
+        "line": 38,
+        "kind": "theorem",
+        "signature": "theorem dbl_props {n : Nat} {K : List Nat → Bool} (hK : IsDom n K) (hn : 1 ≤ n) : ∀ k,\n    IsDom (2 ^ k * n) (dbl n K k) ∧ card (2 ^ k * n) (dbl n K k) = card n K ^ (2 ^ k) ∧\n      adj (2 ^ k * n) (dbl n K k) * card n K = 2 ^ k * adj n K * card n K ^ (2 ^ k)"
+      }
+    },
+    "Condorcet.deleteEmbedding": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 33,
+        "kind": "def",
+        "signature": "def deleteEmbedding {n : Nat} (x : Fin (n + 1)) : Fin n ↪ Fin (n + 1)"
+      }
+    },
+    "Condorcet.deleteDomain": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 36,
+        "kind": "def",
+        "signature": "noncomputable def deleteDomain {n : Nat} (x : Fin (n + 1)) (D : Domain (Fin (n + 1))) :\n    Domain (Fin n)"
+      }
+    },
+    "Condorcet.deletionSum": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 39,
+        "kind": "def",
+        "signature": "noncomputable def deletionSum {n : Nat} (D : Domain (Fin (n + 1))) : Nat"
+      }
+    },
+    "Condorcet.IsCondorcet.restrict": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 112,
+        "kind": "theorem",
+        "signature": "theorem IsCondorcet.restrict {α β : Type*} {D : Domain α}\n    (hD : IsCondorcet D) (e : β ↪ α) : IsCondorcet (restrictDomain e D)"
+      }
+    },
+    "Condorcet.IsPeakPit.restrict": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 154,
+        "kind": "theorem",
+        "signature": "theorem IsPeakPit.restrict {α β : Type*} {D : Domain α}\n    (hD : IsPeakPit D) (e : β ↪ α) : IsPeakPit (restrictDomain e D)"
+      }
+    },
+    "Condorcet.deletionSum_le_general": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 43,
+        "kind": "theorem",
+        "signature": "theorem deletionSum_le_general {n : Nat} {D : Domain (Fin (n + 1))}\n    (hD : IsCondorcet D) : deletionSum D ≤ (n + 1) * f n"
+      }
+    },
+    "Condorcet.deletionSum_le_peakPit": {
+      "tutorial_files": [
+        "sections/02_deletion.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 55,
+        "kind": "theorem",
+        "signature": "theorem deletionSum_le_peakPit {n : Nat} {D : Domain (Fin (n + 1))}\n    (hD : IsPeakPit D) : deletionSum D ≤ (n + 1) * h n"
+      }
+    },
+    "Condorcet.IsStrictTotal": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 13,
+        "kind": "def",
+        "signature": "def IsStrictTotal {α : Type*} (r : α → α → Bool) : Prop"
+      }
+    },
+    "Condorcet.Order": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 18,
+        "kind": "def",
+        "signature": "def Order (α : Type*)"
+      }
+    },
+    "Condorcet.Domain": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 60,
+        "kind": "abbrev",
+        "signature": "abbrev Domain (α : Type*)"
+      }
+    },
+    "Condorcet.majority": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 63,
+        "kind": "def",
+        "signature": "noncomputable def majority {α : Type*} {m : Nat} (v : Fin m → Order α)\n    (a b : α) : Prop"
+      }
+    },
+    "Condorcet.IsCondorcet": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 68,
+        "kind": "def",
+        "signature": "def IsCondorcet {α : Type*} (D : Domain α) : Prop"
+      }
+    },
+    "Condorcet.f": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 9,
+        "kind": "def",
+        "signature": "noncomputable def f (n : Nat) : Nat"
+      }
+    },
+    "Condorcet.Never": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 74,
+        "kind": "def",
+        "signature": "def Never {α : Type*} (r : Order α) (x y z : α) (position : Fin 3) : Prop"
+      }
+    },
+    "Condorcet.ValueRestricted": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 80,
+        "kind": "def",
+        "signature": "def ValueRestricted {α : Type*} (D : Domain α) : Prop"
+      }
+    },
+    "Condorcet.ExtremeRestricted": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Orders",
+        "file": "lean/Condorcet/Orders.lean",
+        "line": 87,
+        "kind": "def",
+        "signature": "def ExtremeRestricted {α : Type*} (D : Domain α) : Prop"
+      }
+    },
+    "Condorcet.h": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 14,
+        "kind": "def",
+        "signature": "noncomputable def h (n : Nat) : Nat"
+      }
+    },
+    "Condorcet.isCondorcet_iff_valueRestricted": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.TripleCharacterization",
+        "file": "lean/Condorcet/TripleCharacterization.lean",
+        "line": 120,
+        "kind": "theorem",
+        "signature": "theorem isCondorcet_iff_valueRestricted {α : Type*} (D : Domain α) :\n    IsCondorcet D ↔ ValueRestricted D"
+      }
+    },
+    "Condorcet.IsCondorcet.valueRestricted": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.TripleCharacterization",
+        "file": "lean/Condorcet/TripleCharacterization.lean",
+        "line": 93,
+        "kind": "theorem",
+        "signature": "theorem IsCondorcet.valueRestricted {α : Type*} {D : Domain α}\n    (hD : IsCondorcet D) : ValueRestricted D"
+      }
+    },
+    "Condorcet.ValueRestricted.isCondorcet": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ValueRestriction",
+        "file": "lean/Condorcet/ValueRestriction.lean",
+        "line": 103,
+        "kind": "theorem",
+        "signature": "theorem ValueRestricted.isCondorcet {α : Type*} {D : Domain α}\n    (hD : ValueRestricted D) : IsCondorcet D"
+      }
+    },
+    "Condorcet.Pattern.finite_characterization": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.TripleCharacterization",
+        "file": "lean/Condorcet/TripleCharacterization.lean",
+        "line": 63,
+        "kind": "theorem",
+        "signature": "theorem Pattern.finite_characterization :\n    ∀ C : Finset (Fin 6), Pattern.Closed3 C → Pattern.CommonNever C"
+      }
+    },
+    "Condorcet.Selection": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 36,
+        "kind": "abbrev",
+        "signature": "abbrev Selection (n : Nat)"
+      }
+    },
+    "Condorcet.HoldsLaw": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 38,
+        "kind": "def",
+        "signature": "def HoldsLaw {n : Nat} (r : Order (Fin n)) (t : Triple n) (law : Fin 3 × Fin 3) : Prop"
+      }
+    },
+    "Condorcet.fullDomain": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 43,
+        "kind": "def",
+        "signature": "noncomputable def fullDomain {n : Nat} (L : Selection n) : Domain (Fin n)"
+      }
+    },
+    "Condorcet.IsFull": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 52,
+        "kind": "def",
+        "signature": "def IsFull {n : Nat} (D : Domain (Fin n)) : Prop"
+      }
+    },
+    "Condorcet.ExtremeSelection": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 45,
+        "kind": "def",
+        "signature": "def ExtremeSelection (n : Nat)"
+      }
+    },
+    "Condorcet.FixedPairs": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 48,
+        "kind": "abbrev",
+        "signature": "abbrev FixedPairs (n : Nat)"
+      }
+    },
+    "Condorcet.extremeFullDomain": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 55,
+        "kind": "def",
+        "signature": "noncomputable def extremeFullDomain {n : Nat} (L : ExtremeSelection n)\n    (Q : FixedPairs n) : Domain (Fin n)"
+      }
+    },
+    "Condorcet.InF": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 70,
+        "kind": "def",
+        "signature": "def InF {n : Nat} (D : Domain (Fin n)) : Prop"
+      }
+    },
+    "Condorcet.maximum_isMaximal": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 98,
+        "kind": "theorem",
+        "signature": "theorem maximum_isMaximal {n : Nat} {D : Domain (Fin n)}\n    (hD : IsCondorcet D) (hcard : D.card = f n) : IsMaximal D"
+      }
+    },
+    "Condorcet.IsMaximal.isFull": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 97,
+        "kind": "theorem",
+        "signature": "theorem IsMaximal.isFull {n : Nat} {D : Domain (Fin n)} (hD : IsMaximal D) : IsFull D"
+      }
+    },
+    "Condorcet.ExtremeRestricted.completion": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 120,
+        "kind": "theorem",
+        "signature": "theorem ExtremeRestricted.completion {n : Nat} {D : Domain (Fin n)}\n    (hD : ExtremeRestricted D) : ∃ L : ExtremeSelection n, D ⊆ fullDomain L.val"
+      }
+    },
+    "Condorcet.maximum_peakPit_isExtremeFull": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 130,
+        "kind": "theorem",
+        "signature": "theorem maximum_peakPit_isExtremeFull {n : Nat} {D : Domain (Fin n)}\n    (hD : IsPeakPit D) (hcard : D.card = h n) :\n    ∃ L : ExtremeSelection n, D = fullDomain L.val"
+      }
+    },
+    "Condorcet.maximum_peakPit_fullClass": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ExtremeFull",
+        "file": "lean/Condorcet/ExtremeFull.lean",
+        "line": 145,
+        "kind": "theorem",
+        "signature": "theorem maximum_peakPit_fullClass {n : Nat} {D : Domain (Fin n)}\n    (hD : IsPeakPit D) (hcard : D.card = h n) : IsExtremeFull D"
+      }
+    },
+    "Condorcet.exists_maximum_general": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 79,
+        "kind": "theorem",
+        "signature": "theorem exists_maximum_general (n : Nat) :\n    ∃ D : Domain (Fin n), IsCondorcet D ∧ D.card = f n"
+      }
+    },
+    "Condorcet.exists_maximum_peakPit": {
+      "tutorial_files": [
+        "sections/01_definitions.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Extremal",
+        "file": "lean/Condorcet/Extremal.lean",
+        "line": 87,
+        "kind": "theorem",
+        "signature": "theorem exists_maximum_peakPit (n : Nat) :\n    ∃ D : Domain (Fin n), IsPeakPit D ∧ D.card = h n"
+      }
+    },
+    "Condorcet.AdjacentSwap": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Adjacency",
+        "file": "lean/Condorcet/Adjacency.lean",
+        "line": 8,
+        "kind": "def",
+        "signature": "def AdjacentSwap {n : Nat} (r s : Order (Fin n)) : Prop"
+      }
+    },
+    "Condorcet.Connected": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Adjacency",
+        "file": "lean/Condorcet/Adjacency.lean",
+        "line": 103,
+        "kind": "def",
+        "signature": "def Connected {n : Nat} (D : Domain (Fin n)) (r s : Order (Fin n)) : Prop"
+      }
+    },
+    "Condorcet.component": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Components",
+        "file": "lean/Condorcet/Components.lean",
+        "line": 64,
+        "kind": "def",
+        "signature": "noncomputable def component {n : Nat} (D : Domain (Fin n)) (r : Order (Fin n)) :\n    Domain (Fin n)"
+      }
+    },
+    "Condorcet.components": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ComponentCounting",
+        "file": "lean/Condorcet/ComponentCounting.lean",
+        "line": 24,
+        "kind": "def",
+        "signature": "noncomputable def components {n : Nat} (D : Domain (Fin n)) : Finset (Domain (Fin n))"
+      }
+    },
+    "Condorcet.medianOrder": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Majority",
+        "file": "lean/Condorcet/Majority.lean",
+        "line": 34,
+        "kind": "def",
+        "signature": "def medianOrder {α : Type*} {D : Domain α} (hD : IsCondorcet D)\n    (u v w : Order α) (hu : u ∈ D) (hv : v ∈ D) (hw : w ∈ D) : Order α"
+      }
+    },
+    "Condorcet.IsFull.median_mem": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 105,
+        "kind": "theorem",
+        "signature": "theorem IsFull.median_mem {n : Nat} {D : Domain (Fin n)} (hD : IsFull D)\n    (u v w : Order (Fin n)) (hu : u ∈ D) (hv : v ∈ D) (hw : w ∈ D) :\n    medianOrder hD.isCondorcet u v w hu hv hw ∈ D"
+      }
+    },
+    "Condorcet.IsFull.encoded_medianClosed": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 121,
+        "kind": "theorem",
+        "signature": "theorem IsFull.encoded_medianClosed {n : Nat} {D : Domain (Fin n)}\n    (hD : IsFull D) : MedianClosed (encodedDomain D)"
+      }
+    },
+    "Condorcet.IsFull.component_from_fixed": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.FullDomains",
+        "file": "lean/Condorcet/FullDomains.lean",
+        "line": 129,
+        "kind": "theorem",
+        "signature": "theorem IsFull.component_from_fixed {n : Nat} {D : Domain (Fin n)}\n    (hD : IsFull D) (r s : Order (Fin n)) (hr : r ∈ D) (hs : s ∈ D)\n    (hfixed : ∀ i : Pair n,\n      (∀ q ∈ D, Connected D r q → encode q i = encode r i) → encode s i = encode r i) :\n    Connected D r s"
+      }
+    },
+    "Condorcet.component_membership": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Components",
+        "file": "lean/Condorcet/Components.lean",
+        "line": 95,
+        "kind": "theorem",
+        "signature": "theorem component_membership {n : Nat} {D : Domain (Fin n)} (hD : IsFull D)\n    (r s : Order (Fin n)) (hr : r ∈ D) :\n    s ∈ component D r ↔ s ∈ D ∧ HoldsPairs (componentPairs D r) s"
+      }
+    },
+    "Condorcet.encode_injective": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Majority",
+        "file": "lean/Condorcet/Majority.lean",
+        "line": 71,
+        "kind": "theorem",
+        "signature": "theorem encode_injective {n : Nat} : Function.Injective (@encode n)"
+      }
+    },
+    "Condorcet.IsFull.component_inF": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.Components",
+        "file": "lean/Condorcet/Components.lean",
+        "line": 230,
+        "kind": "theorem",
+        "signature": "theorem IsFull.component_inF {n : Nat} {D : Domain (Fin n)}\n    (hD : IsFull D) (r : Order (Fin n)) (hr : r ∈ D) : InF (component D r)"
+      }
+    },
+    "Condorcet.IsFull.components_inF": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ComponentCounting",
+        "file": "lean/Condorcet/ComponentCounting.lean",
+        "line": 79,
+        "kind": "theorem",
+        "signature": "theorem IsFull.components_inF {n : Nat} {D K : Domain (Fin n)}\n    (hD : IsFull D) (hK : K ∈ components D) : InF K"
+      }
+    },
+    "Condorcet.sum_components_card": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.ComponentCounting",
+        "file": "lean/Condorcet/ComponentCounting.lean",
+        "line": 71,
+        "kind": "theorem",
+        "signature": "theorem sum_components_card {n : Nat} (D : Domain (Fin n)) :\n    ∑ K ∈ components D, K.card = D.card"
+      }
+    },
+    "Condorcet.IsFull.sum_components_deletionSum": {
+      "tutorial_files": [
+        "sections/05_components.tex"
+      ],
+      "declaration": {
+        "module": "Condorcet.SlotAdjacency",
+        "file": "lean/Condorcet/SlotAdjacency.lean",
+        "line": 203,
+        "kind": "theorem",
+        "signature": "theorem IsFull.sum_components_deletionSum {n : Nat} {D : Domain (Fin (n+1))}\n    (hD : IsFull D) :\n    ∑ K ∈ components D, deletionSum K = deletionSum D + gapCount D"
+      }
+    }
+  },
+  "unresolved_names": [],
+  "source_identity_receipt": "audit/SOURCE_IDENTITY.json",
+  "prior_axiom_receipt": "audit/prior_kernel_build/AXIOM_CHECK_RECEIPT.json",
+  "fresh_correspondence_receipt": "audit/fresh_check/CORRESPONDENCE_VERIFICATION_RECEIPT.json",
+  "statement_coverage_index": "audit/FORMAL_STATEMENT_COVERAGE.json"
+}

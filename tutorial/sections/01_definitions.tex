@@ -1,0 +1,122 @@
+\section{The objects being counted}\label{sec:definitions}
+For deletion arguments, \(n\geq1\). The extremal functions themselves
+are also defined at \(n=0\); that initial value is harmless in limits.
+\begin{definition}[Orders, profiles and domains]\label{def:semantic}
+An order on a finite set \(X\) is a strict total order, written as a list
+from best to worst. A domain is a set \(D\) of orders on the same \(X\).
+For a profile \((\sigma_1,\ldots,\sigma_m)\), a strict majority puts
+\(a\) above \(b\) when more than \(m/2\) voters do so. A Condorcet
+domain is a domain for which this majority relation is transitive for
+every odd positive \(m\) and every profile from \(D\). Repeated orders
+in a profile are allowed. Write \(f(n)\) for the maximum possible
+\(|D|\) on \(n\) alternatives.
+\end{definition}
+\lean{\path{Condorcet.IsStrictTotal}, \path{Condorcet.Order},
+\path{Condorcet.Domain}, \path{Condorcet.majority},
+\path{Condorcet.IsCondorcet}, \path{Condorcet.f}.
+An order is a Boolean relation with irreflexivity, transitivity and
+totality; asymmetry follows. A domain is a \texttt{Finset}, so its
+members are distinct. Profiles are functions \(\mathrm{Fin}(m)\to
+\mathrm{Order}(X)\), with no injectivity requirement. The definition
+of \(f\) takes a finite supremum over exactly these semantic domains.
+The supplied correspondence source restates these three semantic interfaces in
+\path{TutorialCorrespondence.condorcet_definition},
+\path{peak_pit_definition} and \path{triple_characterization}.}
+
+\subsection{Triple laws connect voting to combinatorics}
+On a triple \(\{x,y,z\}\), the law \(xN_i\) says that \(x\) never
+occupies position \(i\), with \(i=1,2,3\) meaning first, middle, last.
+An extreme law is \(xN_1\) or \(xN_3\).
+\begin{definition}[Peak-pit]\label{def:peak}
+A peak-pit domain has a common extreme law on each triple, with the
+choice of alternative and forbidden position allowed to vary between
+triples. Let \(h(n)\) be its maximum size. No common axis is required.
+\end{definition}
+\lean{\path{Condorcet.Never} uses positions \(0,1,2\), respectively.
+\path{Condorcet.ValueRestricted} means a common never-law per triple;
+\path{ExtremeRestricted} requires the position to differ from \(1\)
+in this zero-based convention. \path{IsPeakPit} is explicitly
+\path{IsCondorcet} together with \path{ExtremeRestricted};
+\path{Condorcet.h} takes the corresponding maximum.}
+
+\begin{theorem}[Triple characterisation]\label{thm:triple}
+A domain is Condorcet if and only if each triple has a common never-law.
+In particular, a common extreme law per triple suffices.
+\end{theorem}
+\begin{proof}
+On a fixed triple, separate the six orders into
+\[
+ \{abc,bca,cab\},\qquad\{acb,cba,bac\}.
+\]
+The three orders in either set, used once each as a three-voter profile,
+produce a majority cycle. A Condorcet domain must therefore omit at
+least one order from each set. There are nine choices of the two
+omitted orders. In every choice, some alternative occupies the same
+position in both omitted orders; the remaining four orders satisfy
+that never-law. To see the nine cases without a search, fix the omitted
+order in the first set to be \(abc\) by cyclic relabelling. Pairing
+it with \(acb,cba,bac\) gives respectively \(aN_1,bN_2,cN_3\).
+Undo the relabelling for the other two first-set choices.
+
+Conversely, suppose all voters satisfy a fixed never-law on a triple.
+For \(xN_2\), each voter compares \(x\) with \(y,z\) in the same
+direction, so the two majority comparisons agree and cannot form a
+cycle. For \(xN_1\), a voter with \(x>y\) must have \(z>x>y\).
+Thus a majority for \(x>y\) forces a majority for \(z>y\), ruling
+out the cycle \(x>y>z>x\). For the reverse cycle, interchange \(y,z\).
+The case \(xN_3\) is the reversal of this argument.
+An odd profile has no majority ties. Its majority relation is a
+tournament, and a non-transitive tournament has a directed triangle:
+if \(a>b\), \(b>c\), but not \(a>c\), then \(c>a\). Every such
+triangle is excluded by its common law, proving transitivity.
+\end{proof}
+\lean{\path{Condorcet.isCondorcet_iff_valueRestricted} is the exact
+semantic equivalence. Its two directions are
+\path{IsCondorcet.valueRestricted} and
+\path{ValueRestricted.isCondorcet}. The finite triple step is
+\path{Condorcet.Pattern.finite_characterization}; its finite
+formulation uses the six Boolean comparison patterns. The proof above
+is a human proof of the same equivalence, not a literal transcript of
+Lean's finite case split.}
+
+\subsection{Maximum, maximal and full are three different notions}
+\begin{definition}[Fullness and the simpler class]\label{def:full}
+A domain is maximal if no further order can be added while retaining
+the Condorcet property. It has maximum size if its size equals \(f(n)\).
+Choose one never-law on each triple. Its full solution set is called a
+full domain. Define \(\F_n\) to consist of nonempty full solution sets
+of one extreme law per triple together with any set of fixed pair
+comparisons. A fixed comparison may be absent or may require either
+orientation. It does not impose a common axis.
+\end{definition}
+\lean{\path{Condorcet.IsMaximal} includes both the semantic Condorcet
+property and inclusion-maximality. \path{Selection},
+\path{HoldsLaw}, \path{fullDomain} and \path{IsFull} formalise full
+general domains. \path{ExtremeSelection}, \path{FixedPairs},
+\path{extremeFullDomain} and \path{IsExtremeFull} describe the full
+extreme-law-plus-pairs solution set, which may be empty.
+\path{Condorcet.InF} adds nonemptiness and is exactly our \(\F_n\).
+These two predicates must not be interchanged.}
+
+\begin{lemma}[Completion]\label{lem:completion}
+A maximum general domain is maximal, and a maximal general domain is
+full. A maximum peak-pit domain is a full solution set of extreme
+laws, and hence belongs to \(\F_n\).
+\end{lemma}
+\begin{proof}
+Adding an order to a maximum domain would increase its size, proving
+maximality. For a maximal domain choose a common law on each triple
+using Theorem~\ref{thm:triple}, and include every order satisfying the
+chosen laws. The enlargement is still Condorcet, so maximality makes
+it equal to the original domain. For a maximum peak-pit domain, make
+the choices extreme. Its completion remains peak-pit, so maximum size
+again forces equality. It is nonempty, since a singleton is peak-pit.
+There is no need for it to be maximal among \emph{all} Condorcet domains.
+\end{proof}
+\lean{\path{Condorcet.maximum_isMaximal}, \path{IsMaximal.isFull},
+\path{ExtremeRestricted.completion},
+\path{maximum_peakPit_isExtremeFull},
+\path{maximum_peakPit_fullClass}. The last gives
+\path{IsExtremeFull}; nonemptiness is supplied where \path{InF}
+is used. The extremal functions are actual attained maxima by
+\path{exists_maximum_general} and \path{exists_maximum_peakPit}.}

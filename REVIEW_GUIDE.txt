@@ -1,5 +1,8 @@
 INDEPENDENT REVIEW FOR PAVLOS / HIS AI -- CURRENT PAPER, 1 NOVEMBER 2026
 
+For a guided exposition, tutorial/main.pdf is the separate tutorial by
+Søren Riis, based on the joint research. Its guide and checks are in tutorial/.
+
 1. Start with manuscript/main.pdf and README.txt. The current paper has ten
    pages including references and two mathematical appendix pages. For every
    finite datum and routine printed together, read the 21-page companion at

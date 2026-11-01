@@ -1,0 +1,126 @@
+@TutorialSupportStatements.strict_order_definition : ∀ {α : Type u_1} (r : α → α → Bool),
+  Condorcet.IsStrictTotal r ↔
+    (∀ (a : α), r a a = false) ∧
+      (∀ (a b c : α), r a b = true → r b c = true → r a c = true) ∧ ∀ (a b : α), a ≠ b → r a b = true ∨ r b a = true
+'TutorialSupportStatements.strict_order_definition' does not depend on any axioms
+@TutorialSupportStatements.maximum_general_is_maximal : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsCondorcet D → Finset.card D = Condorcet.f n → Condorcet.IsMaximal D
+'TutorialSupportStatements.maximum_general_is_maximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.maximal_is_full : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsMaximal D → Condorcet.IsFull D
+'TutorialSupportStatements.maximal_is_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.maximum_peak_completion : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsPeakPit D → Finset.card D = Condorcet.h n → ∃ L, D = Condorcet.fullDomain ↑L
+'TutorialSupportStatements.maximum_peak_completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.maximum_peak_full_class : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsPeakPit D → Finset.card D = Condorcet.h n → Condorcet.IsExtremeFull D
+'TutorialSupportStatements.maximum_peak_full_class' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.maximum_peak_inF : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsPeakPit D → Finset.card D = Condorcet.h n → Condorcet.InF D
+'TutorialSupportStatements.maximum_peak_inF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.general_deletion_upper : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsCondorcet D → Condorcet.deletionSum D ≤ (k + 1) * Condorcet.f k
+'TutorialSupportStatements.general_deletion_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.peak_deletion_upper : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsPeakPit D → Condorcet.deletionSum D ≤ (k + 1) * Condorcet.h k
+'TutorialSupportStatements.peak_deletion_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.fibre_identity : ∀ {k : ℕ} (D : Condorcet.Domain (Fin (k + 1))),
+  Condorcet.deletionSum D + Condorcet.gapCount D + Condorcet.adjacencyCount D = (k + 1) * Finset.card D
+'TutorialSupportStatements.fibre_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.interval_fibres : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsExtremeFull D →
+    ∀ (x : Fin (k + 1)) (P : Condorcet.Order (Fin k)),
+      Condorcet.SlotWord.Interval (Condorcet.insertionWord (Condorcet.optionDomain x D) P)
+'TutorialSupportStatements.interval_fibres' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.no_gaps : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsExtremeFull D → Condorcet.gapCount D = 0
+'TutorialSupportStatements.no_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.interval_deletion_count : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsExtremeFull D → Condorcet.deletionSum D + Condorcet.adjacencyCount D = (k + 1) * Finset.card D
+'TutorialSupportStatements.interval_deletion_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.first_move_count : ∀ {k : ℕ} (D : Condorcet.Domain (Fin (k + 1))),
+  2 * Condorcet.deletionSum D + Condorcet.freeCount D = (k + 1) * Finset.card D + Condorcet.frozenCount D
+'TutorialSupportStatements.first_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.second_move_count : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsFull D →
+    2 * Condorcet.deletionSum D + Condorcet.adjacencyCount D = (k + 2) * Finset.card D + Condorcet.lockedCount D
+'TutorialSupportStatements.second_move_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.gap_slack_count : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsFull D →
+    3 * Condorcet.deletionSum D + Condorcet.freeCount D =
+      (k + 2) * Finset.card D + Condorcet.gapCount D + Condorcet.frozenCount D + Condorcet.lockedCount D
+'TutorialSupportStatements.gap_slack_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.fixed_pair_not_consecutive : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsMaximal D →
+    ∀ (r : Condorcet.Order (Fin (k + 1))) (p q : Fin (k + 1)),
+      p ≠ q → r ∈ D → (∀ u ∈ D, ↑u p q = true) → ¬∀ (c : Fin (k + 1)), ¬(↑r p c = true ∧ ↑r c q = true)
+'TutorialSupportStatements.fixed_pair_not_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.majority_closure : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)} (hD : Condorcet.IsFull D)
+  (u v w : Condorcet.Order (Fin n)) (hu : u ∈ D) (hv : v ∈ D) (hw : w ∈ D), Condorcet.medianOrder ⋯ u v w hu hv hw ∈ D
+'TutorialSupportStatements.majority_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.component_from_fixed : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D →
+    ∀ (r s : Condorcet.Order (Fin n)),
+      r ∈ D →
+        s ∈ D →
+          (∀ (i : Condorcet.Pair n),
+              (∀ q ∈ D, Condorcet.Connected D r q → Condorcet.encode q i = Condorcet.encode r i) →
+                Condorcet.encode s i = Condorcet.encode r i) →
+            Condorcet.Connected D r s
+'TutorialSupportStatements.component_from_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.component_extreme_full : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D → ∀ r ∈ D, Condorcet.InF (Condorcet.component D r)
+'TutorialSupportStatements.component_extreme_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.component_deletion_count : ∀ {k : ℕ} {D : Condorcet.Domain (Fin (k + 1))},
+  Condorcet.IsFull D →
+    ∑ K ∈ Condorcet.components D, Condorcet.deletionSum K = Condorcet.deletionSum D + Condorcet.gapCount D
+'TutorialSupportStatements.component_deletion_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.component_cardinality : ∀ {n : ℕ} (D : Condorcet.Domain (Fin n)),
+  ∑ K ∈ Condorcet.components D, Finset.card K = Finset.card D
+'TutorialSupportStatements.component_cardinality' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.component_membership : ∀ {n : ℕ} {D : Condorcet.Domain (Fin n)},
+  Condorcet.IsFull D →
+    ∀ (r s : Condorcet.Order (Fin n)),
+      r ∈ D → (s ∈ Condorcet.component D r ↔ s ∈ D ∧ Condorcet.HoldsPairs (Condorcet.componentPairs D r) s)
+'TutorialSupportStatements.component_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.window_estimate : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.DomE n K →
+    7 ≤ n →
+      8 * 8846117280 * ↑(CDCert.K6.adj n K) ≤
+        5 * 8846117280 * (↑n * ↑(CDCert.K6.card n K)) + (10 * 8846117280 + 2 ^ 66) * ↑(CDCert.K6.card n K)
+'TutorialSupportStatements.window_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+TutorialSupportStatements.copy_cardinality : ∀ (n n' : ℕ) (K K' : List ℕ → Bool),
+  CDCert.K6.card (n + n') (CDCert.K6.concat n K K') = CDCert.K6.card n K * CDCert.K6.card n' K'
+'TutorialSupportStatements.copy_cardinality' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.copies_preserve_class : ∀ {n n' : ℕ} {K K' : List ℕ → Bool},
+  CDCert.K6.IsDom n K → CDCert.K6.IsDom n' K' → CDCert.K6.IsDom (n + n') (CDCert.K6.concat n K K')
+'TutorialSupportStatements.copies_preserve_class' depends on axioms: [propext, Classical.choice, Quot.sound]
+TutorialSupportStatements.copy_adjacency : ∀ (n n' : ℕ) (K K' : List ℕ → Bool),
+  1 ≤ n →
+    1 ≤ n' →
+      CDCert.K6.adj (n + n') (CDCert.K6.concat n K K') =
+        CDCert.K6.adj n K * CDCert.K6.card n' K' + CDCert.K6.card n K * CDCert.K6.adj n' K'
+'TutorialSupportStatements.copy_adjacency' depends on axioms: [propext, Classical.choice, Quot.sound]
+TutorialSupportStatements.no_join_swap : ∀ (n n' : ℕ) (K K' : List ℕ → Bool),
+  1 ≤ n → 1 ≤ n' → CDCert.K6.adjAt (n + n') (n - 1) (CDCert.K6.concat n K K') = 0
+'TutorialSupportStatements.no_join_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.copies_power_two : ∀ {n : ℕ} {K : List ℕ → Bool},
+  CDCert.K6.IsDom n K →
+    1 ≤ n →
+      ∀ (k : ℕ),
+        CDCert.K6.IsDom (2 ^ k * n) (CDCert.K6.dbl n K k) ∧
+          CDCert.K6.card (2 ^ k * n) (CDCert.K6.dbl n K k) = CDCert.K6.card n K ^ 2 ^ k ∧
+            CDCert.K6.adj (2 ^ k * n) (CDCert.K6.dbl n K k) * CDCert.K6.card n K =
+              2 ^ k * CDCert.K6.adj n K * CDCert.K6.card n K ^ 2 ^ k
+'TutorialSupportStatements.copies_power_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+TutorialSupportStatements.base_general : Condorcet.f 3 = 4
+'TutorialSupportStatements.base_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+TutorialSupportStatements.base_peak : Condorcet.h 3 = 4
+'TutorialSupportStatements.base_peak' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TutorialSupportStatements.finite_rational : ∀ {J : List ℕ → Bool},
+  CDCert.K6.DomE 7 J →
+    ↑(CDCert.K6.cost10 J) / 10 ≤
+      5 / 8 * ↑(CDCert.K6.card 7 J) +
+          ↑(List.map (fun z => CDCert.K6.qD (CDCert.K6.botP z J)) (List.range 7)).sum / (2 * 8846117280) -
+        ↑(List.map (fun w => CDCert.K6.qD (CDCert.K6.topP w J)) (List.range 7)).sum / (2 * 8846117280)
+'TutorialSupportStatements.finite_rational' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,67 @@
+\section{Idea 1: deletion turns a structural count into a recurrence}\label{sec:deletion}
+\begin{definition}[Deletion outputs]\label{def:deletion}
+For a domain \(D\) on \(X\), with \(n=|X|\), let
+\[
+ M=|D|,\quad D_{-x}=\{\sigma\text{ with }x\text{ erased}:\sigma\in D\},
+ \quad M_x=|D_{-x}|,\quad\Sig(D)=\sum_{x\in X}M_x.
+\]
+Duplicates are removed in \(D_{-x}\). Outputs for different deleted
+alternatives are counted separately, so an output is a pair \((x,P)\).
+\end{definition}
+\lean{\path{Condorcet.deleteEmbedding}, \path{deleteDomain},
+\path{deletionSum}. Lean deletes from \(\mathrm{Fin}(k+1)\) and
+canonically relabels the remaining alternatives as \(\mathrm{Fin}(k)\).
+This relabelling changes neither distinctness nor any count.}
+
+\begin{example}[Deletion collisions]\label{ex:four}
+Take \(D=\{123,213,231,321\}\). It satisfies \(2N_3\), so it is
+Condorcet and peak-pit. Its outputs are
+\begin{center}
+\begin{tabular}{c|ccc}\toprule
+order & delete 1 & delete 2 & delete 3\\\midrule
+123&23&13&12\\213&23&13&21\\231&23&31&21\\321&32&31&21\\\midrule
+distinct outputs&2&2&2\\\bottomrule
+\end{tabular}
+\end{center}
+Thus \(M=4\), \(\Sig=6\). Deleting 1 merges three orders into 23.
+The useful structural theorems limit how much merging can happen on
+average across all deletion outputs.
+\end{example}
+\outside{The displayed labels and small numerical example are expository
+and are checked separately; no claim is made that this exact labelled
+example is an exported Lean theorem. The general definitions and all
+identities applied to it are formalised.}
+
+\begin{lemma}[The deletion upper estimate]\label{lem:deletion-upper}
+Restriction preserves both Condorcet and peak-pit domains. Consequently
+\[
+ \Sig(D)\leq nf(n-1)\quad\text{for Condorcet }D,\qquad
+ \Sig(D)\leq nh(n-1)\quad\text{for peak-pit }D.
+\]
+\end{lemma}
+\begin{proof}
+Lift each order in any odd profile of restricted orders to one original
+order of \(D\). All comparisons between surviving alternatives are
+unchanged. Majority is therefore the restriction of a transitive
+relation, hence transitive. An extreme triple law is also preserved by
+restriction. Each of the \(n\) deletion families is thus bounded by
+the relevant maximum at \(n-1\); sum those bounds.
+\end{proof}
+\lean{\path{Condorcet.IsCondorcet.restrict},
+\path{IsPeakPit.restrict}, \path{deletionSum_le_general},
+\path{deletionSum_le_peakPit}. The latter two literally use \(k+1\)
+alternatives and a factor \(k+1\); set \(n=k+1\).}
+
+\intuition{An upper bound on \(\Sig\) is easy because deletions have
+one fewer alternative. The hard part is to prove a large \emph{lower}
+bound on \(\Sig\) in terms of \(M\). If \(\Sig\geq c_nM\) for a
+maximum domain, the two estimates give \(f(n)\leq(n/c_n)f(n-1)\).
+The general algebraic observation is exposition; the final numerical
+instance is an explicit Lean theorem.}
+
+For perspective, \(M\leq\Sig\) holds for every order family, even
+without the Condorcet property: count \(nM\) pairs \((\sigma,x)\),
+and note that one output \((x,P)\) has at most \(n\) insertion positions
+as preimages. This weak bound yields only a factorial recurrence.
+The structural argument must force \(\Sig\) to be a positive fraction
+of \(nM\).

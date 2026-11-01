@@ -66,6 +66,16 @@ Proposition 2.3 has no separate generic formal theorem; the alpha=3/8 instance
 is proved. That numbered statement belongs to the older paper, not the
 current review draft. No unproved premise remains in its Theorem 1.1.
 
+SEPARATE TUTORIAL
+The tutorial by Søren Riis at tutorial/main.pdf is an exposition of the
+joint results. It shares the unchanged root Lean project. Its audited
+interfaces, exact examples and tables are checked by tutorial/scripts/;
+the 54 typed correspondence proofs and 190 named-interface evidence are
+preserved under tutorial/audit/. These are the successful earlier checks,
+not another full kernel rebuild for this editorial publication.
+The research paper and its source are unchanged. Tutorial attribution,
+byline and exposition do not claim additional upper-bound research results.
+
 VERSIONS AND PUBLICATION STATUS
 The exact earlier scope record is retained in snapshots/2026-10-29/.
 The earlier manuscript is preserved at commit

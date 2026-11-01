@@ -1,0 +1,131 @@
+\section{The transfer and all seven final conclusions}\label{sec:conclusions}
+\begin{theorem}[The second input]\label{thm:second}
+For every full domain \(D\) on \(n\geq1\) alternatives,
+\[
+ \boxed{3nM\leq8(\Sig+G).}
+\]
+\end{theorem}
+\begin{proof}
+Apply Theorem~\ref{thm:density} to each component and sum. By
+Theorem~\ref{thm:components}, the cardinalities sum to \(M\) and the
+deletion sums to \(\Sig+G\). The empty-domain case has both sides zero.
+\end{proof}
+\lean{\path{CDCert.TwoInputs.second_input}, literally on
+\(\mathrm{Fin}(k+1)\), with fullness as its only domain premise.}
+
+\begin{theorem}[Transfer to general domains]\label{thm:transfer}
+For every maximal Condorcet domain on \(n\geq1\) alternatives,
+\[
+ \boxed{(11n+8)M\leq32\Sig.}
+\]
+\end{theorem}
+\begin{proof}
+Maximality supplies fullness. The second input and the gap inequality
+give \(3nM/8\leq\Sig+G\leq4\Sig-(n+1)M\). Multiply by eight
+and rearrange: \((3n+8n+8)M\leq32\Sig\).
+\end{proof}
+\lean{\path{CDCert.TwoInputs.transfer} and
+\path{CDCert.Recurrences.deletion_lower_bound}. There is no assumed
+injection or density theorem in these statements: both have been
+proved in the dependency chain. The displayed rational algebra is
+performed over natural counts after clearing denominators.}
+
+\begin{theorem}[The seven final entry-point conclusions]\label{thm:final}
+Let \(f,h\) have the semantic definitions in Section~\ref{sec:definitions}.
+The first four assertions hold for every integer \(n\geq3\).
+\begin{enumerate}[label=E\arabic*.]
+\item \((11n+8)f(n)\leq32n f(n-1)\).
+\item \(f(n)\leq4(32/11)^{n-3}\).
+\item \(3h(n)\leq8h(n-1)\).
+\item \(h(n)\leq4(8/3)^{n-3}\).
+\item There is a real number \(L_f\) such that
+\(f(n)^{1/n}\to L_f\) and \(L_f\leq32/11\).
+\item There is a real number \(L_h\) such that
+\(h(n)^{1/n}\to L_h\) and \(L_h\leq8/3\).
+\item \(f(n)=O\bigl(n^{-8/11}(32/11)^n\bigr)\) as \(n\to\infty\).
+\end{enumerate}
+\end{theorem}
+\lean{These are exactly, in the same order,
+\path{CDCert.Main.general_recurrence}, \path{general_geometric},
+\path{peak_recurrence}, \path{peak_geometric}, \path{general_limit},
+\path{peak_limit}, \path{general_polynomial_correction}.
+The limit assertions quantify existentially over a real limit; they
+assert neither an exact value nor convergence of successive ratios.
+The final three statements have no extra mathematical hypotheses.}
+
+\subsection{Recurrences and the base value}
+\begin{proof}[Proof of E1--E4]
+Choose a domain of size \(f(n)\). It is maximal, so
+Theorem~\ref{thm:transfer} and Lemma~\ref{lem:deletion-upper} give E1.
+For a maximum peak-pit domain, completion puts it in \(\F_n\).
+The density theorem and the peak-pit deletion estimate give E3.
+
+On three alternatives a common never-law excludes two of the six
+orders, so every Condorcet domain has at most four orders. The
+peak-pit example in Section~\ref{sec:deletion} attains four. Hence
+\(f(3)=h(3)=4\). Starting there, the general recurrence factor satisfies
+\(32n/(11n+8)\leq32/11\), so induction gives E2. Induction using
+E3 gives E4. The shift by three and multiplier four come from this
+base value. The shifted formulas are not claimed at \(n=1,2\), where
+both functions take the direct values 1 and 2.
+\end{proof}
+\lean{\path{Condorcet.f_three}, \path{h_three};
+\path{CDCert.Recurrences.general_recurrence'} and
+\path{CDCert.Recurrences.peakPit_recurrence} actually give the recurrences for
+\(n\geq1\). The final \path{Main} wrappers use the paper's \(n\geq3\)
+interface. \path{f_geometric}, \path{CDCert.Recurrences.h_geometric} first prove the
+integer-scaled power bounds; \path{CDCert.Asymptotics.f_le_real} and
+\path{h_le_real} give the real-valued forms.}
+
+\subsection{Root-growth limits: a separate use of concatenation}
+\begin{proof}[Proof of E5 and E6]
+A singleton domain shows \(f(n),h(n)\geq1\). Ordered concatenation of
+any two Condorcet domains is again Condorcet: majority restricts to
+transitive majorities inside the blocks and always puts the first
+block above the second. For peak-pit domains, a mixed triple has a
+label fixed first or last, so an extreme law exists. Cardinalities
+multiply. Thus, for \(g=f\) or \(h\),
+\[
+ g(m+n)\geq g(m)g(n).
+\]
+Put \(a_n=\log g(n)\geq0\); it is superadditive. For a fixed
+\(k\geq1\), write \(n=qk+r\), \(0\leq r<k\). Repeated
+superadditivity gives \(a_n\geq q a_k+a_r\geq q a_k\), hence
+\(\liminf a_n/n\geq a_k/k\). Taking the supremum over \(k\)
+shows that the liminf is at least the supremum of all \(a_k/k\),
+whereas the limsup cannot exceed that supremum. The exponential
+upper bound makes it finite. Therefore \(a_n/n\) has a limit.
+The bounds E2 or E4 imply that this limit is at most \(\log(32/11)\)
+or \(\log(8/3)\). Exponentiating proves E5 and E6.
+\end{proof}
+\lean{\path{CDCert.Supermult.f_supermul}, \path{h_supermul},
+\path{one_le_f}, \path{one_le_h}; then
+\path{CDCert.Asymptotics.root_limit}, \path{f_root_limit},
+\path{h_root_limit}. The generic root-limit proof uses Mathlib's
+subadditive machinery on the negative logarithm. This limit argument
+is not needed to obtain E1--E4.}
+
+\subsection{The polynomial improvement, with a direct proof}
+\begin{proof}[Proof of E7]
+Set \(r=32/11\), \(a=8/11\). The recurrence is
+\[
+ f(n+1)\leq r\frac{n+1}{n+1+a}f(n).
+\]
+For \(0<a<1\) and \(x\geq0\), the elementary concavity inequality
+\((1+x)^a\leq1+ax\) follows by differentiating
+\(1+ax-(1+x)^a\): its derivative is nonnegative and its value at zero
+is zero. With \(x=1/(n+1)\), it gives
+\[
+ (n+2)^a(n+1)\leq(n+1)^a(n+1+a).
+\]
+Consequently \(f(n)(n+1)^a/r^n\) is non-increasing for \(n\geq3\).
+Its initial value is \(C=4\cdot4^a/r^3\), so
+\(f(n)\leq C(n+1)^{-a}r^n\leq Cn^{-a}r^n\) for all \(n\geq3\).
+This is precisely the asserted big-O estimate.
+\end{proof}
+\lean{\path{CDCert.Asymptotics.bernoulli_step}, \path{cW},
+\path{f_weighted}, \path{f_isBigO}; the last is restated by
+\path{CDCert.Main.general_polynomial_correction}.
+The real-power exponent is exactly \(-8/11\), not a natural-number
+subtraction. The finitely many initial values are irrelevant to
+\path{Asymptotics.IsBigO} at \texttt{atTop}.}

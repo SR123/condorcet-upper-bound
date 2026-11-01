@@ -1,0 +1,60 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage{booktabs,array,longtable,enumitem,url,xcolor}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={A Tutorial on Upper Bounds for Condorcet Domains},pdfauthor={Soren Riis}}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\setlist{itemsep=0.2em,topsep=0.3em}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\F}{\mathcal F}
+\newcommand{\fr}{\operatorname{fr}}
+\newcommand{\fz}{\operatorname{fz}}
+\newcommand{\lk}{\operatorname{lk}}
+\newcommand{\maj}{\operatorname{maj}}
+\newcommand{\lean}[1]{\begin{quote}\small\raggedright\textbf{Lean correspondence.}\par\nobreak #1\end{quote}}
+\newcommand{\intuition}[1]{\begin{quote}\textbf{Why this idea helps.} #1\end{quote}}
+\newcommand{\outside}[1]{\begin{quote}\small\raggedright\textbf{Expository scope.}\par\nobreak #1\end{quote}}
+\title{A Tutorial on Upper Bounds for Condorcet Domains}
+\author{S\o ren Riis}
+\date{1 November 2026}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries A Tutorial on Upper Bounds\\[2pt]
+for Condorcet Domains}\par
+\medskip
+{\large S\o ren Riis}\par
+\small Review draft, 1 November 2026
+\end{center}
+\input{sections/00_roadmap}
+\clearpage
+\setcounter{tocdepth}{1}
+{\small\setlength{\parskip}{0pt}\tableofcontents}
+\clearpage
+\input{sections/00a_first_pass}
+\clearpage
+\input{sections/01_definitions}
+\input{sections/02_deletion}
+\input{sections/03_fibres}
+\input{sections/04_injection}
+\input{sections/05_components}
+\input{sections/06_local_input}
+\input{sections/07_windows}
+\input{sections/08_copies}
+\input{sections/09_conclusions}
+\input{sections/09a_numerical_bounds}
+\input{sections/10_computation}
+\appendix
+\input{sections/11_correspondence}
+\input{sections/12_verification}
+\end{document}

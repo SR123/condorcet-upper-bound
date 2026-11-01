@@ -1,0 +1,128 @@
+\section*{A first pass: what the proof has to do}\label{sec:first-pass}
+\addcontentsline{toc}{section}{A first pass: what the proof has to do}
+An upper bound limits the size of \emph{every} Condorcet domain.
+An explicit construction supplies one domain and hence a lower bound.
+We will use small constructions to make the counting visible, and
+then explain why the same counting limits all domains.
+
+\subsection*{1. Erase a label and count what survives}
+Suppose a domain \(D\) has \(M\) orders on \(n\) alternatives.
+Erasing a label can merge different orders. The proof asks how much
+merging is possible, averaged over the \(n\) choices of erased label.
+Here are the four quantities to keep in view:
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.08\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.60\linewidth}@{}}\toprule
+Symbol & What we count & How to picture it\\\midrule
+\(M\) & Orders in \(D\) & The original collection of rankings.\\[0.35em]
+\(\Sigma\) & Distinct deletion outputs & An output remembers both the deleted label and the remaining order.\\[0.35em]
+\(G\) & Separations in insertion positions & Several separated runs of possible positions for one reinserted label contribute extra units.\\[0.35em]
+\(A\) & Enabled adjacent swaps & Each swap edge counts twice, once from either endpoint.\\\bottomrule
+\end{tabular}
+\end{center}
+An insertion fibre is just the list of places where one erased label
+could have been. In such a list,
+\[
+ \text{number of runs}=\text{occupied places}-\text{edges between occupied neighbours}.
+\]
+Summing this elementary path identity gives
+\(\Sigma+G+A=nM\). This is the counting framework for the whole proof.
+
+Every deletion of a Condorcet domain is still Condorcet. Therefore
+\(\Sigma\leq nf(n-1)\). To bound \(M\), we need a lower bound
+on \(\Sigma\): the orders cannot all disappear into very few outputs.
+
+\subsection*{2. Prove two estimates, for different reasons}
+The structural argument gives, for a maximal domain,
+\[
+ \boxed{G+(n+1)M\leq3\Sigma.}\tag{gap count}
+\]
+Its main idea is an injective assignment: each freely movable label
+forces a distinct obstruction elsewhere. Once that assignment is
+proved, the inequality follows by counting moves. No finite certificate
+is used in this step.
+
+The second estimate is
+\[
+ \boxed{\Sigma+G\geq\frac38nM.}\tag{component count}
+\]
+It comes from splitting a full domain into adjacent-swap components.
+Each component is the full solution set of extreme triple laws and
+fixed pair comparisons. On these simpler pieces, insertion positions
+form intervals and the finite argument proves that deletion retains
+at least a \(3/8\) fraction of the \(nM\) order/label incidences.
+Splitting counts separated insertion runs separately, which explains
+the additional \(G\).
+
+\subsection*{3. The fraction \(32/11\) is now forced}
+The two estimates give
+\[
+ \frac38nM\leq\Sigma+G\leq4\Sigma-(n+1)M.
+\]
+Move the \((n+1)M\) term to the left and multiply by eight:
+\[
+ (11n+8)M\leq32\Sigma\leq32nf(n-1).
+\]
+Choose a domain of maximum size \(M=f(n)\). This is the advertised
+recurrence, and its limiting multiplier is \(32/11\).
+
+One can also see the arithmetic without large counts. Set
+\(s=\Sigma/(nM)\), \(g=G/(nM)\), with \(n,M>0\). The estimates say
+\[
+ s+g\geq\frac38,\qquad g+1+\frac1n\leq3s.
+\]
+Together they force
+\(s\geq11/32+1/(4n)\). The term \(1/(4n)\) accounts exactly
+for the \(+8\) in the recurrence denominator.
+\lean{This overview restates \path{CDCert.TwoInputs.first_input},
+\path{second_input} and \path{transfer}. The normalised variables
+are an explanatory change of units. The precise unnormalised
+statements and their hypotheses appear beside the later proofs.}
+
+\subsection*{4. Where the computer enters, and why copies help}
+For the simpler pieces, the difficult input is a particular inequality
+on seven alternatives. It bounds a weighted swap count by \(5/8\)
+of the family size, plus a correction at each end. The finite
+certificate proves this inequality for every permitted constraint
+system.
+
+Fixing the order outside a seven-position window lets us apply that
+small inequality inside a long order. Consecutive windows share six
+positions. Their corrections cancel there, leaving a bounded error
+at the two outside ends. Ordered copies then remove this error:
+after dividing by the family size, the main counts grow in proportion to the number of copies, while
+the total number of outside ends remains two. Thus the exact swap
+estimate is \(A\leq5nM/8\). Since interval fibres give
+\(\Sigma=nM-A\), the retained deletion fraction is \(3/8\).
+
+This also explains the peak-pit multiplier \(8/3\): applying
+\(\Sigma\geq3nM/8\) to a maximum peak-pit domain and using
+\(\Sigma\leq nh(n-1)\) gives \(h(n)\leq(8/3)h(n-1)\).
+The general-domain proof transfers this \emph{deletion estimate}
+through components and the gap count. A geometric estimate for
+\(h(n)\) alone would not supply that structural information.
+
+\clearpage
+\subsection*{The twelve ideas as reusable mathematical moves}
+The following are conceptual analogies, not claims of historical priority.
+They also distinguish discovery from the eventual proof.
+\begin{center}\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.04\linewidth}>{\raggedright\arraybackslash}p{0.31\linewidth}>{\raggedright\arraybackslash}p{0.54\linewidth}@{}}\toprule
+& Move in this proof & General mathematical pattern\\\midrule
+1 & Count deletion outputs & Double counting followed by induction.\\
+2 & Count runs by places minus edges & The vertices-minus-edges formula for a disjoint union of paths.\\
+3 & Assign distinct obstructions & An injection, or a charging argument without reuse.\\
+4 & Project using majority & Closure under a median operation and projection in Boolean coordinates.\\
+5 & Fix the exterior & Conditioning, then interchanging finite sums.\\
+6 & Cancel overlap corrections & Telescoping sums; a discrete difference disappears in the interior.\\
+7 & Repeat ordered copies & Amplification: divide a bounded error by an arbitrarily large parameter.\\
+8 & Search for useful weights & Linear programming and counterexample-guided discovery.\\
+9 & Cover every constraint choice & Exhaustive case analysis with inductively proved soundness.\\
+10 & Pay exceptional deficits & Redistribution of local surplus, often called discharging.\\
+11 & Check exact finite data & Certificate checking by a small trusted verifier.\\
+12 & Relate the two representations & A proved bijection preserving the properties and counts used.\\\bottomrule
+\end{tabular}
+\end{center}
+Idea 8 discovers a candidate; it is not a premise of the theorem.
+Ideas 9--11 establish the finite input. Idea 12 ensures that this input
+really applies to the preference orders in the original question.

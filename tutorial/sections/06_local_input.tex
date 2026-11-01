@@ -1,0 +1,207 @@
+\section{The local inequality needed by Ideas 5 and 6}\label{sec:local}
+The next lemma is the one finite input to the strongest argument.
+We first give its mathematical proof from three exact finite facts,
+then justify how those facts are proved exhaustively in
+Section~\ref{sec:computation}. This keeps the structure visible without
+leaving a finite assertion unaccounted for.
+
+\subsection{Endpoint slices and their closure}
+For a family \(H\) on \(k\) alternatives, a bottom slice fixes the
+last label \(x\) and then deletes it; a top slice fixes and deletes
+the first label. The slice retains only orders having that specified
+endpoint, so it is not the same as ordinary deletion from all orders.
+At either end the slice sizes sum to \(|H|\).
+
+Every nonempty endpoint slice of a member of \(\F_k\) lies in
+\(\F_{k-1}\). Internal constraints remain unchanged. A triple with
+the deleted endpoint and two surviving labels becomes a fixed pair
+comparison, a tautology or a contradiction. Existing comparisons
+involving the endpoint likewise become constant. Contradictions give
+an empty slice. These observations also apply after fixing an ordered
+prefix and suffix, one endpoint deletion at a time.
+\lean{\path{CDCert.K6.botP}, \path{topP}, \path{slice_bot},
+\path{slice_top}. The list-level \path{IsDom} represents full
+extreme-law-plus-pair solution sets, with no requirement on values
+at lists that are not permutations. \path{DomE} adds families empty
+on the permutations. Empty slices are allowed in all sums.}
+
+For a seven-alternative family \(J\), let \(a_j(J)\) count orders
+with an enabled swap at positions \(j,j+1\), \(1\leq j\leq6\), and set
+\[
+ C(J)=\frac{a_1+2a_2+2a_3+2a_4+2a_5+a_6}{10}.
+\]
+If we sum \(A(H)\) over all top and bottom six-slices, the first
+and last swaps occur once, and the four others twice. Thus
+\begin{equation}\label{eq:costcount}
+ \sum_{\text{top and bottom six-slices }H}A(H)=10C(J).
+\end{equation}
+\lean{\path{CDCert.K6.adjAt} uses swap indices \(0,\ldots,k-2\).
+\path{adj} counts \(A\), and \path{cost10} is exactly \(10C\).
+\path{adj6_split}, \path{cost10_split} prove the slice-count
+identities. The semantic-to-list preservation of \(A\) is supplied
+by the bridge in Section~\ref{sec:bridge}.}
+
+\begin{example}[What the weighted count means]
+On seven alternatives, allow either order inside each pair
+\(\{1,2\},\{3,4\},\{5,6\}\), keep these three blocks in that
+order, and put 7 last. There are \(2^3=8\) orders. The enabled swaps
+are exactly at positions 1, 3 and 5, in every order, so
+\[
+ (a_1,a_2,a_3,a_4,a_5,a_6)=(8,0,8,0,8,0),\qquad
+ C=\frac{8+2\cdot8+2\cdot8}{10}=4.
+\]
+This is a full extreme-law-plus-pair family: all cross-block comparisons
+are fixed, and every triple has a compatible extreme law. Here
+\(A=24\), whereas \(C=4\); they measure different things.
+The weights in \(C\) are chosen so that sliding windows later count
+each interior swap with total weight one.
+\end{example}
+
+\begin{theorem}[Finite seven-window estimate]\label{thm:finite}
+There is a specified rational function \(q\) on six-alternative
+extreme-law-plus-pair families, extended by zero to the empty family,
+such that every \(J\in\F_7\), and also the empty family, satisfies
+\[
+ \boxed{C(J)\leq\frac58|J|+
+       \sum_{\text{bottom }H}q(H)-\sum_{\text{top }H}q(H).}
+\]
+\end{theorem}
+\lean{\path{CDCert.K6.finite_lemma} in
+\path{CDCert/K6/SevenFinal.lean}. The function is fixed by
+\path{qD}; it is not chosen separately for each \(J\). The theorem
+is integer-scaled, as detailed below. It applies to \texttt{DomE 7 J},
+including every fixed pair choice and the empty family.}
+
+\subsection{The weights, corrections and exact facts}
+It helps to view the next definitions as an accounting scheme.
+The quantity \(s\) is the slack in a preliminary inequality. Splitting
+it into \(\theta_b\) and \(\theta_t\) allocates that slack to the two
+ends of a slice. The correction \(p\) transfers value between those
+two accounts without changing their sum. The quantity \(q\) is what
+remains after the internal contributions cancel. The calculations
+below establish these descriptions exactly.
+
+The certificate specifies rational weights \(\phi\) on five-label
+isomorphism types and nine exceptional correction values. These are
+explicit finite data, included in the companion Lean source; they
+are not additional existence assumptions. Put
+\[
+ b(H)=\sum_{\text{bottom five-slices }P}|P|\phi(P),\qquad
+ t(H)=\sum_{\text{top five-slices }P}|P|\phi(P),
+\]
+\[
+ s(H)=\frac{12}{19}|H|+b(H)-t(H)-\frac15A(H),\qquad
+ \eta=\frac1{152}.
+\]
+A specified correction \(p(H)\) defines
+\[
+ \theta_b(H)=s(H)/2+p(H),\quad
+ \theta_t(H)=s(H)/2-p(H),\quad q(H)=(b(H)+t(H))/2+p(H).
+\]
+Outside a set \(\mathcal S\) of nine six-label types,
+\(p(H)=2\eta(r_t(H)-r_b(H))\). Here \(r_b\) counts bottom
+five-slices of one specified five-label type and \(r_t\) counts
+top five-slices of a second specified type. On \(\mathcal S\), the
+nine listed constants replace this formula. A further set
+\(\mathcal T\) consists of five types, disjoint from \(\mathcal S\).
+
+The exact finite facts are:
+\begin{enumerate}[label=F\arabic*.]
+\item For the eight-order type \(R_8\in\mathcal T\), \(\theta_b=\theta_t=0\).
+\item Outside \(\mathcal T\cup\mathcal S\),
+\[
+ \theta_b(H)\geq\frac\eta2|H|+4\eta r_t(H),\qquad
+ \theta_t(H)\geq\frac\eta2|H|+4\eta r_b(H).
+\]
+\item If some six-slice of \(J\) has type in
+\((\mathcal T\setminus\{R_8\})\cup\mathcal S\), then
+\[
+ \Lambda(J):=\sum_{\text{bottom }H}\theta_b(H)
+             +\sum_{\text{top }H}\theta_t(H)\geq\eta|J|.
+\]
+\end{enumerate}
+The type \(R_8\in\mathcal T\) has eight orders on six alternatives:
+\[
+ R_8=\{524130,524310,534120,534210,
+       542130,542310,543120,543210\}.
+\]
+The specified five-types in \(r_b,r_t\) are respectively obtained
+by deleting its first and its last label. Its orders all start in 5
+and end in 0, and direct calculation gives \(r_b(R_8)=r_t(R_8)=0\).
+The subscript denotes its eight orders, not eight alternatives.
+
+\lean{Definitions: \path{CDCert.K6.potW}, \path{bD}, \path{tD},
+\path{sD}, \path{pD}, \path{thB}, \path{thT}, \path{qD}, \path{lamD},
+\path{rb}, \path{rt}, \path{IsS}, \path{excRep6}. The two five-types
+have formal indices 866 and 41. The combined six-family check is
+\path{CDCert.K6.six_sem}; the regular receiver inequalities are
+\path{receiver_slack}, \path{thB_bound} and \path{thT_bound}.
+F3 is proved by \path{seven_bot}, \path{seven_top} after
+\path{relabel_slice}, using all 26 theorems
+\path{seven_fam_0} through \path{seven_fam_25}.
+\path{r8_th} proves F1; \path{r8_facts} and \path{r8_slices} provide the remaining stated R8 properties.}
+
+\subsection{Idea 10: pay for the remaining exceptional slices}
+\begin{proof}[Completion of the proof of Theorem~\ref{thm:finite}]
+F3 already proves \(\Lambda(J)\geq\eta|J|\) unless every six-slice
+is regular, empty, or of type \(R_8\). For a regular slice, F2 supplies
+a baseline \(\eta|H|/2\) and extra contributions. An \(R_8\) slice
+has value zero by F1 and is missing baseline \(4\eta\).
+
+Suppose a bottom \(R_8\) slice is obtained by fixing last label \(z\).
+All its eight orders have the same first label \(w\). They therefore
+also belong to one top receiver slice at \(w\). In that receiver,
+fixing last label \(z\) gives the five-type counted by \(r_b\), so
+F2 supplies an extra \(4\eta\) in its \(\theta_t\) value. The receiver
+cannot be \(R_8\), whose \(r_b\) is zero, and cannot be empty. It is
+therefore regular. Different bottom \(R_8\) slices have different
+last labels, hence charge different receiver/last-label pairs. They
+do not reuse a contribution. Reverse top and bottom for top \(R_8\)
+slices; those charges use the separate \(\theta_b\) contributions.
+
+All missing baselines are thus paid. At each end the slice sizes sum
+to \(|J|\), giving total baseline \(\eta|J|\). Therefore
+\(\Lambda(J)\geq\eta|J|\) in every case.
+
+Now expand \(\Lambda\). The terms on five-slices obtained by deleting
+one first and one last label cancel, because the two deletions
+commute, with the corresponding labels canonically relabelled.
+Equation~\eqref{eq:costcount} gives the remaining swap contribution.
+The resulting exact identity is
+\[
+ \Lambda(J)=\frac{12}{19}|J|-C(J)+
+       \sum_{\text{bottom }H}q(H)-\sum_{\text{top }H}q(H).
+\]
+Finally \(12/19-\eta=(96-1)/152=5/8\), proving the claimed inequality.
+The empty-family case has every term zero.
+\end{proof}
+\lean{\path{CDCert.K6.lam_receiver} is the receiver argument;
+\path{seven_finite} combines it with F3. The cancellation identity
+is \path{lamD_eq}. Thus neither the exceptional R8 family nor
+coverage of all seven-families is left as a premise of
+\path{finite_lemma}. Section~\ref{sec:computation} supplies the
+finite proofs of F1--F3, completing the dependency chain.}
+
+\subsection{The exact integer normalisation}\label{sec:scaling}
+Let \(d=8\,846\,117\,280\). Formal variables are normalised as follows:
+\begin{center}
+\begin{tabular}{@{}ll@{}}\toprule
+Formal quantity & Mathematical quantity\\\midrule
+\texttt{cD5} & \(d/5=1\,769\,223\,456\)\\
+\texttt{cK}, \texttt{cE} & \(12d/19=5\,587\,021\,440\), \(d/152=58\,198\,140\)\\
+\texttt{cost10} & \(10C\)\\
+\texttt{sD}, \texttt{bD}, \texttt{tD} & \(ds,db,dt\)\\
+\texttt{pD}, \texttt{thB}, \texttt{thT}, \texttt{qD} & \(2dp,2d\theta_b,2d\theta_t,2dq\)\\
+\texttt{lamD} & \(2d\Lambda\)\\\bottomrule
+\end{tabular}
+\end{center}
+Multiplying Theorem~\ref{thm:finite} by \(2d\) gives literally
+\[
+ (d/5)\,\texttt{cost10}(J)\leq
+ 11\,057\,646\,600\,|J|+
+ \sum_{\text{bottom }H}\texttt{qD}(H)-
+ \sum_{\text{top }H}\texttt{qD}(H).
+\]
+This is the statement of \path{CDCert.K6.finite_lemma}. Counts are
+cast into integers before subtraction. Consequently there is no
+truncated subtraction of a possibly negative potential in this step.

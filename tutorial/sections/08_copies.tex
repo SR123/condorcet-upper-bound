@@ -1,0 +1,90 @@
+\section{Idea 7: repeated copies remove the bounded error}\label{sec:copies}
+\begin{definition}[Ordered concatenation]\label{def:concat}
+Take disjoint label blocks. Put every label of an earlier block above
+every label of a later one, and choose an order from the given family
+inside each block independently. For integers \(t\geq1\), write \(K^{[t]}\) for \(t\) copies
+of one family \(K\).
+\end{definition}
+
+\begin{lemma}[Exact product counts]\label{lem:copies}
+If \(n,t\geq1\), \(K\in\F_n\), \(M=|K|>0\), then \(K^{[t]}\in\F_{tn}\), and
+\[
+ |K^{[t]}|=M^t,\quad
+ A(K^{[t]})=tA(K)M^{t-1},\quad
+ \Sig(K^{[t]})=t\Sig(K)M^{t-1}.
+\]
+\end{lemma}
+\begin{proof}
+Retain all internal defining constraints and fix every comparison
+between blocks. A triple meeting more than one block has a label
+fixed first or last, so a compatible extreme law can be chosen.
+The constraints describe exactly the concatenated orders, proving
+membership in \(\F\). Independent choices give the first formula.
+An enabled internal swap can occur in any of the \(t\) blocks while
+the other \(t-1\) blocks have \(M^{t-1}\) choices. A swap across a
+join violates a fixed cross-block comparison and is never enabled.
+This proves the second formula. Deleting label \(x\) in a block
+similarly gives \(M_xM^{t-1}\) outputs. Their blocks are recoverable
+from their disjoint labels and forced ordering, so there is no extra
+identification or correction at a join. Sum over all blocks and labels.
+\end{proof}
+\lean{\path{CDCert.K6.concat}, \path{isDom_concat},
+\path{card_concat}, \path{adj_concat} formalise the construction and
+first two counts at list level. \path{dbl} and \path{dbl_props}
+iterate doubling, using \(t=2^k\). The displayed deletion product
+is also a written counting proof; the formal amplification uses the
+adjacency product instead, then the fibre identity. We do not label
+the deletion-product formula as a separately exported Lean theorem.}
+
+For instance \(K=\{12,21\}\) gives
+\(K^{[2]}=\{1234,1243,2134,2143\}\). Each deletion leaves two
+orders, so \(\Sig=8=2\cdot2\cdot2\); the swap at the join is absent.
+
+\subsection{A slightly larger construction that can be inspected}
+Use the four-order domain \(D=\{123,213,231,321\}\) from
+Section~\ref{sec:deletion}, and a relabelled copy
+\(D'=\{456,546,564,654\}\). Joining them means choosing a prefix
+from \(D\) and a suffix from \(D'\). There are 16 orders, including
+\(123456,123546,213564,321654\). Every deletion has eight distinct
+outputs: two choices inside its affected block, and four in the other.
+Thus \(\Sigma=6\cdot8=48\). The two internal path graphs contribute
+24 undirected edges, hence \(A=48\). There is no swap across the join.
+All fibres are intervals, so \(G=0\) and \(48+0+48=6\cdot16\).
+
+The same recipe gives the following genuine domains. Write
+\(n=3t+r\), \(r\in\{0,1,2\}\); join \(t\) copies of \(D\), then
+append one fixed label if \(r=1\), or a freely ordered pair if \(r=2\).
+Each row counts this constructed family, without claiming it is largest.
+\input{sections/generated_small_constructions}
+This table makes the absence of a new join correction visible in
+actual counts. The construction and its counts are checked by the
+separate example script; the general product and interval identities
+used above are the formalised ones already identified.
+
+\subsection{Remove the outside error}
+
+\begin{theorem}[Exact extreme-law density]\label{thm:density}
+For \(n\geq1\) and \(K\in\F_n\),
+\[
+ \boxed{8A(K)\leq5n|K|,\qquad3n|K|\leq8\Sig(K).}
+\]
+\end{theorem}
+\begin{proof}
+Apply Proposition~\ref{prop:affine} once to the whole joined family,
+for \(t\) large enough that \(tn\geq7\):
+\[
+ tA(K)M^{t-1}\leq\frac58tnM^t+BM^t.
+\]
+Divide by \(tM^{t-1}>0\), obtaining
+\(A(K)\leq(5n/8+B/t)M\). Taking arbitrarily large \(t\), or just
+powers of two, gives the first inequality. Interval fibres and
+\(\Sig+A=nM\) give the second. The original \(n\) can be small,
+since only the repeated family's length must reach seven.
+\end{proof}
+\lean{\path{CDCert.K6.adj_le} proves the first inequality at list
+level. Lean avoids a real limit: if the integer bound failed by at
+least one, choose \(2^k\) larger than the fixed error can permit,
+use \path{dbl_props}, and obtain a contradiction. After transferring
+lists back to actual orders and using gap zero,
+\path{CDCert.Bridge.InF.density} states the second inequality on
+\(\mathrm{Fin}(k+1)\). Both are among the 20 audited results.}

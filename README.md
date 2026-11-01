@@ -5,6 +5,7 @@
 **Draft for coauthor review — updated 1 November 2026.** Not yet approved for archival release.
 
 - [Current paper (PDF)](manuscript/main.pdf) · [LaTeX source](manuscript/main.tex) — ten pages including references, plus two mathematical appendix pages.
+- [Tutorial by Søren Riis (PDF)](tutorial/main.pdf) · [Tutorial sources and guide](tutorial/) — a separate exposition of the joint upper-bound results.
 - [Complete technical companion (PDF)](docs/full-proof-2026-11-01/main.pdf) · [Source](docs/full-proof-2026-11-01/main.tex) — the fully printed proof, computational coverage argument and every coefficient and checking routine.
 - [Standalone exact Python checker](ancillary/standalone/check_finite.py) · [Instructions](ancillary/standalone/README.txt).
 - [Lean formalisation](lean/) · [Current paper-to-Lean map](docs/PAPER_LEAN_MAP.txt) · [Build and verification guide](README.txt).
@@ -18,4 +19,4 @@ This update replaces the manuscript and reading documentation and adds the compu
 
 The [1 November verification note](verification/editorial_2026-11-01/README.txt) distinguishes the earlier full Lean build, the later correspondence checks and the complete standalone Python run. No new full Lean rebuild is claimed for this editorial update.
 
-No GitHub release or DOI has been created. Archival publication remains subject to author agreement; preparation-stage files in `metadata/` remain inactive drafts.
+Moros's [earlier note](https://doi.org/10.5281/zenodo.23654773) has an author-supplied DOI. A DOI for the joint improved paper waits for author agreement. A separate DOI for the expository tutorial may be considered later; none has been registered. No GitHub release or new archival deposit is created by this addition; preparation-stage files in `metadata/` remain inactive drafts.

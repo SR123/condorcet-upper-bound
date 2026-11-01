@@ -1,0 +1,68 @@
+\section{Idea 2: runs are positions minus edges}\label{sec:fibres}
+\begin{definition}[Insertion fibres, gaps and swaps]\label{def:gaps}
+For \(P\in D_{-x}\), its insertion fibre \(F(x,P)\) is the set of
+slots \(0,\ldots,n-1\) in which reinserting \(x\) gives a member of
+\(D\). Split the occupied slots into consecutive runs. A fibre with
+\(r\) runs contributes \(r-1\) to \(G(D)\). Thus a gap counts a
+separation between runs, rather than every missing slot.
+Let \(A(D)\) count pairs \((\sigma,j)\) for which interchanging the
+adjacent alternatives in positions \(j,j+1\) stays in \(D\).
+An undirected swap edge contributes twice to \(A\).
+\end{definition}
+\lean{\path{Condorcet.insertionSlots}, \path{Condorcet.insertionWord},
+\path{SlotWord.runs}, \path{SlotWord.gaps}, \path{Condorcet.gapCount},
+\path{directedEdges}, \path{adjacencyCount}. Some local definitions
+use \(\mathrm{Option}(X)\): \texttt{none} denotes the inserted label
+and \texttt{some} the surviving labels. The transport back to labelled
+orders is proved, rather than assumed.}
+
+\begin{theorem}[Exact fibre identity]\label{thm:fibre}
+For every finite order family, without any Condorcet hypothesis,
+\[
+ \boxed{\Sig(D)+G(D)+A(D)=nM.}
+\]
+\end{theorem}
+\begin{proof}
+A fibre with \(m\) occupied slots and \(r\) runs has \(m-r\) pairs
+of consecutive occupied slots: each run of size \(s\) has \(s-1\)
+edges. Summing occupied slots over all fibres counts every order once
+for every deleted label, giving \(nM\). Summing runs gives \(\Sig+G\),
+since every nonempty fibre contributes one output and \(r-1\) gaps.
+Each consecutive-slot edge moves \(x\) past its neighbour. An actual
+swap of adjacent \(a,b\) appears once with \(a\) distinguished and
+once with \(b\) distinguished, precisely the twice-per-edge convention
+of \(A\). Hence the sum of \(m-r\) is \(A\), proving the identity.
+\end{proof}
+\lean{\path{Condorcet.deletion_gap_adjacency_identity} states
+\(\texttt{deletionSum}+\texttt{gapCount}+\texttt{adjacencyCount}
+=(k+1)|D|\). The equality between occupied-slot edges and actual
+swaps is proved by \path{slotAdjacencyCount_eq_adjacencyCount};
+the local run identity is \path{SlotWord.nonempty_run_identity}.}
+
+In Example~\ref{ex:four}, the swap graph is the path
+\(123\leftrightarrow213\leftrightarrow231\leftrightarrow321\).
+Thus \(A=6,G=0\), and \(6+0+6=3\cdot4\).
+By contrast, \(\{123,231\}\) has \(\Sig=5,G=1,A=0\).
+It is a peak-pit subset, but its 1-fibre above 23 has slots \(\{0,2\}\).
+Completion matters in the next lemma.
+
+\begin{lemma}[Interval fibres]\label{lem:interval}
+For a full extreme-law-plus-pair family, every nonempty insertion fibre
+is an interval. Therefore \(G=0\), and \(\Sig=nM-A\).
+\end{lemma}
+\begin{proof}
+Fix the relative order \(P\) of all labels except \(x\). Every defining
+constraint permits an interval of positions for \(x\). For instance,
+\(xN_1\) forces \(x\) below the higher of the other two labels;
+\(xN_3\) forces it above the lower. If a different label \(y\) is
+never first, either the third label is already above \(y\), making
+the condition automatic, or \(x\) must lie above \(y\). Never-last
+is the reverse case. A fixed comparison involving \(x\) permits a
+prefix or suffix of slots; constraints not involving \(x\) are constant.
+Intersect these intervals. Fullness says that every surviving slot is
+present, so the fibre has at most one run. Apply Theorem~\ref{thm:fibre}.
+\end{proof}
+\lean{\path{Condorcet.IsExtremeFull.insertionWord_interval},
+\path{IsExtremeFull.gapCount_zero} and
+\path{IsExtremeFull.deletion_plus_slotAdjacency}. The premise is
+\path{IsExtremeFull}, not merely \path{IsPeakPit}.}

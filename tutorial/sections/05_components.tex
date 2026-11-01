@@ -1,0 +1,101 @@
+\section{Idea 4: decompose by majority projection}\label{sec:components}
+Join two orders of \(D\) by an edge when they differ by one adjacent
+swap. Let its connected components be \(K\). Connectivity here always
+means paths in this adjacent-swap graph.
+\lean{\path{Condorcet.AdjacentSwap}, \path{Connected},
+\path{component} and \path{components}. These are not definitions
+using an arbitrary graph on the domain.}
+
+\begin{lemma}[Majority closure]\label{lem:median}
+A full domain contains the majority order of every three of its orders.
+\end{lemma}
+\begin{proof}
+The majority relation is a linear order by the Condorcet property.
+It preserves each chosen triple law. A never-middle law equates two
+comparison bits, so majority preserves their equality. For a never-first
+law, if majority put the distinguished label above both others, two
+sets of at least two of the three voters would support the two
+comparisons. Their intersection contains a voter putting that label
+first, a contradiction. Reverse the argument for never-last. Fullness
+then puts the majority order in the family. Fixed pair comparisons,
+when present, are preserved too.
+\end{proof}
+\lean{\path{Condorcet.medianOrder} constructs an actual strict order
+from semantic majority; \path{IsFull.median_mem} proves membership.
+The Boolean-coordinate statement is \path{IsFull.encoded_medianClosed}.}
+
+\begin{lemma}[A component is determined by its fixed comparisons]\label{lem:projection}
+Let \(D\) be full and \(K\) one component. Let \(U\) be the pair
+comparisons having the same value throughout \(K\). Then
+\[
+ K=\{\tau\in D:\tau\text{ agrees with }U\}.
+\]
+\end{lemma}
+\begin{proof}
+Only the reverse inclusion needs proof. Suppose \(\tau\in D\) agrees
+with \(U\), and choose \(\sigma\in K\) minimizing the number of pair
+comparisons on which it disagrees with \(\tau\). If they differ,
+some differing comparison is not fixed on \(K\), so choose
+\(\rho\in K\) agreeing with \(\tau\) on that comparison. Project
+a path in \(K\) from \(\sigma\) to \(\rho\) by
+\[
+ v\longmapsto\maj(\sigma,\tau,v).
+\]
+Every projected order lies in \(D\) by Lemma~\ref{lem:median}.
+Consecutive projections differ in at most the one comparison changed
+by the original edge. Two linear orders differing in one comparison
+are adjacent by a swap: if another label lay between the exchanged
+labels, transitivity would force some further comparison to change.
+Thus the projected path stays in \(K\) and starts at \(\sigma\).
+Where \(\sigma,\tau\) agree, projection keeps that value. Where
+they disagree, projection follows \(v\). Its final point corrects
+the selected disagreement and introduces no disagreement on which
+\(\sigma\) was already correct. It is therefore closer to \(\tau\),
+a contradiction.
+\end{proof}
+\lean{\path{Condorcet.IsFull.component_from_fixed} and
+\path{component_membership}. The formal proof encodes one Boolean
+coordinate per unordered pair; \path{encode_injective} proves that
+this representation loses no order information.}
+
+\begin{theorem}[Component reduction and count]\label{thm:components}
+If \(D\) is full, every adjacent-swap component \(K\) lies in \(\F_n\),
+and
+\[
+ \boxed{\sum_K|K|=M,\qquad\sum_K\Sig(K)=\Sig(D)+G(D).}
+\]
+\end{theorem}
+\begin{proof}
+A chosen never-middle law \(xN_2\) equates the two comparisons of
+\(x\) with the other labels of that triple. A swap changes at most
+one of those bits, so their common value cannot change along a path.
+Throughout a component, \(x\) is consequently above both labels or
+below both. Replace this law by \(xN_3\) in the first case and \(xN_1\)
+in the second, and impose all the comparisons \(U\) fixed on the
+component. Retain the original extreme laws. Every order in \(K\)
+satisfies the resulting constraints. Conversely an order satisfying
+them satisfies the old laws, since the fixed comparisons recover
+each replaced never-middle law. It lies in \(D\) and agrees with
+\(U\), hence lies in \(K\) by Lemma~\ref{lem:projection}. This proves
+\(K\in\F_n\), including the required fullness and nonemptiness.
+
+Components partition \(D\), giving the first identity. In one original
+insertion fibre, a run lies in a single component by its consecutive
+swap edges. A component cannot contain two separated original runs:
+its own fibres are intervals by Lemma~\ref{lem:interval}. Thus every
+run belongs to exactly one component and contributes one deletion
+output there. Counting all runs gives \(\sum_K\Sig(K)=\Sig+G\).
+\end{proof}
+\lean{\path{Condorcet.IsFull.component_inF} proves the single-component
+statement; \path{IsFull.components_inF} applies it to members of
+\path{components}. The identities are \path{sum_components_card} and
+\path{IsFull.sum_components_deletionSum}. Their premises are fullness,
+not maximality; maximality is needed later for the gap inequality.}
+
+\begin{example}[What the extra count means]
+The full domain \(\{123,132,231,321\}\), defined by \(1N_2\), has
+components \(\{123,132\}\) and \(\{231,321\}\). Its deletion sum is
+6 and its gap count 2. Each component has deletion sum 4, so the
+component sums add to \(8=6+2\). Splitting the family counts the
+previously separated fibre runs separately.
+\end{example}

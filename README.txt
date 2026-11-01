@@ -5,6 +5,8 @@ Current review draft, 1 November 2026
 START HERE
 manuscript/main.pdf       Current paper: 10 pages including references + 2 appendix pages
 manuscript/main.tex       Complete paper LaTeX source
+tutorial/main.pdf        Separate 32-page tutorial by Søren Riis
+tutorial/README.md       Tutorial sources, checks and reading guide
 ancillary/standalone/     Complete exact single-file Python checker and instructions
 docs/full-proof-2026-11-01/main.pdf   Fully printed 21-page technical companion
 docs/full-proof-2026-11-01/main.tex   Its source, with all code/data printed
@@ -29,6 +31,19 @@ numbering. supplement/ is retained as that earlier certificate supplement;
 it is not required to read the current paper. Old preparation-stage claims
 about Overleaf identity and GitHub placeholders describe the old snapshot,
 not the new manuscript. No Overleaf edit is part of this GitHub update.
+
+SEPARATE TUTORIAL
+The tutorial is an exposition by Søren Riis of the joint Moros–Riis results.
+It develops twelve ideas with worked examples, numerical comparisons and
+explicit Lean correspondences. The opening and bibliography credit the
+joint research, the earlier AI-assisted Moros note and AI assistance.
+The formal source is shared at lean/; tutorial/audit/ contains its own
+mapping, typed statement checks and earlier successful correspondence logs.
+The joint paper and all checked Lean sources are unchanged by this addition.
+From the repository root:
+  python3 tutorial/scripts/check_tutorial.py
+  python3 tutorial/scripts/build_numerical_examples.py
+See tutorial/README.md for its PDF build and formal-check commands.
 
 PAPER-TO-LEAN MAP: THEOREM 1.1
 All names below have prefix CDCert.Main. in lean/CDCert/Main.lean.

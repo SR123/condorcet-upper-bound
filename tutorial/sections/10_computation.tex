@@ -1,0 +1,156 @@
+\section{Ideas 8--12: how the finite input becomes a proof}\label{sec:computation}
+\subsection{Idea 8: search for weights, not just large examples}
+A useful search describes a small family by a vector of counts:
+its size, available swaps, endpoint types and selected smaller slices.
+The desired inequality is linear in unknown weights on those counts.
+A linear program can seek weights making all current constraints
+valid. Tight or failing families suggest which additional statistics
+or corrections may be useful. This explains the purpose of the
+five-type potential and the exceptional correction.
+
+The discovery record reports floating-point linear programming and
+an integer correction. It does not document every possible intermediate
+heuristic. Trying candidates, keeping useful choices, and examining
+counterexamples is a legitimate discovery strategy, but its selection
+history is not a theorem premise. The final proof freezes explicit
+rational data and proves every required assertion about those data.
+The coefficient \(5/8\), rather than a small-domain maximum size,
+is what feeds the asymptotic bound.
+\outside{The historical search method and this explanatory description
+of a possible iterative workflow are not Lean theorems. Lean proves
+properties of the fixed data that the search eventually supplied.}
+
+\subsection{Idea 9: exhaustive constraint generation}
+An extreme-law-plus-pair family is specified by one of six extreme
+laws on each triple and one of three choices on each pair: absent,
+first orientation, second orientation. Regard every choice as the
+subset of permutations it permits. The full solution set is the
+intersection of the selected subsets. Therefore exploring all such
+choices covers every family under consideration, including
+non-maximal ones. Conflicting choices may give the empty family.
+Maximal-domain classifications alone would not prove this coverage.
+
+Here is the basic checker in mathematical pseudocode:
+\[
+\begin{split}
+ \operatorname{Check}(S,[])&=\operatorname{Leaf}(S),\\
+ \operatorname{Check}(S,[\mathcal O_1,\ldots,\mathcal O_m])
+  &=\bigwedge_{O\in\mathcal O_1}
+       \operatorname{Check}(S\cap O,[\mathcal O_2,\ldots,\mathcal O_m]).
+\end{split}
+\]
+Empty intersections can be accepted immediately when the target
+inequality is zero on the empty family. Correctness is induction on
+the remaining groups: each actual choice selects one branch, and its
+final solution set is the intersection at that leaf. Thus a true
+checker result proves the property for every choice. Deduplicating
+identical states or relabelling to a proved representative is safe;
+sampling only promising branches would not be.
+
+\lean{\path{CDCert.IsChoice}, \path{domainOf}, \path{allows},
+\path{CDCert.ListOrder.groupsEP} describe the constraints. The
+semantic bridge \path{CDCert.Bridge.isChoice_groupsEP_iff}
+shows exactly which law/pair choices the generator represents.
+The soundness files include \path{CDCert/K6/Sound.lean},
+\path{DfsPSem.lean} and \path{FamSem.lean}; the specialised depth-first
+search checks are connected to the abstract choices by proved lemmas,
+not by accepting the output of a native program.}
+
+\subsection{Coverage on five, six and seven alternatives}
+At five alternatives the fixed table covers 1160 nonempty types.
+For any defining system on five labels, restrict its constraints to
+four labels, classify that full four-label solution set, then add back
+the constraints involving the new label. Restricting \emph{constraints}
+is essential: projecting the permitted orders can lose the full
+constraint description. The complete proof is
+\path{CDCert.K6.five_cover}; it gives a relabelling to one of the
+1160 representatives. The initial four-level classification is also
+proved in the project.
+
+For a six-family, restrict its defining constraints to five labels.
+That full five-family appears in the table, even if it is larger than
+the projection of the six-family. Reintroduce every possible new
+extreme triple law and every new pair choice. One branch is the
+original six-family. Kernel-evaluated checks certify either the
+regular inequality or membership in the complete exceptional list.
+The theorem \path{CDCert.K6.six_sem} is the universal result; its
+semantics identify the regular residual with
+\[
+ ds(H)-\eta d\bigl(|H|+4r_b(H)+4r_t(H)\bigr).
+\]
+Thus a nonnegative residual gives F2 after substituting the correction
+\(p\), while the stored exceptional types provide F1 and the remaining
+seven-level cases. All table fields are proved to be the sizes,
+adjacencies, slice values and type indicators they claim to encode.
+
+For seven alternatives, F3 requires every family with an exceptional
+six-slice other than \(R_8\). Relabel that slice so its removed
+endpoint is label 6 and its remaining labels match the exact stored
+six-mask. Enumerate every defining constraint choice compatible with
+that exact endpoint slice. This is done for all thirteen relevant
+six-types at both top and bottom, giving 26 oriented seed families.
+The theorems \path{seven_fam_0}, \ldots, \path{seven_fam_25} prove
+\(\Lambda\geq\eta|J|\) under the corresponding exact-slice hypothesis.
+\path{relabel_slice}, \path{seven_bot} and \path{seven_top} transport
+these results to every relevant slice at any label. Relabelling
+preserves cardinality and \(\Lambda\), so it loses no case.
+
+The formal finite enumeration has 16888 final states. These are
+counts of states in this proof, not a value of \(f(7)\). The independent
+native implementation uses different reductions and has different
+counts. Agreement of those literal counts is not needed: completeness
+and the same universal inequality are what matter.
+
+\subsection{Idea 10: exceptions are mathematical information}
+The regular estimate intentionally permits a small specified list
+of failures. Thirteen types are covered by the oriented seven-family
+checks. The remaining \(R_8\) case is proved by a hand argument:
+its common first and last labels force a receiving slice with a
+specific extra five-slice. Different deficits have distinct
+receiver/label pairs. Section~\ref{sec:local} proves this charging
+argument in full. The computer-supported proof is therefore a
+combination of exhaustive finite checks and a general structural
+explanation of the one remaining exception, not merely a list of
+successful inequalities.
+
+\subsection{Idea 11: exact certificates and a small trusted kernel}
+All rational coefficients have the common denominator \(d\).
+The finite checks use integer residuals and prove nonnegativity
+exactly. In Lean, the large generated checks use kernel reduction,
+including \texttt{decide +kernel}; they do not use
+\texttt{native\_decide}, a floating-point tolerance or an axiom saying
+that an external checker succeeded. Generic soundness theorems turn
+those finite evaluations into the universal mathematical statements.
+The full source project includes every generated branch and literal
+table used in that chain. It requires no unprovided generator to
+understand the statements or to recompile their proofs.
+
+\subsection{Idea 12: prove that the representation preserves the mathematics}\label{sec:bridge}
+The semantic definitions use Boolean comparison relations; the finite
+checker uses permutations as lists. This difference must be proved
+harmless. Sorting a semantic order gives a list \(\operatorname{toList}(r)\)
+containing every label exactly once. Reading precedence in that list
+recovers exactly the original comparison relation. The inverse
+\(\operatorname{ofList}\) constructs a strict total order from a
+permutation. The two conversions are inverse, so no order is lost
+and no duplicate is introduced. A never-law or fixed pair holds for
+an order exactly when the corresponding list option accepts its list.
+Consequently full solution sets, their cardinalities and adjacent
+swaps agree on both sides. Endpoint deletion also uses the explicit
+canonical relabelling already described.
+
+\lean{\path{CDCert.Bridge.before_toList}, \path{ofList_toList},
+\path{toList_ofList}, \path{toList_injective},
+\path{lawOpt_toList}, \path{pairOpt_toList},
+\path{mem_extremeFullDomain_iff}, \path{InF.toList_domain},
+\path{toList_swapLetter} and \path{card_adj_of_choice} establish
+these connections. The final theorem \path{CDCert.Bridge.InF.density}
+uses those equalities, \path{CDCert.K6.adj_le}, the semantic fibre
+identity and gap zero. Its conclusion is about actual semantic
+orders, not merely a model that resembles them.}
+
+The native Python/C++ programs are useful independent replay tools,
+but their implementation correctness, timings, literal counts and
+search history are not propositions proved by this Lean project.
+The main theorem relies on the separately proved Lean enumeration
+and its semantic bridge.

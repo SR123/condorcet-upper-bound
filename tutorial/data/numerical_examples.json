@@ -1,0 +1,177 @@
+{
+  "result": "PASS",
+  "n_values": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    20,
+    30,
+    100
+  ],
+  "upper_bounds": [
+    {
+      "n": 5,
+      "deletion_only": 80,
+      "gap_only": 22,
+      "full_argument": 22,
+      "gap_with_classifications": 20,
+      "full_with_classifications": 20
+    },
+    {
+      "n": 6,
+      "deletion_only": 480,
+      "gap_only": 56,
+      "full_argument": 56,
+      "gap_with_classifications": 45,
+      "full_with_classifications": 45
+    },
+    {
+      "n": 7,
+      "deletion_only": 3360,
+      "gap_only": 147,
+      "full_argument": 147,
+      "gap_with_classifications": 100,
+      "full_with_classifications": 100
+    },
+    {
+      "n": 8,
+      "deletion_only": 26880,
+      "gap_only": 392,
+      "full_argument": 392,
+      "gap_with_classifications": 224,
+      "full_with_classifications": 224
+    },
+    {
+      "n": 9,
+      "deletion_only": 241920,
+      "gap_only": 1058,
+      "full_argument": 1055,
+      "gap_with_classifications": 604,
+      "full_with_classifications": 602
+    },
+    {
+      "n": 10,
+      "deletion_only": 2419200,
+      "gap_only": 2885,
+      "full_argument": 2861,
+      "gap_with_classifications": 1647,
+      "full_with_classifications": 1632
+    },
+    {
+      "n": 20,
+      "deletion_only": 1621934672117760000,
+      "gap_only": 89223302,
+      "full_argument": 77257942,
+      "gap_with_classifications": 50935157,
+      "full_with_classifications": 44070458
+    },
+    {
+      "n": 30,
+      "deletion_only": 176835239874794039090872320000000,
+      "gap_only": 3569015540305,
+      "full_argument": 2522585604051,
+      "gap_with_classifications": 2037453916450,
+      "full_with_classifications": 1438965369344
+    },
+    {
+      "n": 100,
+      "deletion_only": 62217476962629435121132825904177800327143978842921080979061975930145066662153277072627642650771012190835798613884815838834123473944576000000000000000000000000,
+      "gap_only": 2742057701096317255909707988506882698894576031,
+      "full_argument": 309624301037351112717931754525396321224901279,
+      "gap_with_classifications": 1565366174267878966641830192074634983244227758,
+      "full_with_classifications": 176619832438808660428676126283702332222155976
+    }
+  ],
+  "small_constructions": [
+    {
+      "n": 5,
+      "three_label_blocks": 1,
+      "remainder": 2,
+      "M": 8,
+      "Sigma": 20,
+      "G": 0,
+      "A": 20
+    },
+    {
+      "n": 6,
+      "three_label_blocks": 2,
+      "remainder": 0,
+      "M": 16,
+      "Sigma": 48,
+      "G": 0,
+      "A": 48
+    },
+    {
+      "n": 7,
+      "three_label_blocks": 2,
+      "remainder": 1,
+      "M": 16,
+      "Sigma": 64,
+      "G": 0,
+      "A": 48
+    },
+    {
+      "n": 8,
+      "three_label_blocks": 2,
+      "remainder": 2,
+      "M": 32,
+      "Sigma": 128,
+      "G": 0,
+      "A": 128
+    },
+    {
+      "n": 9,
+      "three_label_blocks": 3,
+      "remainder": 0,
+      "M": 64,
+      "Sigma": 288,
+      "G": 0,
+      "A": 288
+    },
+    {
+      "n": 10,
+      "three_label_blocks": 3,
+      "remainder": 1,
+      "M": 64,
+      "Sigma": 352,
+      "G": 0,
+      "A": 288
+    }
+  ],
+  "weighted_seven_example": {
+    "M": 8,
+    "swap_counts": [
+      8,
+      0,
+      8,
+      0,
+      8,
+      0
+    ],
+    "C": "4"
+  },
+  "eight_position_window_weight_numerators": [
+    1,
+    3,
+    4,
+    4,
+    4,
+    3,
+    1
+  ],
+  "display_rule": "Integers with ten or more digits are rounded upwards to four significant digits.",
+  "external_classification_inputs": {
+    "5": 20,
+    "6": 45,
+    "7": 100,
+    "8": 224
+  },
+  "external_sources": [
+    "https://arxiv.org/html/2306.15993v5#S4.SS1",
+    "https://link.springer.com/article/10.1007/s00355-023-01481-3"
+  ],
+  "formal_scope": "Arithmetic and explicit examples checked by this script; the external classifications are not Lean assumptions of the 32/11 theorem."
+}

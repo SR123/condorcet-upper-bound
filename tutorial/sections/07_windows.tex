@@ -1,0 +1,95 @@
+\section{Ideas 5 and 6: local windows and telescoping corrections}\label{sec:windows}
+\intuition{A seven-position window can have an unusually large swap
+count. Its end corrections account for the excess. When the window
+slides one position, its new overlap is the old overlap, so the
+accounting corrections cancel inside the order.}
+
+\subsection{See one overlap before summing all windows}
+Picture eight consecutive positions as
+\[
+ x\ \big|\ a\ b\ c\ d\ e\ f\ \big|\ y.
+\]
+The first seven-position window is \(xabcdef\); the next is
+\(abcdefy\). Fix the full exterior order in each application.
+In the first window, fixing and deleting the first label \(x\)
+leaves the central six positions. In the second, fixing and deleting
+the last label \(y\) leaves exactly the same six-position family,
+with the same ordered exterior. Its correction occurs with a minus
+sign in the first inequality and a plus sign in the second.
+This is why it cancels. The matching remembers the fixed exterior;
+it does not identify unrelated families merely because they look alike.
+
+The weights can also be seen on eight positions. In the following
+table all entries have denominator 10:
+\begin{center}\small
+\begin{tabular}{@{}lrrrrrrr@{}}\toprule
+Swap position&1&2&3&4&5&6&7\\\midrule
+First window&1&2&2&2&2&1&0\\
+Second window&0&1&2&2&2&2&1\\\midrule
+Total&1&3&4&4&4&3&1\\\bottomrule
+\end{tabular}
+\end{center}
+There are seven possible swap positions, and the total weight is
+\(20/10=2\). The missing weight is \(7-2=5\).
+For a longer order the middle positions eventually receive weight
+one; the same total deficit of five is confined to the outside ends.
+The proof below works uniformly even when the order is short.
+
+\subsection{The complete count}
+
+\begin{proposition}[A global estimate with two outside ends]\label{prop:affine}
+There is a fixed constant \(B\), independent of \(n\) and \(K\),
+such that for every \(K\in\F_n\) with \(n\geq7\),
+\[
+ A(K)\leq\frac58n|K|+B|K|,
+ \qquad\Sig(K)\geq(3n/8-B)|K|.
+\]
+\end{proposition}
+\begin{proof}
+At each window position fix the full ordered prefix and suffix
+outside the seven consecutive positions. The remaining labels and
+their allowed orders form a conditional family \(J\in\F_7\), unless
+empty, by endpoint-slice closure. These conditional families partition
+\(K\), so their sizes sum to \(M=|K|\). Different exterior contexts
+are retained with their multiplicities even if their local families
+are isomorphic. Apply Theorem~\ref{thm:finite} to each context and sum.
+
+The top six-slices of the window in positions \(i,\ldots,i+6\)
+match the bottom six-slices of the next window. Both retain positions
+\(i+1,\ldots,i+6\) and fix the same ordered exterior. Consequently
+all internal \(q\)-terms cancel. Formally this is the elementary sum
+\(\sum_{i=0}^{m-1}(Q_i-Q_{i+1})=Q_0-Q_m\), with the sign convention
+bottom minus top. The two remaining six-position layers each have
+total size \(M\). There are finitely many six-label families and
+\(q(\varnothing)=0\), so choose \(Q\) with
+\(|q(H)|\leq Q|H|\). The boundary contribution has absolute value
+at most \(2QM\). Thus
+\[
+ \sum_{\text{all window contexts }J}C(J)
+ \leq\frac58(n-6)M+2QM.
+\]
+
+Every interior swap position has total weight
+\((1+2+2+2+2+1)/10=1\) across windows. At all positions the total
+weight is between zero and one. There are \(n-1\) swap positions,
+but the sum of the weights over the \(n-6\) windows is \(n-6\).
+The total missing weight is therefore exactly 5 per order. Since a
+swap indicator is at most one,
+\[
+ A(K)\leq\sum_J C(J)+5M
+ \leq\frac58nM+\left(\frac54+2Q\right)M.
+\]
+Take \(B=5/4+2Q\). Interval fibres give \(\Sig=nM-A\), proving
+the second assertion.
+\end{proof}
+\lean{\path{CDCert.K6.winS_card} and \path{winS_adjAt} identify the
+window counts; \path{winS_bot}, \path{winS_top} identify the matching
+six-position contexts. \path{window_ineq} applies the finite estimate;
+\path{isum_telescope} cancels the internal terms. The final scaled
+bound is \path{CDCert.K6.window_bound}:
+\[
+ 8dA\leq5dnM+(10d+2^{66})M.
+\]
+\path{qD_bound} supplies \(|\texttt{qD}(H)|\leq2^{63}|H|\), so
+\(Q=2^{62}/d\) and \(B=5/4+2^{63}/d\) recover exactly this coefficient.
+The enormous boundary constant is harmless; the next idea removes it.}
