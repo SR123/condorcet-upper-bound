@@ -1,17 +1,15 @@
-INDEPENDENT-REVIEW CANDIDATE -- NO PUBLICATION AUTHORISED
+ARCHIVAL STATUS -- 2 NOVEMBER 2026
 
-The packet is prepared for Pavlos to review independently, including with
-his AI. No repository upload, push, release, DOI registration, archive
-publication, email or journal submission has been performed.
+The user confirmed coauthor agreement to obtain a DOI for the joint paper,
+and selected CC BY 4.0 for the paper and accompanying source/reproducibility
+files. This supersedes the old 29 October preparation-stage approval notes.
 
-Before archival publication, Pavlos must agree with the paper. Both authors
-also approve the exact manuscript, supplement, Lean project, credit and
-verification scope, final manifest, licenses, repository URL and version.
-The arbitrary-alpha coverage limitation is explicit in README.txt.
-The paper's GitHub URL and DOI placeholders are intentional.
+The joint paper is published at DOI 10.5281/zenodo.23871004.
+No DOI is being registered for the separate Riis tutorial in this deposit.
+No email sending or journal submission is part of this archival operation.
 
-Other files in this directory are inactive metadata drafts only. In
-particular zenodo.DRAFT.json is not .zenodo.json and is not ready for a
-deposit; no license grant or DOI has been invented. Do not activate archival
-integration or rename these into active metadata before author agreement.
-Søren alone sends emails under his standing drafts-only instruction.
+PUBLICATION COMPLETE
+Zenodo record: https://zenodo.org/records/23871004
+Version 1.0.0 DOI: 10.5281/zenodo.23871004
+All-versions DOI: 10.5281/zenodo.23871003
+Licence: CC BY 4.0. Tutorial excluded; no separate tutorial DOI.

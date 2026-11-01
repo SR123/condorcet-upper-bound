@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-02",
+  "version": "1.0.0",
+  "reserved_doi": "10.5281/zenodo.23871004",
+  "base_github_commit": "a2a24e70746416219956319a6f81bc38c0352787",
+  "licence": "CC-BY-4.0",
+  "unchanged_source_data_receipt_files": 701,
+  "lean_modules": 326,
+  "new_full_lean_build": false,
+  "new_finite_check_run": false,
+  "mathematical_manuscript_changes": false,
+  "changes": "Archival references, citation/license/metadata and reading documentation only. DOI registration occurs upon publication.",
+  "tutorial_excluded": true,
+  "pdf_pages": 12,
+  "changed_rendered_pages": [
+    10
+  ],
+  "latex_warnings": 0,
+  "zenodo_status": "published",
+  "record_url": "https://zenodo.org/records/23871004",
+  "doi": "10.5281/zenodo.23871004",
+  "concept_doi": "10.5281/zenodo.23871003",
+  "upload_checksums_verified": true
+}

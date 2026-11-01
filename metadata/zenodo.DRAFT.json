@@ -1,25 +1,4 @@
 {
-  "title": "Improved Upper Bounds on the Size of Condorcet Domains",
-  "upload_type": "publication",
-  "publication_type": "preprint",
-  "creators": [
-    {
-      "name": "Moros, Pavlos",
-      "affiliation": "Independent researcher, San Francisco, CA, USA"
-    },
-    {
-      "name": "Riis, Søren",
-      "affiliation": "Queen Mary University of London"
-    }
-  ],
-  "description": "A manuscript and reproducibility package on upper bounds for Condorcet domains. A component reduction and deletion identity transfer an extreme-law density estimate through Moros's deletion/gap framework to the general base 32/11. The argument recovers the peak-pit base 8/3 already present in Moros's v10. Exact native certificates and a Lean formalisation with pinned dependencies are included; precise verification status is recorded in the package. This metadata is a local draft pending both authors' approval.",
-  "keywords": [
-    "Condorcet domains",
-    "permutations",
-    "majority voting",
-    "upper bounds",
-    "Lean",
-    "computer-assisted proof"
-  ],
-  "version": "0.1.0-rc1"
+  "status": "Superseded by zenodo.v1.0.0.json; retained filename for preparation-stage provenance",
+  "current_metadata": "zenodo.v1.0.0.json"
 }

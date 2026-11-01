@@ -1,0 +1,13 @@
+Copyright © 2026 Pavlos Moros and Søren Riis.
+
+The joint paper and accompanying original LaTeX, Lean, Python, data and
+verification material are licensed under the Creative Commons Attribution
+4.0 International licence (CC BY 4.0). This licence statement excludes the
+separately authored tutorial/ directory.
+
+Licence: https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The authors retain copyright. Third-party tools and dependencies retain
+their own licences. Dependency caches, external package source trees and
+compiled project proof objects are not included in the archival deposit.

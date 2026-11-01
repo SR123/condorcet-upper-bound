@@ -1,0 +1,39 @@
+{
+  "title": "Improved Upper Bounds on the Size of Condorcet Domains",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "doi": "10.5281/zenodo.23871004",
+  "publication_date": "2026-11-02",
+  "version": "1.0.0",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Moros, Pavlos"
+    },
+    {
+      "name": "Riis, Søren",
+      "affiliation": "Queen Mary University of London"
+    }
+  ],
+  "description": "We prove f(n) ≤ 32n f(n − 1)/(11n + 8) for the maximum size of a Condorcet domain, giving exponential base 32/11 < 3. An exact deletion count, a decomposition into adjacent-swap components and a local counting inequality give the bound; the same local inequality gives base 8/3 for peak-pit domains. Small examples illustrate the structural counts. The mathematical argument is presented here; the exact finite calculations, reproducible programs and complete Lean formalisation are supplied as accompanying computational material.",
+  "keywords": [
+    "Condorcet domains",
+    "majority voting",
+    "permutations",
+    "upper bounds",
+    "Lean formalisation",
+    "computer-assisted proof"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/SR123/condorcet-upper-bound",
+      "scheme": "url",
+      "relation": "isSupplementedBy"
+    },
+    {
+      "identifier": "10.5281/zenodo.23654773",
+      "scheme": "doi",
+      "relation": "references"
+    }
+  ]
+}

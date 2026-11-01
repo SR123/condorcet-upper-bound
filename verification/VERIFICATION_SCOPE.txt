@@ -1,4 +1,4 @@
-VERIFICATION SCOPE -- CURRENT REVIEW DRAFT, 1 NOVEMBER 2026
+VERIFICATION SCOPE -- JOINT PREPRINT v1.0.0, 2 NOVEMBER 2026
 
 MAIN CONCLUSIONS AND SEMANTICS
 All seven conclusions of the current Theorem 1.1 have end-to-end Lean proofs
@@ -82,5 +82,9 @@ The earlier manuscript is preserved at commit
 0d5dd168854b208d8436ea685921aa03d7c42200; its old numbering and Overleaf/link
 placeholder notes describe that snapshot. The current manuscript cites the
 real repository. Updating GitHub does not change Overleaf.
-This remains a draft for coauthor review. No GitHub release, DOI deposit or
-archival publication is part of this update; author agreement remains required.
+The joint paper is archived at DOI 10.5281/zenodo.23871004 after coauthor
+agreement. Its PDF retains the review-draft label and date. Only archival
+bibliographic links and publication metadata/documentation changed; all Lean
+sources, pins, checkers/data and earlier build receipts remain unchanged.
+No new full Lean rebuild or unchanged finite-check execution is claimed.
+The deposit excludes the separate tutorial, which has no DOI of its own.

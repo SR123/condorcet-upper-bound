@@ -1,6 +1,8 @@
 IMPROVED UPPER BOUNDS ON THE SIZE OF CONDORCET DOMAINS
 Pavlos Moros and Søren Riis
-Current review draft, 1 November 2026
+Joint preprint v1.0.0, archived 2 November 2026
+DOI: https://doi.org/10.5281/zenodo.23871004
+CC BY 4.0 for the joint paper and original reproducibility material
 
 START HERE
 manuscript/main.pdf       Current paper: 10 pages including references + 2 appendix pages
@@ -177,8 +179,15 @@ from ancillary/finite_certificate/ with a NEW output directory:
   python3 run_fresh_regeneration.py /absolute/path/to/new/output
 The ancillary README distinguishes saved-data replay from full generation.
 
-REVIEW AND ARCHIVAL STATUS
-This remains a draft for coauthor review. Updating the public repository is
-not a GitHub release or DOI deposit. Archival publication waits for author
-agreement. Files in metadata/ remain inactive drafts and do not constitute
-an approved license, release or deposit. No email is sent by this work.
+ARCHIVAL STATUS
+The joint paper was deposited in Zenodo after coauthor agreement:
+https://doi.org/10.5281/zenodo.23871004
+The record contains the PDF and a complete source/verification archive, with
+its own checksum manifest. The only manuscript changes for the archive are
+bibliographic archival links. The PDF retains the review-draft label and date.
+All Lean project sources, dependency pins, computational checkers/data and
+earlier build receipts remain unchanged. No new full Lean build is claimed.
+CC BY 4.0 covers the joint paper and original accompanying reproducibility
+material; external dependencies retain their own licences. The separate
+tutorial is outside the joint-paper deposit and has no DOI of its own.
+No automatic GitHub-to-Zenodo release integration is enabled by this update.

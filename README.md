@@ -2,7 +2,9 @@
 
 **Pavlos Moros and Søren Riis**
 
-**Draft for coauthor review — updated 1 November 2026.** Not yet approved for archival release.
+**Joint preprint, version 1.0.0 — archived 2 November 2026.**
+
+[Zenodo DOI: 10.5281/zenodo.23871004](https://doi.org/10.5281/zenodo.23871004) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The paper retains its 1 November review-draft date; archival references have been added.
 
 - [Current paper (PDF)](manuscript/main.pdf) · [LaTeX source](manuscript/main.tex) — ten pages including references, plus two mathematical appendix pages.
 - [Tutorial by Søren Riis (PDF)](tutorial/main.pdf) · [Tutorial sources and guide](tutorial/) — a separate exposition of the joint upper-bound results.
@@ -19,4 +21,6 @@ This update replaces the manuscript and reading documentation and adds the compu
 
 The [1 November verification note](verification/editorial_2026-11-01/README.txt) distinguishes the earlier full Lean build, the later correspondence checks and the complete standalone Python run. No new full Lean rebuild is claimed for this editorial update.
 
-Moros's [earlier note](https://doi.org/10.5281/zenodo.23654773) has an author-supplied DOI. A DOI for the joint improved paper waits for author agreement. A separate DOI for the expository tutorial may be considered later; none has been registered. No GitHub release or new archival deposit is created by this addition; preparation-stage files in `metadata/` remain inactive drafts.
+Moros's [earlier note](https://doi.org/10.5281/zenodo.23654773) is a precursor of the joint improved paper. The [joint-paper Zenodo record](https://doi.org/10.5281/zenodo.23871004) archives the paper, complete LaTeX/Lean sources, finite computational material and reproducibility records. Its exact payload is identified by its own checksums. The separate tutorial remains available here; no separate tutorial DOI has been registered.
+
+The joint paper and accompanying original reproducibility material are licensed under CC BY 4.0; see `LICENSE.txt`. Third-party dependencies retain their own licences. The tutorial is a separate exposition by Søren Riis; the joint-paper archival licence does not purport to license it separately.
