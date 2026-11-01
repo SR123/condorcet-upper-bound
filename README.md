@@ -10,7 +10,7 @@
 - [Lean formalisation](lean/) · [Current paper-to-Lean map](docs/PAPER_LEAN_MAP.txt) · [Build and verification guide](README.txt).
 - [Independent review guide](REVIEW_GUIDE.txt) · [Verification scope](verification/VERIFICATION_SCOPE.txt) · [File checksums](MANIFEST.sha256).
 
-The journal paper keeps the mathematical argument and examples together; the code, exact tables and detailed finite calculations are provided separately here. Its main theorem gives the general base **32/11** and the peak-pit base **8/3**, with the sharper recurrence and polynomial correction.
+The paper keeps the mathematical argument and examples together; the code, exact tables and detailed finite calculations are provided separately here. Its main theorem gives the general base **32/11** and the peak-pit base **8/3**, with the sharper recurrence and polynomial correction.
 
 All seven conclusions of Theorem 1.1 are formalised end to end. The finite inequality and its coverage are checked within Lean; execution of the Python checker is not a premise of that proof. The checked Lean sources, dependency pins and earlier build records are unchanged. The Python program is a separate reproducible check using the same exact coefficients.
 

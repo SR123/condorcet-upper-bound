@@ -1,9 +1,10 @@
 1 NOVEMBER 2026 -- MANUSCRIPT AND COMPUTATIONAL-MATERIAL UPDATE
 
-The canonical manuscript/main.pdf and main.tex are the 1 November journal
-review: ten pages including references plus two mathematical appendix pages.
-They are byte-identical to the locally compiled and visually inspected
-review version, whose PDF hash and review record are included here.
+The canonical manuscript/main.pdf and main.tex are the 1 November review
+draft: ten pages including references plus two mathematical appendix pages.
+JOURNAL_PDF_VISUAL_REVIEW.json records the first upload, before its label was
+shortened to "Review draft". REVIEW_DRAFT_LABEL_CHECK.json records the current
+PDF/source hashes and the label-only correction; its other pages are unchanged.
 
 The 21-page fully printed technical companion is preserved under
 ../../docs/full-proof-2026-11-01/. Its printed program was extracted and

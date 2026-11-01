@@ -20,7 +20,7 @@ INDEPENDENT REVIEW FOR PAVLOS / HIS AI -- CURRENT PAPER, 1 NOVEMBER 2026
    Lean proof. The older native checkers use a different enumeration/counting
    unit. Python execution is not an assumption in the Lean theorem.
 6. The old generic-alpha Proposition 2.3 coverage note refers to the older
-   eight-page paper, not a new unproved premise of this journal revision.
+   eight-page paper, not a new unproved premise of this review revision.
    The current paper's seven main conclusions are fully covered.
 7. Report incorrect statements, hidden assumptions, semantic mismatches or
    missing dependencies. Distinguish mathematical defects from environment

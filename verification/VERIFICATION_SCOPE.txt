@@ -1,4 +1,4 @@
-VERIFICATION SCOPE -- CURRENT JOURNAL REVIEW, 1 NOVEMBER 2026
+VERIFICATION SCOPE -- CURRENT REVIEW DRAFT, 1 NOVEMBER 2026
 
 MAIN CONCLUSIONS AND SEMANTICS
 All seven conclusions of the current Theorem 1.1 have end-to-end Lean proofs
@@ -45,7 +45,7 @@ The checker was not rerun merely to upload the unchanged program.
 
 This GitHub update: every base file was matched to its public Git blob hash;
 Lean sources/configuration/pins and existing build records remain unchanged.
-The current journal PDF/source match the previously compiled and visually
+The current PDF/source match the previously compiled and visually
 reviewed local version: ten pages including references plus two mathematical
 appendix pages. The three examples pass direct checks. The unchanged 21-page
 companion's printed program matches the executed checker, including every
@@ -64,7 +64,7 @@ are not themselves Lean theorems. The final mathematical bounds do not assume
 program execution is correct. The old paper's arbitrary-real-alpha
 Proposition 2.3 has no separate generic formal theorem; the alpha=3/8 instance
 is proved. That numbered statement belongs to the older paper, not the
-current journal review. No unproved premise remains in its Theorem 1.1.
+current review draft. No unproved premise remains in its Theorem 1.1.
 
 VERSIONS AND PUBLICATION STATUS
 The exact earlier scope record is retained in snapshots/2026-10-29/.

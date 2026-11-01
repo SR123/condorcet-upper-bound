@@ -1,9 +1,9 @@
-PAPER-TO-LEAN MAP -- JOURNAL REVIEW, 1 NOVEMBER 2026
+PAPER-TO-LEAN MAP -- REVIEW DRAFT, 1 NOVEMBER 2026
 
 Repository: https://github.com/SR123/condorcet-upper-bound
 Pinned snapshot: 0d5dd168854b208d8436ea685921aa03d7c42200
 All names below are present in this snapshot. The paper numbers refer to
-the NEW journal review, not the older eight-page manuscript in that snapshot.
+the NEW review draft, not the older eight-page manuscript in that snapshot.
 
 THEOREM 1.1 -- ALL SEVEN CONCLUSIONS
 All seven entry points are in lean/CDCert/Main.lean.
@@ -101,7 +101,7 @@ Classical.choice and Quot.sound. No sorry/custom axioms/native_decide.
 On 1 November the tutorial correspondence check compiled 54 typed
 restatements and checked 190 interfaces and 72 printed definition bodies
 against hash-verified proof objects. A second full source build is not
-claimed. This journal revision does not change Lean proof sources.
+claimed. This review revision does not change Lean proof sources.
 On 1 November the public snapshot's Lean file blob hashes were compared
 with those independently built sources and pinned configuration files.
 All match. See audit/REPOSITORY_CORRESPONDENCE.json.

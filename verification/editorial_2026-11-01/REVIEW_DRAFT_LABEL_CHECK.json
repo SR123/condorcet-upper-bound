@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "date": "2026-11-01",
+  "label": "Review draft",
+  "prior_label": "Journal review draft",
+  "source_change": "Exactly one label replacement; all other LaTeX bytes unchanged.",
+  "prior_tex_sha256": "3e67519bf9be0312c3b86dc556fb63564242cd4b728a63660c07e1af89ed4276",
+  "prior_pdf_sha256": "33be91170c6180a9e1fd315b5ac947b5b9d4ac122edd987c5cdbbb3de6d49496",
+  "current_tex_sha256": "6b5a598ace53f443f0973ce5179898338b22042ff16256ee97d1a4b9c487aaf6",
+  "current_pdf_sha256": "1646eda63c2ec6bef4767c1cfefc90f1ba7277b806960f60ceec972be0e3302a",
+  "pdf_pages": 12,
+  "latex_warnings": 0,
+  "page_1_visually_reviewed": true,
+  "pages_pixel_identical": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "reference": "Earlier reviewed 1 November paper, matching the preceding public commit.",
+  "lean_changes": false
+}

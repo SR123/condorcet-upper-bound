@@ -4,7 +4,7 @@ Current review draft, 1 November 2026
 
 START HERE
 manuscript/main.pdf       Current paper: 10 pages including references + 2 appendix pages
-manuscript/main.tex       Complete journal-paper LaTeX source
+manuscript/main.tex       Complete paper LaTeX source
 ancillary/standalone/     Complete exact single-file Python checker and instructions
 docs/full-proof-2026-11-01/main.pdf   Fully printed 21-page technical companion
 docs/full-proof-2026-11-01/main.tex   Its source, with all code/data printed
@@ -14,7 +14,7 @@ verification/            Precise scope, dated build and checking records
 REVIEW_GUIDE.txt          Suggested starting points for independent review
 
 VERSIONS
-The current paper is the revised journal review prepared on 1 November.
+The current paper is the revised review draft prepared on 1 November.
 It defines domains by never-conditions, explains all principal notation,
 contains three small examples, highlights the exact fibre identity and
 explicitly refers to Lean and computational verification. The mathematical
@@ -115,7 +115,7 @@ The result must be PASS, with no missing, changed or unlisted payload file.
 The updated MANIFEST.sha256 includes this revision and the front-page README.
 Runtime caches/build products and the older native replay outputs are excluded.
 
-REPRODUCE: JOURNAL PAPER
+REPRODUCE: PAPER
 With ordinary pdfLaTeX and its standard packages:
   cd manuscript
   mkdir -p build
