@@ -1,186 +1,169 @@
 IMPROVED UPPER BOUNDS ON THE SIZE OF CONDORCET DOMAINS
 Pavlos Moros and Søren Riis
-Independent-review packet, 29 October 2026
+Current review draft, 1 November 2026
 
 START HERE
-manuscript/main.pdf       Latest paper, eight pages
-manuscript/main.tex       Complete standalone LaTeX source
-supplement/main.pdf       Certificate supplement, three pages
-supplement/main.tex       Complete standalone supplementary source
-lean/                    Complete Lean project: 326 source modules and pins
-ancillary/finite_certificate/   Native scripts, generators, data and witnesses
-verification/            Precise scope, correspondence and verification receipts
-REVIEW_GUIDE.txt          Suggested starting points for an independent review
+manuscript/main.pdf       Current paper: 10 pages including references + 2 appendix pages
+manuscript/main.tex       Complete journal-paper LaTeX source
+ancillary/standalone/     Complete exact single-file Python checker and instructions
+docs/full-proof-2026-11-01/main.pdf   Fully printed 21-page technical companion
+docs/full-proof-2026-11-01/main.tex   Its source, with all code/data printed
+docs/PAPER_LEAN_MAP.txt   Map using the CURRENT paper's numbering
+lean/                    Unchanged complete Lean project: 326 modules and pins
+verification/            Precise scope, dated build and checking records
+REVIEW_GUIDE.txt          Suggested starting points for independent review
 
-AUTHORITATIVE VERSIONS
-The paper source is byte-for-byte identical to the latest main.tex saved in
-the shared Overleaf project after the journal-draft update and GitHub/DOI
-placeholder correction. Both links in reference [9] deliberately remain
-placeholders. The supplement's equations are unchanged; its paths and prose
-now refer to this repository and to the separate Lean documentation.
+VERSIONS
+The current paper is the revised journal review prepared on 1 November.
+It defines domains by never-conditions, explains all principal notation,
+contains three small examples, highlights the exact fibre identity and
+explicitly refers to Lean and computational verification. The mathematical
+appendix proves the voting equivalence and every injection collision case.
+The full finite coverage proof, data and complete program listing are in
+the separate technical companion and the standalone checker.
 
-The Lean project comes from Claude's final CDCert-MorosRiis bundle, rather
-than the earlier four-module foundation package. Seven comments/docstrings
-were clarified without changing mathematical commands or proof terms.
-Every project source module has now been compiled independently, including
-recompilation of the clarified files. No supplied project binaries were used.
-Pinned standard Lean/Mathlib libraries were reused. The final two entry
-points and all 20 statement/axiom checks passed after those recompilations.
+The earlier checked 29 October snapshot remains accessible at:
+https://github.com/SR123/condorcet-upper-bound/tree/0d5dd168854b208d8436ea685921aa03d7c42200
+Its eight-page manuscript and older certificate supplement use different
+numbering. supplement/ is retained as that earlier certificate supplement;
+it is not required to read the current paper. Old preparation-stage claims
+about Overleaf identity and GitHub placeholders describe the old snapshot,
+not the new manuscript. No Overleaf edit is part of this GitHub update.
 
 PAPER-TO-LEAN MAP: THEOREM 1.1
-All names below have prefix CDCert.Main. and are in lean/CDCert/Main.lean.
-The functions are the actual maximum domain sizes Condorcet.f and Condorcet.h.
+All names below have prefix CDCert.Main. in lean/CDCert/Main.lean.
+The formal functions are the actual maximum sizes Condorcet.f and Condorcet.h.
 
-Paper result                          Lean declaration
-General recurrence, equation (1)       general_recurrence
-General geometric bound, equation (1)  general_geometric
-Peak-pit recurrence, equation (2)      peak_recurrence
-Peak-pit geometric bound, equation (2) peak_geometric
-Existence/bound of general root limit  general_limit
-Existence/bound of peak-pit root limit peak_limit
-f(n)=O(n^(-8/11)*(32/11)^n)            general_polynomial_correction
+General recurrence                    general_recurrence
+General geometric bound               general_geometric
+Peak-pit recurrence                   peak_recurrence
+Peak-pit geometric bound               peak_geometric
+General root limit and upper bound    general_limit
+Peak-pit root limit and upper bound    peak_limit
+Polynomial correction                 general_polynomial_correction
 
-The first four theorems assume only n >= 3; the last three have no extra
-hypotheses. There is no assumed density estimate, finite coverage claim,
-injection, common axis or computational oracle in these seven statements.
-The semantic definitions quantify over every odd voter profile, permitting
-repeated voters, on actual strict total orders.
+The first four theorems assume n >= 3; the last three have no extra premises.
+There is no unproved density estimate, injection, enumeration assumption or
+common-axis hypothesis in these final statements. The semantic definitions
+quantify over all odd voter profiles, allowing repetitions, of actual strict
+total orders. The proved value-restriction equivalence identifies them with
+the combinatorial definition used in the current paper.
 
-SUPPORTING ARGUMENTS
-Lemma 2.1: Condorcet.deletion_gap_adjacency_identity;
-  Condorcet.IsExtremeFull.gapCount_zero.
-Theorem 2.2: Condorcet.IsFull.component_inF and
-  Condorcet.IsFull.sum_components_deletionSum.
-Theorem 3.1: CDCert.Recurrences.gap_inequality.
-Lemma 3.2: Condorcet.IsFull.missing_swap.
-Lemma 3.3: move/count identities in Condorcet/GapCounts.lean, including
-  Condorcet.move_counts_per_order, Condorcet.IsFull.second_move_count and
-  Condorcet.IsFull.gap_slack_identity.
-Lemmas 3.4-3.5: Condorcet.IsMaximal.fixed_pair_not_consecutive and
-  CDCert.FreeLocked.FreePair.law, not_both, lift_locked, drop_locked.
-Proposition 3.6: CDCert.FreeLocked.psi_inj and free_le_locked.
-Lemma 4.1: CDCert.K6.finite_lemma in CDCert/K6/SevenFinal.lean;
-  fixed-pair coverage, both orientations and the R8 receiver are proved
-  inside the import chain, rather than assumed from a native PASS flag.
-Proposition 5.1: CDCert.Bridge.InF.density, using CDCert.K6.adj_le;
-  the window and ordered-copy arguments are in K6/Win.lean,
-  K6/Concat.lean and K6/Density.lean.
-Literal gap/density inputs and their transfer: CDCert.TwoInputs.first_input,
-  second_input and transfer.
-Supermultiplicativity: CDCert.Supermult.f_supermul and h_supermul.
-Limits and polynomial correction: CDCert/Asymptotics.lean.
-Many supporting statements use Fin(n+1); their gap coefficient n+2 is
-therefore (number of alternatives)+1, exactly as in the paper. The finite
-lemma is written with denominators cleared: cost10=10*C and qD=2*D*q.
+The updated supporting-result map, exact declaration names and scaling are
+in docs/PAPER_LEAN_MAP.txt. Key declarations include:
+- Condorcet.deletion_gap_adjacency_identity (Lemma 3.1).
+- Condorcet.IsFull.component_from_fixed (Lemma 4.1).
+- Condorcet.IsFull.component_inF and sum_components_deletionSum (Proposition 4.2).
+- CDCert.FreeLocked.free_le_locked (Lemma 5.2 and Appendix A.2).
+- CDCert.Recurrences.gap_inequality (Corollary 5.3).
+- CDCert.K6.finite_lemma (Lemma 6.1 and the receiver argument in Section 7).
+- CDCert.Bridge.InF.density (Proposition 8.1).
 
-ASSUMPTIONS, PLACEHOLDERS AND LIMITS OF COVERAGE
-No sorry/admit placeholders, custom axioms or native_decide occur in the
-326 project source modules. All 20 checked final/support results depend
-only on propext, Classical.choice and Quot.sound. These are Lean's standard
-foundations; this is not a claim of an axiom-free proof.
+VERIFICATION SCOPE
+The 326 Lean source modules, configurations, pins and existing proof records
+are byte-for-byte unchanged by this update. Every source was independently
+compiled on 29 October, including the final clarified-source recompilations;
+the final 20-result statement/axiom check passed. Only propext,
+Classical.choice and Quot.sound appear. There are no sorry/admit placeholders,
+custom axioms or native_decide in the project. Conditional helper interfaces
+are discharged before the final bounds are obtained.
 
-Bounds.FreeLockedInjection is a conditional helper interface, discharged
-by CDCert.Recurrences.freeLockedInjection. It is not an assumption left
-open in Theorem 1.1. Intermediate results retain their stated mathematical
-premises, such as fullness, maximality or membership in the extreme-law
-class; those premises are established where the results are applied.
+On 1 November the tutorial correspondence check compiled 54 typed restatements,
+checked 190 named interfaces and printed 72 definition bodies against verified
+proof objects. The public snapshot's source hashes match the independently
+built project. No second complete Lean source build is claimed here.
 
-The newer paper's Proposition 2.3 for an arbitrary real density constant
-alpha has NOT been exported/proved as a separate parameterised Lean theorem
-in this bundle. Its alpha=3/8 instance, used for every part of Theorem 1.1,
-is fully proved. This is the one additional mathematical reformulation in
-the journal draft that must not be advertised as a separately checked
-formal theorem. Its short written proof is available for independent review.
+The previous manuscript's arbitrary-real-alpha Proposition 2.3 did not have
+a separate generic Lean theorem. That reference belongs to the earlier
+manuscript. The current paper does not assert such a numbered general-alpha
+result; all seven conclusions of its Theorem 1.1 are covered.
+Literal Python/C++ program correctness, runtime/case-count diagnostics,
+examples as displayed, prose, historical attribution and bibliographic
+metadata are not themselves Lean theorems. Lean proves the finite inequality
+with its own coverage and kernel-checked certificates; it does not assume
+native execution is correct. See verification/VERIFICATION_SCOPE.txt.
 
-The native generators/checkers themselves, their literal enumeration counts,
-literature, attribution, novelty and bibliographical claims are outside the
-Lean formalisation. The Lean proof uses its own proved enumeration: 26
-oriented endpoint families and 16,888 final states, versus the native 18
-seed families, 14,248 seed-domain cases and 18,316 feature rows. These are
-different strategies/counting units proving the same required finite lemma.
-The formal bounds do not trust execution of the native Python/C++ generators.
+EXACT COMPUTATION
+The standalone checker includes all 1160 coefficients and 14 exceptional
+representatives. It generates all required families from their defining laws,
+reads no input files and uses only Python's standard library. All mathematical
+comparisons use exact integers and no optimiser.
 
-VERIFICATION THAT ACTUALLY SUCCEEDED
-- Independent source build: all 319 modules required by Main and TwoInputs.
-- Seven additional auxiliary modules compiled; all 326 source modules covered.
-- Clarified-source recompilations and final Main/TwoInputs recompilations pass.
-- Fresh checks of all 20 final/support statements and transitive axioms pass.
-- Saved-data native replay passes all five checks, including 113,146 witnesses.
-- Prior complete native regeneration passes and matches the saved feature rows;
-  its separately labelled receipt is included. That full run was not repeated
-  merely to package unchanged native files.
-- Both PDFs compile twice without warnings; all eleven pages visually checked.
-- Source correspondence, payload hashes and clean ZIP extraction are checked.
-Details and receipts are under verification/. Claude's earlier clean-build
-receipts are kept distinct from the new independent local receipts.
+From the repository root, with Python >=3.10 and assertions enabled:
+  python3 ancillary/standalone/check_finite.py
+
+A complete run on 1 November returned PASS in about 100 seconds:
+  128400 labelled five-families / 1160 types;
+  14105084 six-extensions, including five-seed multiplicities;
+  14 exceptional six-types;
+  26 oriented seven-label seed checks / 16888 seed-family cases.
+These are not all counts of distinct labelled domains. Appendix B of the
+technical companion proves coverage; Appendix C prints the entire checker.
+The successful run and source hashes are in verification/editorial_2026-11-01/.
+The unchanged checker was not rerun merely to upload the paper.
+
+All 1160 weights and nine exceptional correction integers match the existing
+native certificate. The earlier native strategy in ancillary/finite_certificate/
+uses 18 seed families / 14248 seed-domain cases / 18316 feature rows, whereas
+the Lean and standalone endpoint strategy uses 26 orientations / 16888 cases.
+These strategies prove the same finite inequality using different counting
+units. The older native data, checkers and generation records are preserved.
 
 REPRODUCE: PAYLOAD INTEGRITY
-From the extracted repository root, using Python 3:
   python3 scripts/manifest.py
 The result must be PASS, with no missing, changed or unlisted payload file.
-Runtime caches/build products are excluded from this integrity manifest.
+The updated MANIFEST.sha256 includes this revision and the front-page README.
+Runtime caches/build products and the older native replay outputs are excluded.
 
-REPRODUCE: PDFs
-With standard pdfLaTeX and its standard packages installed:
+REPRODUCE: JOURNAL PAPER
+With ordinary pdfLaTeX and its standard packages:
   cd manuscript
-  pdflatex -interaction=nonstopmode -halt-on-error main.tex
-  pdflatex -interaction=nonstopmode -halt-on-error main.tex
-  cd ../supplement
-  pdflatex -interaction=nonstopmode -halt-on-error main.tex
-  pdflatex -interaction=nonstopmode -halt-on-error main.tex
+  mkdir -p build
+  pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build main.tex
+  pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build main.tex
   cd ..
-Both bibliographies/definitions are self-contained. No private manuscript,
-external figures, bibliography database or custom style file is required.
 
-REPRODUCE: COMPLETE MAIN LEAN PROOF
-Install/use Lean 4.26.0 via elan. lean/lean-toolchain, lakefile.toml and
-lake-manifest.json pin Lean, Mathlib v4.26.0 and all transitive revisions.
-From the extracted repository root:
+REPRODUCE: FULLY PRINTED TECHNICAL COMPANION
+  cd docs/full-proof-2026-11-01
+  mkdir -p build
+  pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build main.tex
+  pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build main.tex
+  cd ../..
+Keep its local check_finite.py beside main.tex: the program is included
+verbatim. No custom style, external figures or bibliography file is required.
+
+REPRODUCE: COMPLETE LEAN PROOF
+Lean 4.26.0, Mathlib 4.26.0 and all transitive revisions are pinned in lean/.
+From the repository root, after obtaining the specified toolchain:
   cd lean
   lake exe cache get
   python3 ../scripts/build_lean.py --jobs 1
   python3 ../scripts/check_lean_axioms.py
   cd ..
-Use the complete official library cache command above: some project modules
-import the broad Mathlib module. A narrowly targeted cache can omit companion
-library files. The cache contains standard external libraries, not project
-proofs. Internet access is needed only to obtain tools/dependencies/caches.
-The direct source-build receipt is lean/build/checked-source/BUILD_RECEIPT.json;
-it must say PASS with 319 completed modules. Final axiom output and the
-allowlist receipt are in lean/build/. A missing/failed/partial run is not PASS.
+Use the complete official library cache; some imports require broad Mathlib
+companion files. The cache contains standard libraries, not project proofs.
+The proof can take hours and several GB of memory to rebuild. The portable
+helper supports a bounded job count and source/artifact-checked resume.
+Its fixture tests are separate from the actual independent direct-source
+build records, which remain under verification/codex-independent-lean/.
 
-Large kernel certificate checks can take hours and several GB of memory.
-The conservative command runs one compiler at a time; --jobs 2 is available
-with sufficient free memory. The driver can resume its own successful outputs
-only when sources and artifact hashes match. Use a fresh checkout/build when
-changing sources. Fixture success/resume/failure checks of the portable
-helper are recorded separately; the included full independent receipts came
-from dependency-ordered direct compiler invocations, not a second full run
-of this portable wrapper.
-
-Canonical Lake alternative (with adequate memory for Lake's parallelism):
+Canonical alternative, with memory adequate for Lake's parallelism:
   cd lean
   lake build CDCert.Main CDCert.TwoInputs
   lake env lean receipts/FinalAxioms.lean
-The two default Lake targets also explicitly name Main and TwoInputs.
-The seven additional old auxiliary/example entry modules are outside the
-final theorem import closure; their source-build receipts are included.
+Both default targets explicitly name Main and TwoInputs. The 319-module
+required closure and seven additional auxiliary modules are all covered by
+the prior source-build evidence; no project binaries are distributed.
 
-REPRODUCE: NATIVE CHECKS
-From the extracted repository root, using Python 3's standard library:
+REPRODUCE: EARLIER NATIVE CHECKS
   sh scripts/reproduce_native.sh
-For complete generation, also install a C++17 compiler named c++, and run
+For complete regeneration, also install a C++17 compiler named c++, and run
 from ancillary/finite_certificate/ with a NEW output directory:
   python3 run_fresh_regeneration.py /absolute/path/to/new/output
-The success receipt says COMPLETE FRESH REGENERATION PASS. The ancillary
-README distinguishes replay from full generation and explains all counts.
+The ancillary README distinguishes saved-data replay from full generation.
 
-REVIEW / RELEASE STATUS
-This packet is ready for independent review and transfer to a GitHub repository.
-Repository URL and archived-release DOI remain deliberate placeholders. No DOI
-registration, archive upload, publication, Git push, release, invitation or
-email is performed by this package. Archival publication waits for Pavlos's
-agreement. No license grant is invented; the authors still choose licensing
-and approve the final paper, metadata and release. Files in metadata/ are
-inactive drafts only. Private correspondence, project caches, compiled project
-objects and superseded papers are excluded from the ZIP.
+REVIEW AND ARCHIVAL STATUS
+This remains a draft for coauthor review. Updating the public repository is
+not a GitHub release or DOI deposit. Archival publication waits for author
+agreement. Files in metadata/ remain inactive drafts and do not constitute
+an approved license, release or deposit. No email is sent by this work.

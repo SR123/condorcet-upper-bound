@@ -1,0 +1,120 @@
+PAPER-TO-LEAN MAP -- JOURNAL REVIEW, 1 NOVEMBER 2026
+
+Repository: https://github.com/SR123/condorcet-upper-bound
+Pinned snapshot: 0d5dd168854b208d8436ea685921aa03d7c42200
+All names below are present in this snapshot. The paper numbers refer to
+the NEW journal review, not the older eight-page manuscript in that snapshot.
+
+THEOREM 1.1 -- ALL SEVEN CONCLUSIONS
+All seven entry points are in lean/CDCert/Main.lean.
+
+CDCert.Main.general_recurrence
+$n\geq3$: $(11n+8)f(n)\leq32nf(n-1)$.
+exact natural-number statement
+
+CDCert.Main.general_geometric
+$n\geq3$: $f(n)\leq4(32/11)^{n-3}$.
+counts cast to real numbers
+
+CDCert.Main.peak_recurrence
+$n\geq3$: $3h(n)\leq8h(n-1)$.
+exact natural-number statement
+
+CDCert.Main.peak_geometric
+$n\geq3$: $h(n)\leq4(8/3)^{n-3}$.
+counts cast to real numbers
+
+CDCert.Main.general_limit
+No extra premises: $\exists L_f$, $f(n)^{1/n}\to L_f\leq32/11$.
+real powers; convergence at infinity
+
+CDCert.Main.peak_limit
+No extra premises: $\exists L_h$, $h(n)^{1/n}\to L_h\leq8/3$.
+real powers; convergence at infinity
+
+CDCert.Main.general_polynomial_correction
+No extra premises: $f(n)=O(n^{-8/11}(32/11)^n)$.
+real powers and big-O at infinity
+
+KEY SUPPORTING STATEMENTS
+
+Definition 2.1 and Appendix A.1
+  Condorcet.isCondorcet_iff_valueRestricted
+  lean/Condorcet/TripleCharacterization.lean
+
+Lemma 3.1 (exact fibre identity)
+  Condorcet.deletion_gap_adjacency_identity
+  lean/Condorcet/DirectedAdjacency.lean
+
+Lemma 3.3 (interval fibres)
+  Condorcet.IsExtremeFull.insertionWord_interval
+  lean/Condorcet/NoGaps.lean
+
+Lemma 4.1 (majority projection)
+  Condorcet.IsFull.median_mem
+  lean/Condorcet/FullDomains.lean
+  Condorcet.IsFull.component_from_fixed
+  lean/Condorcet/FullDomains.lean
+
+Proposition 4.2 (components and their deletion sum)
+  Condorcet.IsFull.component_inF
+  lean/Condorcet/Components.lean
+  Condorcet.sum_components_card
+  lean/Condorcet/ComponentCounting.lean
+  Condorcet.IsFull.sum_components_deletionSum
+  lean/Condorcet/SlotAdjacency.lean
+
+Lemma 5.2 and Appendix A.2 (injection)
+  CDCert.FreeLocked.free_le_locked
+  lean/CDCert/FreeLocked.lean
+
+Corollary 5.3 (gap bound)
+  CDCert.Recurrences.gap_inequality
+  lean/CDCert/Recurrences.lean
+
+Lemma 6.1 and Section 7 (local bound and receivers)
+  CDCert.K6.finite_lemma
+  lean/CDCert/K6/SevenFinal.lean
+
+Proposition 8.1 (global density)
+  CDCert.Bridge.InF.density
+  lean/CDCert/BridgeK6.lean
+
+SEMANTIC SCOPE
+Lean defines orders as strict total orders and Condorcet domains through
+transitivity of majority for every odd profile, allowing repetitions.
+The proved value-restriction equivalence identifies this with the paper's
+combinatorial Definition 2.1. Peak-pit imposes an extreme condition on every
+triple and does not assume a common axis. The final f/h are actual maxima.
+
+FINITE VERIFICATION
+The finite lemma clears denominators: cost10 = 10 C and qD = 2 d q.
+Its coverage, fixed pair constraints, both endpoint orientations and R8
+receiver argument are proved in Lean. A Python PASS is not a premise.
+The 1160 integer coefficients and nine exceptional corrections in the
+new standalone checker match the existing native certificate exactly.
+
+EVIDENCE AND LIMITS
+The 29 October independent source build covers all 326 project modules.
+Its final 20-result statement/axiom check allows only propext,
+Classical.choice and Quot.sound. No sorry/custom axioms/native_decide.
+On 1 November the tutorial correspondence check compiled 54 typed
+restatements and checked 190 interfaces and 72 printed definition bodies
+against hash-verified proof objects. A second full source build is not
+claimed. This journal revision does not change Lean proof sources.
+On 1 November the public snapshot's Lean file blob hashes were compared
+with those independently built sources and pinned configuration files.
+All match. See audit/REPOSITORY_CORRESPONDENCE.json.
+The literal Python implementation, its runtime/case counts, examples as
+displayed, prose, attribution and bibliographic metadata are not themselves
+Lean theorems. The older scope note's generic-alpha Proposition 2.3
+refers to the older manuscript; this review makes no such extra claim.
+
+REBUILD FROM THE PINNED REPOSITORY (Lean toolchain/Mathlib as specified)
+  cd lean
+  lake exe cache get
+  lake build CDCert.Main CDCert.TwoInputs
+  lake env lean receipts/FinalAxioms.lean
+
+This manuscript update leaves the checked Lean proof unchanged.
+No new full Lean build or archival publication is claimed.

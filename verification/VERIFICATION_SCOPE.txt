@@ -1,86 +1,76 @@
-VERIFICATION SCOPE -- INDEPENDENT-REVIEW PACKET, 29 OCTOBER 2026
+VERIFICATION SCOPE -- CURRENT JOURNAL REVIEW, 1 NOVEMBER 2026
 
-VERDICT
-All seven parts of Theorem 1.1 are proved for the actual semantic Condorcet
-extremal functions, and an independent local kernel/source build succeeds.
-The 319-module Main/TwoInputs closure passes; the seven additional source
-modules pass too. The exact packaged clarified sources and final wrappers
-have been recompiled, followed by a fresh 20-result statement/axiom check.
-No sorry or custom axiom is used. Only propext, Classical.choice and
-Quot.sound occur in the checked results' transitive axiom lists.
+MAIN CONCLUSIONS AND SEMANTICS
+All seven conclusions of the current Theorem 1.1 have end-to-end Lean proofs
+for the actual maximum Condorcet-domain functions. Entry points are in
+lean/CDCert/Main.lean; see docs/PAPER_LEAN_MAP.txt for the revised numbering.
+The first four results assume n >=3; the two root-limit results and polynomial
+correction have no additional hypotheses. Orders are strict total orders;
+Condorcet requires transitive majority for every odd profile, with repetitions.
+The proved value-restriction equivalence matches the current combinatorial
+definition. Peak-pit uses extreme triple conditions without a common axis.
 
-PRECISE COVERAGE
-See ../README.txt for all seven Main names and the supporting declaration
-map. Main's first four statements assume n >= 3 and the remaining three
-have no extra premises. Order is an actual strict total order; IsCondorcet
-requires transitive majority for every odd profile, with repetitions.
-f/h are maxima over finite sets of those orders; h imposes an extreme
-never-condition per triple without a common axis.
-
-The component reduction/counting, free-to-locked injection, maximal-domain
-gap inequality, fixed-pair finite coverage, two orientations, R8 receiver,
+The component reduction/counts, free-to-locked injection, maximal-domain gap
+inequality, fixed-pair finite coverage, both endpoint orientations, R8 receiver,
 window conditioning/cancellation, ordered copies, base case, recurrences,
-real root limits and polynomial correction all occur in the checked chain.
-Bounds.FreeLockedInjection is a conditional interface. Recurrences proves
-its premise, and the final Main statements do not assume it.
+limits and polynomial correction are all in the checked dependency chain.
+The conditional FreeLockedInjection helper is discharged before Main.
+The local inequality is CDCert.K6.finite_lemma, with denominator scaling
+cost10=10*C and qD=2*d*q. Finite certificates and their coverage are checked
+within Lean's kernel. Python/C++ execution is not a formal premise.
 
-OUTSIDE THE LITERAL FORMALISATION
-The arbitrary-real-alpha version of Proposition 2.3 is a new expository
-reformulation in the journal draft and has no standalone parameterised Lean
-theorem in the final source bundle. Its alpha=3/8 instance is proved, and
-no result of Theorem 1.1 relies on an unproved formal assumption.
-Native generator correctness, literal native enumeration counts, benchmark
-comparisons, historical/novelty/credit statements and bibliographical metadata
-are not claimed as Lean theorems. The Lean proof uses a proved independent
-enumeration, not a trust assumption about the C++/Python programs.
+WHAT ACTUALLY PASSED, AND WHEN
+29 October: independent compilation of all 319 required Main/TwoInputs
+closure modules and seven extra auxiliary modules: all 326 sources covered.
+Clarified-source recompilations and final entry-point recompilations passed,
+followed by a fresh 20-result statement/transitive-axiom check. Only the
+standard propext, Classical.choice and Quot.sound occur. There are no
+sorry/admit placeholders, custom axioms or native_decide in project sources.
+Standard pinned external-library artifacts were reused; supplied project
+binaries were not. See codex-independent-lean/ for the actual records and
+claude-clean-rebuild/ for the separate supplied earlier build evidence.
 
-NATIVE / LEAN ENUMERATION DISTINCTION
-Native: 128400 labelled five-families / 1160 types; 14105084 six-extensions /
-94830 feature rows; 397 selected sets / 14 types on 13 exceptional rows;
-18 seven-label seed families / 14248 seed-domain cases / 18316 feature rows.
-Lean: 26 oriented endpoint families (13 types, both sides, without reversal
-reduction) / 16888 final states. Counts use different strategies and units.
-The same finite seven-window inequality is proved, including fixed pairs.
+1 November: the tutorial correspondence check compiled 54 typed restatements,
+checked 190 named original interfaces and printed 72 definition bodies using
+hash-verified proof objects. A summary is in editorial_2026-11-01/. This is
+not claimed as another complete source rebuild.
 
-EVIDENCE AND ACTUAL EXECUTION
-codex-independent-lean/: fresh dependency-ordered compilation of project
-sources, final exact-source coverage/hashes, final semantic statement and
-axiom outputs, and the 20-result allowlist PASS receipt. Standard external
-library artifacts were reused; no compiled project proof from Claude was
-reused. Missing external cache companion files initially blocked four
-modules; repairing that library setup allowed all modules to pass. This
-was an environment failure, not a proof repair. No mathematical command in
-Claude's final project has been changed.
+1 November: a complete standalone Python regeneration/check returned PASS
+in about 100 seconds. The unchanged source hash, full log and coverage are
+recorded in editorial_2026-11-01/. It covers 128400 five-families / 1160 types,
+14105084 six-extensions with seed multiplicities, 14 exceptional six-types,
+and 26 oriented seven-label seeds / 16888 seed-family cases. All 1160 weights
+and nine correction integers match the earlier native certificate exactly.
+The checker was not rerun merely to upload the unchanged program.
 
-claude-clean-rebuild/: distinct supplied evidence of Claude's earlier fresh
-318-module Main build, subsequent Main/TwoInputs build and final axiom
-inspection. These supplied records are not substituted for Codex's fresh
-local checks. The final bundle's SHA256 is recorded in PROVENANCE.json.
+This GitHub update: every base file was matched to its public Git blob hash;
+Lean sources/configuration/pins and existing build records remain unchanged.
+The current journal PDF/source match the previously compiled and visually
+reviewed local version: ten pages including references plus two mathematical
+appendix pages. The three examples pass direct checks. The unchanged 21-page
+companion's printed program matches the executed checker, including every
+coefficient. Manifest and upload payload integrity were checked separately.
 
-native-replay/: fresh saved-data replay in the packaged tree; all five checks
-return zero, including exact rational residuals and all 113146 witnesses.
-prior-native-regeneration/: the existing complete 29 October regeneration
-receipt, whose row comparisons and commands all succeeded. That expensive
-run was not repeated for unchanged native files during packaging. Local
-machine paths in the copied receipt are redacted, with provenance recorded.
+ENUMERATIONS AND COVERAGE LIMITS
+The earlier native strategy uses 18 seven-label seed families / 14248
+seed-domain cases / 18316 feature rows. Lean and the standalone checker use
+26 endpoint orientations / 16888 cases. These are different enumeration
+strategies/units for the same finite lemma. Native saved-data replay and the
+prior complete native-regeneration receipts remain separately labelled.
 
-source-audit.json: all 326 source modules scanned after removing nested
-comments and string literals; no sorry/admit/custom axiom/native_decide or
-kernel-bypass tokens. This scan supports, and does not replace, compilation
-and the transitive axiom check.
+Literal correctness of the Python/C++ implementations, their runtime/count
+reports, displayed examples as prose, attribution, novelty and bibliography
+are not themselves Lean theorems. The final mathematical bounds do not assume
+program execution is correct. The old paper's arbitrary-real-alpha
+Proposition 2.3 has no separate generic formal theorem; the alpha=3/8 instance
+is proved. That numbered statement belongs to the older paper, not the
+current journal review. No unproved premise remains in its Theorem 1.1.
 
-PAPER CORRESPONDENCE
-The supplied paper TeX is byte-identical to the latest saved Overleaf
-main.tex, including the GitHub URL and DOI placeholders. Its PDF compiles
-from that source. The eight-page main paper and three-page supplement
-compile twice without warnings, and every rendered page was inspected.
-The supplement's display equations are unchanged; only paths and status/
-location prose were reconciled with the complete separate Lean project.
-The Lean file comments changed only as recorded in lean-documentation-only.diff;
-all proof/command token streams remain identical to the final Claude bundle.
-
-RELEASE STATUS
-This is an independently checked review candidate, not an approved public
-release. Pavlos's agreement, author approval and license/metadata decisions
-remain. No new DOI, archive record, GitHub release, publication or submission
-has been created. The main paper's link placeholders are intentional.
+VERSIONS AND PUBLICATION STATUS
+The exact earlier scope record is retained in snapshots/2026-10-29/.
+The earlier manuscript is preserved at commit
+0d5dd168854b208d8436ea685921aa03d7c42200; its old numbering and Overleaf/link
+placeholder notes describe that snapshot. The current manuscript cites the
+real repository. Updating GitHub does not change Overleaf.
+This remains a draft for coauthor review. No GitHub release, DOI deposit or
+archival publication is part of this update; author agreement remains required.

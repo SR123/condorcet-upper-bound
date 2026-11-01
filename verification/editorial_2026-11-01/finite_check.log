@@ -1,0 +1,123 @@
+Five-label coverage complete: 128400 1160
+Six-label seeds: 20 / 1160 extensions: 12486 seconds: 0.6
+Six-label seeds: 40 / 1160 extensions: 48912 seconds: 0.8
+Six-label seeds: 60 / 1160 extensions: 93461 seconds: 1.0
+Six-label seeds: 80 / 1160 extensions: 141863 seconds: 1.3
+Six-label seeds: 100 / 1160 extensions: 200186 seconds: 1.6
+Six-label seeds: 120 / 1160 extensions: 324518 seconds: 2.3
+Six-label seeds: 140 / 1160 extensions: 377853 seconds: 2.5
+Six-label seeds: 160 / 1160 extensions: 446892 seconds: 2.9
+Six-label seeds: 180 / 1160 extensions: 540286 seconds: 3.4
+Six-label seeds: 200 / 1160 extensions: 727536 seconds: 4.5
+Six-label seeds: 220 / 1160 extensions: 856992 seconds: 5.3
+Six-label seeds: 240 / 1160 extensions: 1043644 seconds: 6.4
+Six-label seeds: 260 / 1160 extensions: 1298163 seconds: 8.0
+Six-label seeds: 280 / 1160 extensions: 1329112 seconds: 8.2
+Six-label seeds: 300 / 1160 extensions: 1357764 seconds: 8.3
+Six-label seeds: 320 / 1160 extensions: 1425561 seconds: 8.7
+Six-label seeds: 340 / 1160 extensions: 1546549 seconds: 9.4
+Six-label seeds: 360 / 1160 extensions: 1792300 seconds: 10.9
+Six-label seeds: 380 / 1160 extensions: 2003876 seconds: 12.3
+Six-label seeds: 400 / 1160 extensions: 2223458 seconds: 13.7
+Six-label seeds: 420 / 1160 extensions: 2598381 seconds: 16.2
+Six-label seeds: 440 / 1160 extensions: 2947219 seconds: 18.5
+Six-label seeds: 460 / 1160 extensions: 3284550 seconds: 20.9
+Six-label seeds: 480 / 1160 extensions: 3302760 seconds: 20.9
+Six-label seeds: 500 / 1160 extensions: 3335503 seconds: 21.1
+Six-label seeds: 520 / 1160 extensions: 3401190 seconds: 21.5
+Six-label seeds: 540 / 1160 extensions: 3468789 seconds: 21.8
+Six-label seeds: 560 / 1160 extensions: 3651905 seconds: 22.9
+Six-label seeds: 580 / 1160 extensions: 4053056 seconds: 25.6
+Six-label seeds: 600 / 1160 extensions: 4399285 seconds: 27.9
+Six-label seeds: 620 / 1160 extensions: 4937970 seconds: 31.7
+Six-label seeds: 640 / 1160 extensions: 5474906 seconds: 35.6
+Six-label seeds: 660 / 1160 extensions: 5942155 seconds: 38.9
+Six-label seeds: 680 / 1160 extensions: 6412237 seconds: 42.5
+Six-label seeds: 700 / 1160 extensions: 6725627 seconds: 44.5
+Six-label seeds: 720 / 1160 extensions: 7261967 seconds: 48.5
+Six-label seeds: 740 / 1160 extensions: 7662078 seconds: 51.4
+Six-label seeds: 760 / 1160 extensions: 7802057 seconds: 52.3
+Six-label seeds: 780 / 1160 extensions: 8176190 seconds: 55.0
+Six-label seeds: 800 / 1160 extensions: 8565843 seconds: 57.8
+Six-label seeds: 820 / 1160 extensions: 8874921 seconds: 59.9
+Six-label seeds: 840 / 1160 extensions: 9083497 seconds: 61.3
+Six-label seeds: 860 / 1160 extensions: 9360712 seconds: 63.2
+Six-label seeds: 880 / 1160 extensions: 9655835 seconds: 65.2
+Six-label seeds: 900 / 1160 extensions: 9978181 seconds: 67.4
+Six-label seeds: 920 / 1160 extensions: 10292947 seconds: 69.7
+Six-label seeds: 940 / 1160 extensions: 10406308 seconds: 70.4
+Six-label seeds: 960 / 1160 extensions: 10487299 seconds: 70.9
+Six-label seeds: 980 / 1160 extensions: 10613818 seconds: 71.6
+Six-label seeds: 1000 / 1160 extensions: 10892845 seconds: 73.5
+Six-label seeds: 1020 / 1160 extensions: 11348542 seconds: 76.6
+Six-label seeds: 1040 / 1160 extensions: 11737181 seconds: 79.4
+Six-label seeds: 1060 / 1160 extensions: 12029032 seconds: 81.4
+Six-label seeds: 1080 / 1160 extensions: 12465397 seconds: 84.6
+Six-label seeds: 1100 / 1160 extensions: 12816424 seconds: 87.1
+Six-label seeds: 1120 / 1160 extensions: 13288510 seconds: 90.6
+Six-label seeds: 1140 / 1160 extensions: 13610722 seconds: 92.8
+Six-label seeds: 1160 / 1160 extensions: 14105084 seconds: 96.3
+Seven-label seeds: 1 / 26 families: 2034 seconds: 96.6
+Seven-label seeds: 2 / 26 families: 4301 seconds: 97.3
+Seven-label seeds: 3 / 26 families: 2545 seconds: 97.6
+Seven-label seeds: 4 / 26 families: 512 seconds: 98.3
+Seven-label seeds: 5 / 26 families: 348 seconds: 98.4
+Seven-label seeds: 6 / 26 families: 348 seconds: 98.4
+Seven-label seeds: 7 / 26 families: 344 seconds: 98.4
+Seven-label seeds: 8 / 26 families: 344 seconds: 98.4
+Seven-label seeds: 9 / 26 families: 345 seconds: 98.4
+Seven-label seeds: 10 / 26 families: 345 seconds: 98.5
+Seven-label seeds: 11 / 26 families: 359 seconds: 98.5
+Seven-label seeds: 12 / 26 families: 348 seconds: 98.5
+Seven-label seeds: 13 / 26 families: 358 seconds: 98.5
+Seven-label seeds: 14 / 26 families: 358 seconds: 98.5
+Seven-label seeds: 15 / 26 families: 375 seconds: 98.5
+Seven-label seeds: 16 / 26 families: 375 seconds: 98.6
+Seven-label seeds: 17 / 26 families: 366 seconds: 98.6
+Seven-label seeds: 18 / 26 families: 366 seconds: 98.6
+Seven-label seeds: 19 / 26 families: 382 seconds: 98.6
+Seven-label seeds: 20 / 26 families: 378 seconds: 98.6
+Seven-label seeds: 21 / 26 families: 374 seconds: 98.7
+Seven-label seeds: 22 / 26 families: 374 seconds: 98.7
+Seven-label seeds: 23 / 26 families: 308 seconds: 98.7
+Seven-label seeds: 24 / 26 families: 441 seconds: 98.7
+Seven-label seeds: 25 / 26 families: 130 seconds: 98.7
+Seven-label seeds: 26 / 26 families: 130 seconds: 98.7
+{
+  "result": "PASS",
+  "five_families": 128400,
+  "five_types": 1160,
+  "six_extensions": 14105084,
+  "exceptional_six_types": 14,
+  "seven_seed_checks": 26,
+  "seven_counts": [
+    2034,
+    4301,
+    2545,
+    512,
+    348,
+    348,
+    344,
+    344,
+    345,
+    345,
+    359,
+    348,
+    358,
+    358,
+    375,
+    375,
+    366,
+    366,
+    382,
+    378,
+    374,
+    374,
+    308,
+    441,
+    130,
+    130
+  ],
+  "seven_family_cases": 16888,
+  "seconds": 98.72898583399365
+}

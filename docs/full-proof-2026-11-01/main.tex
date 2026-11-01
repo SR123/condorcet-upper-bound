@@ -1,0 +1,953 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage{booktabs,array,enumitem,listings,xcolor,url,textcomp}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Improved Upper Bounds on the Size of Condorcet Domains},
+ pdfauthor={Pavlos Moros and Soren Riis}}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\setlist{itemsep=0.15em,topsep=0.3em,leftmargin=*}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\maj}{\operatorname{maj}}
+\newcommand{\fr}{\operatorname{fr}}
+\newcommand{\fz}{\operatorname{fz}}
+\newcommand{\lk}{\operatorname{lk}}
+\newcommand{\N}[2]{#1\mathrm N_{#2}}
+\lstset{language=Python,basicstyle=\fontsize{8}{9.6}\selectfont\ttfamily,
+ keywordstyle=\bfseries,commentstyle=\itshape,stringstyle=\ttfamily,
+ columns=fullflexible,keepspaces=true,showstringspaces=false,upquote=true,
+ breaklines=true,breakatwhitespace=false,tabsize=4,
+ aboveskip=0.5em,belowskip=0.5em}
+\begin{document}
+\begin{center}
+{\Large\bfseries Improved Upper Bounds on the Size\\[2pt]
+of Condorcet Domains}\par
+\medskip
+Pavlos Moros \qquad S\o ren Riis\par
+\small Review draft with examples, 1 November 2026
+\end{center}
+\begin{abstract}
+We prove \(f(n)\leq32n f(n-1)/(11n+8)\) for the maximum size of a
+Condorcet domain, giving exponential base \(32/11<3\).
+An exact deletion count, a decomposition into adjacent-swap components
+and a local counting inequality give the bound; the same local
+inequality gives base \(8/3\) for peak-pit domains.
+Small examples illustrate the structural counts. All proofs and the
+complete finite computation, including its exact data and coverage
+argument, are included in the paper and appendices.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+A Condorcet domain admits rankings for which pairwise majority is
+transitive for every odd number of voters, allowing repeated rankings.
+How many rankings can be admitted while retaining consistent majority
+decisions? Write \(f(n)\) for the maximum on \(n\) alternatives.
+We use Sen's equivalent combinatorial description: each triple has
+an alternative forbidden from one of its three positions in every
+admitted ranking~\cite{Sen}. A domain is \emph{peak-pit} when these
+forbidden positions can always be chosen first or last. The alternative
+and the position may vary with the triple; no common axis is required.
+Write \(h(n)\) for the peak-pit maximum.
+
+Fishburn~\cite{Fishburn} surveys the extremal problem, and
+Raz~\cite{Raz} proved an exponential upper bound for \(f(n)\).
+For peak-pit constructions and recent lower bounds, see Karpov and
+Slinko~\cite{KarpovSlinko} and Karpov, Markstr\"om, Riis and
+Zhou~\cite{KMRZ}. An earlier AI-assisted working draft of this
+project~\cite{Moros} recorded the exact fibre count, the gap inequality,
+and bounds with general bases \(56/19\) and \(1336/455\), and peak-pit
+base \(8/3\). Its arguments and verification programs were developed
+with Claude and examined with Codex; its finite correction coefficients
+were selected by linear programming. The present paper consolidates
+that investigation, adds the component reduction, and improves the
+general base to \(32/11=2.90909\ldots\).
+
+\begin{theorem}[Main bounds]\label{thm:main}
+For every integer \(n\geq3\),
+\[
+ f(n)\leq\frac{32n}{11n+8}f(n-1),\qquad
+ h(n)\leq\frac83h(n-1).
+\]
+Consequently \(f(n)\leq4(32/11)^{n-3}\),
+\(h(n)\leq4(8/3)^{n-3}\), and
+\(f(n)=O(n^{-8/11}(32/11)^n)\).
+The limits \(\lim_{n\to\infty}f(n)^{1/n}\) and
+\(\lim_{n\to\infty}h(n)^{1/n}\) exist and are at most \(32/11\)
+and \(8/3\), respectively.
+\end{theorem}
+
+The structural step partitions a domain, after completion if needed,
+into connected components under swaps of consecutive entries.
+Each component is described by never-first/never-last restrictions and
+fixed comparisons; its deletion outputs count each consecutive range
+of insertion positions separately. The proof uses majority projection, related to the median
+structure studied by Puppe and Slinko~\cite{PuppeSlinko}, and proves the
+required component statement directly. A deletion estimate on these
+components then combines with the gap inequality to give the general
+bound. The only computational ingredient is a local inequality;
+Appendices~\ref{app:coverage}--\ref{app:checker} include every datum and
+prove that its checking procedure is exhaustive.
+
+\clearpage
+\section{Orders, triple restrictions and full families}\label{sec:objects}
+Let \(X\) be a finite set of \(n\) alternatives. An \emph{order} is
+a strict total order on \(X\), written from first to last; \(a>b\)
+means that \(a\) occurs before \(b\). Restricting
+an order to a subset means erasing all other labels; this restriction is
+also called its \emph{trace} on the subset.
+For a triple \(T\subseteq X\) and \(x\in T\), the \emph{never-condition}
+\(\N{x}{i}\), for \(i\in\{1,2,3\}\), says that \(x\) does not occupy position \(i\) in the
+restriction to \(T\). Thus \(\N{x}{1}\), \(\N{x}{2}\) and
+\(\N{x}{3}\) mean never first, never middle and never last,
+respectively, \emph{within that triple}. For instance, \(\N23\) on
+\(\{1,2,3\}\) permits exactly \(123,213,231,321\).
+A condition is \emph{common} to a family if every order satisfies it.
+We also call a never-condition a \emph{law}.
+
+\begin{definition}[Condorcet and peak-pit domains]\label{def:cd}
+A \emph{Condorcet domain} is a family of orders with a common
+never-condition on every triple. It is \emph{peak-pit} if each triple
+has a common never-first or never-last condition. We call these two
+kinds of condition \emph{extreme}; never-middle is the remaining kind.
+\end{definition}
+By Sen's characterisation~\cite{Sen}, this is equivalent to the voting
+description in the introduction. Appendix~\ref{app:voting} includes
+an elementary proof. The functions \(f(n),h(n)\) are attained maxima
+because the set of orders is finite. A Condorcet domain is \emph{maximal}
+if no further order can be added while preserving the Condorcet property;
+a \emph{maximum} domain has largest possible cardinality. The first term concerns adding orders; the second concerns
+the largest size among all domains on the given alternatives.
+
+\begin{definition}[Full families and \(\F_n\)]\label{def:full}
+Choose one never-condition for each triple, and collect \emph{every}
+order satisfying all the chosen conditions. We call the resulting
+family a \emph{full domain} for that choice of conditions.
+To define \(\F_n\), use the labels \(0,\ldots,n-1\), choose an
+extreme condition on every triple, and optionally require specified
+pair comparisons, such as \(a>b\). The nonempty families consisting
+of \emph{all} orders obeying such a system form \(\F_n\).
+\end{definition}
+Here ``full'' refers to satisfying a chosen system exactly; it does not
+mean maximal. It also differs from the literature's ``closed'', meaning
+closed under majority~\cite{PuppeSlinko}. Families on other label sets
+are tested for membership in \(\F_n\) after relabelling by a bijection;
+all conditions and counts are invariant under this change of names.
+
+Every maximal Condorcet domain is full: choose a common condition on
+each triple. All orders obeying the choices form a Condorcet enlargement,
+so maximality forces equality. A maximum peak-pit domain likewise equals
+its extreme-condition completion and belongs to \(\F_n\).
+This completion need not be maximal among all Condorcet domains.
+Whenever we delete a label we assume \(n\geq1\).
+
+For any family \(D\), the \emph{swap graph} has its orders as vertices;
+two are joined when exchanging consecutive entries takes one to the
+other. Such a swap is \emph{enabled}. A path is a sequence of these
+swaps staying in \(D\). A \emph{swap component} consists of all orders
+reachable from a given order, including itself, by such paths.
+
+\clearpage
+\section{Insertions and the exact count}\label{sec:fibres}
+For a family \(D\) on \(X\), with \(|X|=n\), define
+\[
+ D_{-x}=\{\sigma\text{ with }x\text{ erased}:\sigma\in D\},
+ \qquad\Sig(D)=\sum_{x\in X}|D_{-x}|.
+\]
+Repeated outputs are counted only once in each \(D_{-x}\).
+If \(D\) is a Condorcet domain, restriction preserves its triple laws, so
+\begin{equation}\label{eq:deleteupper}
+ \Sig(D)\leq nf(n-1),\qquad
+ \Sig(D)\leq nh(n-1)\quad\hbox{if \(D\) is peak-pit}.
+\end{equation}
+For \(P\in D_{-x}\), write \(P[x:t]\) for inserting \(x\) with
+\(t\) labels above it; \(t\) indexes its insertion slot. Its \emph{insertion fibre} is
+\[
+ F_D(x,P)=\{t\in\{0,\ldots,n-1\}:P[x:t]\in D\}.
+\]
+A \emph{run} is a maximal consecutive block of occupied slots.
+A fibre with \(r\) runs contributes \(r-1\) to the total gap count
+\(G(D)\); a long empty stretch between runs is one gap.
+Let \(A(D)\) count pairs \((\sigma,j)\), where \(\sigma\in D\) and
+the swap at positions \(j,j+1\), \(1\leq j<n\), is enabled.
+Thus each edge counts twice. For a fixed family \(D\),
+we abbreviate these statistics to
+\(M=|D|,\ \Sig=\Sig(D),\ G=G(D),\ A=A(D)\).
+
+The starting point is an exact count, with no inequality or lost term:
+every order/label choice is accounted for by a deletion output, a gap
+or an enabled-swap incidence.
+\begin{lemma}[Fibre identity]\label{lem:fibre}
+For every family of orders,
+\(\boxed{\Sig+G+A=nM}\).
+\end{lemma}
+\begin{proof}
+A fibre with \(m\) occupied slots and \(r\) runs has \(m-r\)
+neighbouring occupied pairs. Summing \(m\) gives \(nM\), and summing
+\(r\) gives \(\Sig+G\). Each neighbouring occupied pair is a swap
+edge with the inserted label distinguished. Every edge occurs twice,
+once for each exchanged label, giving exactly \(A\).
+\end{proof}
+
+\begin{example}[Deletion collisions]\label{ex:four}
+The full domain \(D=\{123,213,231,321\}\) satisfies \(\N23\).
+Its deletion outputs are
+\[
+ D_{-1}=\{23,32\},\qquad D_{-2}=\{13,31\},\qquad
+ D_{-3}=\{12,21\}.
+\]
+For instance, deleting 1 merges \(123,213,231\) into 23, and
+\(F_D(1,23)=\{0,1,2\}\). The swap graph is the path
+\(123\leftrightarrow213\leftrightarrow231\leftrightarrow321\).
+Thus \(M=4,\Sig=6,G=0,A=6\), and \(6+0+6=3\cdot4\).
+\end{example}
+
+The \emph{top slice at \(x\)} retains only orders starting with \(x\)
+and then erases \(x\). The \emph{bottom slice at \(x\)} does the same
+for orders ending with \(x\). A slice can be empty. A sum over slices
+runs over the choices of fixed endpoint label.
+\begin{lemma}[Two closure properties]\label{lem:interval}
+Families in \(\F_n\) have interval insertion fibres (one run). Every nonempty
+slice obtained by fixing and removing a first or last label belongs
+to \(\F_{n-1}\).
+\end{lemma}
+\begin{proof}
+Fix the relative order of the other labels. An extreme law permits
+an interval of slots for the inserted label: never-first puts it
+below the higher of the two others, and never-last above the lower.
+If another label is distinguished, the law is automatic or puts the
+inserted label on one specified side of it. Fixed comparisons also
+give intervals. Intersect these intervals and use fullness.
+For an endpoint slice, internal triple laws remain. A triple containing
+the removed endpoint reduces to a fixed comparison, a tautology or a
+contradiction. Pair constraints reduce similarly; contradictions mean
+the slice is empty. The remaining constraints describe the slice exactly.
+\end{proof}
+
+\clearpage
+\section{Reducing a general domain to extreme laws}\label{sec:components}
+Throughout this section \(D\) is full. Its swap components are the
+connected pieces of the graph defined in Section~\ref{sec:objects}. For
+three orders write \(\maj(\alpha,\beta,\gamma)\) for their pairwise
+majority order. The majority-closure argument is part of the median
+structure studied by Puppe and Slinko~\cite{PuppeSlinko}; we give the
+specific adjacent-swap component argument in full.
+
+\begin{lemma}[Majority projection]\label{lem:projection}
+The majority of three members of \(D\) lies in \(D\).
+If \(K\) is a swap component of \(D\) and \(U\) is the set of all oriented
+pair comparisons common to every order of \(K\), then
+\[
+ K=\{\tau\in D:\tau\text{ satisfies every comparison in }U\}.
+\]
+\end{lemma}
+\begin{proof}
+Majority is an order by Appendix~\ref{app:voting}. On a triple
+\(\{x,y,z\}\), the law \(\N x2\) says \(x>y\) if and only if
+\(x>z\); the two majority comparisons therefore agree as well.
+If majority violated a never-first law, two sets of at least two
+voters among three would support its two comparisons. Their intersection
+would contain a voter violating the law. Never-last is symmetric.
+Fullness therefore puts the majority order in \(D\).
+
+For the displayed equality, suppose \(\tau\in D\) satisfies \(U\).
+Choose \(\sigma\in K\) disagreeing with \(\tau\) on as few pair
+comparisons as possible. If they differ, a differing comparison is not
+fixed on \(K\). Take \(\rho\in K\) agreeing with \(\tau\) there,
+and project a path from \(\sigma\) to \(\rho\) by
+\(v\mapsto\maj(\sigma,\tau,v)\). Images lie in \(D\); consecutive
+images differ in at most one comparison. Two distinct orders differing
+in one comparison exchange adjacent labels: an intervening label would
+force another comparison to change. Remove consecutive repeated images;
+the remaining path stays in \(K\) and starts at \(\sigma\). On comparisons where \(\sigma,\tau\)
+agree it is constant; elsewhere it follows \(v\). Its last order
+corrects the selected disagreement without losing any agreement.
+This contradicts the choice of \(\sigma\), proving the claim.
+\end{proof}
+
+\begin{proposition}[Component identity]\label{prop:components}
+Every component \(K\) belongs to \(\F_n\), and
+\begin{equation}\label{eq:components}
+ \sum_K |K|=M,\qquad \sum_K\Sig(K)=\Sig(D)+G(D).
+\end{equation}
+\end{proposition}
+\begin{proof}
+A chosen never-middle law \(\N x2\) equates the two comparisons of
+\(x\) on that triple. Neither can change along a swap path, which
+changes only one comparison at a time. Thus throughout \(K\), \(x\)
+is above both others or below both. Replace the law by \(\N x3\)
+or \(\N x1\), respectively. Keep the original extreme laws and add
+all comparisons \(U\) fixed on \(K\). Every order in \(K\) satisfies
+these constraints. Conversely, they recover the old never-middle laws,
+so an order satisfying them lies in \(D\) and agrees with \(U\).
+Lemma~\ref{lem:projection} puts it in \(K\). Thus these conditions
+describe \(K\) exactly, proving \(K\in\F_n\).
+
+Components partition \(D\), giving the first identity. Each original
+fibre run lies in one component, because consecutive occupied slots
+are swap edges. A component cannot contain two separated runs: its
+own fibre is an interval by Lemma~\ref{lem:interval}. Thus each original
+run gives exactly one component deletion output. Summing runs gives
+the second identity.
+\end{proof}
+
+\begin{example}[Counting separated runs]\label{ex:gap}
+The full domain \(D=\{123,132,231,321\}\), defined by \(\N12\),
+has components \(\{123,132\}\) and \(\{231,321\}\).
+Its 1-fibres above 23 and 32 both have slots \(\{0,2\}\), each
+contributing one gap. Thus \(\Sig(D)=6,G(D)=2\). Each component
+has deletion sum 4, so \(4+4=6+2\): splitting the family counts
+its separated insertion runs separately.
+\end{example}
+
+\clearpage
+\section{The gap inequality}\label{sec:gap}
+Fix a Condorcet domain \(D\) on \(X\), with \(|X|=n\).
+A \emph{lift} moves one label upwards, and a \emph{drop} moves it
+downwards, keeping all other relative positions and remaining in \(D\).
+These moves may jump several slots. An incidence \((\sigma,x)\) is
+\emph{free} if it has both moves, and \emph{frozen} if it has neither;
+their counts are \(\fr(D),\fz(D)\). In an order \(\sigma\), consecutive
+entries \(a,c\) form a \emph{locked} pair if \(a\) has no drop and
+\(c\) has no lift. Let \(\lk(D)\) count these triples \( (\sigma,a,c)\). With \(D\) fixed, abbreviate these
+counts to \(\fr,\fz,\lk\).
+
+\begin{lemma}[Two counts]\label{lem:counts}
+For a full domain,
+\begin{equation}\label{eq:movecounts}
+ 2\Sig=nM-\fr+\fz=(n+1)M-A+\lk,
+ \qquad 3\Sig+\fr=(n+1)M+G+\fz+\lk.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Each fibre has one order with no lift and one with no drop. Their
+combined count is \(2\Sig\); an incidence contributes 0, 1 or 2
+according as it is free, has one move, or is frozen.
+For an adjacent pair, the missing drop of its upper label and missing
+lift of its lower label contribute 0 if the swap is enabled, 2 if
+locked, and 1 otherwise. Indeed a blocked swap changes only that pair
+comparison and violates a chosen law on a triple containing the pair.
+Write its old trace as \(zac\) if the third label is above. The
+violated law is \(\N a3\) or \(\N c2\), either of which forbids
+every drop of \(a\). If the third label is below, the old trace is
+\(acz\); the law is \(\N a2\) or \(\N c1\), forbidding every
+lift of \(c\). Thus both crossing moves cannot be available.
+The first label also has no lift and the last no drop. The second
+count is therefore \(2M+(n-1)M-A+\lk\). Combine the two counts
+with \(\Sig+G+A=nM\) for the final identity.
+\end{proof}
+
+\begin{lemma}[Free-to-locked injection]\label{lem:injection}
+For a maximal Condorcet domain, \(\fr\leq\lk\).
+\end{lemma}
+\begin{proof}
+First, if \(a>c\) in every order, they cannot be adjacent in one.
+Swapping such an occurrence adds an order while preserving a common
+law on every triple: triples containing the pair retain \(\N c1\)
+if the third label is above, or \(\N a3\) if below. All other triples
+are unchanged. This contradicts maximality.
+
+A free label \(b\) is neither first nor last. Write \(a,b,c\) for the
+consecutive block centred on \(b\). The order, a lift
+and a drop give \(abc,bac,acb\); their only possible common laws
+are \(\N a3\) and \(\N c1\). Both cannot hold, since together
+they force \(a>c\) everywhere, whereas a lift puts them consecutively.
+If \(\N a3\) holds, take the available lift leaving \(b\) as low
+as possible; otherwise take the available drop leaving it as high
+as possible: use the closest available slot in the chosen direction.
+In the image order the pair
+\(a,c\) is consecutive and locked: either crossing move would violate
+the selected law. Map the free incidence to this order/pair incidence.
+For a specified moved label, the preimage is recovered uniquely by
+putting it back between the image pair. Appendix~\ref{app:collisions}
+excludes collisions between different moved labels, completing the proof.
+\end{proof}
+
+The first identity in Lemma~\ref{lem:counts} is the sum over deleted
+labels of Fathi's fibre-excess identity~\cite[eq.\ (96)]{Fathi}.
+The two possible laws at a free incidence are also Fathi's flank-rule
+observation~\cite[Lemma K.52]{Fathi}. The injection uses maximality
+to make the assignment collision-free.
+
+\begin{corollary}[Gap inequality]\label{cor:gap}
+For every maximal Condorcet domain,
+\(G+(n+1)M\leq3\Sig\).
+\end{corollary}
+\begin{proof}
+In the last identity of~\eqref{eq:movecounts}, use
+\(\fr\leq\lk\) and \(\fz\geq0\).
+\end{proof}
+
+\clearpage
+\section{A precise local inequality}\label{sec:finite}
+The next ingredient concerns seven consecutive positions. Its
+correction terms depend only on six-label endpoint slices. The complete
+rational data and their checks are in the appendices; their role is to
+make the corrections cancel when windows overlap.
+Recall that top and bottom slices fix and delete the first and last
+label, respectively. Empty slices contribute zero.
+For \(J\in\F_7\), let \(a_j(J)\) count orders whose swap at
+positions \(j,j+1\) is enabled, for \(1\leq j\leq6\). Define
+\begin{equation}\label{eq:cost}
+ C(J)=\frac{a_1(J)+2a_2(J)+2a_3(J)+2a_4(J)+2a_5(J)+a_6(J)}{10}.
+\end{equation}
+Summing \(A(H)\) over top and bottom six-slices counts the end swaps
+once and all other swaps twice; hence that sum is \(10C(J)\).
+
+\begin{lemma}[Seven-position inequality]\label{lem:finite}
+There is a fixed rational-valued function \(q\), defined below, such that
+every \(J\in\F_7\), and the empty family, satisfies
+\begin{equation}\label{eq:finite}
+ C(J)\leq\frac58|J|+
+   \sum_{\text{bottom }H}q(H)-\sum_{\text{top }H}q(H).
+\end{equation}
+\end{lemma}
+
+Here are the complete definitions needed for its proof.
+On five labels, enumerate the full extreme-law-plus-pair families,
+identify families related by a bijective renaming of labels
+(\emph{isomorphic} families), and call each such class a \emph{type}. Encode a family by a binary \emph{mask}:
+list all permutations in lexicographic order, starting at index 0,
+and set bit \(i\) exactly when permutation \(i\) belongs to the family.
+Order the types by their least masks over all label renamings.
+There are 1160 types,
+indexed \(0,\ldots,1159\). Set \(\phi(P)=W_k/d\) on type \(k\), where
+\(d=8\,846\,117\,280\) and every \(W_k\) is printed in
+Appendix~\ref{app:checker}. The enumeration and indexing are generated
+there as well; no classification theorem is assumed.
+
+For a six-label family \(H\in\F_6\), define
+\begin{align*}
+ b(H)&=\sum_{\text{bottom }P}|P|\phi(P),&
+ t(H)&=\sum_{\text{top }P}|P|\phi(P),\\
+ s(H)&=\frac{12}{19}|H|+b(H)-t(H)-\frac15A(H),&
+ \eta&=\frac1{152}.
+\end{align*}
+Let \(r_b(H)\) count bottom five-slices of type 866, and
+\(r_t(H)\) top five-slices of type 41. The list
+\texttt{EXCEPTIONS} in the printed checker specifies fourteen
+six-types. Let \(\mathcal T\) consist of all families of the same type as
+the five representatives with value \texttt{None}; let \(\mathcal S\)
+likewise consist of the families of the other nine types. Their listed
+integers specify \(dp(H)\). Outside \(\mathcal S\), put
+\(p(H)=2\eta(r_t(H)-r_b(H))\). Finally set
+\[
+ \theta_b(H)=s(H)/2+p(H),\qquad\theta_t(H)=s(H)/2-p(H),
+ \qquad q(H)=(b(H)+t(H))/2+p(H).
+\]
+All these quantities are zero on the empty family. Arguments are
+suppressed when a single slice \(H\) is under discussion.
+
+The following finite facts are established by the complete calculation
+in Appendices~\ref{app:coverage}--\ref{app:checker}:
+\begin{enumerate}[label=F\arabic*.]
+\item There is a unique eight-order family \(R_8\in\mathcal T\)
+      up to relabelling. All its copies \(H\) have
+      \(\theta_b(H)=\theta_t(H)=0\).
+\item Outside \(\mathcal T\cup\mathcal S\),
+ \(\theta_b\geq\eta|H|/2+4\eta r_t\) and
+ \(\theta_t\geq\eta|H|/2+4\eta r_b\).
+\item If \(J\) has a six-slice in \(\mathcal S\cup\mathcal T\)
+ that is not isomorphic to \(R_8\), then
+\[
+ \Lambda(J):=\sum_{\text{bottom }H}\theta_b(H)+
+             \sum_{\text{top }H}\theta_t(H)\geq\eta|J|.
+\]
+\end{enumerate}
+
+\clearpage
+\section{Paying for the remaining slices}\label{sec:receiver}
+We now prove the local inequality from the explicitly checked finite
+facts; the remaining argument is by hand. A convenient labelled
+representative of the eight-order exceptional type is
+\[
+ R_8=\{524130,524310,534120,534210,
+       542130,542310,543120,543210\}.
+\]
+Its common first and last labels are 5 and 0. Deleting the first
+gives five-type 866, and deleting the last gives type 41.
+Its only nonempty bottom and top slices therefore have types 41 and
+866, respectively, so \(r_b(R_8)=r_t(R_8)=0\).
+These statements and its equality with the printed eight-order type
+are also verified by the indexing procedure in the appendix.
+
+\begin{proof}[Proof of Lemma~\ref{lem:finite}]
+F3 already gives \(\Lambda(J)\geq\eta|J|\) unless all nonempty
+six-slices are regular (outside \(\mathcal T\cup\mathcal S\)) or
+of type \(R_8\). Consider this remaining case.
+
+Each regular slice contributes a baseline \(\eta|H|/2\) by F2.
+An \(R_8\) slice contributes zero by F1 and is missing baseline
+\(4\eta\). Suppose a bottom \(R_8\) slice is obtained by fixing
+last label \(z\). Its orders share first label \(w\), and therefore
+also enter the top slice at \(w\). This top receiver, upon fixing
+and deleting its last label \(z\), has a five-slice of type 866.
+Thus its \(r_b\) is positive. It cannot be \(R_8\), whose \(r_b\)
+is zero, so it is regular. F2 supplies an extra \(4\eta\) in its
+\(\theta_t\), exactly the missing baseline.
+
+Different bottom \(R_8\) slices have different last labels. They
+charge different receiver/last-label pairs, each counted separately
+in \(r_b\), so no contribution is reused. Reverse top and bottom
+for top \(R_8\) slices; their receivers use the separate
+\(\theta_b\) contributions from \(r_t\). All missing baselines
+are paid. At each end the slice sizes sum to \(|J|\), yielding
+total baseline \(\eta|J|\). Thus the bound on \(\Lambda\) holds
+in every case.
+
+It remains to expand the definitions. Since the slice sizes sum to
+\(|J|\) at each end,
+\begin{align*}
+ \Lambda(J)
+ &=\frac{12}{19}|J|-\frac1{10}
+       \sum_{\text{top and bottom }H}A(H)\\
+ &\quad+\frac12\sum_{\text{bottom and top }H}(b(H)-t(H))
+       +\sum_{\rm bottom}p(H)-\sum_{\rm top}p(H).
+\end{align*}
+The sum of \(t(H)\) over bottom slices equals the sum of \(b(H)\)
+over top slices. Both enumerate the same conditional five-families
+obtained by fixing one first and one last label and deleting them.
+The deletions commute, including their label normalisations. Hence
+\[
+ \Lambda(J)=\frac{12}{19}|J|-C(J)
+       +\sum_{\rm bottom}q(H)-\sum_{\rm top}q(H).
+\]
+Use \(\Lambda(J)\geq\eta|J|\) and
+\(12/19-1/152=5/8\). For the empty family every term is zero.
+\end{proof}
+
+The exceptional case is therefore resolved by a counting argument,
+rather than by checking all seven-label families. The computation
+handles only the thirteen other exceptional six-types and their two
+endpoint orientations. Its coverage proof is part of this paper.
+
+\clearpage
+\section{From local windows to an exact density}\label{sec:windows}
+\begin{proposition}\label{prop:density}
+For every \(n\geq1\) and \(K\in\F_n\),
+\(8A(K)\leq5n|K|\) and \(\Sig(K)\geq3n|K|/8\).
+\end{proposition}
+\begin{proof}
+First suppose \(n\geq7\), and write \(M=|K|\).
+At each block of seven consecutive positions, fix the complete ordered
+prefix and suffix outside it. Its conditional family \(J\) belongs
+to \(\F_7\) when nonempty, by repeated endpoint slicing. At each
+window position these families partition \(K\), so their sizes sum
+to \(M\). A swap within a window has the same availability in its
+conditional family as in \(K\). Apply~\eqref{eq:finite} to all contexts
+and windows.
+
+The top six-slices of one window are exactly the bottom six-slices
+of the next: each fixes the same ordered exterior and retains the
+same central six labels. For example the windows \(xabcdef\) and
+\(abcdefy\) share \(abcdef\), with \(x\) and \(y\) fixed outside
+after slicing. Thus all internal \(q\)-terms cancel. This matching
+retains the full exterior, not merely the isomorphism type of a slice.
+
+The class \(\F_6\) is finite, so
+\(Q=\max(\{0\}\cup\{|q(H)|/|H|:H\in\F_6\})\) is finite.
+Thus \(|q(H)|\leq Q|H|\), also for the empty family.
+Each of the two surviving outside layers has total size
+\(M\), so its absolute contribution is at most \(QM\). Consequently
+\[
+ \sum_{\text{all window contexts }J}C(J)
+ \leq\frac58(n-6)M+2QM.
+\]
+A swap contained in six windows has total weight
+\((1+2+2+2+2+1)/10=1\). Every swap has weight between zero and one.
+The sum of all position weights is \(n-6\), whereas there are \(n-1\)
+swap positions. The total deficit is exactly five per order. Since
+each swap indicator is at most one,
+\begin{equation}\label{eq:affine}
+ A(K)\leq\frac58nM+BM,\qquad B=5/4+2Q.
+\end{equation}
+
+Fix any \(K\in\F_n\), now allowing small \(n\), and concatenate
+\(t\) disjoint copies in a fixed block order. Each block chooses an
+order independently; all comparisons between blocks are fixed.
+A mixed triple has a label fixed first or last, so compatible extreme
+laws can be chosen. The resulting full family \(K^{[t]}\) belongs
+to \(\F_{tn}\), and
+\[
+ |K^{[t]}|=M^t,\qquad A(K^{[t]})=tA(K)M^{t-1}.
+\]
+The second identity counts an enabled swap in any one block and
+independent choices in the others. A swap across a join reverses a
+fixed comparison and is unavailable; it creates no new term.
+For \(tn\geq7\), apply~\eqref{eq:affine} to the joined family:
+\[
+ tA(K)M^{t-1}\leq\frac58tnM^t+BM^t,
+ \qquad A(K)\leq\left(\frac58n+\frac Bt\right)M.
+\]
+Let \(t\) grow. This proves \(A(K)\leq5nM/8\), including the
+original small \(n\). Its fibres are intervals, so \(G=0\);
+Lemma~\ref{lem:fibre} then gives the deletion bound.
+\end{proof}
+
+\begin{example}[Two joined copies]\label{ex:copies}
+Join the four-order domain \(D\) of Example~\ref{ex:four} to its
+relabelled copy \(D'=\{456,546,564,654\}\), always putting its first
+block above its second, and call the joined family \(J\in\F_6\).
+It has 16 orders. Each deletion leaves two choices in its affected
+block and four in the other, so \(\Sig(J)=6\cdot2\cdot4=48\).
+The internal paths give \(A(J)=2\cdot6\cdot4=48\), and \(G(J)=0\).
+The join adds no swap: crossing it reverses a fixed comparison.
+\end{example}
+
+\clearpage
+\section{The upper bounds and their scope}\label{sec:finish}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let \(D\) be a maximum Condorcet domain on \(n\) labels, with
+\(M=f(n)\). It is maximal and therefore full. By the component
+identity and Proposition~\ref{prop:density},
+\[
+ \frac38 nM\leq\sum_K\Sig(K)=\Sig+G.
+\]
+The gap inequality gives \(\Sig+G\leq4\Sig-(n+1)M\). Combining,
+\[
+ \frac38nM\leq4\Sig-(n+1)M,
+ \qquad (11n+8)M\leq32\Sig\leq32n f(n-1).
+\]
+This proves the general recurrence. A maximum peak-pit domain belongs
+to \(\F_n\), so its deletion sum is at least \(3nM/8\) and at
+most \(nh(n-1)\), proving the peak-pit recurrence.
+
+On three labels a common law omits two of the six orders; the
+four-order domain in Example~\ref{ex:four} attains four. Thus
+\(f(3)=h(3)=4\). Iterating the recurrences gives both geometric
+bounds, since \(32n/(11n+8)\leq32/11\).
+More precisely, with \(r=32/11\) and \(a=8/11\),
+\[
+ f(n)\leq4r^{n-3}\prod_{k=4}^{n}\frac{k}{k+a}
+ \leq4r^{n-3}\left(\frac4{n+1}\right)^a.
+\]
+For the last step, \((1+u)^a\leq1+au\) for \(u\geq0\):
+\(1+au-(1+u)^a\) is zero at zero and has nonnegative derivative.
+Thus \(k/(k+a)\leq(k/(k+1))^a\), and the product telescopes.
+This proves the claimed polynomial correction.
+
+Finally, concatenate two domains in a fixed block order. Majority is
+transitive within each block and respects the block order; mixed
+triples have a fixed extreme label. Thus both the Condorcet and
+peak-pit properties are preserved, and cardinalities multiply.
+Hence for \(g=f\) or \(h\),
+\(g(m+n)\geq g(m)g(n)\). Singletons give \(g(n)\geq1\).
+Put \(a_n=\log g(n)\geq0\); the unique empty order gives
+\(g(0)=1\). For fixed \(k\geq1\), write \(n=qk+s\),
+\(0\leq s<k\). Then \(a_n\geq q a_k+a_s\geq q a_k\), so
+\(\liminf a_n/n\geq a_k/k\). Taking the supremum over \(k\)
+shows that the liminf is at least \(\sup_k a_k/k\); the limsup
+cannot exceed it. The geometric bound makes this supremum finite
+and bounds the limit by \(\log r\), or \(\log(8/3)\).
+Exponentiating proves the root-growth assertions.
+\end{proof}
+
+\subsection*{Proof and computational verification}
+The structural counts, injection, component decomposition, receiver
+argument and limiting steps are hand proofs. Appendix~\ref{app:collisions}
+expands the injection; Appendix~\ref{app:coverage} proves exhaustive
+coverage of the finite calculation. Appendix~\ref{app:checker} prints
+its entire program, including every coefficient and exceptional type.
+It uses exact integer arithmetic, Python's standard library and no
+input files. The finite comparisons are explicitly computer-assisted.
+Instructions and scope are given in Appendix~\ref{app:coverage}.
+
+\smallskip
+\textit{AI assistance and scope.} Claude (Anthropic) and ChatGPT/Codex
+(OpenAI) assisted the exploration of arguments, programming, proof
+checking and exposition. Computational optimisation was used to select
+finite correction coefficients; their proof of validity is the exact
+check printed here, not the optimisation process. The mathematical
+claims and their presentation remain the authors' responsibility.
+All dependencies of the stated bounds are proved here or in the appendices.
+
+\clearpage
+\begin{thebibliography}{9}
+\small\raggedright
+\setlength{\itemsep}{4pt}
+\bibitem{Sen} A.~K.~Sen, A possibility theorem on majority decisions,
+\emph{Econometrica} \textbf{34} (1966), 491--499.
+\url{https://doi.org/10.2307/1909947}.
+\bibitem{Fishburn} P.~C.~Fishburn, Acyclic sets of linear orders:
+a progress report, \emph{Social Choice and Welfare} \textbf{19}
+(2002), 431--447. \url{https://doi.org/10.1007/s003550100120}.
+\bibitem{Raz} R.~Raz, VC-dimension of sets of permutations,
+\emph{Combinatorica} \textbf{20} (2000), 241--255.
+\url{https://doi.org/10.1007/s004930070023}.
+\bibitem{KarpovSlinko} A.~Karpov and A.~Slinko, Constructing large
+peak-pit Condorcet domains, \emph{Theory and Decision} \textbf{94}
+(2023), 97--120. \url{https://doi.org/10.1007/s11238-022-09878-9}.
+\bibitem{KMRZ} A.~Karpov, K.~Markstr\"om, S.~Riis and B.~Zhou,
+\emph{Improved lower bounds for the maximum size of Condorcet domains},
+preprint (2026). \url{https://arxiv.org/abs/2601.07336}.
+\bibitem{Moros} P.~Moros, \emph{Condorcet domains have fewer than
+\(2.95^n\) orders}, private manuscript, version \texttt{upper-v10},
+23 October 2026. AI-assisted working draft from an earlier stage of
+the present project.
+\bibitem{PuppeSlinko} C.~Puppe and A.~Slinko, Condorcet domains,
+median graphs and the single-crossing property,
+\emph{Economic Theory} \textbf{67} (2019), 285--318.
+\url{https://doi.org/10.1007/s00199-017-1084-6}.
+\bibitem{Fathi} K.~Fathi, \emph{The peak-pit maximum for Condorcet
+domains on nine alternatives: cube classifications and exact deletion
+bounds \(h(9)=492\)}, preprint, Zenodo version v8
+(manuscript Version 41, 5 September 2026), eq.\ (96) and Lemma K.52.
+\url{https://doi.org/10.5281/zenodo.22346663}.
+\end{thebibliography}
+
+\clearpage
+\appendix
+\section{Voting interpretation and the injection}\label{app:elementary}
+\subsection{Equivalence with the voting definition}\label{app:voting}
+A voter profile is a finite list of admitted orders, with repetitions
+allowed. Pairwise majority puts \(a\) above \(b\) if more than half
+the voters do. We prove that Definition~\ref{def:cd} is equivalent to
+transitivity of majority for every odd positive profile size.
+
+On a triple, each of \(\{abc,bca,cab\}\) and
+\(\{acb,cba,bac\}\) gives a majority cycle. For a voting Condorcet
+domain, at least one order in each set must therefore be missing from
+its triple restrictions. By cyclic relabelling let the first missing
+order be \(abc\). Pairing it with \(acb,cba,bac\) gives, respectively,
+\(\N a1,\N b2,\N c3\) on all the remaining orders.
+Conversely, under \(\N x2\) the two comparisons of \(x\) agree for
+each voter, so they agree for majority, excluding a cycle.
+Under \(\N x1\), each voter with \(x>y\) has \(z>x>y\).
+A majority for \(x>y\) therefore forces a majority for \(z>y\),
+excluding \(x>y>z>x\). Exchange \(y,z\) for the reverse cycle,
+and reverse orders to treat \(\N x3\). An odd majority compares
+every distinct pair in exactly one direction. If it is not transitive,
+there are \(a>b\), \(b>c\), but \(c>a\): a directed triangle.
+Thus excluding cycles on triples proves transitivity. This proves the
+equivalence attributed to Sen~\cite{Sen}.
+
+\subsection{The injection: all collision cases}\label{app:collisions}
+We complete the hand proof of Lemma~\ref{lem:injection}.
+Let the target locked pair be \(p,q\) in its image order \(\tau\).
+For a preimage with moved label \(b\), call it \emph{upper} if \(b\)
+lies above \(p\) in \(\tau\), and \emph{lower} otherwise.
+For an upper preimage, \(D\) has common law \(\N p3\) on
+\(\{p,q,b\}\), whereas \(\N q1\) is not common to \(D\). There is consequently an order \(\chi_b\) with
+trace \(qpb\): the alternative \(qbp\) would violate \(\N p3\).
+For a lower preimage, \(\N q1\) is common to \(D\), and \(\N p3\) is not.
+The original neighbours in either preimage are \(p,b,q\).
+
+\subsection*{Two upper preimages}
+Suppose different moved labels \(b_1,b_2\) give the same target.
+Let their preimage orders be \(\sigma_1,\sigma_2\), and drop
+\(b_i\) in \(\sigma_i\) to obtain \(\rho_i\); such drops exist
+because the preimages are free. Their traces on \(\{b_1,b_2,q\}\) are
+\[
+\begin{array}{c|cccc}
+ \text{order}&\sigma_1&\sigma_2&\rho_1&\rho_2\\\hline
+ \text{trace}&b_2b_1q&b_1b_2q&b_2qb_1&b_1qb_2.
+\end{array}
+\]
+Both \(b_1,b_2\) occupy all three positions among these orders;
+\(q\) occupies the last two. Thus the only common law is \(\N q1\).
+In \(\chi_{b_1}\), \(q\) is above \(p,b_1\). The law just
+found forces \(b_2\) above \(q\), giving \(b_2qp\) on
+\(\{p,q,b_2\}\), contrary to its law \(\N p3\).
+
+\subsection*{Two lower preimages}
+Reverse every order. Majority transitivity and maximality are preserved.
+Lifts and drops exchange roles, and the unique law used by the assignment
+changes from never-first to never-last. The highest drop becomes the
+lowest lift. Thus the reversed assignment has two upper preimages,
+which the preceding argument excludes.
+
+\subsection*{One upper and one lower preimage}
+Let \(b_1\) be upper and \(b_2\) lower. On the four indicated labels,
+\[
+ \tau:b_1pqb_2,\qquad
+ \sigma_1:pb_1qb_2,\qquad
+ \sigma_2:b_1pb_2q.
+\]
+Take \(\chi=\chi_{b_1}\), whose trace on \(\{p,q,b_1\}\) is
+\(qpb_1\). The lower preimage's law \(\N q1\) on
+\(\{p,q,b_2\}\) forces \(b_2\) above \(q\), so \(\chi\)
+has trace \(b_2qpb_1\). On \(\{b_1,b_2,q\}\), the orders
+\(\tau,\sigma_2,\chi\) give
+\[
+ b_1qb_2,\qquad b_1b_2q,\qquad b_2qb_1.
+\]
+These allow exactly two common laws: \(\N{b_1}2\) and \(\N q1\).
+Drop \(b_1\) from \(\sigma_1\) to obtain \(\rho\).
+Now \(q\) lies above \(b_1\), and its comparison with \(b_2\)
+is unchanged, so it lies above both. This fourth witness excludes
+\(\N q1\), leaving \(\N{b_1}2\). It forces the trace of
+\(\rho\) to be \(qb_2b_1\).
+
+Lift \(b_2\) from \(\sigma_2\) to obtain \(\lambda\). Its
+comparison with \(q\) is now upwards and the comparison of
+\(b_1,q\) is unchanged. The same never-middle law forces its trace
+on \(\{b_1,b_2,q\}\) to be \(b_1b_2q\).
+On \(\{p,b_1,b_2\}\), the five orders
+\(\tau,\sigma_1,\rho,\lambda,\chi\) therefore give
+\[
+ b_1pb_2,\quad pb_1b_2,\quad pb_2b_1,\quad
+ b_1b_2p,\quad b_2pb_1.
+\]
+Each label occupies every position, leaving no common never-law.
+This contradicts Definition~\ref{def:cd}. All collisions are
+excluded, proving injectivity.\hfill\(\square\)
+
+\clearpage
+\section{Why the finite calculation is exhaustive}\label{app:coverage}
+We prove that the printed calculation covers every required family
+and that its integer inequalities are exactly F1--F3.
+
+\subsection{Masks, choices and the five-label table}
+Write \(P_n\) for the permutations of \(0,\ldots,n-1\) in
+lexicographic order. The mask of a family is
+\(\sum_{p\in H}2^{\operatorname{index}(p)}\). Intersection is bitwise
+AND; equal masks mean equal families.
+For each triple \(T\), \texttt{masks(n)} forms its six option masks,
+one for each extreme law. For each pair it forms three options:
+no restriction or either fixed orientation. Choosing one option in
+each group and intersecting them gives exactly a full
+extreme-law-plus-pair family, possibly empty. Every such family has
+a defining choice and therefore appears.
+
+Starting from all permutations, \texttt{refine} takes every intersection
+with every option of the next group. Induction on the processed groups
+proves coverage at every stage. Zero can be removed because intersections
+cannot make it nonempty. Duplicates can be removed because future
+intersections depend only on the current family.
+The five-label run gives 128400 nonempty families. Applying all 120
+label permutations gives their exact orbits. The least mask in each
+orbit, sorted increasingly, defines the 1160 indices used in \(W\).
+The program constructs the full orbit-to-index dictionary.
+
+\subsection{Six-label coverage and the split inequalities}
+For any six-family, restrict its \emph{defining constraints} to five
+labels, omitting label 5. Their full solution set is one of the
+five-families just enumerated. It need not equal the projection of
+the six-family. Relabel those five labels to its stored representative;
+extend the relabelling by fixing 5. Lift the representative to all
+six-orders whose deletion of 5 lies in it. The remaining choices are
+exactly ten new triple groups and five new pair groups. Intersecting
+all of their options therefore includes the given six-family.
+Sorting groups by their number of distinct nonempty options changes
+neither the possible intersections nor coverage.
+
+The six-extension loop visits 14105084 nonempty families, counted with
+their five-seed multiplicities. For each it computes
+\[
+ S=ds=\frac{12d}{19}|H|+db-dt-\frac d5A,
+ \qquad E=\frac d{152},\qquad \texttt{K}=\frac{12d}{19}.
+\]
+The integer variables \texttt{b,t,s} are \(db,dt,ds\).
+For a regular family the condition checked is
+\begin{equation}\label{eq:regularinteger}
+ S\geq E(|H|+4r_b+4r_t).
+\end{equation}
+Outside the nine \(\mathcal S\)-types, \(dp=2E(r_t-r_b)\).
+Adding and subtracting \(2dp\) in~\eqref{eq:regularinteger} gives
+\[
+ 2d\theta_b=S+2dp\geq E|H|+8Er_t,\qquad
+ 2d\theta_t=S-2dp\geq E|H|+8Er_b,
+\]
+exactly F2. Every failure of~\eqref{eq:regularinteger} is checked
+to have one of the fourteen printed exceptional types. The five
+\(\mathcal T\)-types satisfy \(S=0,r_b=r_t\); therefore
+\(\theta_b=\theta_t=0\), in particular F1.
+
+To identify a six-type, \texttt{canonical6} relabels each member order
+to \(0,1,\ldots,5\), transforms the whole family, and takes the least
+resulting mask. This collection of normalised masks is invariant under
+relabeling, and equal canonical masks exhibit an isomorphism. Thus it
+is an exact orbit test, though not minimisation over all 720 relabellings.
+
+For speed, \texttt{EXKEY} groups the listed representatives by
+\((|H|,db,dt,r_b,r_t,ds)\). Families with these keys, and every failure
+of the regular inequality, undergo the exact orbit test. The program
+verifies that the canonical type is listed under its key; the key alone
+is never accepted as an isomorphism test. Two \(\mathcal T\)-types
+share a key, so each key stores a set.
+
+\subsection{Seven-label coverage, exact endpoint slices and pruning}
+For each of the thirteen exceptional types other than \(R_8\),
+\texttt{extensions7} treats both endpoint orientations. Relabel the
+fixed endpoint to 6 and the remaining six labels so the slice is its
+printed representative. Thus these 26 cases cover every family
+required by F3, up to relabelling. The inequality is invariant under
+relabeling, because every potential and exceptional value depends
+only on the indicated type.
+
+Let \(B\) be the mask of all seven-orders having endpoint 6, and
+\(R\subseteq B\) the required orders obtained by appending or
+prepending 6 to the seed. A full seven-family has exactly that slice
+when \(J\cap B=R\). Every option defining it must contain \(R\),
+so options failing this test are discarded. If all remaining options
+of one group induce the same intersection with the current base,
+that intersection is forced. Repeating these forced reductions is
+safe: after any number of them, all possible completed families are
+exactly the possible intersections of the remaining choices with the
+reduced base. Duplicate and single-option groups may then be removed.
+
+For the remaining ordered groups \(G_0,\ldots,G_{m-1}\), define
+\[
+ F_i=\bigcap_{j=i}^{m-1}\ \bigcap_{O\in G_j}O,
+ \qquad F_m=P_7.
+\]
+At a partial family \(L\) after group \(i\), every later completion
+contains \(L\cap F_{i+1}\). If this includes an element of
+\(B\setminus R\), the required endpoint slice is impossible.
+Pruning just these partial families is therefore safe. No other
+pruning, time limit or frontier cutoff occurs. At the end the program
+retains precisely the families with \(J\cap B=R\).
+
+For every retained family it tests
+\[
+ \sum_{\rm bottom}(ds(H)+2dp(H))+
+ \sum_{\rm top}(ds(H)-2dp(H))\ \geq\ 2E|J|.
+\]
+This is \(2d\Lambda(J)\geq2d\eta|J|\), exactly F3.
+The 26 cases contain 16888 seed/family cases in total; a family may
+occur for several seeds. All pass. Along with the six-label check,
+this proves F1--F3 by a complete finite calculation.
+
+\subsection{Reproduction and the status of the calculation}
+The program requires Python 3.10 or later, uses only its standard
+library and reads no files. Its literal data are printed below.
+It uses no optimiser, saved enumeration, floating-point arithmetic
+or downloaded table. Run \texttt{python3 check\_finite.py} without
+\texttt{-O}, which disables assertions. A complete run on 1 November
+2026 returned \texttt{PASS} in about 100 seconds.
+
+The coverage arguments prove that the calculation suffices; its
+successful execution establishes the finite comparisons. This is the
+paper's sole computational step. The exact coefficients and their
+exhaustive checks are provided; no short conceptual derivation of
+those coefficients, or hand proof of the finite comparisons, is claimed.
+
+\clearpage
+\section{The complete finite checker and its exact data}\label{app:checker}
+All 1160 coefficients appear in the literal \texttt{W}, in index order
+starting at 0. In \texttt{EXCEPTIONS}, hexadecimal masks use the six-label
+lexicographic permutation encoding defined in Appendix~\ref{app:coverage}.
+Adjacent quoted strings are concatenated by Python. Each second entry
+is \(dp\) for an \(\mathcal S\)-type, or \texttt{None} for a
+\(\mathcal T\)-type. The program then generates the families, constructs
+the indexing, and checks the integer inequalities. This is the full
+program; there are no omitted routines or input files.
+In \texttt{slices}, the top slices are contiguous blocks of
+\((n-1)!\) bits because permutations are ordered lexicographically
+by first label. Deleting that label leaves the lexicographic order on
+the survivors. Bottom slices use the explicit deletion and relabelling
+map \texttt{LEFT}. The neighbour mask \texttt{NEIGH} lists exactly
+the adjacent swaps, so \texttt{stats6} counts \(A\) with the required
+twice-per-edge convention.
+\lstinputlisting{check_finite.py}
+\end{document}

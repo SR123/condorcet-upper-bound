@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "date": "2026-11-01",
+  "pdf_sha256": "33be91170c6180a9e1fd315b5ac947b5b9d4ac122edd987c5cdbbb3de6d49496",
+  "pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "main_pages_including_references": 10,
+  "appendix_pages": 2,
+  "method": "Poppler renders at 1500-pixel height; all twelve pages visually inspected. Final wording changed page 6 only; it was re-rendered and inspected, and other final page renders matched those already inspected pixel-for-pixel.",
+  "issues": []
+}

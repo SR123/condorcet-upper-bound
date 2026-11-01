@@ -1,24 +1,36 @@
-INDEPENDENT REVIEW FOR PAVLOS / HIS AI
+INDEPENDENT REVIEW FOR PAVLOS / HIS AI -- CURRENT PAPER, 1 NOVEMBER 2026
 
-1. Start with manuscript/main.pdf and README.txt. Check the semantic meanings
-   of Condorcet.f, h and IsCondorcet against the paper, including all odd
-   profiles, maximal/full domains, fixed pairs and absence of a common axis.
-2. Read CDCert/Main.lean and TwoInputs.lean, then run the documented build
-   and axiom commands. Check actual statements and all transitive axioms,
-   rather than relying on a PASS summary or an old four-module description.
-3. Follow component counting, the free-to-locked map, finite coverage/R8,
-   conditioning, telescoping and ordered-copy removal of end terms. Check
-   integer scaling and the n+1 indexing convention against the paper.
-4. Compare native saved-row checks with the separately proved Lean family
-   enumeration; do not equate the two sets of enumeration counts.
-5. Review the paper's Proposition 2.3 at arbitrary alpha separately: there
-   is no standalone generic-alpha Lean declaration in this bundle, although
-   its alpha=3/8 instance and the seven main conclusions are formalised.
-6. Report any incorrect theorem statement, hidden assumption, semantic
-   mismatch or missing dependency. Separate mathematical defects from tool
-   setup/resource failures and from bibliographical/editorial suggestions.
+1. Start with manuscript/main.pdf and README.txt. The current paper has ten
+   pages including references and two mathematical appendix pages. For every
+   finite datum and routine printed together, read the 21-page companion at
+   docs/full-proof-2026-11-01/main.pdf. Its Appendices B/C give full coverage/code.
+2. Use docs/PAPER_LEAN_MAP.txt for the CURRENT numbering. Check the semantic
+   meanings of Condorcet.f, h and IsCondorcet against the paper, including all
+   odd profiles, the never-condition equivalence, maximal/full domains,
+   fixed pair comparisons and absence of a common axis.
+3. Read lean/CDCert/Main.lean and TwoInputs.lean, then use the documented
+   source-build and axiom commands. Inspect actual statements and all
+   transitive axioms. All seven main conclusions have proved entry points.
+4. Follow the exact fibre identity, component counts, free-to-locked map,
+   exhaustive finite coverage/R8 receiver, window conditioning/cancellation
+   and ordered-copy removal of end terms. Check integer scaling and the n+1
+   indexing convention against the current mathematical statements.
+5. The standalone exact checker is ancillary/standalone/check_finite.py.
+   Run it without -O. Its 26 oriented seed cases agree in strategy with the
+   Lean proof. The older native checkers use a different enumeration/counting
+   unit. Python execution is not an assumption in the Lean theorem.
+6. The old generic-alpha Proposition 2.3 coverage note refers to the older
+   eight-page paper, not a new unproved premise of this journal revision.
+   The current paper's seven main conclusions are fully covered.
+7. Report incorrect statements, hidden assumptions, semantic mismatches or
+   missing dependencies. Distinguish mathematical defects from environment
+   setup/resource failures and bibliographical/editorial suggestions.
 
-The final record to approve is this exact payload and its MANIFEST.sha256.
-GitHub URL and archived-release DOI remain placeholders; archival publication
-must wait for Pavlos's agreement. This review packet performs no upload,
-publication, DOI registration or email action.
+The old checked snapshot is preserved in Git history at
+0d5dd168854b208d8436ea685921aa03d7c42200. Its proof sources and pins are
+unchanged by the current paper update. Verification records retain their
+actual dates: this update does not claim another full Lean build.
+
+Review the current MANIFEST.sha256 together with the paper and proof mapping.
+This remains a coauthor-review draft. Archival publication and a DOI wait for
+author agreement; preparation-stage metadata remain inactive.

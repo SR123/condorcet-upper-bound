@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "full_program_syntax_tree_matches": true,
+  "coefficients_compared": 1160,
+  "normalisation": "Removed PDF page numbers/form feeds; ignored whitespace within the split coefficient string. All other syntax and literals match exactly.",
+  "checker_sha256": "dbaa0cc9339d641158da2d0bf0ae522a15ae0d90c840d73496433b804e72ab6b",
+  "pdf_sha256": "9954229fb5bbebfce54d73692b40d356c8226b049a748ab42bbe0aa16854351d",
+  "main_pages_including_references": 10
+}

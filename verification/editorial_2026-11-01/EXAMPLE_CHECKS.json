@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "deletion_example": {
+    "n": 3,
+    "M": 4,
+    "Sigma": 6,
+    "G": 0,
+    "A": 6
+  },
+  "gap_example": {
+    "n": 3,
+    "M": 4,
+    "Sigma": 6,
+    "G": 2,
+    "A": 4
+  },
+  "gap_components": [
+    {
+      "n": 3,
+      "M": 2,
+      "Sigma": 4,
+      "G": 0,
+      "A": 2
+    },
+    {
+      "n": 3,
+      "M": 2,
+      "Sigma": 4,
+      "G": 0,
+      "A": 2
+    }
+  ],
+  "joined_copies_example": {
+    "n": 6,
+    "M": 16,
+    "Sigma": 48,
+    "G": 0,
+    "A": 48
+  },
+  "full_extreme_law_plus_pair_membership": true,
+  "method": "Direct order sets, insertion slots, triple traces and all 720 six-label permutations."
+}

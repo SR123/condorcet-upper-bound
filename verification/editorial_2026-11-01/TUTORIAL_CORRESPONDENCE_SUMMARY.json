@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "date": "2026-11-01",
+  "proof_object_basis": "verified_objects",
+  "prior_successful_source_modules": 326,
+  "new_complete_source_rebuild_claimed": false,
+  "typed_tutorial_restatements": 54,
+  "named_original_interfaces_checked": 190,
+  "original_definition_bodies_printed": 72,
+  "only_standard_axioms": true,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "scope": "Fresh compilation of typed correspondence files against hash-verified proof objects. A complete new source rebuild is claimed only if proof_object_basis is fresh. Semantic interpretation, equivalent notation and exposition are documented separately; compilation does not certify prose.",
+  "full_receipt_sha256": "e01a9e1910799c19e829ce0d4cfd6bd696b2634a9fe8926f83f82b029c5f3b59"
+}
